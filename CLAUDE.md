@@ -68,6 +68,26 @@ The primary goal is to:
 
 ---
 
+## Homepage Wireframe
+
+**Status:** Approved (v2.0)  
+**Reference:** [`docs/wireframe.md`](docs/wireframe.md)
+
+**Structure (6 sections):**
+1. Hero — Delivery + SMB focus, Made in Germany
+2. Problem Statement — Delivery sector pain points
+3. Services — Delivery ERP (featured) + 3 supporting
+4. Why Custom ERP — Comparison table
+5. References — 3 projects with testimonials
+6. Final CTA — Consultation booking
+
+**Key decisions:**
+- No social proof bar (limited metrics)
+- No industries section (focused on delivery)
+- No separate testimonials (merged with references)
+
+---
+
 ## Final Authority
 
 All final decisions belong to the human project owner.
