@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "headline": {
+      "line1": "Stop adapting your business to software.",
+      "line2": "We build ERP systems that adapt to your delivery workflows."
+    },
+    "subheadline": "Custom ERP solutions for small and medium-sized delivery businesses — designed around your workflow, not the other way around.",
+    "cta": {
+      "primary": "Discuss your delivery setup",
+      "secondary": "See how custom ERP works"
+    }
+  },
+  "trust": {
+    "builtInGermany": "Built in Germany",
+    "gdprCompliant": "GDPR-compliant"
+  },
+  "metadata": {
+    "title": "Soluty GmbH | Custom ERP Solutions for Delivery Businesses",
+    "description": "We build custom ERP systems that adapt to your delivery workflows. From order intake to invoicing — designed for small and medium-sized delivery businesses in Germany."
+  }
+}
