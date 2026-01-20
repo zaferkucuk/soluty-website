@@ -12,6 +12,27 @@ The primary goal is to:
 
 ---
 
+## Session Initialization
+
+**At the start of every session involving code work, AI must:**
+
+1. Read [`docs/DEV_STANDARDS.md`](docs/DEV_STANDARDS.md) before writing any code
+2. Confirm understanding of active constraints
+3. Identify the active role for the session
+
+This is **mandatory** and non-negotiable. Code produced without reading DEV_STANDARDS.md is considered non-compliant.
+
+**Key documents to be aware of:**
+
+| Document | Purpose |
+|----------|---------|
+| `docs/DEV_STANDARDS.md` | Coding conventions, naming, structure |
+| `docs/technical_constraints.md` | Technology boundaries, quality targets |
+| `docs/wireframe.md` | Approved page structure |
+| `docs/roles/` | Role definitions |
+
+---
+
 ## Core Principles
 
 1. **Single Source of Truth**
