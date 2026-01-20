@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "headline": {
+      "line1": "[DE] Stop adapting your business to software.",
+      "line2": "[DE] We build ERP systems that adapt to your delivery workflows."
+    },
+    "subheadline": "[DE] Custom ERP solutions for small and medium-sized delivery businesses — designed around your workflow, not the other way around.",
+    "cta": {
+      "primary": "[DE] Discuss your delivery setup",
+      "secondary": "[DE] See how custom ERP works"
+    }
+  },
+  "trust": {
+    "builtInGermany": "Entwickelt in Deutschland",
+    "gdprCompliant": "DSGVO-konform"
+  },
+  "metadata": {
+    "title": "[DE] Soluty GmbH | Custom ERP Solutions for Delivery Businesses",
+    "description": "[DE] We build custom ERP systems that adapt to your delivery workflows."
+  }
+}
