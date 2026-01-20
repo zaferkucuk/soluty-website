@@ -1,21 +1,28 @@
 {
   "hero": {
     "headline": {
-      "line1": "[DE] Stop adapting your business to software.",
-      "line2": "[DE] We build ERP systems that adapt to your delivery workflows."
+      "line1": "Hören Sie auf, Ihr Unternehmen an Software anzupassen.",
+      "line2": "Wir entwickeln ERP-Systeme, die sich Ihren Lieferprozessen anpassen."
     },
-    "subheadline": "[DE] Custom ERP solutions for small and medium-sized delivery businesses — designed around your workflow, not the other way around.",
+    "subheadline": "Individuelle ERP-Lösungen für kleine und mittlere Lieferunternehmen — entwickelt nach Ihrem Workflow, nicht umgekehrt.",
     "cta": {
-      "primary": "[DE] Discuss your delivery setup",
-      "secondary": "[DE] See how custom ERP works"
+      "primary": "Sprechen Sie mit uns über Ihre Lieferlogistik",
+      "secondary": "So funktioniert individuelles ERP"
+    },
+    "trust": {
+      "builtInGermany": "Entwickelt in Deutschland",
+      "gdprCompliant": "DSGVO-konform"
+    },
+    "illustration": {
+      "order": "Bestellung",
+      "route": "Route",
+      "driver": "Fahrer",
+      "delivery": "Lieferung",
+      "invoice": "Rechnung"
     }
   },
-  "trust": {
-    "builtInGermany": "Entwickelt in Deutschland",
-    "gdprCompliant": "DSGVO-konform"
-  },
   "metadata": {
-    "title": "[DE] Soluty GmbH | Custom ERP Solutions for Delivery Businesses",
-    "description": "[DE] We build custom ERP systems that adapt to your delivery workflows."
+    "title": "Soluty GmbH | Individuelle ERP-Lösungen für Lieferunternehmen",
+    "description": "Wir entwickeln maßgeschneiderte ERP-Systeme, die sich Ihren Lieferprozessen anpassen. Von der Auftragsannahme bis zur Rechnungsstellung — für kleine und mittlere Lieferunternehmen in Deutschland."
   }
 }
