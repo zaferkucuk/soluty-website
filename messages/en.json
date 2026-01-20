@@ -8,11 +8,18 @@
     "cta": {
       "primary": "Discuss your delivery setup",
       "secondary": "See how custom ERP works"
+    },
+    "trust": {
+      "builtInGermany": "Built in Germany",
+      "gdprCompliant": "GDPR-compliant"
+    },
+    "illustration": {
+      "order": "Order",
+      "route": "Route",
+      "driver": "Driver",
+      "delivery": "Delivery",
+      "invoice": "Invoice"
     }
-  },
-  "trust": {
-    "builtInGermany": "Built in Germany",
-    "gdprCompliant": "GDPR-compliant"
   },
   "metadata": {
     "title": "Soluty GmbH | Custom ERP Solutions for Delivery Businesses",
