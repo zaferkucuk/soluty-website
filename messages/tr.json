@@ -1,21 +1,28 @@
 {
   "hero": {
     "headline": {
-      "line1": "[TR] Stop adapting your business to software.",
-      "line2": "[TR] We build ERP systems that adapt to your delivery workflows."
+      "line1": "İşinizi yazılıma uydurmayı bırakın.",
+      "line2": "Teslimat süreçlerinize uyum sağlayan ERP sistemleri geliştiriyoruz."
     },
-    "subheadline": "[TR] Custom ERP solutions for small and medium-sized delivery businesses — designed around your workflow, not the other way around.",
+    "subheadline": "Küçük ve orta ölçekli teslimat işletmeleri için özel ERP çözümleri — sizin iş akışınıza göre tasarlandı.",
     "cta": {
-      "primary": "[TR] Discuss your delivery setup",
-      "secondary": "[TR] See how custom ERP works"
+      "primary": "Teslimat sürecinizi konuşalım",
+      "secondary": "Özel ERP nasıl çalışır?"
+    },
+    "trust": {
+      "builtInGermany": "Almanya'da geliştirildi",
+      "gdprCompliant": "KVKK uyumlu"
+    },
+    "illustration": {
+      "order": "Sipariş",
+      "route": "Rota",
+      "driver": "Sürücü",
+      "delivery": "Teslimat",
+      "invoice": "Fatura"
     }
   },
-  "trust": {
-    "builtInGermany": "Almanya'da Geliştirildi",
-    "gdprCompliant": "KVKK Uyumlu"
-  },
   "metadata": {
-    "title": "[TR] Soluty GmbH | Custom ERP Solutions for Delivery Businesses",
-    "description": "[TR] We build custom ERP systems that adapt to your delivery workflows."
+    "title": "Soluty GmbH | Teslimat İşletmeleri için Özel ERP Çözümleri",
+    "description": "Teslimat süreçlerinize uyum sağlayan özel ERP sistemleri geliştiriyoruz. Sipariş alımından faturalandırmaya — Almanya'daki küçük ve orta ölçekli teslimat işletmeleri için."
   }
 }
