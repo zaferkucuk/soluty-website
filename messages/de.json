@@ -1,4 +1,23 @@
 {
+  "header": {
+    "nav": {
+      "services": "Leistungen",
+      "references": "Referenzen",
+      "contact": "Kontakt"
+    },
+    "cta": "Beratung anfragen",
+    "languageSwitcher": {
+      "label": "Sprache wählen",
+      "de": "DE",
+      "en": "EN",
+      "tr": "TR"
+    },
+    "mobileMenu": {
+      "open": "Menü öffnen",
+      "close": "Menü schließen"
+    },
+    "skipToContent": "Zum Hauptinhalt springen"
+  },
   "hero": {
     "headline": {
       "line1": "Hören Sie auf, Ihr Unternehmen an Software anzupassen.",
