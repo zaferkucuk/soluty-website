@@ -53,19 +53,30 @@ Use these commands to activate specific roles and workflows:
 **At the start of every session, AI must:**
 
 1. Identify which slash command or role is being activated
-2. Read the relevant documents for that role
-3. Confirm understanding before proceeding
+2. Read **mandatory documents** (always required, regardless of role)
+3. Read **role-specific documents** for the active role
+4. Confirm understanding before proceeding
 
 **If no role is specified, ask:** "Which role should I use for this task?"
 
-**Key documents by role:**
+### Mandatory Reading (Every Session)
 
-| Role | Required Reading |
-|------|------------------|
-| Context Manager | `docs/wireframe.md`, `docs/technical_constraints.md` |
+These documents must be read at the start of every session, regardless of role:
+
+| Document | Purpose |
+|----------|---------|
+| `docs/DEV_STANDARDS.md` | Project coding conventions and quality standards |
+| `docs/technical_constraints.md` | Non-negotiable technical boundaries |
+| `docs/wireframe.md` | Approved page structure and current progress |
+
+### Role-Specific Reading
+
+| Role | Additional Documents |
+|------|---------------------|
+| Context Manager | — (mandatory docs are sufficient) |
 | Researcher | `docs/roles/researcher.md`, `docs/research/` |
-| UX/UI Designer | `docs/roles/ux_ui.md`, `docs/wireframe.md`, `docs/DEV_STANDARDS.md` |
-| Web Developer | `docs/DEV_STANDARDS.md`, `docs/technical_constraints.md`, relevant spec |
+| UX/UI Designer | `docs/roles/ux_ui.md`, relevant section specs |
+| Web Developer | Relevant spec from `docs/sections/`, relevant task from `docs/tasks/` |
 
 ---
 
