@@ -8,11 +8,13 @@ import { ModuleCard } from './ModuleCard';
 import { ModuleTooltip } from './ModuleTooltip';
 import { ConnectionLines } from './ConnectionLines';
 
-// Updated card size: 80x96 (was 64x64)
+// Card dimensions
 const CARD_WIDTH = 80;
 const CARD_HEIGHT = 96;
-const GAP = 12; // Reduced gap since cards are larger
-const ANIMATION_INTERVAL = 500;
+const GAP = 12;
+
+// Animation timing - increased from 500ms to 2500ms for better readability
+const ANIMATION_INTERVAL = 2500;
 
 export function ModuleGrid() {
   const t = useTranslations('moduleGrid.modules');
