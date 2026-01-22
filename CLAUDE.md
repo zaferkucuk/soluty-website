@@ -52,12 +52,14 @@ Use these commands to activate specific roles and workflows:
 
 **At the start of every session, AI must:**
 
-1. Identify which slash command or role is being activated
+1. Read project files via **GitHub API** (git clone does not work in this environment)
 2. Read **mandatory documents** (always required, regardless of role)
 3. Read **role-specific documents** for the active role
 4. Confirm understanding before proceeding
 
-**If no role is specified, ask:** "Which role should I use for this task?"
+### Default Role
+
+**If no role is specified:** Use **Researcher** role as default.
 
 ### Mandatory Reading (Every Session)
 
@@ -65,18 +67,23 @@ These documents must be read at the start of every session, regardless of role:
 
 | Document | Purpose |
 |----------|---------|
+| `CLAUDE.md` | This file - project rules and session protocol |
 | `docs/DEV_STANDARDS.md` | Project coding conventions and quality standards |
 | `docs/technical_constraints.md` | Non-negotiable technical boundaries |
 | `docs/wireframe.md` | Approved page structure and current progress |
 
 ### Role-Specific Reading
 
-| Role | Additional Documents |
-|------|---------------------|
-| Context Manager | — (mandatory docs are sufficient) |
-| Researcher | `docs/roles/researcher.md`, `docs/research/` |
-| UX/UI Designer | `docs/roles/ux_ui.md`, relevant section specs |
-| Web Developer | Relevant spec from `docs/sections/`, relevant task from `docs/tasks/` |
+**When a role is assigned or changed, AI must read the corresponding role document from `docs/roles/`:**
+
+| Role | Role Document | Additional Documents |
+|------|---------------|---------------------|
+| Context Manager | — | — (mandatory docs are sufficient) |
+| Researcher | `docs/roles/researcher.md` | `docs/research/` |
+| UX/UI Designer | `docs/roles/ux_ui.md` | relevant section specs from `docs/sections/` |
+| Web Developer | `docs/roles/web_developer.md` | relevant spec from `docs/sections/`, relevant task from `docs/tasks/` |
+
+**Critical:** Always read the role's `.md` file before starting any work in that role.
 
 ---
 
