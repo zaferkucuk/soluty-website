@@ -10,10 +10,10 @@ import { ConnectionLines } from './ConnectionLines';
 
 // Card dimensions
 const CARD_WIDTH = 80;
-const CARD_HEIGHT = 96;
+const CARD_HEIGHT = 100; // Updated from 96 to 100 for 2-line labels
 const GAP = 12;
 
-// Animation timing - increased from 500ms to 2500ms for better readability
+// Animation timing - 2.5 seconds per module for comfortable viewing
 const ANIMATION_INTERVAL = 2500;
 
 export function ModuleGrid() {
