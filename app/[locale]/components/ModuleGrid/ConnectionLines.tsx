@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { modules, animationOrder, getModuleById, CARD_WIDTH, CARD_HEIGHT } from './modules-data';
+import { modules, groupAnimationOrder, getModuleById, CARD_WIDTH, CARD_HEIGHT } from './modules-data';
 
 interface ConnectionLinesProps {
-  activeModuleId: string;
+  activeModuleIds: string[];
+  activeGroupIndex: number;
   gridWidth: number;
   gridHeight: number;
 }
@@ -74,24 +75,22 @@ function generateCurvedPath(from: Point, to: Point): string {
 function getApproxPathLength(from: Point, to: Point): number {
   const dx = Math.abs(to.x - from.x);
   const dy = Math.abs(to.y - from.y);
-  // Bezier curve is roughly 1.2x the straight line distance
   return Math.sqrt(dx * dx + dy * dy) * 1.2;
 }
 
 export function ConnectionLines({
-  activeModuleId,
+  activeModuleIds,
+  activeGroupIndex,
   gridWidth,
   gridHeight,
 }: ConnectionLinesProps) {
-  const activeIndex = animationOrder.indexOf(activeModuleId);
-
   const connections: {
     id: string;
     fromId: string;
+    toId: string;
     path: string;
     pathLength: number;
     isActive: boolean;
-    isCompleted: boolean;
     isRecent: boolean;
   }[] = [];
 
@@ -103,18 +102,23 @@ export function ConnectionLines({
       const fromCenter = getModuleCenter(module.position);
       const toCenter = getModuleCenter(targetModule.position);
 
-      const moduleIndex = animationOrder.indexOf(module.id);
-      const isActive = module.id === activeModuleId;
-      const isCompleted = moduleIndex < activeIndex;
-      const isRecent = isCompleted && (activeIndex - moduleIndex) <= 2;
+      // Connection is active if BOTH source and target are in active group
+      const isActive = activeModuleIds.includes(module.id) && activeModuleIds.includes(targetId);
+      
+      // Recent if either module was in recent groups (for trail effect)
+      const isRecent = !isActive && (
+        activeModuleIds.includes(module.id) || 
+        activeModuleIds.includes(targetId) ||
+        activeGroupIndex > 0 // Show some trails from previous groups
+      );
 
       connections.push({
         id: `${module.id}-${targetId}`,
         fromId: module.id,
+        toId: targetId,
         path: generateCurvedPath(fromCenter, toCenter),
         pathLength: getApproxPathLength(fromCenter, toCenter),
         isActive,
-        isCompleted,
         isRecent,
       });
     });
@@ -172,15 +176,14 @@ export function ConnectionLines({
             strokeWidth={1.5}
             strokeLinecap="round"
             strokeLinejoin="round"
-            opacity={0.2}
+            opacity={0.15}
           />
         );
       })}
 
-      {/* Animated connection paths with trail effect */}
+      {/* Animated connection paths */}
       {connections.map((conn) => {
         const gradientName = moduleGradientMap[conn.fromId] || 'teal';
-        const isVisible = conn.isActive || conn.isRecent;
         
         const dashLength = 25;
         const gapLength = Math.max(conn.pathLength - dashLength, 15);
@@ -200,13 +203,13 @@ export function ConnectionLines({
               strokeDashoffset: 0 
             }}
             animate={{
-              opacity: conn.isActive ? 1 : conn.isRecent ? 0.5 : 0,
+              opacity: conn.isActive ? 1 : conn.isRecent ? 0.4 : 0,
               strokeDashoffset: conn.isActive ? [0, -(dashLength + gapLength)] : 0,
             }}
             transition={{ 
-              opacity: { duration: 0.3, ease: 'easeInOut' },
+              opacity: { duration: 0.4, ease: 'easeInOut' },
               strokeDashoffset: {
-                duration: 1.2,
+                duration: 1.5,
                 ease: 'linear',
                 repeat: conn.isActive ? Infinity : 0,
               }
