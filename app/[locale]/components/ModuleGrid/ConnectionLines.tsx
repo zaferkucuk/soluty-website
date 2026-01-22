@@ -123,7 +123,7 @@ export function ConnectionLines({
       className="absolute inset-0 pointer-events-none"
       width={gridWidth}
       height={gridHeight}
-      style={{ overflow: 'visible' }}
+      style={{ overflow: 'visible', zIndex: 1 }}
     >
       {/* Gradient Definitions */}
       <defs>
@@ -151,8 +151,8 @@ export function ConnectionLines({
             x2="100%"
             y2="100%"
           >
-            <stop offset="0%" stopColor={colors.start} stopOpacity={0.4} />
-            <stop offset="100%" stopColor={colors.end} stopOpacity={0.4} />
+            <stop offset="0%" stopColor={colors.start} stopOpacity={0.5} />
+            <stop offset="100%" stopColor={colors.end} stopOpacity={0.5} />
           </linearGradient>
         ))}
       </defs>
@@ -160,28 +160,23 @@ export function ConnectionLines({
       {/* Connection Paths */}
       {connections.map((conn) => {
         const gradientName = moduleGradientMap[conn.fromId] || 'teal';
-        const gradientId = conn.isActive
-          ? `gradient-${gradientName}`
-          : conn.isCompleted
-            ? `gradient-${gradientName}-faded`
-            : `gradient-${gradientName}-faded`;
-
+        const isVisible = conn.isActive || conn.isCompleted;
+        
         return (
           <motion.path
             key={conn.id}
             d={conn.path}
             fill="none"
-            stroke={conn.isActive || conn.isCompleted ? `url(#${gradientId})` : 'rgba(200, 200, 200, 0.3)'}
-            strokeWidth={conn.isActive ? 2.5 : 2}
+            stroke={isVisible ? `url(#gradient-${gradientName}${conn.isCompleted && !conn.isActive ? '-faded' : ''})` : 'transparent'}
+            strokeWidth={conn.isActive ? 3 : 2}
             strokeLinecap="round"
             strokeLinejoin="round"
-            initial={{ pathLength: 0, opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{
-              pathLength: conn.isActive || conn.isCompleted ? 1 : 0,
-              opacity: conn.isActive ? 1 : conn.isCompleted ? 0.7 : 0.3,
+              opacity: conn.isActive ? 1 : conn.isCompleted ? 0.8 : 0,
             }}
             transition={{ 
-              duration: conn.isActive ? 0.5 : 0.3,
+              duration: 0.4,
               ease: 'easeInOut'
             }}
           />
