@@ -40,6 +40,21 @@
       "invoice": "Rechnung"
     }
   },
+  "moduleGrid": {
+    "ariaLabel": "ERP-Modul-Workflow-Visualisierung",
+    "modules": {
+      "order": "Bestellung",
+      "workPlan": "Arbeitsplan",
+      "routeOptimization": "Routenoptimierung",
+      "sales": "Vertrieb",
+      "deliveryNote": "Lieferschein",
+      "warehouse": "Lager",
+      "productManagement": "Produktverwaltung",
+      "crm": "CRM",
+      "invoice": "Rechnung",
+      "payments": "Zahlungen"
+    }
+  },
   "metadata": {
     "title": "Soluty GmbH | Individuelle ERP-Lösungen für Lieferunternehmen",
     "description": "Wir entwickeln maßgeschneiderte ERP-Systeme, die sich Ihren Lieferprozessen anpassen. Von der Auftragsannahme bis zur Rechnungsstellung — für kleine und mittlere Lieferunternehmen in Deutschland."
