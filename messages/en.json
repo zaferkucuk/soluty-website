@@ -1,4 +1,23 @@
 {
+  "header": {
+    "nav": {
+      "services": "Services",
+      "references": "References",
+      "contact": "Contact"
+    },
+    "cta": "Request Consultation",
+    "languageSwitcher": {
+      "label": "Select Language",
+      "de": "DE",
+      "en": "EN",
+      "tr": "TR"
+    },
+    "mobileMenu": {
+      "open": "Open menu",
+      "close": "Close menu"
+    },
+    "skipToContent": "Skip to main content"
+  },
   "hero": {
     "headline": {
       "line1": "Stop adapting your business to software.",
@@ -19,6 +38,21 @@
       "driver": "Driver",
       "delivery": "Delivery",
       "invoice": "Invoice"
+    }
+  },
+  "moduleGrid": {
+    "ariaLabel": "ERP module workflow visualization",
+    "modules": {
+      "order": "Order",
+      "workPlan": "Work Plan",
+      "routeOptimization": "Route Optimization",
+      "sales": "Sales",
+      "deliveryNote": "Delivery Note",
+      "warehouse": "Warehouse",
+      "productManagement": "Product Management",
+      "crm": "CRM",
+      "invoice": "Invoice",
+      "payments": "Payments"
     }
   },
   "metadata": {
