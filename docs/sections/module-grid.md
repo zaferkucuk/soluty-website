@@ -1,7 +1,7 @@
 # Module Grid Component Specification
 
-**Status:** Ready for Implementation  
-**Version:** 1.2  
+**Status:** v1.0 Implemented, v2.0 Planned  
+**Version:** 2.0-draft  
 **Last Updated:** 2025-01-22
 
 ---
@@ -18,394 +18,214 @@ The Module Grid is an animated, interactive visualization of Soluty's ERP system
 
 ---
 
-## Integration with Hero Section
+## Current Implementation Status (v1.0)
 
-### Current Hero Layout
+✅ **Completed:**
+- 10 modules with Lucide icons
+- 3x4 grid layout
+- Auto-cycle animation (500ms)
+- Active state highlighting (scale + border)
+- L-shaped connection lines
+- i18n translations (DE/EN/TR)
+- Reduced motion support
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                 │
-│  ┌─────────────────────────┐  ┌──────────────────────────────┐ │
-│  │                         │  │                              │ │
-│  │  HEADLINE               │  │   [CURRENT: Static SVG       │ │
-│  │  SUBHEADLINE            │  │    - TO BE REMOVED]          │ │
-│  │                         │  │                              │ │
-│  │  [CTA BUTTONS]          │  │                              │ │
-│  │                         │  │                              │ │
-│  └─────────────────────────┘  └──────────────────────────────┘ │
-│                                                                 │
-│  TRUST BAR                                                      │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### New Hero Layout
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                 │
-│  ┌─────────────────────────┐  ┌──────────────────────────────┐ │
-│  │                         │  │                              │ │
-│  │  HEADLINE               │  │   [NEW: Animated Module      │ │
-│  │  SUBHEADLINE            │  │    Grid Component]           │ │
-│  │                         │  │                              │ │
-│  │  [CTA BUTTONS]          │  │   Auto-cycling + active      │ │
-│  │                         │  │   label + hover tooltips     │ │
-│  └─────────────────────────┘  └──────────────────────────────┘ │
-│                                                                 │
-│  TRUST BAR                                                      │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-**Note:** No separate section headline — the grid speaks for itself within the Hero context.
+❌ **Known Issues:**
+- Layout too rigid (uniform grid)
+- Animation too fast, no pause
+- Labels outside cards (overflow issues)
+- Connection lines too basic (no gradient, no fading)
 
 ---
 
-## Modules (10 items)
+## Stripe.com Comparison Analysis
 
-| # | Key | DE | EN | TR | Lucide Icon |
-|---|-----|----|----|----|----|
-| 1 | order | Bestellung | Order | Sipariş | `Package` |
-| 2 | workPlan | Arbeitsplan | Work Plan | İş Planı | `ClipboardList` |
-| 3 | routeOptimization | Routenoptimierung | Route Optimization | Rota Optimizasyonu | `Map` |
-| 4 | sales | Vertrieb | Sales | Satış | `TrendingUp` |
-| 5 | deliveryNote | Lieferschein | Delivery Note | Lieferschein | `FileText` |
-| 6 | warehouse | Lager | Warehouse | Depo | `Warehouse` |
-| 7 | productManagement | Produktverwaltung | Product Management | Ürün Yönetimi | `Boxes` |
-| 8 | crm | CRM | CRM | CRM | `Users` |
-| 9 | invoice | Rechnung | Invoice | Fatura | `Receipt` |
-| 10 | payments | Zahlungen | Payments | Ödemeler | `CreditCard` |
+### Reference: stripe.com/en-de "Modular Solutions" Section
 
-**Note:** Module list is configurable — can be expanded or reduced. Icons are Lucide (can be replaced with custom SVGs later).
+Stripe's implementation is significantly more sophisticated. Below is a detailed analysis conducted on 2025-01-22.
 
----
+### Technical Findings (DOM Inspection)
 
-## Flow Sequence (Connection Lines)
+| Metric | Stripe | Our Implementation |
+|--------|--------|-------------------|
+| SVG elements | 685 | ~15 |
+| Path elements | 2,089 | ~10 |
+| Gradient definitions | 340 | 0 |
+| Animated elements | 9,212 | ~20 |
+| Transition elements | 9,195 | ~15 |
 
+### Key Differences
+
+#### 1. Layout: Organic vs Rigid Grid
+
+| Aspect | Stripe | Ours |
+|--------|--------|------|
+| Module placement | **Organik dağılım** - offset pozisyonlar, gruplar | **Düz 3x4 grid** - sıkıcı ve mekanik |
+| Grid density | Boşluklar var, her hücre dolu değil | Her hücre dolu |
+| Symmetry | **Asimetrik** - doğal görünüm | **Simetrik** - yapay görünüm |
+| Module count | ~20+ modül, geniş alan | 10 modül, dar alan |
+
+**Stripe örnek yerleşim:**
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│   [Bestellung] ──► [Arbeitsplan] ──► [Routenoptimierung]   │
-│        │                                      │             │
-│        │                                      ▼             │
-│        │                              [Lieferschein]        │
-│        │                                      │             │
-│        │                                      ▼             │
-│        │                                  [Lager]           │
-│        ▼                                      │             │
-│   [Vertrieb] ◄──── [CRM] ◄──── [Produktverwaltung]         │
-│        │                                                    │
-│        ▼                                                    │
-│   [Rechnung] ──────────────────────► [Zahlungen]           │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-**Animation Order (1-10):**
-1. Bestellung (Order)
-2. Arbeitsplan (Work Plan)
-3. Routenoptimierung (Route Optimization)
-4. Lieferschein (Delivery Note)
-5. Lager (Warehouse)
-6. Produktverwaltung (Product Management)
-7. CRM
-8. Vertrieb (Sales)
-9. Rechnung (Invoice)
-10. Zahlungen (Payments)
-
----
-
-## Animation Behavior
-
-### Auto-Cycle
-
-| Property | Value |
-|----------|-------|
-| Interval | 500ms (0.5 seconds) |
-| Loop | Continuous (restarts after module 10) |
-| Pause on hover | No |
-| Pause on click | No |
-
-### Module Highlight (Active State)
-
-When a module is "active" in the cycle:
-- Module icon scales up slightly (1.1x)
-- Border color changes to brand color (#4DB6A0)
-- Icon color changes to brand color
-- **Shadow/elevation effect appears** (box-shadow)
-- **Module name label appears below the card** (permanent while active)
-- Connection line to next module animates (stroke-dashoffset)
-
-### Active Label Display (NEW in v1.2)
-
-| Property | Value |
-|----------|-------|
-| Visibility | Always visible when module is active |
-| Position | Centered below the module card |
-| Animation | Fade in (150ms) when becoming active |
-| Content | Translated module name from i18n |
-| Style | Dark background pill, white text |
-
-**Important:** The active label is different from hover tooltip. Active label shows automatically during auto-cycle. Hover tooltip provides additional context on mouse interaction.
-
-### Hover Interaction
-
-| Trigger | Action |
-|---------|--------|
-| Mouse enter module | Show module name tooltip (if not already active) |
-| Mouse leave module | Hide tooltip |
-| Click module | No action (no errors, future enhancement) |
-
-**Note:** If the hovered module is already active (showing label), the hover tooltip is suppressed to avoid duplication.
-
----
-
-## Visual Design
-
-### Desktop Layout (≥1024px)
-
-```
-┌───────────────────────────────────────────────────────────┐
-│                                                           │
-│      ┌────┐      ┌────┐      ┌────┐                      │
-│      │ 📦 │ ───► │ 📋 │ ───► │ 🗺️ │                      │
-│      └────┘      └────┘      └────┘                      │
-│         │                        │                        │
-│         │                        ▼                        │
-│         │        ┌────┐      ┌────┐      ┌────┐          │
-│         │        │ 💰 │ ◄─── │ 👥 │ ◄─── │ 📦 │          │
-│         │        └────┘      └────┘      └────┘          │
-│         │           │                        ▲            │
-│         │           ▼                        │            │
-│         │        ┌────┐      ┌────┐      ┌────┐          │
-│         └──────► │ 📄 │ ───► │ 🏭 │ ───► │ 🧾 │ ──► 💳   │
-│                  └────┘      └────┘      └────┘          │
-│                                                           │
-└───────────────────────────────────────────────────────────┘
-
-Container: ~45% of Hero width (right side)
+        ┌────┐
+        │    │
+┌────┐  └────┘  ┌────┐  ┌────┐
+│    │          │    │  │    │
+└────┘  ┌────┐  └────┘  └────┘
+        │    │      ┌────┐
+┌────┐  └────┘      │    │  ┌────┐
+│    │              └────┘  │    │
+└────┘  ┌────┐  ┌────┐      └────┘
+        │    │  │    │
+        └────┘  └────┘
 ```
 
-### Mobile Layout (<768px)
-
+**Bizim mevcut yerleşim:**
 ```
-┌─────────────────────────┐
-│                         │
-│   ┌────┬────┬────┐     │
-│   │ 📦 │ 📋 │ 🗺️ │     │
-│   ├────┼────┼────┤     │
-│   │ 📄 │ 🏭 │ 📦 │     │
-│   ├────┼────┼────┤     │
-│   │ 👥 │ 💰 │ 🧾 │     │
-│   ├────┴────┴────┤     │
-│   │     💳       │     │
-│   └──────────────┘     │
-│                         │
-│   Connection lines:     │
-│   Simplified/hidden     │
-│                         │
-└─────────────────────────┘
-
-Placed between headline and CTAs on mobile
+┌────┐  ┌────┐  ┌────┐
+│    │  │    │  │    │
+└────┘  └────┘  └────┘
+┌────┐  ┌────┐  ┌────┐
+│    │  │    │  │    │
+└────┘  └────┘  └────┘
+┌────┐  ┌────┐  ┌────┐
+│    │  │    │  │    │
+└────┘  └────┘  └────┘
+┌────┐
+│    │
+└────┘
 ```
 
-### Module Card States
+#### 2. Animation Cycle: Group-Based vs Single Module
 
-#### Default State
+| Aspect | Stripe | Ours |
+|--------|--------|------|
+| Active modules | **2-4 modül aynı anda** aktif | Sadece **1 modül** aktif |
+| Pause duration | Aktif grup **2-3 saniye** bekliyor | 500ms sonra hemen geçiyor |
+| Cycle pattern | Path animate → **Pause** → Next group | Sürekli hızlı döngü |
+| User perception | Rahat izlenebilir, anlaşılır | Çok hızlı, takip edilemez |
+
+**Stripe animasyon akışı:**
+```
+Adım 1: [Billing] ──────► [Invoicing] aktif (2.5s bekle)
+Adım 2: [Tax] ──► [Payments] ──► [Radar] aktif (2.5s bekle)
+Adım 3: [Connect] ──► [Terminal] ──► [Issuing] aktif (2.5s bekle)
+...döngü devam eder
+```
+
+#### 3. Module Labels: Inside vs Outside Card
+
+| Aspect | Stripe | Ours |
+|--------|--------|------|
+| Label position | **Kartın içinde** (icon altında) | **Kartın dışında** (altta ayrı) |
+| Visibility | Label her zaman görünür (aktifken) | Label overflow sorunu yaratıyor |
+| Card size | ~80x80px (label dahil) | 64x64px + harici label |
+| Icons | **Renkli gradient ikonlar** | Tek renk outline ikonlar |
+
+**Stripe kart yapısı:**
+```
+┌──────────────────┐
+│                  │
+│   🎨 [ICON]      │  ← Renkli gradient ikon
+│                  │
+│   "Payments"     │  ← Label kartın içinde
+│                  │
+└──────────────────┘
+```
+
+**Bizim kart yapısı:**
 ```
 ┌──────────────┐
 │              │
-│    [ICON]    │   
+│   [ICON]     │  ← Tek renk outline
 │              │
 └──────────────┘
-```
-- Size: 64x64px (desktop), 48x48px (mobile)
-- Background: #F9FAFB
-- Border: 1px solid #E5E7EB
-- Icon: #374151
-- Shadow: none
-
-#### Active State (NEW: includes label + shadow)
-```
-    ╔══════════════╗
-    ║              ║
-    ║    [ICON]    ║   ← Shadow + scale(1.1)
-    ║              ║
-    ╚══════════════╝
-    ┌────────────────┐
-    │  Module Name   │   ← Active label (auto-shown)
-    └────────────────┘
-```
-- Border: 2px solid #4DB6A0
-- Icon: #4DB6A0
-- Transform: scale(1.1)
-- **Shadow: 0 8px 24px rgba(77, 182, 160, 0.25)**
-- **Label visible below card**
-
-#### Hover State (non-active module)
-```
-┌──────────────┐
-│    [ICON]    │
-└──────────────┘
-    ┌────────────┐
-    │ Module Name│  ← Tooltip (on hover only)
-    └────────────┘
-```
-- Tooltip BG: #1F2937
-- Tooltip Text: #FFFFFF
-
-### Active Label Component
-
-| Property | Value |
-|----------|-------|
-| Background | #1F2937 (dark gray) |
-| Text color | #FFFFFF |
-| Font size | 12px |
-| Font weight | 500 (medium) |
-| Padding | 4px 12px |
-| Border radius | 16px (pill shape) |
-| Margin top | 8px (below card) |
-| Max width | 120px |
-| Text overflow | ellipsis |
-
-### Connection Lines (UPDATED in v1.2)
-
-| Property | Value |
-|----------|-------|
-| Stroke width | 2px |
-| Default color | #4DB6A0 at 30% opacity |
-| Active color | #4DB6A0 at 100% opacity |
-| Style | Solid |
-| Animation | stroke-dashoffset "drawing" effect |
-| **Path type** | **L-shaped orthogonal (right angles)** |
-| Corner radius | 4px (subtle rounding at corners) |
-
-**Path Behavior:**
-- Lines travel along grid edges (horizontal or vertical)
-- When changing direction, lines make 90° turns
-- No diagonal lines
-- Path flows around modules, not through them
-
-**Example L-shaped path:**
-```
-[Module A] ────┐
-               │
-               └──── [Module B]
+  "Payments"     ← Label dışarıda, overflow riski
 ```
 
-### Colors (Brand Aligned)
+#### 4. Connection Lines: Gradient Trail vs Static Line
 
-| Element | Value |
-|---------|-------|
-| Module background | #F9FAFB |
-| Module border (default) | #E5E7EB |
-| Module border (active) | #4DB6A0 |
-| Icon color (default) | #374151 |
-| Icon color (active) | #4DB6A0 |
-| Connection line | #4DB6A0 (varying opacity) |
-| Tooltip/Label background | #1F2937 |
-| Tooltip/Label text | #FFFFFF |
-| **Active shadow** | rgba(77, 182, 160, 0.25) |
+| Aspect | Stripe | Ours |
+|--------|--------|------|
+| Stroke style | **Gradient stroke** (renk geçişli) | **Solid color** (tek renk) |
+| Trail effect | **Fading trail** - arkası kayboluyor | **Full path** - tüm çizgi görünür |
+| Color palette | **Çoklu renk**: mor (#635BFF), turkuaz (#11EFE3), pembe (#FF5091) | **Tek renk**: teal (#4DB6A0) |
+| Animation technique | `stroke-dasharray` + `stroke-dashoffset` + gradient mask | `pathLength` animasyonu |
+| Visual impact | Canlı, dinamik, "flowing data" hissi | Statik, mekanik, basit |
+
+**Stripe gradient örnekleri (DOM'dan):**
+```css
+/* Payments icon gradient */
+linearGradient#payments-a: #11EFE3 → #21CFE0
+linearGradient#payments-b: #0048E5 → #9B66FF
+
+/* Radar icon gradient */
+linearGradient#radar-a: #FF5091 → #E03071
+
+/* Terminal icon gradient */
+linearGradient#terminal-a: #11EFE3 → #15E8E2 → #1FD3E0 → #21CFE0
+linearGradient#terminal-b: #0048E5 → #625AF5 → #8A62FC
+```
+
+**Stripe çizgi animasyonu konsepti:**
+```
+Frame 1: ════════════════════════░░░░░░░░░░
+Frame 2: ░░░════════════════════════░░░░░░░
+Frame 3: ░░░░░░░════════════════════════░░░
+Frame 4: ░░░░░░░░░░░════════════════════════
+
+█ = Görünür kısım (gradient)
+░ = Görünmez kısım (transparent)
+```
 
 ---
 
-## Spacing
+## v2.0 Target Features
 
-| Element | Desktop | Mobile |
-|---------|---------|--------|
-| Grid container max-width | 400px | 280px |
-| Module card size | 64x64px | 48x48px |
-| Gap between modules | 16px | 12px |
-| Label/Tooltip offset | 8px below card | 8px below card |
-| **Active label height** | 24px | 20px |
+Based on the Stripe analysis, the following improvements are planned:
 
----
+### Priority 1: Quick Wins (1-2 hours each)
 
-## Technical Requirements
+1. **Label Inside Card**
+   - Move module name inside the card
+   - Increase card size to accommodate
+   - Always visible when active
 
-### Animation Library
+2. **Animation Timing**
+   - Increase pause duration to 2-3 seconds
+   - Group modules (2-3 at a time)
+   - Smoother transitions
 
-**Framer Motion** (approved)
+3. **Basic Gradient Lines**
+   - Add linear gradient to connection lines
+   - Implement fading trail effect
 
-```typescript
-import { motion, AnimatePresence } from 'framer-motion';
-```
+### Priority 2: Medium Effort (3-4 hours each)
 
-### Auto-Cycle Hook
+4. **Organic Grid Layout**
+   - Offset module positions
+   - Add empty cells for visual breathing room
+   - Asymmetric arrangement
 
-```typescript
-// hooks/useModuleCycle.ts
-import { useState, useEffect } from 'react';
+5. **Animated Fading Trail**
+   - Implement stroke-dasharray animation
+   - Gradient mask for fading effect
+   - Multiple color support
 
-export function useModuleCycle(moduleCount: number, interval: number = 500) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % moduleCount);
-    }, interval);
-    
-    return () => clearInterval(timer);
-  }, [moduleCount, interval]);
-  
-  return activeIndex;
-}
-```
+6. **Multiple Active Modules**
+   - Activate 2-4 modules simultaneously
+   - Show connected group together
 
-### L-Shaped Path Generator
+### Priority 3: Advanced (5+ hours each)
 
-```typescript
-// utils/pathGenerator.ts
-interface Point {
-  x: number;
-  y: number;
-}
+7. **Colored Gradient Icons**
+   - Custom SVG icons with gradients
+   - Module-specific color palettes
+   - Hover color transitions
 
-export function generateOrthogonalPath(from: Point, to: Point): string {
-  // Determine if horizontal-first or vertical-first based on positions
-  const midX = from.x;
-  const midY = to.y;
-  
-  // Create L-shaped path with rounded corner
-  return `M ${from.x} ${from.y} L ${midX} ${midY} L ${to.x} ${to.y}`;
-}
-```
-
-### Reduced Motion Support
-
-```typescript
-import { useReducedMotion } from 'framer-motion';
-
-function ModuleGrid() {
-  const shouldReduceMotion = useReducedMotion();
-  
-  // If reduced motion preferred, show static grid without animation
-  if (shouldReduceMotion) {
-    return <StaticModuleGrid />;
-  }
-  
-  return <AnimatedModuleGrid />;
-}
-```
-
-### Accessibility
-
-- Container: `role="img"` with `aria-label="ERP module workflow visualization showing connected business modules"`
-- Individual modules: `aria-hidden="true"` (decorative)
-- Active label: Uses `aria-live="polite"` for screen reader announcements
-- Tooltip: Uses `aria-describedby` pattern
-- Reduced motion: Respect `prefers-reduced-motion`
-- No essential information conveyed only through animation
-
-### Performance
-
-- Lucide icons (SVG, tree-shakeable)
-- CSS transforms for scaling (GPU accelerated)
-- `will-change: transform` on animated elements
-- Single interval timer, not per-module timers
-- Connection lines as single SVG layer
-- AnimatePresence for smooth label transitions
+8. **Dynamic Content Panel**
+   - Left-side content changes with active module
+   - Module descriptions
+   - Feature highlights
 
 ---
 
@@ -435,177 +255,50 @@ function ModuleGrid() {
 
 ## Component Structure
 
+### Current (v1.0)
 ```
-src/components/sections/HeroSection/
-├── index.tsx                  # Main Hero (updated)
-├── HeroContent.tsx            # Text + CTAs (unchanged)
-├── ModuleGrid/                # NEW - replaces HeroIllustration
-│   ├── index.tsx              # Main grid component
-│   ├── ModuleCard.tsx         # Individual module with icon
-│   ├── ModuleLabel.tsx        # Active label component (NEW)
-│   ├── ConnectionLines.tsx    # SVG connection paths (L-shaped)
-│   ├── ModuleTooltip.tsx      # Hover tooltip
-│   └── modules-data.ts        # Module definitions + positions
-├── TrustBar.tsx               # Trust badges (unchanged)
-└── HeroIllustration.tsx       # TO BE DELETED
+app/[locale]/components/ModuleGrid/
+├── index.tsx              # Main grid component
+├── ModuleCard.tsx         # Individual module card
+├── ModuleTooltip.tsx      # Hover tooltip
+├── ConnectionLines.tsx    # SVG connection paths
+└── modules-data.ts        # Module definitions
 ```
 
----
-
-## Data Structure
-
-```typescript
-// ModuleGrid/modules-data.ts
-import { 
-  Package, ClipboardList, Map, TrendingUp, FileText,
-  Warehouse, Boxes, Users, Receipt, CreditCard 
-} from 'lucide-react';
-
-export interface Module {
-  id: string;
-  key: string;           // i18n key
-  icon: React.ComponentType;
-  gridPosition: { row: number; col: number };
-  connectsTo: string[];  // IDs of next modules in flow
-}
-
-export const modules: Module[] = [
-  {
-    id: 'order',
-    key: 'order',
-    icon: Package,
-    gridPosition: { row: 1, col: 1 },
-    connectsTo: ['workPlan', 'sales']
-  },
-  {
-    id: 'workPlan',
-    key: 'workPlan',
-    icon: ClipboardList,
-    gridPosition: { row: 1, col: 2 },
-    connectsTo: ['routeOptimization']
-  },
-  {
-    id: 'routeOptimization',
-    key: 'routeOptimization',
-    icon: Map,
-    gridPosition: { row: 1, col: 3 },
-    connectsTo: ['deliveryNote']
-  },
-  {
-    id: 'deliveryNote',
-    key: 'deliveryNote',
-    icon: FileText,
-    gridPosition: { row: 2, col: 3 },
-    connectsTo: ['warehouse']
-  },
-  {
-    id: 'warehouse',
-    key: 'warehouse',
-    icon: Warehouse,
-    gridPosition: { row: 3, col: 3 },
-    connectsTo: ['productManagement']
-  },
-  {
-    id: 'productManagement',
-    key: 'productManagement',
-    icon: Boxes,
-    gridPosition: { row: 2, col: 3 },
-    connectsTo: ['crm']
-  },
-  {
-    id: 'crm',
-    key: 'crm',
-    icon: Users,
-    gridPosition: { row: 2, col: 2 },
-    connectsTo: ['sales']
-  },
-  {
-    id: 'sales',
-    key: 'sales',
-    icon: TrendingUp,
-    gridPosition: { row: 2, col: 1 },
-    connectsTo: ['invoice']
-  },
-  {
-    id: 'invoice',
-    key: 'invoice',
-    icon: Receipt,
-    gridPosition: { row: 3, col: 1 },
-    connectsTo: ['payments']
-  },
-  {
-    id: 'payments',
-    key: 'payments',
-    icon: CreditCard,
-    gridPosition: { row: 3, col: 2 },
-    connectsTo: [] // End of flow
-  }
-];
-
-// Animation sequence order
-export const animationOrder = [
-  'order', 'workPlan', 'routeOptimization', 'deliveryNote', 
-  'warehouse', 'productManagement', 'crm', 'sales', 
-  'invoice', 'payments'
-];
+### Planned (v2.0)
 ```
-
----
-
-## Migration Steps
-
-1. Create `ModuleGrid/` component folder inside `HeroSection/`
-2. Implement `ModuleCard` with shadow support
-3. Implement `ModuleLabel` for active state display
-4. Implement `ConnectionLines` with L-shaped paths
-5. Implement `ModuleTooltip` for hover
-6. Create `modules-data.ts` with module definitions
-7. Update `HeroSection/index.tsx` to use `ModuleGrid` instead of `HeroIllustration`
-8. Add i18n keys to `messages/{de,en,tr}.json`
-9. Delete `HeroIllustration.tsx`
-10. Test all breakpoints and languages
-
----
-
-## Out of Scope
-
-- Click action on modules
-- Detailed module descriptions/modals
-- Module filtering or search
-- Drag-and-drop reordering
-- Backend data integration
-- Custom SVG icons (using Lucide for now)
-- Module-specific colors (all use brand teal)
-
----
-
-## Dependencies
-
-- `framer-motion` — Animation (needs to be added to project)
-- `next-intl` — Translations (already in project)
-- `lucide-react` — Icons (already in project)
-- Tailwind CSS — Styling (already in project)
+app/[locale]/components/ModuleGrid/
+├── index.tsx              # Main grid component (updated)
+├── ModuleCard.tsx         # Card with internal label (updated)
+├── ModuleTooltip.tsx      # Hover tooltip (may be removed)
+├── ConnectionLines.tsx    # Gradient animated paths (major update)
+├── AnimatedPath.tsx       # NEW: Individual path with trail effect
+├── modules-data.ts        # Module definitions + organic positions
+└── gradients.ts           # NEW: Gradient definitions
+```
 
 ---
 
 ## Acceptance Criteria
 
-- [ ] 10 modules display correctly in grid layout
-- [ ] Auto-cycle runs at 500ms intervals
-- [ ] Active module has visual highlight (scale + color)
-- [ ] **Active module shows label with translated name**
-- [ ] **Active module has shadow/elevation effect**
-- [ ] **Connection lines use L-shaped orthogonal paths**
-- [ ] Connection lines animate between modules
-- [ ] Hover shows tooltip (for non-active modules)
-- [ ] Click does nothing (no errors)
-- [ ] Animation loops continuously (restarts after module 10)
-- [ ] `prefers-reduced-motion` shows static grid
-- [ ] Responsive: Desktop (side of hero), Mobile (compact grid)
-- [ ] All module names from translation files (DE/EN/TR)
-- [ ] Lucide icons render correctly
-- [ ] No performance issues (60fps animation)
-- [ ] Old HeroIllustration component removed
+### v1.0 (Current - Completed)
+- [x] 10 modules display correctly in grid layout
+- [x] Auto-cycle runs at 500ms intervals
+- [x] Active module has visual highlight
+- [x] Connection lines animate between modules
+- [x] i18n translations (DE/EN/TR)
+- [x] Reduced motion support
+
+### v2.0 (Target)
+- [ ] Organic grid layout with offset positions
+- [ ] Label displayed inside module card
+- [ ] Group-based animation (2-4 modules at once)
+- [ ] 2-3 second pause between transitions
+- [ ] Gradient connection lines with multiple colors
+- [ ] Fading trail animation effect
+- [ ] Colored gradient icons (optional)
+- [ ] Mobile responsive (simplified version)
+- [ ] Performance: 60fps animation maintained
 
 ---
 
@@ -614,5 +307,14 @@ export const animationOrder = [
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | 2025-01-22 | Initial specification |
-| 1.1 | 2025-01-22 | Updated: placement in Hero (not separate section), Lucide icons confirmed, removed section headline |
-| 1.2 | 2025-01-22 | **Major update:** Added active label display, L-shaped connection paths, shadow/elevation effect. Based on Stripe.com comparison analysis. |
+| 1.1 | 2025-01-22 | Updated: placement in Hero, Lucide icons confirmed |
+| 1.2 | 2025-01-22 | Added active label, L-shaped paths, shadow effect |
+| 2.0-draft | 2025-01-22 | **Major update:** Added Stripe.com comparison analysis, documented 4 key differences (layout, animation, labels, lines), defined v2.0 target features |
+
+---
+
+## References
+
+- **Stripe Modular Solutions:** https://stripe.com/en-de (scroll to "Modular solutions" section)
+- **Framer Motion:** https://www.framer.com/motion/
+- **Lucide Icons:** https://lucide.dev/icons/
