@@ -3,15 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { modules, animationOrder } from './modules-data';
+import { modules, animationOrder, getGridBounds, CARD_WIDTH, CARD_HEIGHT } from './modules-data';
 import { ModuleCard } from './ModuleCard';
 import { ModuleTooltip } from './ModuleTooltip';
 import { ConnectionLines } from './ConnectionLines';
-
-// Card dimensions
-const CARD_WIDTH = 80;
-const CARD_HEIGHT = 100; // Updated from 96 to 100 for 2-line labels
-const GAP = 12;
 
 // Animation timing - 2.5 seconds per module for comfortable viewing
 const ANIMATION_INTERVAL = 2500;
@@ -37,15 +32,8 @@ export function ModuleGrid() {
     return () => clearInterval(timer);
   }, [shouldReduceMotion]);
 
-  // Grid dimensions
-  const gridWidth = 3 * CARD_WIDTH + 2 * GAP;
-  const gridHeight = 4 * CARD_HEIGHT + 3 * GAP;
-
-  // Get module position in grid
-  const getGridStyle = (row: number, col: number) => ({
-    gridRow: row,
-    gridColumn: col,
-  });
+  // Get organic grid bounds
+  const gridBounds = getGridBounds();
 
   // Should show tooltip (only for non-active hovered modules)
   const shouldShowTooltip = (moduleId: string) =>
@@ -57,30 +45,31 @@ export function ModuleGrid() {
       role="img"
       aria-label={tGrid('ariaLabel')}
     >
-      {/* Connection Lines SVG */}
+      {/* Connection Lines SVG - positioned behind cards */}
       <ConnectionLines
         activeModuleId={activeModuleId}
-        cellSize={CARD_WIDTH}
-        cellHeight={CARD_HEIGHT}
-        gap={GAP}
+        gridWidth={gridBounds.width}
+        gridHeight={gridBounds.height}
       />
 
-      {/* Module Grid */}
+      {/* Module Grid - Organic absolute positioning */}
       <div
-        className="relative grid"
+        className="relative"
         style={{
-          gridTemplateColumns: `repeat(3, ${CARD_WIDTH}px)`,
-          gridTemplateRows: `repeat(4, ${CARD_HEIGHT}px)`,
-          gap: GAP,
-          width: gridWidth,
-          height: gridHeight,
+          width: gridBounds.width,
+          height: gridBounds.height,
         }}
       >
         {modules.map((module) => (
           <div
             key={module.id}
-            className="relative flex items-center justify-center"
-            style={getGridStyle(module.gridPosition.row, module.gridPosition.col)}
+            className="absolute"
+            style={{
+              left: module.position.x,
+              top: module.position.y,
+              width: CARD_WIDTH,
+              height: CARD_HEIGHT,
+            }}
             aria-hidden="true"
           >
             <ModuleCard
