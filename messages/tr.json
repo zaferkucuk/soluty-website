@@ -1,4 +1,23 @@
 {
+  "header": {
+    "nav": {
+      "services": "Hizmetler",
+      "references": "Referanslar",
+      "contact": "İletişim"
+    },
+    "cta": "Danışmanlık Talep Et",
+    "languageSwitcher": {
+      "label": "Dil Seçin",
+      "de": "DE",
+      "en": "EN",
+      "tr": "TR"
+    },
+    "mobileMenu": {
+      "open": "Menüyü aç",
+      "close": "Menüyü kapat"
+    },
+    "skipToContent": "Ana içeriğe geç"
+  },
   "hero": {
     "headline": {
       "line1": "İşinizi yazılıma uydurmayı bırakın.",
@@ -19,6 +38,21 @@
       "driver": "Sürücü",
       "delivery": "Teslimat",
       "invoice": "Fatura"
+    }
+  },
+  "moduleGrid": {
+    "ariaLabel": "ERP modül iş akışı görselleştirmesi",
+    "modules": {
+      "order": "Sipariş",
+      "workPlan": "İş Planı",
+      "routeOptimization": "Rota Optimizasyonu",
+      "sales": "Satış",
+      "deliveryNote": "İrsaliye",
+      "warehouse": "Depo",
+      "productManagement": "Ürün Yönetimi",
+      "crm": "CRM",
+      "invoice": "Fatura",
+      "payments": "Ödemeler"
     }
   },
   "metadata": {
