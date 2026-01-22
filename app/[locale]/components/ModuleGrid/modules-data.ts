@@ -21,8 +21,15 @@ export interface Module {
   id: string;
   key: string;
   icon: LucideIcon;
-  position: Position; // Organic absolute positioning
+  position: Position;
   connectsTo: string[];
+}
+
+// Module group for group-based animation
+export interface ModuleGroup {
+  id: string;
+  labelKey: string; // i18n key for group label
+  moduleIds: string[];
 }
 
 // Card dimensions for reference
@@ -30,81 +37,119 @@ export const CARD_WIDTH = 80;
 export const CARD_HEIGHT = 100;
 
 // Organic layout - asymmetric, Stripe-inspired positioning
-// Total grid area: ~320x450px
 export const modules: Module[] = [
   {
     id: 'order',
     key: 'order',
     icon: Package,
-    position: { x: 0, y: 20 },      // Top left, slight offset
+    position: { x: 0, y: 20 },
     connectsTo: ['workPlan'],
   },
   {
     id: 'workPlan',
     key: 'workPlan',
     icon: ClipboardList,
-    position: { x: 100, y: 0 },     // Top center, aligned top
+    position: { x: 100, y: 0 },
     connectsTo: ['routeOptimization'],
   },
   {
     id: 'routeOptimization',
     key: 'routeOptimization',
     icon: Map,
-    position: { x: 210, y: 30 },    // Top right, offset down
+    position: { x: 210, y: 30 },
     connectsTo: ['deliveryNote'],
   },
   {
     id: 'sales',
     key: 'sales',
     icon: TrendingUp,
-    position: { x: 15, y: 130 },    // Left side, second row
+    position: { x: 15, y: 130 },
     connectsTo: ['invoice'],
   },
   {
     id: 'crm',
     key: 'crm',
     icon: Users,
-    position: { x: 115, y: 115 },   // Center, offset
+    position: { x: 115, y: 115 },
     connectsTo: ['sales'],
   },
   {
     id: 'deliveryNote',
     key: 'deliveryNote',
     icon: FileText,
-    position: { x: 200, y: 140 },   // Right side, second row
+    position: { x: 200, y: 140 },
     connectsTo: ['warehouse'],
   },
   {
     id: 'invoice',
     key: 'invoice',
     icon: Receipt,
-    position: { x: 0, y: 250 },     // Left side, third row
+    position: { x: 0, y: 250 },
     connectsTo: ['payments'],
   },
   {
     id: 'productManagement',
     key: 'productManagement',
     icon: Boxes,
-    position: { x: 105, y: 235 },   // Center, third row
+    position: { x: 105, y: 235 },
     connectsTo: ['crm'],
   },
   {
     id: 'warehouse',
     key: 'warehouse',
     icon: Warehouse,
-    position: { x: 215, y: 260 },   // Right side, third row
+    position: { x: 215, y: 260 },
     connectsTo: ['productManagement'],
   },
   {
     id: 'payments',
     key: 'payments',
     icon: CreditCard,
-    position: { x: 95, y: 365 },    // Bottom center
+    position: { x: 95, y: 365 },
     connectsTo: [],
   },
 ];
 
-// Animation follows the ERP workflow flow
+// Temporary groups - will be replaced with real business logic groups
+// Each group highlights 2-3 related modules together
+export const moduleGroups: ModuleGroup[] = [
+  {
+    id: 'orderIntake',
+    labelKey: 'groups.orderIntake',
+    moduleIds: ['order', 'workPlan'],
+  },
+  {
+    id: 'planning',
+    labelKey: 'groups.planning',
+    moduleIds: ['routeOptimization', 'deliveryNote'],
+  },
+  {
+    id: 'fulfillment',
+    labelKey: 'groups.fulfillment',
+    moduleIds: ['warehouse', 'productManagement'],
+  },
+  {
+    id: 'customer',
+    labelKey: 'groups.customer',
+    moduleIds: ['crm', 'sales'],
+  },
+  {
+    id: 'finance',
+    labelKey: 'groups.finance',
+    moduleIds: ['invoice', 'payments'],
+  },
+];
+
+// Group animation order
+export const groupAnimationOrder = [
+  'orderIntake',
+  'planning',
+  'fulfillment',
+  'customer',
+  'finance',
+];
+
+// Legacy single-module animation order (kept for reference)
 export const animationOrder = [
   'order',
   'workPlan',
@@ -120,6 +165,10 @@ export const animationOrder = [
 
 export function getModuleById(id: string): Module | undefined {
   return modules.find((m) => m.id === id);
+}
+
+export function getGroupById(id: string): ModuleGroup | undefined {
+  return moduleGroups.find((g) => g.id === id);
 }
 
 export function getNextModuleId(currentId: string): string | null {
