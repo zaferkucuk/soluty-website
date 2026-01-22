@@ -1,7 +1,7 @@
 # Module Grid Component Specification
 
 **Status:** Ready for Implementation  
-**Version:** 1.1  
+**Version:** 1.2  
 **Last Updated:** 2025-01-22
 
 ---
@@ -14,7 +14,7 @@ The Module Grid is an animated, interactive visualization of Soluty's ERP system
 
 **Placement:** Hero section — right side (replaces current static SVG illustration)
 
-**Behavior:** Auto-cycling animation with hover interaction for module details.
+**Behavior:** Auto-cycling animation with active label display and hover interaction for additional details.
 
 ---
 
@@ -49,8 +49,8 @@ The Module Grid is an animated, interactive visualization of Soluty's ERP system
 │  │  HEADLINE               │  │   [NEW: Animated Module      │ │
 │  │  SUBHEADLINE            │  │    Grid Component]           │ │
 │  │                         │  │                              │ │
-│  │  [CTA BUTTONS]          │  │   Auto-cycling + hover       │ │
-│  │                         │  │   tooltips                   │ │
+│  │  [CTA BUTTONS]          │  │   Auto-cycling + active      │ │
+│  │                         │  │   label + hover tooltips     │ │
 │  └─────────────────────────┘  └──────────────────────────────┘ │
 │                                                                 │
 │  TRUST BAR                                                      │
@@ -133,17 +133,31 @@ When a module is "active" in the cycle:
 - Module icon scales up slightly (1.1x)
 - Border color changes to brand color (#4DB6A0)
 - Icon color changes to brand color
+- **Shadow/elevation effect appears** (box-shadow)
+- **Module name label appears below the card** (permanent while active)
 - Connection line to next module animates (stroke-dashoffset)
+
+### Active Label Display (NEW in v1.2)
+
+| Property | Value |
+|----------|-------|
+| Visibility | Always visible when module is active |
+| Position | Centered below the module card |
+| Animation | Fade in (150ms) when becoming active |
+| Content | Translated module name from i18n |
+| Style | Dark background pill, white text |
+
+**Important:** The active label is different from hover tooltip. Active label shows automatically during auto-cycle. Hover tooltip provides additional context on mouse interaction.
 
 ### Hover Interaction
 
 | Trigger | Action |
 |---------|--------|
-| Mouse enter module | Show module name tooltip |
+| Mouse enter module | Show module name tooltip (if not already active) |
 | Mouse leave module | Hide tooltip |
 | Click module | No action (no errors, future enhancement) |
 
-**Important:** Hover shows tooltip independently — does NOT affect auto-cycle animation.
+**Note:** If the hovered module is already active (showing label), the hover tooltip is suppressed to avoid duplication.
 
 ---
 
@@ -196,42 +210,66 @@ Container: ~45% of Hero width (right side)
 Placed between headline and CTAs on mobile
 ```
 
-### Module Card
+### Module Card States
 
+#### Default State
 ```
-Default state:
 ┌──────────────┐
 │              │
 │    [ICON]    │   
 │              │
 └──────────────┘
-Size: 64x64px (desktop), 48x48px (mobile)
-Background: #F9FAFB
-Border: 1px solid #E5E7EB
-Icon: #374151
+```
+- Size: 64x64px (desktop), 48x48px (mobile)
+- Background: #F9FAFB
+- Border: 1px solid #E5E7EB
+- Icon: #374151
+- Shadow: none
 
-Active state:
-┌──────────────┐
-│              │
-│    [ICON]    │   
-│              │
-└──────────────┘
-Border: 2px solid #4DB6A0
-Icon: #4DB6A0
-Transform: scale(1.1)
+#### Active State (NEW: includes label + shadow)
+```
+    ╔══════════════╗
+    ║              ║
+    ║    [ICON]    ║   ← Shadow + scale(1.1)
+    ║              ║
+    ╚══════════════╝
+    ┌────────────────┐
+    │  Module Name   │   ← Active label (auto-shown)
+    └────────────────┘
+```
+- Border: 2px solid #4DB6A0
+- Icon: #4DB6A0
+- Transform: scale(1.1)
+- **Shadow: 0 8px 24px rgba(77, 182, 160, 0.25)**
+- **Label visible below card**
 
-Hover state (tooltip):
+#### Hover State (non-active module)
+```
 ┌──────────────┐
 │    [ICON]    │
 └──────────────┘
     ┌────────────┐
-    │ Module Name│  ← Tooltip
+    │ Module Name│  ← Tooltip (on hover only)
     └────────────┘
-Tooltip BG: #1F2937
-Tooltip Text: #FFFFFF
 ```
+- Tooltip BG: #1F2937
+- Tooltip Text: #FFFFFF
 
-### Connection Lines
+### Active Label Component
+
+| Property | Value |
+|----------|-------|
+| Background | #1F2937 (dark gray) |
+| Text color | #FFFFFF |
+| Font size | 12px |
+| Font weight | 500 (medium) |
+| Padding | 4px 12px |
+| Border radius | 16px (pill shape) |
+| Margin top | 8px (below card) |
+| Max width | 120px |
+| Text overflow | ellipsis |
+
+### Connection Lines (UPDATED in v1.2)
 
 | Property | Value |
 |----------|-------|
@@ -240,7 +278,21 @@ Tooltip Text: #FFFFFF
 | Active color | #4DB6A0 at 100% opacity |
 | Style | Solid |
 | Animation | stroke-dashoffset "drawing" effect |
-| Curve | Bezier curves for smooth corners |
+| **Path type** | **L-shaped orthogonal (right angles)** |
+| Corner radius | 4px (subtle rounding at corners) |
+
+**Path Behavior:**
+- Lines travel along grid edges (horizontal or vertical)
+- When changing direction, lines make 90° turns
+- No diagonal lines
+- Path flows around modules, not through them
+
+**Example L-shaped path:**
+```
+[Module A] ────┐
+               │
+               └──── [Module B]
+```
 
 ### Colors (Brand Aligned)
 
@@ -252,8 +304,9 @@ Tooltip Text: #FFFFFF
 | Icon color (default) | #374151 |
 | Icon color (active) | #4DB6A0 |
 | Connection line | #4DB6A0 (varying opacity) |
-| Tooltip background | #1F2937 |
-| Tooltip text | #FFFFFF |
+| Tooltip/Label background | #1F2937 |
+| Tooltip/Label text | #FFFFFF |
+| **Active shadow** | rgba(77, 182, 160, 0.25) |
 
 ---
 
@@ -264,7 +317,8 @@ Tooltip Text: #FFFFFF
 | Grid container max-width | 400px | 280px |
 | Module card size | 64x64px | 48x48px |
 | Gap between modules | 16px | 12px |
-| Tooltip offset | 8px below card | 8px below card |
+| Label/Tooltip offset | 8px below card | 8px below card |
+| **Active label height** | 24px | 20px |
 
 ---
 
@@ -275,7 +329,7 @@ Tooltip Text: #FFFFFF
 **Framer Motion** (approved)
 
 ```typescript
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 ```
 
 ### Auto-Cycle Hook
@@ -296,6 +350,25 @@ export function useModuleCycle(moduleCount: number, interval: number = 500) {
   }, [moduleCount, interval]);
   
   return activeIndex;
+}
+```
+
+### L-Shaped Path Generator
+
+```typescript
+// utils/pathGenerator.ts
+interface Point {
+  x: number;
+  y: number;
+}
+
+export function generateOrthogonalPath(from: Point, to: Point): string {
+  // Determine if horizontal-first or vertical-first based on positions
+  const midX = from.x;
+  const midY = to.y;
+  
+  // Create L-shaped path with rounded corner
+  return `M ${from.x} ${from.y} L ${midX} ${midY} L ${to.x} ${to.y}`;
 }
 ```
 
@@ -320,6 +393,7 @@ function ModuleGrid() {
 
 - Container: `role="img"` with `aria-label="ERP module workflow visualization showing connected business modules"`
 - Individual modules: `aria-hidden="true"` (decorative)
+- Active label: Uses `aria-live="polite"` for screen reader announcements
 - Tooltip: Uses `aria-describedby` pattern
 - Reduced motion: Respect `prefers-reduced-motion`
 - No essential information conveyed only through animation
@@ -331,6 +405,7 @@ function ModuleGrid() {
 - `will-change: transform` on animated elements
 - Single interval timer, not per-module timers
 - Connection lines as single SVG layer
+- AnimatePresence for smooth label transitions
 
 ---
 
@@ -367,7 +442,8 @@ src/components/sections/HeroSection/
 ├── ModuleGrid/                # NEW - replaces HeroIllustration
 │   ├── index.tsx              # Main grid component
 │   ├── ModuleCard.tsx         # Individual module with icon
-│   ├── ConnectionLines.tsx    # SVG connection paths
+│   ├── ModuleLabel.tsx        # Active label component (NEW)
+│   ├── ConnectionLines.tsx    # SVG connection paths (L-shaped)
 │   ├── ModuleTooltip.tsx      # Hover tooltip
 │   └── modules-data.ts        # Module definitions + positions
 ├── TrustBar.tsx               # Trust badges (unchanged)
@@ -479,12 +555,15 @@ export const animationOrder = [
 ## Migration Steps
 
 1. Create `ModuleGrid/` component folder inside `HeroSection/`
-2. Implement `ModuleCard`, `ConnectionLines`, `ModuleTooltip`
-3. Create `modules-data.ts` with module definitions
-4. Update `HeroSection/index.tsx` to use `ModuleGrid` instead of `HeroIllustration`
-5. Add i18n keys to `messages/{de,en,tr}.json`
-6. Delete `HeroIllustration.tsx`
-7. Test all breakpoints and languages
+2. Implement `ModuleCard` with shadow support
+3. Implement `ModuleLabel` for active state display
+4. Implement `ConnectionLines` with L-shaped paths
+5. Implement `ModuleTooltip` for hover
+6. Create `modules-data.ts` with module definitions
+7. Update `HeroSection/index.tsx` to use `ModuleGrid` instead of `HeroIllustration`
+8. Add i18n keys to `messages/{de,en,tr}.json`
+9. Delete `HeroIllustration.tsx`
+10. Test all breakpoints and languages
 
 ---
 
@@ -496,6 +575,7 @@ export const animationOrder = [
 - Drag-and-drop reordering
 - Backend data integration
 - Custom SVG icons (using Lucide for now)
+- Module-specific colors (all use brand teal)
 
 ---
 
@@ -513,8 +593,11 @@ export const animationOrder = [
 - [ ] 10 modules display correctly in grid layout
 - [ ] Auto-cycle runs at 500ms intervals
 - [ ] Active module has visual highlight (scale + color)
+- [ ] **Active module shows label with translated name**
+- [ ] **Active module has shadow/elevation effect**
+- [ ] **Connection lines use L-shaped orthogonal paths**
 - [ ] Connection lines animate between modules
-- [ ] Hover shows module name tooltip (in correct language)
+- [ ] Hover shows tooltip (for non-active modules)
 - [ ] Click does nothing (no errors)
 - [ ] Animation loops continuously (restarts after module 10)
 - [ ] `prefers-reduced-motion` shows static grid
@@ -532,3 +615,4 @@ export const animationOrder = [
 |---------|------|---------|
 | 1.0 | 2025-01-22 | Initial specification |
 | 1.1 | 2025-01-22 | Updated: placement in Hero (not separate section), Lucide icons confirmed, removed section headline |
+| 1.2 | 2025-01-22 | **Major update:** Added active label display, L-shaped connection paths, shadow/elevation effect. Based on Stripe.com comparison analysis. |
