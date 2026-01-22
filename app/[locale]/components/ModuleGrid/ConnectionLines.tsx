@@ -64,6 +64,13 @@ function generateOrthogonalPath(from: Point, to: Point): string {
   return `M ${from.x} ${from.y} L ${midX} ${midY} L ${to.x} ${to.y}`;
 }
 
+// Calculate approximate path length for dash animation
+function getApproxPathLength(from: Point, to: Point): number {
+  const dx = Math.abs(to.x - from.x);
+  const dy = Math.abs(to.y - from.y);
+  return dx + dy; // L-shaped path length
+}
+
 export function ConnectionLines({
   activeModuleId,
   cellSize,
@@ -77,8 +84,10 @@ export function ConnectionLines({
     id: string;
     fromId: string;
     path: string;
+    pathLength: number;
     isActive: boolean;
     isCompleted: boolean;
+    isRecent: boolean; // Just completed (fading trail)
   }[] = [];
 
   modules.forEach((module) => {
@@ -104,13 +113,17 @@ export function ConnectionLines({
       const moduleIndex = animationOrder.indexOf(module.id);
       const isActive = module.id === activeModuleId;
       const isCompleted = moduleIndex < activeIndex;
+      // Recent = completed in the last 2 steps (for trail effect)
+      const isRecent = isCompleted && (activeIndex - moduleIndex) <= 2;
 
       connections.push({
         id: `${module.id}-${targetId}`,
         fromId: module.id,
         path: generateOrthogonalPath(fromCenter, toCenter),
+        pathLength: getApproxPathLength(fromCenter, toCenter),
         isActive,
         isCompleted,
+        isRecent,
       });
     });
   });
@@ -141,7 +154,7 @@ export function ConnectionLines({
           </linearGradient>
         ))}
         
-        {/* Faded versions for completed paths */}
+        {/* Faded versions for trail effect */}
         {Object.entries(gradientPalette).map(([name, colors]) => (
           <linearGradient
             key={`${name}-faded`}
@@ -151,34 +164,87 @@ export function ConnectionLines({
             x2="100%"
             y2="100%"
           >
-            <stop offset="0%" stopColor={colors.start} stopOpacity={0.5} />
-            <stop offset="100%" stopColor={colors.end} stopOpacity={0.5} />
+            <stop offset="0%" stopColor={colors.start} stopOpacity={0.3} />
+            <stop offset="100%" stopColor={colors.end} stopOpacity={0.3} />
           </linearGradient>
         ))}
       </defs>
 
-      {/* Connection Paths */}
+      {/* Background trace lines (very faint) */}
       {connections.map((conn) => {
         const gradientName = moduleGradientMap[conn.fromId] || 'teal';
-        const isVisible = conn.isActive || conn.isCompleted;
+        
+        return (
+          <path
+            key={`bg-${conn.id}`}
+            d={conn.path}
+            fill="none"
+            stroke={`url(#gradient-${gradientName}-faded)`}
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity={0.15}
+          />
+        );
+      })}
+
+      {/* Animated connection paths with trail effect */}
+      {connections.map((conn) => {
+        const gradientName = moduleGradientMap[conn.fromId] || 'teal';
+        const isVisible = conn.isActive || conn.isRecent;
+        
+        // Calculate dash array for flowing animation
+        const dashLength = 30;
+        const gapLength = conn.pathLength - dashLength;
         
         return (
           <motion.path
             key={conn.id}
             d={conn.path}
             fill="none"
-            stroke={isVisible ? `url(#gradient-${gradientName}${conn.isCompleted && !conn.isActive ? '-faded' : ''})` : 'transparent'}
+            stroke={`url(#gradient-${gradientName})`}
             strokeWidth={conn.isActive ? 3 : 2}
             strokeLinecap="round"
             strokeLinejoin="round"
-            initial={{ opacity: 0 }}
+            strokeDasharray={conn.isActive ? `${dashLength} ${Math.max(gapLength, 20)}` : 'none'}
+            initial={{ 
+              opacity: 0,
+              strokeDashoffset: 0 
+            }}
             animate={{
-              opacity: conn.isActive ? 1 : conn.isCompleted ? 0.8 : 0,
+              opacity: conn.isActive ? 1 : conn.isRecent ? 0.6 : 0,
+              strokeDashoffset: conn.isActive ? [0, -(dashLength + gapLength)] : 0,
             }}
             transition={{ 
-              duration: 0.4,
-              ease: 'easeInOut'
+              opacity: { duration: 0.3, ease: 'easeInOut' },
+              strokeDashoffset: {
+                duration: 1.5,
+                ease: 'linear',
+                repeat: conn.isActive ? Infinity : 0,
+              }
             }}
+          />
+        );
+      })}
+
+      {/* Glow effect for active paths */}
+      {connections.filter(c => c.isActive).map((conn) => {
+        const gradientName = moduleGradientMap[conn.fromId] || 'teal';
+        const color = gradientPalette[gradientName].start;
+        
+        return (
+          <motion.path
+            key={`glow-${conn.id}`}
+            d={conn.path}
+            fill="none"
+            stroke={color}
+            strokeWidth={6}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            filter="blur(4px)"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            transition={{ duration: 0.3 }}
           />
         );
       })}
