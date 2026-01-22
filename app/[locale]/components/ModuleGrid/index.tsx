@@ -8,8 +8,10 @@ import { ModuleCard } from './ModuleCard';
 import { ModuleTooltip } from './ModuleTooltip';
 import { ConnectionLines } from './ConnectionLines';
 
-const CELL_SIZE = 64;
-const GAP = 16;
+// Updated card size: 80x96 (was 64x64)
+const CARD_WIDTH = 80;
+const CARD_HEIGHT = 96;
+const GAP = 12; // Reduced gap since cards are larger
 const ANIMATION_INTERVAL = 500;
 
 export function ModuleGrid() {
@@ -34,8 +36,8 @@ export function ModuleGrid() {
   }, [shouldReduceMotion]);
 
   // Grid dimensions
-  const gridWidth = 3 * CELL_SIZE + 2 * GAP;
-  const gridHeight = 4 * CELL_SIZE + 3 * GAP;
+  const gridWidth = 3 * CARD_WIDTH + 2 * GAP;
+  const gridHeight = 4 * CARD_HEIGHT + 3 * GAP;
 
   // Get module position in grid
   const getGridStyle = (row: number, col: number) => ({
@@ -56,7 +58,8 @@ export function ModuleGrid() {
       {/* Connection Lines SVG */}
       <ConnectionLines
         activeModuleId={activeModuleId}
-        cellSize={CELL_SIZE}
+        cellSize={CARD_WIDTH}
+        cellHeight={CARD_HEIGHT}
         gap={GAP}
       />
 
@@ -64,8 +67,8 @@ export function ModuleGrid() {
       <div
         className="relative grid"
         style={{
-          gridTemplateColumns: `repeat(3, ${CELL_SIZE}px)`,
-          gridTemplateRows: `repeat(4, ${CELL_SIZE}px)`,
+          gridTemplateColumns: `repeat(3, ${CARD_WIDTH}px)`,
+          gridTemplateRows: `repeat(4, ${CARD_HEIGHT}px)`,
           gap: GAP,
           width: gridWidth,
           height: gridHeight,
