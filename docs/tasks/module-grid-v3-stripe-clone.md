@@ -2,7 +2,7 @@
 
 **Task ID:** module-grid-v3-stripe-clone  
 **Priority:** Critical  
-**Estimated Total Time:** 8-12 hours  
+**Estimated Total Time:** 14-20 hours (revised from 8-12)  
 **Prerequisites:** ModuleGrid v2.0 completed (Step 2.3)  
 **Reference:** Stripe.com Homepage Hero Section (January 2026)
 
@@ -145,6 +145,236 @@ box-shadow:
   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
   rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 ```
+
+---
+
+### 6. GRID SPACING & NEGATIVE SPACE (KRİTİK)
+
+> **ÖNEMLİ:** Bu bölüm önceki analizlerde eksikti. Grid'in profesyonel görünümünün temel taşı.
+
+**Stripe'ın Grid Boşluk Sistemi:**
+
+Stripe'ın kartları rastgele dağılmış gibi görünse de arkasında **kasıtlı bir boşluk sistemi** var:
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│    ┌─────┐              ┌─────┐                     │
+│    │     │   CORRIDOR   │     │                     │
+│    │ A   │ ←──(60px)──→ │ B   │                     │
+│    │     │              │     │                     │
+│    └─────┘              └─────┘                     │
+│         ↑                                           │
+│      CORRIDOR                                       │
+│       (50px)                                        │
+│         ↓                                           │
+│              ┌─────┐                                │
+│              │     │                                │
+│              │ C   │                                │
+│              │     │                                │
+│              └─────┘                                │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Neden Önemli:**
+1. **Çizgi Koridorları:** Boşluklar, connection line'ların temiz görünmesini sağlıyor
+2. **Görsel Nefes:** Kartlar sıkışık değil, her biri "kendi alanına" sahip
+3. **Enterprise Estetiği:** Cheap/crowded değil, premium/spacious görünüm
+
+**Spacing Kuralları:**
+
+| Kural | Minimum Değer | Açıklama |
+|-------|---------------|----------|
+| Horizontal gap | 48-60px | Kartlar arası yatay mesafe |
+| Vertical gap | 40-50px | Kartlar arası dikey mesafe |
+| Edge padding | 32px | Grid container kenar boşluğu |
+| Diagonal clearance | 56px | Çapraz çizgiler için köşe boşluğu |
+
+**Kritik Kural:** Hiçbir kart kenardan kenara bitişik olmamalı. Her kart en az **yarım kart genişliği** kadar izole olmalı.
+
+**Connection Line Corridor Hesaplama:**
+```tsx
+// Çizgi koridoru = Kart merkezi arası mesafe - Kart genişliği
+// Örnek: 200px merkez mesafesi, 140px kart = 60px koridor
+
+const CORRIDOR_MIN = 48; // px - bunun altına düşme
+
+function validateGridPositions(modules) {
+  for (let i = 0; i < modules.length; i++) {
+    for (let j = i + 1; j < modules.length; j++) {
+      const dx = Math.abs(modules[i].x - modules[j].x);
+      const dy = Math.abs(modules[i].y - modules[j].y);
+      
+      // Yatay komşular için
+      if (dy < CARD_HEIGHT && dx < CARD_WIDTH + CORRIDOR_MIN) {
+        console.warn(`Cards ${i} and ${j} too close horizontally`);
+      }
+      
+      // Dikey komşular için  
+      if (dx < CARD_WIDTH && dy < CARD_HEIGHT + CORRIDOR_MIN * 0.8) {
+        console.warn(`Cards ${i} and ${j} too close vertically`);
+      }
+    }
+  }
+}
+```
+
+---
+
+### 7. CONNECTION LINES - DEEP ANALYSIS (KRİTİK)
+
+> **ÖNEMLİ:** Bu bölüm tamamen yeniden yazıldı. Connection lines bu tasarımın KALBİ.
+
+**Önceki Analizdeki Hata:** Çizgiler "P1 - enhancement" olarak değerlendirilmişti.  
+**Gerçek:** Çizgiler **P0 - core identity**. Bunlar olmadan sistem "dead wireframe" kalır.
+
+#### 7.1 Stripe Çizgi Anatomisi (4 Katman)
+
+```
+Layer 4 (üst):   ●────────────────●  Flow Particle (animated dot)
+Layer 3:         ════════════════════  Glow Halo (blur: 10-12px)
+Layer 2:         ────────────────────  Main Line (gradient, 3-4px)
+Layer 1 (alt):   ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌  Background Trace (opacity: 0.15)
+```
+
+| Layer | Kalınlık | Opacity | Blur | Renk | Animasyon |
+|-------|----------|---------|------|------|-----------|
+| Background Trace | 2px | 0.15 | 0 | Gri (#94a3b8) | Yok |
+| Main Line | 3-4px | 0.7-0.9 | 0 | Gradient | Yok |
+| Glow Halo | 8-12px | 0.3-0.5 | 10px | Ana renk | Pulse (opsiyonel) |
+| Flow Particle | 6-8px dot | 1.0 | 4px | Beyaz/Parlak | Sürekli hareket |
+
+#### 7.2 Gradient Line Colors
+
+```tsx
+// Çizgi renk sistemi - Soluty brand uyumlu
+const lineGradients = {
+  // Primary: Teal → Mor (ana akış)
+  primary: {
+    gradient: 'linear-gradient(90deg, #4DB6A0 0%, #8B5CF6 50%, #6C91F7 100%)',
+    glow: 'rgba(77, 182, 160, 0.4)'
+  },
+  
+  // Secondary: Mor → Mavi (yan akışlar)
+  secondary: {
+    gradient: 'linear-gradient(90deg, #AD6AEB 0%, #6C91F7 100%)',
+    glow: 'rgba(173, 106, 235, 0.35)'
+  },
+  
+  // Tertiary: Turuncu → Sarı (veri akışı)
+  tertiary: {
+    gradient: 'linear-gradient(90deg, #FFB86C 0%, #F7C94C 100%)',
+    glow: 'rgba(255, 184, 108, 0.3)'
+  }
+};
+```
+
+#### 7.3 Flow Animation (HAYAT VEREN ELEMENT)
+
+Bu animasyon olmadan çizgiler "ölü" görünür. Stripe'ın "data flowing through the system" hissini veren şey bu.
+
+```tsx
+// SVG path üzerinde hareket eden enerji noktası
+<svg>
+  <defs>
+    {/* Glow efekti için filter */}
+    <filter id="particleGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  
+  {/* Background trace */}
+  <path 
+    d={connectionPath} 
+    stroke="#94a3b8" 
+    strokeWidth={2}
+    opacity={0.15}
+    fill="none"
+  />
+  
+  {/* Main gradient line */}
+  <path 
+    d={connectionPath}
+    stroke="url(#lineGradient)"
+    strokeWidth={3}
+    opacity={0.8}
+    fill="none"
+  />
+  
+  {/* Glow layer */}
+  <path 
+    d={connectionPath}
+    stroke={glowColor}
+    strokeWidth={10}
+    opacity={0.3}
+    filter="blur(8px)"
+    fill="none"
+  />
+  
+  {/* Animated flow particle */}
+  <motion.circle
+    r={5}
+    fill="white"
+    filter="url(#particleGlow)"
+    initial={{ offsetDistance: '0%' }}
+    animate={{ 
+      offsetDistance: ['0%', '100%'],
+      opacity: [0, 1, 1, 1, 0]
+    }}
+    transition={{
+      duration: 2.5,
+      repeat: Infinity,
+      ease: 'linear',
+      times: [0, 0.1, 0.5, 0.9, 1] // Başta ve sonda fade
+    }}
+    style={{ 
+      offsetPath: `path('${connectionPath}')`,
+      offsetRotate: '0deg'
+    }}
+  />
+</svg>
+```
+
+#### 7.4 Path Style: Smooth Bezier Curves
+
+Düz çizgiler değil, **yumuşak eğriler** kullanılmalı:
+
+```tsx
+// ❌ YANLIŞ: Düz çizgi
+const badPath = `M ${x1} ${y1} L ${x2} ${y2}`;
+
+// ✅ DOĞRU: Bezier eğrisi
+function createSmoothPath(from: Point, to: Point): string {
+  const midX = (from.x + to.x) / 2;
+  const midY = (from.y + to.y) / 2;
+  
+  // Horizontal dominant
+  if (Math.abs(to.x - from.x) > Math.abs(to.y - from.y)) {
+    return `M ${from.x} ${from.y} 
+            C ${midX} ${from.y}, ${midX} ${to.y}, ${to.x} ${to.y}`;
+  }
+  
+  // Vertical dominant
+  return `M ${from.x} ${from.y} 
+          C ${from.x} ${midY}, ${to.x} ${midY}, ${to.x} ${to.y}`;
+}
+```
+
+#### 7.5 Çizgi Karşılaştırma Tablosu
+
+| Özellik | Stripe | Mevcut Soluty | Hedef |
+|---------|--------|---------------|-------|
+| Kalınlık | 3-4px | 2px | 3-4px |
+| Renk | Gradient | Tek renk (teal) | Gradient |
+| Glow | 10-12px blur, 0.4 opacity | 6px, 0.25 | 10px, 0.4 |
+| Flow animation | Var (sürekli) | Yok | Var |
+| Path style | Smooth bezier | Düz? | Smooth bezier |
+| Layers | 4 layer | 2 layer | 4 layer |
 
 ---
 
@@ -320,6 +550,103 @@ className="rounded-3xl" // 24px
 
 ---
 
+### Step 3.2.5: Grid Spacing Corridors (YENİ - ZORUNLU)
+**Estimated Time:** 1-2 hours
+**Priority:** P0
+
+**Dosyalar:**
+- `app/[locale]/components/ModuleGrid/modules-data.ts`
+- `app/[locale]/components/ModuleGrid/grid-utils.ts` (YENİ)
+
+**Yapılacaklar:**
+
+1. **Grid spacing constants:**
+```tsx
+// modules-data.ts
+export const GRID_SPACING = {
+  horizontalCorridor: 56,    // Yatay çizgi koridoru minimum
+  verticalCorridor: 48,      // Dikey çizgi koridoru minimum
+  diagonalClearance: 64,     // Çapraz çizgiler için köşe boşluğu
+  edgePadding: 32,           // Container kenar boşluğu
+};
+```
+
+2. **Position validation utility:**
+```tsx
+// grid-utils.ts
+export function validateModulePositions(
+  modules: Module[],
+  cardWidth: number,
+  cardHeight: number
+): ValidationResult {
+  const issues: string[] = [];
+  
+  for (let i = 0; i < modules.length; i++) {
+    for (let j = i + 1; j < modules.length; j++) {
+      const dx = Math.abs(modules[i].position.x - modules[j].position.x);
+      const dy = Math.abs(modules[i].position.y - modules[j].position.y);
+      
+      // Yatay komşuluk kontrolü
+      if (dy < cardHeight * 0.8) {
+        const horizontalGap = dx - cardWidth;
+        if (horizontalGap < GRID_SPACING.horizontalCorridor) {
+          issues.push(
+            `Cards "${modules[i].id}" and "${modules[j].id}" too close horizontally: ${horizontalGap}px (min: ${GRID_SPACING.horizontalCorridor}px)`
+          );
+        }
+      }
+      
+      // Dikey komşuluk kontrolü
+      if (dx < cardWidth * 0.8) {
+        const verticalGap = dy - cardHeight;
+        if (verticalGap < GRID_SPACING.verticalCorridor) {
+          issues.push(
+            `Cards "${modules[i].id}" and "${modules[j].id}" too close vertically: ${verticalGap}px (min: ${GRID_SPACING.verticalCorridor}px)`
+          );
+        }
+      }
+    }
+  }
+  
+  return { valid: issues.length === 0, issues };
+}
+```
+
+3. **Güncellenmiş pozisyonlar:**
+```tsx
+// Tüm pozisyonları yeniden hesapla - koridorları hesaba katarak
+export const modules: Module[] = [
+  {
+    id: 'order',
+    position: { x: 0, y: 48 },        // Sol üst, dikey offset
+  },
+  {
+    id: 'workPlan',
+    position: { x: 216, y: 0 },       // Sağ üst (160 + 56 corridor)
+  },
+  {
+    id: 'route',
+    position: { x: 108, y: 256 },     // Orta (200 + 56 vertical gap)
+  },
+  {
+    id: 'delivery',
+    position: { x: 0, y: 312 },       // Sol alt
+  },
+  {
+    id: 'invoice',
+    position: { x: 216, y: 312 },     // Sağ alt
+  },
+  // ... diğerleri
+];
+```
+
+**Test Kriterleri:**
+- [ ] Hiçbir kart çifti minimum koridor mesafesini ihlal etmiyor
+- [ ] Connection lines kartların üzerinden geçmiyor
+- [ ] Grid "spacious" ve "premium" görünüyor
+
+---
+
 ### Step 3.3: Grid Scale & Positioning (ZORUNLU)
 **Estimated Time:** 1-2 hours
 **Priority:** P0
@@ -333,67 +660,197 @@ className="rounded-3xl" // 24px
 1. **Grid container boyutunu büyüt:**
 ```tsx
 // Mevcut: ~320 x 465px
-// Hedef: ~500 x 650px
+// Hedef: ~540 x 700px (koridorlar dahil)
 
 export const GRID_CONFIG = {
-  width: 500,
-  height: 650,
-  cardWidth: 140,
-  cardHeight: 180,
-  gap: 24
+  width: 540,
+  height: 700,
+  cardWidth: 160,
+  cardHeight: 200,
+  horizontalCorridor: 56,
+  verticalCorridor: 48
 };
 ```
 
-2. **Organik pozisyonları scale et:**
+2. **Container padding:**
 ```tsx
-// Position multiplier: 1.6x
-export const modules = [
-  {
-    id: 'order',
-    position: { x: 0, y: 32 },      // 0,20 * 1.6
-    // ...
-  },
-  {
-    id: 'workPlan', 
-    position: { x: 170, y: 0 },     // Merkez üst
-    // ...
-  },
-  // ... tüm pozisyonları güncelle
-];
+// ModuleGrid/index.tsx
+<div 
+  className="relative"
+  style={{
+    width: GRID_CONFIG.width,
+    height: GRID_CONFIG.height,
+    padding: GRID_SPACING.edgePadding
+  }}
+>
 ```
 
 ---
 
-### Step 3.4: Connection Lines Enhancement (ZORUNLU)
-**Estimated Time:** 2 hours
-**Priority:** P1
+### Step 3.4: Connection Lines Enhancement (KRİTİK - YENİDEN YAZILDI)
+**Estimated Time:** 4-6 hours (önceki: 2 saat)
+**Priority:** P0 (önceki: P1)
+
+> ⚠️ **Bu adım kritik öneme yükseltildi.** Çizgiler olmadan tüm sistem cansız kalır.
 
 **Dosyalar:**
-- `app/[locale]/components/ModuleGrid/ConnectionLines.tsx`
+- `app/[locale]/components/ModuleGrid/ConnectionLines.tsx` (YENİDEN YAZ)
+- `app/[locale]/components/ModuleGrid/line-utils.ts` (YENİ)
 
 **Yapılacaklar:**
 
-1. **Çizgi kalınlığını artır:**
+#### A. Multi-Layer Line Structure
 ```tsx
-// 2-2.5px → 3-4px
-strokeWidth={isActive ? 4 : 3}
+// ConnectionLines.tsx
+interface ConnectionLineProps {
+  from: Point;
+  to: Point;
+  isActive: boolean;
+  variant: 'primary' | 'secondary' | 'tertiary';
+}
+
+export function ConnectionLine({ from, to, isActive, variant }: ConnectionLineProps) {
+  const path = createSmoothPath(from, to);
+  const colors = lineGradients[variant];
+  
+  return (
+    <g>
+      {/* Layer 1: Background trace */}
+      <path 
+        d={path}
+        stroke="#94a3b8"
+        strokeWidth={2}
+        opacity={0.15}
+        fill="none"
+        strokeLinecap="round"
+      />
+      
+      {/* Layer 2: Main gradient line */}
+      <path 
+        d={path}
+        stroke={`url(#gradient-${variant})`}
+        strokeWidth={isActive ? 4 : 3}
+        opacity={isActive ? 0.9 : 0.7}
+        fill="none"
+        strokeLinecap="round"
+      />
+      
+      {/* Layer 3: Glow halo */}
+      <path 
+        d={path}
+        stroke={colors.glow}
+        strokeWidth={12}
+        opacity={isActive ? 0.4 : 0.2}
+        fill="none"
+        strokeLinecap="round"
+        style={{ filter: 'blur(8px)' }}
+      />
+      
+      {/* Layer 4: Flow particle (animated) */}
+      {isActive && (
+        <FlowParticle path={path} />
+      )}
+    </g>
+  );
+}
 ```
 
-2. **Glow efektini güçlendir:**
+#### B. Flow Particle Animation
 ```tsx
-// Blur: 3-4px → 6-8px
-// Opacity: 0.25 → 0.4
-<motion.path
-  style={{ filter: 'blur(6px)' }}
-  animate={{ opacity: isActive ? 0.4 : 0 }}
-/>
+// FlowParticle component
+function FlowParticle({ path }: { path: string }) {
+  return (
+    <motion.circle
+      r={5}
+      fill="white"
+      filter="url(#particleGlow)"
+      style={{ 
+        offsetPath: `path('${path}')`,
+        offsetRotate: '0deg'
+      }}
+      initial={{ offsetDistance: '0%', opacity: 0 }}
+      animate={{ 
+        offsetDistance: ['0%', '100%'],
+        opacity: [0, 1, 1, 1, 0]
+      }}
+      transition={{
+        duration: 2.5,
+        repeat: Infinity,
+        ease: 'linear',
+        times: [0, 0.1, 0.5, 0.9, 1]
+      }}
+    />
+  );
+}
 ```
 
-3. **Background trace opacity artır:**
+#### C. Smooth Bezier Paths
 ```tsx
-// 0.15-0.2 → 0.25-0.3
-opacity={0.25}
+// line-utils.ts
+export function createSmoothPath(from: Point, to: Point): string {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  
+  // Control point offset (eğri yumuşaklığı)
+  const tension = 0.4;
+  
+  if (Math.abs(dx) > Math.abs(dy)) {
+    // Horizontal dominant - S-curve
+    const cpOffset = Math.abs(dx) * tension;
+    return `M ${from.x} ${from.y} 
+            C ${from.x + cpOffset} ${from.y}, 
+              ${to.x - cpOffset} ${to.y}, 
+              ${to.x} ${to.y}`;
+  } else {
+    // Vertical dominant - S-curve
+    const cpOffset = Math.abs(dy) * tension;
+    return `M ${from.x} ${from.y} 
+            C ${from.x} ${from.y + cpOffset}, 
+              ${to.x} ${to.y - cpOffset}, 
+              ${to.x} ${to.y}`;
+  }
+}
 ```
+
+#### D. SVG Gradient Definitions
+```tsx
+// ConnectionLines parent SVG içinde
+<defs>
+  {/* Line gradients */}
+  <linearGradient id="gradient-primary" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stopColor="#4DB6A0" />
+    <stop offset="50%" stopColor="#8B5CF6" />
+    <stop offset="100%" stopColor="#6C91F7" />
+  </linearGradient>
+  
+  <linearGradient id="gradient-secondary" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stopColor="#AD6AEB" />
+    <stop offset="100%" stopColor="#6C91F7" />
+  </linearGradient>
+  
+  <linearGradient id="gradient-tertiary" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stopColor="#FFB86C" />
+    <stop offset="100%" stopColor="#F7C94C" />
+  </linearGradient>
+  
+  {/* Particle glow filter */}
+  <filter id="particleGlow" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="3" result="blur" />
+    <feMerge>
+      <feMergeNode in="blur" />
+      <feMergeNode in="SourceGraphic" />
+    </feMerge>
+  </filter>
+</defs>
+```
+
+**Test Kriterleri:**
+- [ ] Çizgiler 4 katmanlı (trace + main + glow + particle)
+- [ ] Gradient renkler doğru uygulanmış
+- [ ] Flow particle smooth hareket ediyor (2-3 saniye döngü)
+- [ ] Bezier curves kartlar arasında akıcı geçiş yapıyor
+- [ ] Active state'te glow ve particle belirgin
+- [ ] Performance: 60fps korunuyor
 
 ---
 
@@ -430,17 +887,18 @@ Stripe'ın kartlarında gerçek UI içeriği var. Bizimkiler için simplified ve
 
 ---
 
-## Implementation Order
+## Implementation Order (GÜNCELLENDİ)
 
 | Step | Name | Time | Priority | Dependencies |
 |------|------|------|----------|--------------|
 | 3.1 | Hero Background | 2-3h | P0 | None |
 | 3.2 | Card Shadows | 2-3h | P0 | None |
-| 3.3 | Grid Scale | 1-2h | P0 | 3.2 |
-| 3.4 | Lines Enhancement | 2h | P1 | 3.3 |
+| 3.2.5 | Grid Spacing | 1-2h | P0 | 3.2 |
+| 3.3 | Grid Scale | 1-2h | P0 | 3.2.5 |
+| 3.4 | **Connection Lines** | **4-6h** | **P0** | 3.3 |
 | 3.5 | Card Content | 3-4h | P2 | 3.2, 3.3 |
 
-**Toplam:** 10-14 saat
+**Toplam:** 14-20 saat (önceki: 10-14 saat)
 
 ---
 
@@ -450,14 +908,18 @@ Stripe'ın kartlarında gerçek UI içeriği var. Bizimkiler için simplified ve
 - [ ] Düz beyaz/gri arka plan
 - [ ] 80x100px küçük kartlar
 - [ ] Sığ gölgeler (2-6px blur)
-- [ ] İnce çizgiler (2px)
+- [ ] İnce çizgiler (2px), tek renk
+- [ ] Çizgilerde animasyon yok
+- [ ] Kartlar sıkışık, boşluk yetersiz
 - [ ] Boş kartlar (sadece ikon)
 
 ### After (Target)
 - [ ] Canlı gradient arka plan (magenta, turuncu, mor)
-- [ ] 140-160px geniş kartlar
+- [ ] 160x200px geniş kartlar
 - [ ] Derin gölgeler (30-60px blur)
-- [ ] Kalın çizgiler (3-4px) + güçlü glow
+- [ ] **Gradient çizgiler (3-4px) + güçlü glow (10px)**
+- [ ] **Flow particle animasyonu (sürekli hareket)**
+- [ ] **Spacious layout (56px+ koridorlar)**
 - [ ] İçerikli kartlar (ikon + text + mini-UI)
 
 ---
@@ -470,6 +932,8 @@ Stripe'ın kartlarında gerçek UI içeriği var. Bizimkiler için simplified ve
 | Büyük kartlar mobile'da sığmaz | High | Responsive scaling, mobile-specific layout |
 | Shadow heavy render | Low | `will-change: transform`, composite layers |
 | Çok renkli görünüm | Low | Test with users, adjust opacity if needed |
+| **Flow animation CPU** | **Medium** | **requestAnimationFrame, GPU acceleration** |
+| **Çok fazla SVG element** | **Medium** | **Path consolidation, lazy render** |
 
 ---
 
@@ -478,6 +942,7 @@ Stripe'ın kartlarında gerçek UI içeriği var. Bizimkiler için simplified ve
 1. **Visual Parity:** Stripe ile yan yana konduğunda "aynı kalitede" görünmeli
 2. **Performance:** Lighthouse Performance score ≥ 90
 3. **User Feedback:** "Profesyonel görünüyor" yorumu alınmalı
+4. **Line Animation:** "Canlı, akan veri hissi" - static değil dynamic
 
 ---
 
@@ -487,6 +952,7 @@ Stripe'ın kartlarında gerçek UI içeriği var. Bizimkiler için simplified ve
 - Stripe WebGL canvas kullanıyor, biz CSS gradients ile yaklaşacağız (daha kolay, daha performanslı)
 - İkon ve modül adları Soluty'ye özel kalacak, sadece görsel tasarım kopyalanıyor
 - Mobile'da simplified versiyon kabul edilebilir
+- **Connection lines bu tasarımın kalbi - asla P1'e düşürülmemeli**
 
 ---
 
@@ -496,3 +962,4 @@ Stripe'ın kartlarında gerçek UI içeriği var. Bizimkiler için simplified ve
 |---------|------|--------|---------|
 | 1.0 | 2025-01-22 | Claude | Initial v2.0 enhancement plan |
 | 2.0 | 2025-01-23 | Claude | Complete rewrite based on detailed Stripe analysis |
+| 2.1 | 2025-01-23 | Claude | Critical gap analysis: Grid spacing system + Connection lines deep dive. Step 3.4 upgraded to P0, time estimate increased. Added Step 3.2.5 for spacing corridors. |
