@@ -1,223 +1,292 @@
 import {
-  Package,
   ClipboardList,
-  Map,
-  TrendingUp,
+  Handshake,
+  CalendarDays,
+  Route,
+  BadgeDollarSign,
   FileText,
+  PenTool,
   Warehouse,
-  Boxes,
-  Users,
-  Receipt,
+  Package,
+  Landmark,
   CreditCard,
+  Banknote,
+  TrendingDown,
+  Users,
+  LayoutDashboard,
+  Bell,
   type LucideIcon,
 } from 'lucide-react';
 
-export interface Position {
-  x: number;
-  y: number;
+// ==========================================================================
+// Types
+// ==========================================================================
+
+export type GridColumn = 1 | 2 | 3 | 4 | 5 | 6;
+export type GridRow = 'a' | 'b' | 'c' | 'd' | 'e' | 'f';
+
+export interface GridPosition {
+  col: GridColumn;
+  row: GridRow;
 }
 
 export interface Module {
   id: string;
   key: string;
   icon: LucideIcon;
-  position: Position;
-  connectsTo: string[];
+  gridPosition: GridPosition;
+  groupId: number;
 }
 
 export interface ModuleGroup {
-  id: string;
-  labelKey: string;
-  moduleIds: string[];
+  id: number;
+  name: string;
+  sourceModuleId: string;
+  targetModuleIds: string[];
 }
+
+// ==========================================================================
+// Design Tokens (from v4 spec)
+// ==========================================================================
+
+export const DESIGN_TOKENS = {
+  // Card dimensions
+  card: {
+    desktop: { width: 80, height: 80, radius: 16, iconSize: 32, fontSize: 11, gap: 24 },
+    tablet: { width: 72, height: 72, radius: 14, iconSize: 28, fontSize: 10, gap: 20 },
+    mobile: { width: 64, height: 64, radius: 12, iconSize: 24, fontSize: 10, gap: 16 },
+  },
+  
+  // Animation
+  animation: {
+    groupDuration: 3500, // ms
+    transitionDuration: 400, // ms
+    flowParticleDuration: 2000, // ms
+  },
+  
+  // Colors
+  colors: {
+    inactiveIcon: '#9CA3AF',
+    inactiveIconOpacity: 0.35,
+    hoverIconOpacity: 0.55,
+    activeLabel: '#1F2937',
+    inactiveLabel: '#9CA3AF',
+  },
+  
+  // Connection lines
+  lines: {
+    widthInactive: 2.5,
+    widthActive: 3.5,
+    glowBlur: 8,
+    glowOpacity: 0.4,
+  },
+} as const;
 
 // ==========================================================================
 // Grid Configuration
 // ==========================================================================
 
 export const GRID_CONFIG = {
-  cardWidth: 95,
-  cardHeight: 95,
-  horizontalGap: 24,
-  verticalGap: 24,
-  edgePadding: 8,
+  desktop: {
+    columns: 6,
+    rows: 6,
+    cardSize: DESIGN_TOKENS.card.desktop.width,
+    gap: DESIGN_TOKENS.card.desktop.gap,
+  },
+  mobile: {
+    columns: 4,
+    rows: 6,
+    cardSize: DESIGN_TOKENS.card.mobile.width,
+    gap: DESIGN_TOKENS.card.mobile.gap,
+  },
 } as const;
 
-export const CARD_WIDTH = GRID_CONFIG.cardWidth;
-export const CARD_HEIGHT = GRID_CONFIG.cardHeight;
-
 // ==========================================================================
-// Module Definitions - Staggered layout like Stripe
+// Icon Gradient System (per group)
 // ==========================================================================
 
-// Base column: 0, 119, 238 (95 + 24 gap)
-// Base row: 0, 119, 238, 357 (95 + 24 gap)
-// Offset: ±15-25px for organic feel
+export const GROUP_GRADIENTS: Record<number, {
+  start: string;
+  end: string;
+  glow: string;
+}> = {
+  1: { start: '#4DB6A0', end: '#2DD4BF', glow: 'rgba(77, 182, 160, 0.3)' },   // Order - Teal
+  2: { start: '#8B5CF6', end: '#A78BFA', glow: 'rgba(139, 92, 246, 0.3)' },   // Logistics - Purple
+  3: { start: '#3B82F6', end: '#60A5FA', glow: 'rgba(59, 130, 246, 0.3)' },   // Sales - Blue
+  4: { start: '#F59E0B', end: '#FBBF24', glow: 'rgba(245, 158, 11, 0.3)' },   // Inventory - Amber
+  5: { start: '#10B981', end: '#34D399', glow: 'rgba(16, 185, 129, 0.3)' },   // Finance - Emerald
+  6: { start: '#EC4899', end: '#F472B6', glow: 'rgba(236, 72, 153, 0.3)' },   // Customer - Pink
+};
+
+// ==========================================================================
+// Module Definitions (16 modules)
+// ==========================================================================
+
+/*
+Grid Position Map:
+        Col 1    Col 2    Col 3    Col 4    Col 5    Col 6
+Row a  |        |        |WAREHOU |        |        |        |
+Row b  | ORDERS |        |        | DEALS  | SALES  |DASHBRD |
+Row c  |        |        |PRODUCTS|  CRM   |        |E-SIGN  |
+Row d  |PLANNING|        |        |DEPOSITS| NOTIFS |        |
+Row e  |        |        | ROUTE  |CASHBOX |INVOICE |        |
+Row f  |        |PAYMENTS|        |        |        |EXPENSES|
+*/
 
 export const modules: Module[] = [
-  // Row 1: Order (left-low), WorkPlan (center-high), RouteOpt (right-low)
-  {
-    id: 'order',
-    key: 'order',
-    icon: Package,
-    position: { x: 0, y: 25 },
-    connectsTo: ['workPlan'],
-  },
-  {
-    id: 'workPlan',
-    key: 'workPlan',
-    icon: ClipboardList,
-    position: { x: 119, y: 0 },
-    connectsTo: ['routeOptimization'],
-  },
-  {
-    id: 'routeOptimization',
-    key: 'routeOptimization',
-    icon: Map,
-    position: { x: 238, y: 20 },
-    connectsTo: ['deliveryNote'],
-  },
+  // Group 1: Order Management
+  { id: 'orders', key: 'orders', icon: ClipboardList, gridPosition: { col: 1, row: 'b' }, groupId: 1 },
+  { id: 'deals', key: 'deals', icon: Handshake, gridPosition: { col: 4, row: 'b' }, groupId: 1 },
   
-  // Row 2: Sales (left-high), CRM (center-low), DeliveryNote (right-high)
-  {
-    id: 'sales',
-    key: 'sales',
-    icon: TrendingUp,
-    position: { x: 5, y: 134 },
-    connectsTo: ['invoice'],
-  },
-  {
-    id: 'crm',
-    key: 'crm',
-    icon: Users,
-    position: { x: 119, y: 149 },
-    connectsTo: ['sales'],
-  },
-  {
-    id: 'deliveryNote',
-    key: 'deliveryNote',
-    icon: FileText,
-    position: { x: 233, y: 139 },
-    connectsTo: ['warehouse'],
-  },
+  // Group 2: Logistics
+  { id: 'planning', key: 'planning', icon: CalendarDays, gridPosition: { col: 1, row: 'd' }, groupId: 2 },
+  { id: 'route', key: 'route', icon: Route, gridPosition: { col: 3, row: 'e' }, groupId: 2 },
   
-  // Row 3: Invoice (left-low), ProductMgmt (center-high), Warehouse (right-low)
-  {
-    id: 'invoice',
-    key: 'invoice',
-    icon: Receipt,
-    position: { x: 10, y: 273 },
-    connectsTo: ['payments'],
-  },
-  {
-    id: 'productManagement',
-    key: 'productManagement',
-    icon: Boxes,
-    position: { x: 119, y: 258 },
-    connectsTo: ['crm'],
-  },
-  {
-    id: 'warehouse',
-    key: 'warehouse',
-    icon: Warehouse,
-    position: { x: 228, y: 278 },
-    connectsTo: ['productManagement'],
-  },
+  // Group 3: Sales & Billing
+  { id: 'sales', key: 'sales', icon: BadgeDollarSign, gridPosition: { col: 5, row: 'b' }, groupId: 3 },
+  { id: 'invoice', key: 'invoice', icon: FileText, gridPosition: { col: 5, row: 'e' }, groupId: 3 },
+  { id: 'esignature', key: 'esignature', icon: PenTool, gridPosition: { col: 6, row: 'c' }, groupId: 3 },
   
-  // Row 4: Payments (center)
-  {
-    id: 'payments',
-    key: 'payments',
-    icon: CreditCard,
-    position: { x: 119, y: 387 },
-    connectsTo: [],
-  },
+  // Group 4: Inventory
+  { id: 'warehouse', key: 'warehouse', icon: Warehouse, gridPosition: { col: 3, row: 'a' }, groupId: 4 },
+  { id: 'products', key: 'products', icon: Package, gridPosition: { col: 3, row: 'c' }, groupId: 4 },
+  { id: 'deposits', key: 'deposits', icon: Landmark, gridPosition: { col: 4, row: 'd' }, groupId: 4 },
+  
+  // Group 5: Finance
+  { id: 'payments', key: 'payments', icon: CreditCard, gridPosition: { col: 2, row: 'f' }, groupId: 5 },
+  { id: 'cashbox', key: 'cashbox', icon: Banknote, gridPosition: { col: 4, row: 'e' }, groupId: 5 },
+  { id: 'expenses', key: 'expenses', icon: TrendingDown, gridPosition: { col: 6, row: 'f' }, groupId: 5 },
+  
+  // Group 6: Customer
+  { id: 'crm', key: 'crm', icon: Users, gridPosition: { col: 4, row: 'c' }, groupId: 6 },
+  { id: 'dashboard', key: 'dashboard', icon: LayoutDashboard, gridPosition: { col: 6, row: 'b' }, groupId: 6 },
+  { id: 'notifications', key: 'notifications', icon: Bell, gridPosition: { col: 5, row: 'd' }, groupId: 6 },
 ];
 
 // ==========================================================================
-// Module Groups for Animation
+// Group Definitions (6 groups with parallel branching)
 // ==========================================================================
 
 export const moduleGroups: ModuleGroup[] = [
   {
-    id: 'orderIntake',
-    labelKey: 'groups.orderIntake',
-    moduleIds: ['order', 'workPlan'],
+    id: 1,
+    name: 'Order Management',
+    sourceModuleId: 'orders',
+    targetModuleIds: ['deals'],
   },
   {
-    id: 'planning',
-    labelKey: 'groups.planning',
-    moduleIds: ['routeOptimization', 'deliveryNote'],
+    id: 2,
+    name: 'Logistics',
+    sourceModuleId: 'planning',
+    targetModuleIds: ['route'],
   },
   {
-    id: 'fulfillment',
-    labelKey: 'groups.fulfillment',
-    moduleIds: ['warehouse', 'productManagement'],
+    id: 3,
+    name: 'Sales & Billing',
+    sourceModuleId: 'sales',
+    targetModuleIds: ['esignature', 'invoice'],
   },
   {
-    id: 'customer',
-    labelKey: 'groups.customer',
-    moduleIds: ['crm', 'sales'],
+    id: 4,
+    name: 'Inventory',
+    sourceModuleId: 'products',
+    targetModuleIds: ['warehouse', 'deposits'],
   },
   {
-    id: 'finance',
-    labelKey: 'groups.finance',
-    moduleIds: ['invoice', 'payments'],
+    id: 5,
+    name: 'Finance',
+    sourceModuleId: 'payments',
+    targetModuleIds: ['cashbox', 'expenses'],
+  },
+  {
+    id: 6,
+    name: 'Customer',
+    sourceModuleId: 'crm',
+    targetModuleIds: ['dashboard', 'notifications'],
   },
 ];
 
-export const groupAnimationOrder = [
-  'orderIntake',
-  'planning',
-  'fulfillment',
-  'customer',
-  'finance',
-];
+export const GROUP_COUNT = moduleGroups.length;
 
-export const animationOrder = [
-  'order',
-  'workPlan',
-  'routeOptimization',
-  'deliveryNote',
-  'warehouse',
-  'productManagement',
-  'crm',
-  'sales',
-  'invoice',
-  'payments',
-];
+// ==========================================================================
+// Mobile Grid Positions (4x6)
+// ==========================================================================
+
+export const mobileGridPositions: Record<string, GridPosition> = {
+  orders: { col: 1, row: 'b' },
+  deals: { col: 2, row: 'b' },
+  planning: { col: 1, row: 'd' },
+  route: { col: 1, row: 'e' },
+  sales: { col: 3, row: 'b' },
+  invoice: { col: 3, row: 'e' },
+  esignature: { col: 4, row: 'c' },
+  warehouse: { col: 2, row: 'a' },
+  products: { col: 1, row: 'c' },
+  deposits: { col: 2, row: 'd' },
+  payments: { col: 1, row: 'f' },
+  cashbox: { col: 2, row: 'e' },
+  expenses: { col: 4, row: 'f' },
+  crm: { col: 2, row: 'c' },
+  dashboard: { col: 4, row: 'b' },
+  notifications: { col: 3, row: 'd' },
+};
 
 // ==========================================================================
 // Utility Functions
 // ==========================================================================
 
+export function rowToIndex(row: GridRow): number {
+  return row.charCodeAt(0) - 'a'.charCodeAt(0);
+}
+
+export function gridToPixel(
+  position: GridPosition,
+  cardSize: number,
+  gap: number
+): { x: number; y: number } {
+  const colIndex = position.col - 1;
+  const rowIndex = rowToIndex(position.row);
+  
+  return {
+    x: colIndex * (cardSize + gap),
+    y: rowIndex * (cardSize + gap),
+  };
+}
+
 export function getModuleById(id: string): Module | undefined {
   return modules.find((m) => m.id === id);
 }
 
-export function getGroupById(id: string): ModuleGroup | undefined {
+export function getGroupById(id: number): ModuleGroup | undefined {
   return moduleGroups.find((g) => g.id === id);
 }
 
-export function getNextModuleId(currentId: string): string | null {
-  const currentIndex = animationOrder.indexOf(currentId);
-  if (currentIndex === -1 || currentIndex === animationOrder.length - 1) {
-    return null;
-  }
-  return animationOrder[currentIndex + 1];
+export function getModulesInGroup(groupId: number): Module[] {
+  return modules.filter((m) => m.groupId === groupId);
 }
 
-export function getGridBounds(): { width: number; height: number } {
-  let maxX = 0;
-  let maxY = 0;
-  
-  modules.forEach((m) => {
-    maxX = Math.max(maxX, m.position.x + GRID_CONFIG.cardWidth);
-    maxY = Math.max(maxY, m.position.y + GRID_CONFIG.cardHeight);
-  });
-  
-  return { 
-    width: maxX + GRID_CONFIG.edgePadding, 
-    height: maxY + GRID_CONFIG.edgePadding 
+export function getActiveModuleIdsForGroup(groupId: number): string[] {
+  const group = getGroupById(groupId);
+  if (!group) return [];
+  return [group.sourceModuleId, ...group.targetModuleIds];
+}
+
+export function getGridDimensions(
+  columns: number,
+  rows: number,
+  cardSize: number,
+  gap: number
+): { width: number; height: number } {
+  return {
+    width: columns * cardSize + (columns - 1) * gap,
+    height: rows * cardSize + (rows - 1) * gap,
   };
+}
+
+export function getRandomStartGroup(): number {
+  return Math.floor(Math.random() * GROUP_COUNT) + 1;
+}
+
+export function getNextGroupId(currentId: number): number {
+  return currentId >= GROUP_COUNT ? 1 : currentId + 1;
 }
