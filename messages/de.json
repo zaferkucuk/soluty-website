@@ -43,16 +43,22 @@
   "moduleGrid": {
     "ariaLabel": "ERP-Modul-Workflow-Visualisierung",
     "modules": {
-      "order": "Bestellung",
-      "workPlan": "Arbeitsplan",
-      "routeOptimization": "Routenoptimierung",
+      "orders": "Aufträge",
+      "deals": "Angebote",
+      "planning": "Planung",
+      "route": "Route",
       "sales": "Vertrieb",
-      "deliveryNote": "Lieferschein",
-      "warehouse": "Lager",
-      "productManagement": "Produktverwaltung",
-      "crm": "CRM",
       "invoice": "Rechnung",
-      "payments": "Zahlungen"
+      "esignature": "E-Signatur",
+      "warehouse": "Lager",
+      "products": "Produkte",
+      "deposits": "Pfand",
+      "payments": "Zahlungen",
+      "cashbox": "Kasse",
+      "expenses": "Ausgaben",
+      "crm": "CRM",
+      "dashboard": "Dashboard",
+      "notifications": "Benachrichtigungen"
     }
   },
   "metadata": {
