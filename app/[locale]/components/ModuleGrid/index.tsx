@@ -7,16 +7,15 @@ import {
   modules, 
   moduleGroups, 
   groupAnimationOrder, 
-  getGridBounds, 
-  CARD_WIDTH, 
-  CARD_HEIGHT 
+  getGridBounds,
+  GRID_CONFIG,
 } from './modules-data';
 import { ModuleCard } from './ModuleCard';
 import { ModuleTooltip } from './ModuleTooltip';
 import { ConnectionLines } from './ConnectionLines';
 
-// Animation timing - 3 seconds per group for comfortable viewing
-const ANIMATION_INTERVAL = 3000;
+// Animation timing - 3.5 seconds per group for comfortable viewing
+const ANIMATION_INTERVAL = 3500;
 
 export function ModuleGrid() {
   const t = useTranslations('moduleGrid.modules');
@@ -42,7 +41,7 @@ export function ModuleGrid() {
     return () => clearInterval(timer);
   }, [shouldReduceMotion]);
 
-  // Get organic grid bounds
+  // Get grid bounds
   const gridBounds = getGridBounds();
 
   // Check if module is active (part of current group)
@@ -54,7 +53,11 @@ export function ModuleGrid() {
 
   return (
     <div
-      className="relative w-full max-w-md mx-auto lg:mx-0"
+      className="relative"
+      style={{
+        width: gridBounds.width,
+        height: gridBounds.height,
+      }}
       role="img"
       aria-label={tGrid('ariaLabel')}
     >
@@ -81,8 +84,9 @@ export function ModuleGrid() {
             style={{
               left: module.position.x,
               top: module.position.y,
-              width: CARD_WIDTH,
-              height: CARD_HEIGHT,
+              width: GRID_CONFIG.cardWidth,
+              height: GRID_CONFIG.cardHeight,
+              zIndex: isModuleActive(module.id) ? 10 : 1,
             }}
             aria-hidden="true"
           >
