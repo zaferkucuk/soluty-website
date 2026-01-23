@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Module } from './modules-data';
+import { GRID_CONFIG } from './modules-data';
 
 interface ModuleCardProps {
   module: Module;
@@ -10,6 +11,23 @@ interface ModuleCardProps {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 }
+
+// Stripe-inspired multi-layer shadow system
+const cardShadows = {
+  default: `
+    rgba(50, 50, 93, 0.08) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.12) 0px 8px 16px -8px
+  `,
+  hover: `
+    rgba(50, 50, 93, 0.15) 0px 20px 40px -8px,
+    rgba(0, 0, 0, 0.18) 0px 12px 24px -12px
+  `,
+  active: `
+    rgba(50, 50, 93, 0.2) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.25) 0px 18px 36px -18px,
+    rgba(77, 182, 160, 0.25) 0px 0px 0px 2px
+  `,
+};
 
 export function ModuleCard({
   module,
@@ -22,55 +40,87 @@ export function ModuleCard({
 
   return (
     <motion.div
-      className="relative flex flex-col items-center justify-center rounded-xl bg-gray-50 cursor-default overflow-hidden"
+      className="relative flex flex-col items-center justify-center rounded-2xl bg-white cursor-default overflow-hidden"
       style={{
-        width: 80,
-        height: 100,
-        borderWidth: isActive ? 2 : 1,
-        borderStyle: 'solid',
-        borderColor: isActive ? '#4DB6A0' : '#E5E7EB',
+        width: GRID_CONFIG.cardWidth,
+        height: GRID_CONFIG.cardHeight,
+      }}
+      initial={{
+        boxShadow: cardShadows.default,
+        scale: 1,
       }}
       animate={{
-        scale: isActive ? 1.05 : 1,
-        boxShadow: isActive
-          ? '0 8px 24px rgba(77, 182, 160, 0.25)'
-          : '0 1px 3px rgba(0, 0, 0, 0.05)',
+        scale: isActive ? 1.03 : 1,
+        boxShadow: isActive ? cardShadows.active : cardShadows.default,
       }}
-      transition={{ duration: 0.3 }}
+      whileHover={{
+        boxShadow: isActive ? cardShadows.active : cardShadows.hover,
+        scale: isActive ? 1.03 : 1.01,
+      }}
+      transition={{ 
+        duration: 0.3,
+        ease: 'easeOut',
+      }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {/* Icon */}
-      <Icon
-        size={26}
-        className="transition-colors flex-shrink-0"
-        style={{ color: isActive ? '#4DB6A0' : '#6B7280' }}
+      {/* Subtle gradient overlay for depth */}
+      <div 
+        className="absolute inset-0 opacity-50 pointer-events-none"
+        style={{
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.02) 100%)'
+        }}
       />
 
-      {/* Label - Always visible when active, inside card */}
-      <AnimatePresence>
-        {isActive && (
-          <motion.span
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.15 }}
-            className="mt-1.5 text-[10px] font-medium text-gray-700 text-center leading-tight px-1 w-full line-clamp-2"
-            style={{ 
-              display: '-webkit-box',
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden'
-            }}
-            aria-live="polite"
-          >
-            {moduleName}
-          </motion.span>
-        )}
+      {/* Icon */}
+      <motion.div
+        animate={{
+          scale: isActive ? 1.1 : 1,
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <Icon
+          size={36}
+          strokeWidth={1.5}
+          className="transition-colors duration-300"
+          style={{ color: isActive ? '#4DB6A0' : '#6B7280' }}
+        />
+      </motion.div>
+
+      {/* Label - Always visible, styled based on active state */}
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={isActive ? 'active' : 'inactive'}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.2 }}
+          className="mt-3 text-xs font-medium text-center leading-tight px-3 w-full"
+          style={{ 
+            color: isActive ? '#374151' : '#9CA3AF',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+          aria-live="polite"
+        >
+          {moduleName}
+        </motion.span>
       </AnimatePresence>
 
-      {/* Placeholder for consistent height when not active */}
-      {!isActive && <div className="mt-1.5 h-[24px]" />}
+      {/* Active indicator dot */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.div
+            className="absolute bottom-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-teal-500"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.2 }}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
