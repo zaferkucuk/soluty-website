@@ -43,16 +43,22 @@
   "moduleGrid": {
     "ariaLabel": "ERP modül iş akışı görselleştirmesi",
     "modules": {
-      "order": "Sipariş",
-      "workPlan": "İş Planı",
-      "routeOptimization": "Rota Optimizasyonu",
+      "orders": "Siparişler",
+      "deals": "Teklifler",
+      "planning": "Planlama",
+      "route": "Rota",
       "sales": "Satış",
-      "deliveryNote": "İrsaliye",
-      "warehouse": "Depo",
-      "productManagement": "Ürün Yönetimi",
-      "crm": "CRM",
       "invoice": "Fatura",
-      "payments": "Ödemeler"
+      "esignature": "E-İmza",
+      "warehouse": "Depo",
+      "products": "Ürünler",
+      "deposits": "Depozito",
+      "payments": "Ödemeler",
+      "cashbox": "Kasa",
+      "expenses": "Giderler",
+      "crm": "CRM",
+      "dashboard": "Gösterge Paneli",
+      "notifications": "Bildirimler"
     }
   },
   "metadata": {
