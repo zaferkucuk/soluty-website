@@ -25,93 +25,121 @@ export interface Module {
   connectsTo: string[];
 }
 
-// Module group for group-based animation
 export interface ModuleGroup {
   id: string;
-  labelKey: string; // i18n key for group label
+  labelKey: string;
   moduleIds: string[];
 }
 
-// Card dimensions for reference
-export const CARD_WIDTH = 80;
-export const CARD_HEIGHT = 100;
+// ==========================================================================
+// Grid Configuration - Stripe-inspired spacious layout
+// ==========================================================================
 
-// Organic layout - asymmetric, Stripe-inspired positioning
+export const GRID_CONFIG = {
+  // Card dimensions (enlarged from 80x100)
+  cardWidth: 140,
+  cardHeight: 160,
+  
+  // Spacing corridors for connection lines
+  horizontalCorridor: 48,  // Minimum horizontal gap between cards
+  verticalCorridor: 40,    // Minimum vertical gap between cards
+  diagonalClearance: 56,   // Clearance for diagonal connections
+  
+  // Container padding
+  edgePadding: 16,
+  
+  // Calculated grid dimensions (updated based on new positions)
+  width: 520,
+  height: 680,
+} as const;
+
+// Legacy exports for backward compatibility
+export const CARD_WIDTH = GRID_CONFIG.cardWidth;
+export const CARD_HEIGHT = GRID_CONFIG.cardHeight;
+
+// ==========================================================================
+// Module Definitions with Spacious Positioning
+// ==========================================================================
+
+// Positions calculated with corridor spacing in mind
+// Each card needs breathing room for connection lines
 export const modules: Module[] = [
   {
     id: 'order',
     key: 'order',
     icon: Package,
-    position: { x: 0, y: 20 },
+    position: { x: 0, y: 24 },  // Top-left
     connectsTo: ['workPlan'],
   },
   {
     id: 'workPlan',
     key: 'workPlan',
     icon: ClipboardList,
-    position: { x: 100, y: 0 },
+    position: { x: 188, y: 0 },  // Top-right (140 + 48 corridor)
     connectsTo: ['routeOptimization'],
   },
   {
     id: 'routeOptimization',
     key: 'routeOptimization',
     icon: Map,
-    position: { x: 210, y: 30 },
+    position: { x: 376, y: 36 },  // Far right (188 + 188)
     connectsTo: ['deliveryNote'],
   },
   {
     id: 'sales',
     key: 'sales',
     icon: TrendingUp,
-    position: { x: 15, y: 130 },
+    position: { x: 12, y: 224 },  // Left column, row 2 (160 + 40 + 24)
     connectsTo: ['invoice'],
   },
   {
     id: 'crm',
     key: 'crm',
     icon: Users,
-    position: { x: 115, y: 115 },
+    position: { x: 188, y: 200 },  // Center column, row 2
     connectsTo: ['sales'],
   },
   {
     id: 'deliveryNote',
     key: 'deliveryNote',
     icon: FileText,
-    position: { x: 200, y: 140 },
+    position: { x: 364, y: 236 },  // Right column, row 2
     connectsTo: ['warehouse'],
   },
   {
     id: 'invoice',
     key: 'invoice',
     icon: Receipt,
-    position: { x: 0, y: 250 },
+    position: { x: 0, y: 424 },  // Left column, row 3 (224 + 160 + 40)
     connectsTo: ['payments'],
   },
   {
     id: 'productManagement',
     key: 'productManagement',
     icon: Boxes,
-    position: { x: 105, y: 235 },
+    position: { x: 176, y: 400 },  // Center column, row 3
     connectsTo: ['crm'],
   },
   {
     id: 'warehouse',
     key: 'warehouse',
     icon: Warehouse,
-    position: { x: 215, y: 260 },
+    position: { x: 370, y: 436 },  // Right column, row 3
     connectsTo: ['productManagement'],
   },
   {
     id: 'payments',
     key: 'payments',
     icon: CreditCard,
-    position: { x: 95, y: 365 },
+    position: { x: 164, y: 600 },  // Bottom center
     connectsTo: [],
   },
 ];
 
-// Temporary groups - will be replaced with real business logic groups
-// Each group highlights 2-3 related modules together
+// ==========================================================================
+// Module Groups for Animation
+// ==========================================================================
+
 export const moduleGroups: ModuleGroup[] = [
   {
     id: 'orderIntake',
@@ -140,7 +168,6 @@ export const moduleGroups: ModuleGroup[] = [
   },
 ];
 
-// Group animation order
 export const groupAnimationOrder = [
   'orderIntake',
   'planning',
@@ -149,7 +176,6 @@ export const groupAnimationOrder = [
   'finance',
 ];
 
-// Legacy single-module animation order (kept for reference)
 export const animationOrder = [
   'order',
   'workPlan',
@@ -162,6 +188,10 @@ export const animationOrder = [
   'invoice',
   'payments',
 ];
+
+// ==========================================================================
+// Utility Functions
+// ==========================================================================
 
 export function getModuleById(id: string): Module | undefined {
   return modules.find((m) => m.id === id);
@@ -179,15 +209,64 @@ export function getNextModuleId(currentId: string): string | null {
   return animationOrder[currentIndex + 1];
 }
 
-// Calculate grid bounds for SVG sizing
 export function getGridBounds(): { width: number; height: number } {
   let maxX = 0;
   let maxY = 0;
   
   modules.forEach((m) => {
-    maxX = Math.max(maxX, m.position.x + CARD_WIDTH);
-    maxY = Math.max(maxY, m.position.y + CARD_HEIGHT);
+    maxX = Math.max(maxX, m.position.x + GRID_CONFIG.cardWidth);
+    maxY = Math.max(maxY, m.position.y + GRID_CONFIG.cardHeight);
   });
   
-  return { width: maxX, height: maxY };
+  // Add padding
+  return { 
+    width: maxX + GRID_CONFIG.edgePadding, 
+    height: maxY + GRID_CONFIG.edgePadding 
+  };
+}
+
+// ==========================================================================
+// Grid Validation (Development utility)
+// ==========================================================================
+
+interface ValidationResult {
+  valid: boolean;
+  issues: string[];
+}
+
+export function validateModulePositions(): ValidationResult {
+  const issues: string[] = [];
+  const { cardWidth, cardHeight, horizontalCorridor, verticalCorridor } = GRID_CONFIG;
+  
+  for (let i = 0; i < modules.length; i++) {
+    for (let j = i + 1; j < modules.length; j++) {
+      const m1 = modules[i];
+      const m2 = modules[j];
+      
+      const dx = Math.abs(m1.position.x - m2.position.x);
+      const dy = Math.abs(m1.position.y - m2.position.y);
+      
+      // Check horizontal neighbors
+      if (dy < cardHeight * 0.7) {
+        const horizontalGap = dx - cardWidth;
+        if (horizontalGap > 0 && horizontalGap < horizontalCorridor) {
+          issues.push(
+            `"${m1.id}" and "${m2.id}" horizontal gap: ${horizontalGap}px (min: ${horizontalCorridor}px)`
+          );
+        }
+      }
+      
+      // Check vertical neighbors
+      if (dx < cardWidth * 0.7) {
+        const verticalGap = dy - cardHeight;
+        if (verticalGap > 0 && verticalGap < verticalCorridor) {
+          issues.push(
+            `"${m1.id}" and "${m2.id}" vertical gap: ${verticalGap}px (min: ${verticalCorridor}px)`
+          );
+        }
+      }
+    }
+  }
+  
+  return { valid: issues.length === 0, issues };
 }
