@@ -1,8 +1,29 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   CSS Variables - Stripe-inspired Gradient Palette
+   ========================================================================== */
+
 :root {
+  /* Base colors */
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Brand colors */
+  --brand-teal: #4DB6A0;
+  --brand-teal-light: #11EFE3;
+  
+  /* Gradient palette (Stripe-inspired) */
+  --gradient-magenta: #E47EED;
+  --gradient-orange: #FFB86C;
+  --gradient-yellow: #F7C94C;
+  --gradient-purple: #AD6AEB;
+  --gradient-blue: #6C91F7;
+  
+  /* Shadow colors */
+  --shadow-ambient: rgba(50, 50, 93, 0.25);
+  --shadow-direct: rgba(0, 0, 0, 0.3);
+  --shadow-inset: rgba(10, 37, 64, 0.35);
 }
 
 @theme inline {
@@ -19,8 +40,79 @@
   }
 }
 
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================================================
+   Hero Section Utilities
+   ========================================================================== */
+
+/* Static fallback gradient (for no-JS or reduced motion) */
+.hero-gradient-static {
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(228, 126, 237, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 10% 80%, rgba(255, 184, 108, 0.30) 0%, transparent 40%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247, 201, 76, 0.20) 0%, transparent 35%),
+    radial-gradient(ellipse 70% 60% at 80% 20%, rgba(173, 106, 235, 0.30) 0%, transparent 45%),
+    radial-gradient(ellipse 60% 50% at 90% 70%, rgba(108, 145, 247, 0.25) 0%, transparent 50%),
+    linear-gradient(135deg, #fdfaff 0%, #f8f5ff 25%, #fffbf0 50%, #f5f3ff 75%, #f0f7ff 100%);
+}
+
+/* ==========================================================================
+   Card Shadow Utilities (Stripe-style multi-layer shadows)
+   ========================================================================== */
+
+.card-shadow-default {
+  box-shadow: 
+    rgba(50, 50, 93, 0.1) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.15) 0px 8px 16px -8px;
+}
+
+.card-shadow-hover {
+  box-shadow: 
+    rgba(50, 50, 93, 0.2) 0px 20px 40px -8px,
+    rgba(0, 0, 0, 0.2) 0px 12px 24px -12px;
+}
+
+.card-shadow-active {
+  box-shadow: 
+    rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px,
+    rgba(77, 182, 160, 0.2) 0px 0px 0px 3px;
+}
+
+/* Premium card shadow (Stripe phone card style) */
+.card-shadow-premium {
+  box-shadow: 
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+/* ==========================================================================
+   Animation Utilities
+   ========================================================================== */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU acceleration hints for animated elements */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
