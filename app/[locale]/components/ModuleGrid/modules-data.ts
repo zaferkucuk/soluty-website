@@ -32,25 +32,20 @@ export interface ModuleGroup {
 }
 
 // ==========================================================================
-// Grid Configuration - Stripe-inspired spacious layout
+// Grid Configuration - Stripe-matched dimensions
 // ==========================================================================
 
 export const GRID_CONFIG = {
-  // Card dimensions (enlarged from 80x100)
-  cardWidth: 140,
-  cardHeight: 160,
+  // Card dimensions (Stripe: ~95x95, square cards)
+  cardWidth: 95,
+  cardHeight: 95,
   
-  // Spacing corridors for connection lines
-  horizontalCorridor: 48,  // Minimum horizontal gap between cards
-  verticalCorridor: 40,    // Minimum vertical gap between cards
-  diagonalClearance: 56,   // Clearance for diagonal connections
+  // Spacing between cards
+  horizontalGap: 24,
+  verticalGap: 24,
   
   // Container padding
-  edgePadding: 16,
-  
-  // Calculated grid dimensions (updated based on new positions)
-  width: 520,
-  height: 680,
+  edgePadding: 8,
 } as const;
 
 // Legacy exports for backward compatibility
@@ -58,80 +53,81 @@ export const CARD_WIDTH = GRID_CONFIG.cardWidth;
 export const CARD_HEIGHT = GRID_CONFIG.cardHeight;
 
 // ==========================================================================
-// Module Definitions with Spacious Positioning
+// Module Definitions - 3 column organic layout
 // ==========================================================================
 
-// Positions calculated with corridor spacing in mind
-// Each card needs breathing room for connection lines
+// Column positions: 0, 119 (95+24), 238 (95+24+95+24)
+// Row positions vary for organic feel
+
 export const modules: Module[] = [
   {
     id: 'order',
     key: 'order',
     icon: Package,
-    position: { x: 0, y: 24 },  // Top-left
+    position: { x: 0, y: 20 },
     connectsTo: ['workPlan'],
   },
   {
     id: 'workPlan',
     key: 'workPlan',
     icon: ClipboardList,
-    position: { x: 188, y: 0 },  // Top-right (140 + 48 corridor)
+    position: { x: 119, y: 0 },
     connectsTo: ['routeOptimization'],
   },
   {
     id: 'routeOptimization',
     key: 'routeOptimization',
     icon: Map,
-    position: { x: 376, y: 36 },  // Far right (188 + 188)
+    position: { x: 238, y: 30 },
     connectsTo: ['deliveryNote'],
   },
   {
     id: 'sales',
     key: 'sales',
     icon: TrendingUp,
-    position: { x: 12, y: 224 },  // Left column, row 2 (160 + 40 + 24)
+    position: { x: 10, y: 139 },
     connectsTo: ['invoice'],
   },
   {
     id: 'crm',
     key: 'crm',
     icon: Users,
-    position: { x: 188, y: 200 },  // Center column, row 2
+    position: { x: 119, y: 119 },
     connectsTo: ['sales'],
   },
   {
     id: 'deliveryNote',
     key: 'deliveryNote',
     icon: FileText,
-    position: { x: 364, y: 236 },  // Right column, row 2
+    position: { x: 228, y: 149 },
     connectsTo: ['warehouse'],
   },
   {
     id: 'invoice',
     key: 'invoice',
     icon: Receipt,
-    position: { x: 0, y: 424 },  // Left column, row 3 (224 + 160 + 40)
+    position: { x: 0, y: 258 },
     connectsTo: ['payments'],
   },
   {
     id: 'productManagement',
     key: 'productManagement',
     icon: Boxes,
-    position: { x: 176, y: 400 },  // Center column, row 3
+    position: { x: 109, y: 238 },
     connectsTo: ['crm'],
   },
   {
     id: 'warehouse',
     key: 'warehouse',
     icon: Warehouse,
-    position: { x: 370, y: 436 },  // Right column, row 3
+    position: { x: 238, y: 268 },
     connectsTo: ['productManagement'],
   },
   {
     id: 'payments',
     key: 'payments',
     icon: CreditCard,
-    position: { x: 164, y: 600 },  // Bottom center
+    position: { x: 109, y: 377 },
     connectsTo: [],
   },
 ];
@@ -218,55 +214,8 @@ export function getGridBounds(): { width: number; height: number } {
     maxY = Math.max(maxY, m.position.y + GRID_CONFIG.cardHeight);
   });
   
-  // Add padding
   return { 
     width: maxX + GRID_CONFIG.edgePadding, 
     height: maxY + GRID_CONFIG.edgePadding 
   };
-}
-
-// ==========================================================================
-// Grid Validation (Development utility)
-// ==========================================================================
-
-interface ValidationResult {
-  valid: boolean;
-  issues: string[];
-}
-
-export function validateModulePositions(): ValidationResult {
-  const issues: string[] = [];
-  const { cardWidth, cardHeight, horizontalCorridor, verticalCorridor } = GRID_CONFIG;
-  
-  for (let i = 0; i < modules.length; i++) {
-    for (let j = i + 1; j < modules.length; j++) {
-      const m1 = modules[i];
-      const m2 = modules[j];
-      
-      const dx = Math.abs(m1.position.x - m2.position.x);
-      const dy = Math.abs(m1.position.y - m2.position.y);
-      
-      // Check horizontal neighbors
-      if (dy < cardHeight * 0.7) {
-        const horizontalGap = dx - cardWidth;
-        if (horizontalGap > 0 && horizontalGap < horizontalCorridor) {
-          issues.push(
-            `"${m1.id}" and "${m2.id}" horizontal gap: ${horizontalGap}px (min: ${horizontalCorridor}px)`
-          );
-        }
-      }
-      
-      // Check vertical neighbors
-      if (dx < cardWidth * 0.7) {
-        const verticalGap = dy - cardHeight;
-        if (verticalGap > 0 && verticalGap < verticalCorridor) {
-          issues.push(
-            `"${m1.id}" and "${m2.id}" vertical gap: ${verticalGap}px (min: ${verticalCorridor}px)`
-          );
-        }
-      }
-    }
-  }
-  
-  return { valid: issues.length === 0, issues };
 }
