@@ -32,39 +32,35 @@ export interface ModuleGroup {
 }
 
 // ==========================================================================
-// Grid Configuration - Stripe-matched dimensions
+// Grid Configuration
 // ==========================================================================
 
 export const GRID_CONFIG = {
-  // Card dimensions (Stripe: ~95x95, square cards)
   cardWidth: 95,
   cardHeight: 95,
-  
-  // Spacing between cards
   horizontalGap: 24,
   verticalGap: 24,
-  
-  // Container padding
   edgePadding: 8,
 } as const;
 
-// Legacy exports for backward compatibility
 export const CARD_WIDTH = GRID_CONFIG.cardWidth;
 export const CARD_HEIGHT = GRID_CONFIG.cardHeight;
 
 // ==========================================================================
-// Module Definitions - 3 column organic layout
+// Module Definitions - Staggered layout like Stripe
 // ==========================================================================
 
-// Column positions: 0, 119 (95+24), 238 (95+24+95+24)
-// Row positions vary for organic feel
+// Base column: 0, 119, 238 (95 + 24 gap)
+// Base row: 0, 119, 238, 357 (95 + 24 gap)
+// Offset: ±15-25px for organic feel
 
 export const modules: Module[] = [
+  // Row 1: Order (left-low), WorkPlan (center-high), RouteOpt (right-low)
   {
     id: 'order',
     key: 'order',
     icon: Package,
-    position: { x: 0, y: 20 },
+    position: { x: 0, y: 25 },
     connectsTo: ['workPlan'],
   },
   {
@@ -78,56 +74,62 @@ export const modules: Module[] = [
     id: 'routeOptimization',
     key: 'routeOptimization',
     icon: Map,
-    position: { x: 238, y: 30 },
+    position: { x: 238, y: 20 },
     connectsTo: ['deliveryNote'],
   },
+  
+  // Row 2: Sales (left-high), CRM (center-low), DeliveryNote (right-high)
   {
     id: 'sales',
     key: 'sales',
     icon: TrendingUp,
-    position: { x: 10, y: 139 },
+    position: { x: 5, y: 134 },
     connectsTo: ['invoice'],
   },
   {
     id: 'crm',
     key: 'crm',
     icon: Users,
-    position: { x: 119, y: 119 },
+    position: { x: 119, y: 149 },
     connectsTo: ['sales'],
   },
   {
     id: 'deliveryNote',
     key: 'deliveryNote',
     icon: FileText,
-    position: { x: 228, y: 149 },
+    position: { x: 233, y: 139 },
     connectsTo: ['warehouse'],
   },
+  
+  // Row 3: Invoice (left-low), ProductMgmt (center-high), Warehouse (right-low)
   {
     id: 'invoice',
     key: 'invoice',
     icon: Receipt,
-    position: { x: 0, y: 258 },
+    position: { x: 10, y: 273 },
     connectsTo: ['payments'],
   },
   {
     id: 'productManagement',
     key: 'productManagement',
     icon: Boxes,
-    position: { x: 109, y: 238 },
+    position: { x: 119, y: 258 },
     connectsTo: ['crm'],
   },
   {
     id: 'warehouse',
     key: 'warehouse',
     icon: Warehouse,
-    position: { x: 238, y: 268 },
+    position: { x: 228, y: 278 },
     connectsTo: ['productManagement'],
   },
+  
+  // Row 4: Payments (center)
   {
     id: 'payments',
     key: 'payments',
     icon: CreditCard,
-    position: { x: 109, y: 377 },
+    position: { x: 119, y: 387 },
     connectsTo: [],
   },
 ];
