@@ -1,110 +1,180 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { 
-  modules, 
-  moduleGroups, 
-  groupAnimationOrder, 
-  getGridBounds,
-  GRID_CONFIG,
+import {
+  modules,
+  mobileGridPositions,
+  getActiveModuleIdsForGroup,
+  getGridDimensions,
+  getRandomStartGroup,
+  getNextGroupId,
+  gridToPixel,
+  DESIGN_TOKENS,
 } from './modules-data';
 import { ModuleCard } from './ModuleCard';
-import { ModuleTooltip } from './ModuleTooltip';
 import { ConnectionLines } from './ConnectionLines';
 
-// Animation timing - 3.5 seconds per group for comfortable viewing
-const ANIMATION_INTERVAL = 3500;
+// ==========================================================================
+// Hook: useMediaQuery
+// ==========================================================================
+
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false);
+  
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+    
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+  
+  return matches;
+}
+
+// ==========================================================================
+// ModuleGrid Component
+// ==========================================================================
 
 export function ModuleGrid() {
   const t = useTranslations('moduleGrid.modules');
   const tGrid = useTranslations('moduleGrid');
   const shouldReduceMotion = useReducedMotion();
-
-  const [activeGroupIndex, setActiveGroupIndex] = useState(0);
+  
+  // Responsive breakpoint
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
+  
+  // Determine card size and gap based on breakpoint
+  const { cardSize, gap, columns, rows } = useMemo(() => {
+    if (isMobile) {
+      return {
+        cardSize: DESIGN_TOKENS.card.mobile.width,
+        gap: DESIGN_TOKENS.card.mobile.gap,
+        columns: 4,
+        rows: 6,
+      };
+    }
+    if (isTablet) {
+      return {
+        cardSize: DESIGN_TOKENS.card.tablet.width,
+        gap: DESIGN_TOKENS.card.tablet.gap,
+        columns: 6,
+        rows: 6,
+      };
+    }
+    return {
+      cardSize: DESIGN_TOKENS.card.desktop.width,
+      gap: DESIGN_TOKENS.card.desktop.gap,
+      columns: 6,
+      rows: 6,
+    };
+  }, [isMobile, isTablet]);
+  
+  // Grid dimensions
+  const gridDimensions = useMemo(
+    () => getGridDimensions(columns, rows, cardSize, gap),
+    [columns, rows, cardSize, gap]
+  );
+  
+  // Active group state - starts with random group
+  const [activeGroupId, setActiveGroupId] = useState(() => {
+    // Use 1 for SSR, will be randomized on client
+    return 1;
+  });
+  
+  // Initialize with random group on client
+  useEffect(() => {
+    setActiveGroupId(getRandomStartGroup());
+  }, []);
+  
+  // Hover state
   const [hoveredModuleId, setHoveredModuleId] = useState<string | null>(null);
-
-  // Get current active group
-  const activeGroupId = groupAnimationOrder[activeGroupIndex];
-  const activeGroup = moduleGroups.find(g => g.id === activeGroupId);
-  const activeModuleIds = activeGroup?.moduleIds || [];
-
+  
+  // Get active module IDs for current group
+  const activeModuleIds = useMemo(
+    () => getActiveModuleIdsForGroup(activeGroupId),
+    [activeGroupId]
+  );
+  
   // Auto-cycle through groups
   useEffect(() => {
     if (shouldReduceMotion) return;
-
+    
     const timer = setInterval(() => {
-      setActiveGroupIndex((prev) => (prev + 1) % groupAnimationOrder.length);
-    }, ANIMATION_INTERVAL);
-
+      setActiveGroupId((prev) => getNextGroupId(prev));
+    }, DESIGN_TOKENS.animation.groupDuration);
+    
     return () => clearInterval(timer);
   }, [shouldReduceMotion]);
-
-  // Get grid bounds
-  const gridBounds = getGridBounds();
-
-  // Check if module is active (part of current group)
+  
+  // Check if module is active
   const isModuleActive = (moduleId: string) => activeModuleIds.includes(moduleId);
-
-  // Should show tooltip (only for non-active hovered modules)
-  const shouldShowTooltip = (moduleId: string) =>
-    hoveredModuleId === moduleId && !isModuleActive(moduleId);
-
+  
   return (
     <div
       className="relative"
       style={{
-        width: gridBounds.width,
-        height: gridBounds.height,
+        width: gridDimensions.width,
+        height: gridDimensions.height,
       }}
-      role="img"
+      role="region"
       aria-label={tGrid('ariaLabel')}
+      aria-live="polite"
     >
-      {/* Connection Lines SVG - positioned behind cards */}
+      {/* Connection Lines SVG - behind cards */}
       <ConnectionLines
-        activeModuleIds={activeModuleIds}
-        activeGroupIndex={activeGroupIndex}
-        gridWidth={gridBounds.width}
-        gridHeight={gridBounds.height}
+        activeGroupId={activeGroupId}
+        gridWidth={gridDimensions.width}
+        gridHeight={gridDimensions.height}
+        cardSize={cardSize}
+        gap={gap}
+        isMobile={isMobile}
       />
-
-      {/* Module Grid - Organic absolute positioning */}
+      
+      {/* Module Cards */}
       <div
         className="relative"
         style={{
-          width: gridBounds.width,
-          height: gridBounds.height,
+          width: gridDimensions.width,
+          height: gridDimensions.height,
         }}
       >
-        {modules.map((module) => (
-          <div
-            key={module.id}
-            className="absolute"
-            style={{
-              left: module.position.x,
-              top: module.position.y,
-              width: GRID_CONFIG.cardWidth,
-              height: GRID_CONFIG.cardHeight,
-              zIndex: isModuleActive(module.id) ? 10 : 1,
-            }}
-            aria-hidden="true"
-          >
-            <ModuleCard
-              module={module}
-              isActive={isModuleActive(module.id)}
-              moduleName={t(module.key)}
-              onMouseEnter={() => setHoveredModuleId(module.id)}
-              onMouseLeave={() => setHoveredModuleId(null)}
-            />
-
-            {/* Hover Tooltip (only for non-active modules) */}
-            <ModuleTooltip
-              moduleName={t(module.key)}
-              isVisible={shouldShowTooltip(module.id)}
-            />
-          </div>
-        ))}
+        {modules.map((module) => {
+          // Get position based on mobile or desktop
+          const position = isMobile
+            ? mobileGridPositions[module.id]
+            : module.gridPosition;
+          
+          const pixelPosition = gridToPixel(position, cardSize, gap);
+          const isActive = isModuleActive(module.id);
+          
+          return (
+            <div
+              key={module.id}
+              className="absolute transition-transform duration-200"
+              style={{
+                left: pixelPosition.x,
+                top: pixelPosition.y,
+                width: cardSize,
+                height: cardSize,
+                zIndex: isActive ? 10 : 1,
+              }}
+            >
+              <ModuleCard
+                module={module}
+                isActive={isActive}
+                moduleName={t(module.key)}
+                cardSize={cardSize}
+                onMouseEnter={() => setHoveredModuleId(module.id)}
+                onMouseLeave={() => setHoveredModuleId(null)}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
