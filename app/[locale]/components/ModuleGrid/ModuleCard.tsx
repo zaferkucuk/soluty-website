@@ -14,29 +14,26 @@ interface ModuleCardProps {
 }
 
 // ==========================================================================
-// Card Style Constants - Based on Stripe's exact values
+// Card Style Constants - Based on Stripe's exact measurements
 // ==========================================================================
 
 /**
- * Stripe's exact styling values from their homepage:
+ * Stripe's ACTUAL layout (measured from their homepage):
  * 
- * Card:
- * - Size: 78×78px
- * - Border radius: 8px
- * - Icon (logo): ~35×35px centered in card
+ * Card: 78×78px
  * 
- * Label:
- * - Font: sohne-var (Stripe custom), fallback to system fonts
- * - Font size: 12px
- * - Font weight: 425 (between normal 400 and medium 500)
- * - Letter spacing: 0.2px
- * - Line height: 15px
- * - Color: rgb(46, 58, 85)
- * - Position: absolute, top: 73px (5px below card bottom)
+ * Layout (inside the card):
+ * ┌──────────────────────┐
+ * │      ~21px padding   │  (27% of card height)
+ * │  ┌──────────────┐    │
+ * │  │    ICON      │    │  Icon: 35×35px (45% of card)
+ * │  │   35×35px    │    │
+ * │  └──────────────┘    │
+ * │      ~8px gap        │  (10% of card height)
+ * │       LABEL          │  Label at top: 65px (83% down)
+ * └──────────────────────┘  Label: 13px height, INSIDE card
  * 
- * Scale:
- * - Inactive: 0.886364
- * - Active: 1.0 (we use 1.1 for more emphasis)
+ * Key insight: Label is INSIDE the card, not outside!
  */
 const CARD_STYLES = {
   // Scale values
@@ -47,7 +44,7 @@ const CARD_STYLES = {
   inactiveBg: '#f6f9fc',
   activeBg: '#ffffff',
   
-  // Shadows
+  // Shadows (Stripe exact)
   activeShadow: 'rgba(50, 50, 93, 0.25) 0px 12.6px 25.2px -11.5733px, rgba(0, 0, 0, 0.1) 0px 7.56px 15.12px -7.56px',
   noShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
   
@@ -58,11 +55,11 @@ const CARD_STYLES = {
   // Label styling (Stripe exact values)
   label: {
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    fontSize: 12,          // Stripe: 12px
-    fontWeight: 450,       // Stripe: 425 (we use 450 for better visibility)
-    letterSpacing: '0.2px',// Stripe: 0.2px
-    lineHeight: '15px',    // Stripe: 15px
-    color: 'rgb(46, 58, 85)', // Stripe exact color
+    fontSize: 11,          // Slightly smaller to fit in card
+    fontWeight: 450,       // Stripe: 425
+    letterSpacing: '0.2px',
+    lineHeight: '13px',
+    color: 'rgb(46, 58, 85)',
   },
 } as const;
 
@@ -81,13 +78,16 @@ export function ModuleCard({
   const Icon = module.icon;
   const groupGradient = GROUP_GRADIENTS[module.groupId];
   
-  // Stripe uses ~45% of card size for icon (35px in 78px card)
-  const iconSize = Math.round(cardSize * 0.40); // 40% of card
-  const borderRadius = Math.round(cardSize * 0.10); // ~10% = 8px for 80px card
+  // Stripe proportions (from 78px card):
+  // Icon: 35px = 45% of card
+  // Icon top padding: 21px = 27% of card  
+  // Gap between icon and label: 8px = 10% of card
+  // Label top: 65px = 83% of card height
   
-  // Gap between card bottom and label top (in pixels)
-  // Stripe: label at top:73px for 78px card = ~6px gap below card
-  const labelGap = 6;
+  const iconSize = Math.round(cardSize * 0.40);  // 40% for our cards
+  const borderRadius = Math.round(cardSize * 0.10);
+  const iconTopPadding = Math.round(cardSize * 0.18); // Where icon starts
+  const labelTopPosition = Math.round(cardSize * 0.80); // Where label starts (80% down)
 
   return (
     <div
@@ -99,7 +99,7 @@ export function ModuleCard({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {/* Layer 1: Outline/Ghost (visible when inactive) */}
+      {/* Layer 1: Outline/Ghost (visible when inactive) - icon only, centered */}
       <motion.div
         className="absolute flex items-center justify-center"
         style={{
@@ -127,9 +127,9 @@ export function ModuleCard({
         />
       </motion.div>
 
-      {/* Layer 2: Solid (visible when active) */}
+      {/* Layer 2: Solid (visible when active) - icon on top, label at bottom, ALL INSIDE CARD */}
       <motion.div
-        className="absolute flex items-center justify-center"
+        className="absolute flex flex-col items-center overflow-hidden"
         style={{
           width: cardSize,
           height: cardSize,
@@ -139,6 +139,7 @@ export function ModuleCard({
           transformOrigin: 'center center',
           top: 0,
           left: 0,
+          paddingTop: iconTopPadding,
         }}
         initial={{ scale: CARD_STYLES.inactiveScale, opacity: 0 }}
         animate={{ 
@@ -148,8 +149,13 @@ export function ModuleCard({
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >
-        {/* Gradient Icon - centered in card */}
-        <svg width={iconSize} height={iconSize} viewBox="0 0 24 24">
+        {/* Gradient Icon - positioned in upper portion */}
+        <svg 
+          width={iconSize} 
+          height={iconSize} 
+          viewBox="0 0 24 24"
+          style={{ flexShrink: 0 }}
+        >
           <defs>
             <linearGradient
               id={`icon-gradient-${module.id}`}
@@ -169,30 +175,26 @@ export function ModuleCard({
             fill="none"
           />
         </svg>
-      </motion.div>
 
-      {/* Label - positioned below card, NOT affected by card scale */}
-      <motion.span
-        className="absolute text-center w-full left-0 pointer-events-none"
-        style={{ 
-          top: cardSize + labelGap,
-          fontFamily: CARD_STYLES.label.fontFamily,
-          fontSize: CARD_STYLES.label.fontSize,
-          fontWeight: CARD_STYLES.label.fontWeight,
-          letterSpacing: CARD_STYLES.label.letterSpacing,
-          lineHeight: CARD_STYLES.label.lineHeight,
-          color: CARD_STYLES.label.color,
-          whiteSpace: 'nowrap',
-        }}
-        initial={{ opacity: 0, y: -4 }}
-        animate={{ 
-          opacity: isActive ? 1 : 0,
-          y: isActive ? 0 : -4,
-        }}
-        transition={{ duration: 0.2, delay: isActive ? 0.15 : 0 }}
-      >
-        {moduleName}
-      </motion.span>
+        {/* Label - INSIDE the card, at bottom */}
+        <span
+          className="text-center w-full px-1 mt-auto"
+          style={{ 
+            fontFamily: CARD_STYLES.label.fontFamily,
+            fontSize: CARD_STYLES.label.fontSize,
+            fontWeight: CARD_STYLES.label.fontWeight,
+            letterSpacing: CARD_STYLES.label.letterSpacing,
+            lineHeight: CARD_STYLES.label.lineHeight,
+            color: CARD_STYLES.label.color,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            paddingBottom: 6,
+          }}
+        >
+          {moduleName}
+        </span>
+      </motion.div>
     </div>
   );
 }
