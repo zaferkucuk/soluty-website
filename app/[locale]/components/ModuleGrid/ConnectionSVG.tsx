@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useRotatingGradient } from './hooks';
 import { LINE_STYLES, ANIMATION_CONSTANTS, type ColorPair } from './constants';
 
@@ -74,11 +74,8 @@ function FlowParticle({ path, duration, delay }: FlowParticleProps) {
 /**
  * Stripe-style connection line with rotating gradient.
  * 
- * Each connection is rendered as its own SVG element, positioned absolutely.
- * This matches Stripe's implementation and enables:
- * - Per-connection gradient rotation
- * - Independent stroke-dashoffset animations
- * - Cleaner DOM structure
+ * ONLY renders when isActive is true - no background trace for inactive connections.
+ * This keeps the grid clean and only shows lines between active cards.
  */
 export function ConnectionSVG({
   id,
@@ -108,8 +105,13 @@ export function ConnectionSVG({
   // Unique gradient ID for this connection
   const gradientId = `gradient-${id}`;
   
+  // Don't render anything if not active
+  if (!isActive) {
+    return null;
+  }
+  
   return (
-    <svg
+    <motion.svg
       className="absolute pointer-events-none"
       style={{
         left: x,
@@ -118,6 +120,10 @@ export function ConnectionSVG({
       }}
       width={width}
       height={height}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
     >
       <defs>
         {/* Rotating gradient */}
@@ -143,7 +149,7 @@ export function ConnectionSVG({
         </filter>
       </defs>
       
-      {/* Layer 1: Background trace (always visible, subtle) */}
+      {/* Layer 1: Background trace (subtle, only for active) */}
       <path
         d={path}
         fill="none"
@@ -161,48 +167,31 @@ export function ConnectionSVG({
         strokeWidth={LINE_STYLES.strokeWidthActive}
         strokeLinecap="round"
         strokeDasharray={pathLength}
-        initial={{ 
-          strokeDashoffset: pathLength,
-          opacity: 0.15 
-        }}
-        animate={{ 
-          strokeDashoffset: isActive ? 0 : pathLength,
-          opacity: isActive ? 0.85 : 0.15,
-        }}
+        initial={{ strokeDashoffset: pathLength }}
+        animate={{ strokeDashoffset: 0 }}
         transition={{ 
-          strokeDashoffset: {
-            duration: ANIMATION_CONSTANTS.lineDrawDuration,
-            ease: 'easeOut',
-          },
-          opacity: {
-            duration: ANIMATION_CONSTANTS.fadeTransitionDuration,
-            ease: 'easeOut',
-          },
+          duration: ANIMATION_CONSTANTS.lineDrawDuration,
+          ease: 'easeOut',
         }}
+        style={{ opacity: 0.85 }}
       />
       
-      {/* Layer 3: Glow halo (only when active) */}
-      {isActive && (
-        <motion.path
-          d={path}
-          fill="none"
-          stroke={colors.glow}
-          strokeWidth={LINE_STYLES.glowStrokeWidth}
-          strokeLinecap="round"
-          style={{ filter: `blur(${LINE_STYLES.glowBlur}px)` }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: LINE_STYLES.glowOpacity }}
-          transition={{ duration: 0.3 }}
-        />
-      )}
+      {/* Layer 3: Glow halo */}
+      <motion.path
+        d={path}
+        fill="none"
+        stroke={colors.glow}
+        strokeWidth={LINE_STYLES.glowStrokeWidth}
+        strokeLinecap="round"
+        style={{ filter: `blur(${LINE_STYLES.glowBlur}px)` }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: LINE_STYLES.glowOpacity }}
+        transition={{ duration: 0.3 }}
+      />
       
-      {/* Layer 4: Flow particles (only when active) */}
-      {isActive && (
-        <>
-          <FlowParticle path={path} duration={particleDuration} delay={0} />
-          <FlowParticle path={path} duration={particleDuration} delay={particleDuration * 0.5} />
-        </>
-      )}
-    </svg>
+      {/* Layer 4: Flow particles */}
+      <FlowParticle path={path} duration={particleDuration} delay={0} />
+      <FlowParticle path={path} duration={particleDuration} delay={particleDuration * 0.5} />
+    </motion.svg>
   );
 }
