@@ -19,14 +19,20 @@ interface ModuleCardProps {
 
 /**
  * Stripe's exact styling values extracted from their homepage.
+ * 
+ * From Stripe.com analysis:
+ * - Inactive scale: 0.886364 (matrix value from computed style)
+ * - Active scale: 1.0
+ * - Icon container: 78px × 78px
+ * 
  * The dual-layer system uses:
  * - Outline layer: visible when inactive (ghost state)
  * - Solid layer: visible when active (elevated state)
  */
 const STRIPE_CARD_STYLES = {
-  // Scale values
-  inactiveScale: 0.886,  // ~88.6% when inactive
-  activeScale: 1.0,      // 100% when active
+  // Scale values - exact Stripe values
+  inactiveScale: 0.886,  // Stripe uses 0.886364 ≈ 0.886
+  activeScale: 1.0,      // Full size when active
   
   // Background colors
   inactiveBg: '#f6f9fc', // Light gray (outline layer)

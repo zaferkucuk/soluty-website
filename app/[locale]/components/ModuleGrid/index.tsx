@@ -42,12 +42,12 @@ function useMediaQuery(query: string): boolean {
  * - Cards appear one by one with short delays
  * - Group stays fully visible for display duration
  * - Cards disappear in reverse order
- * - 0.6 second pause between groups
+ * - 0.4 second pause between groups
  */
 const SEQUENTIAL_CONFIG = {
   cardActivationDelay: 200,      // 200ms between each card appearing
   groupDisplayDuration: 2500,    // 2.5s all cards visible
-  groupTransitionDelay: 600,     // 0.6s pause between groups
+  groupTransitionDelay: 400,     // 0.4s pause between groups
   cardDeactivationDelay: 150,    // 150ms between each card disappearing
 };
 
