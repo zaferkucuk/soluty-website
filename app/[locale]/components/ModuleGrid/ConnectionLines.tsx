@@ -1,5 +1,6 @@
 'use client';
 
+import { AnimatePresence } from 'framer-motion';
 import {
   moduleGroups,
   getModuleById,
@@ -12,7 +13,6 @@ import { GROUP_COLOR_MAP } from './constants';
 import {
   calculateConnectionBounds,
   getModuleCenter,
-  type Point,
 } from './utils';
 
 // ==========================================================================
@@ -143,10 +143,8 @@ function buildConnections(
  * Renders connection lines only for the active group.
  * Lines are only visible when both connected cards are visible.
  * 
- * Each connection is an independent SVG with:
- * - Its own rotating gradient
- * - Stroke-dashoffset draw animation
- * - Glow halo and flow particles when active
+ * Uses AnimatePresence to enable exit animations for the
+ * Stripe-style draw/erase effect on connection lines.
  */
 export function ConnectionLines({
   activeGroupId,
@@ -165,6 +163,9 @@ export function ConnectionLines({
     isMobile
   );
 
+  // Filter to only active connections for AnimatePresence
+  const activeConnections = connections.filter(conn => conn.isActive);
+
   return (
     <div
       className="absolute inset-0 pointer-events-none"
@@ -174,25 +175,27 @@ export function ConnectionLines({
         zIndex: 0,
       }}
     >
-      {connections.map((conn) => {
-        const colors = GROUP_COLOR_MAP[conn.groupId] || GROUP_COLOR_MAP[1];
+      <AnimatePresence mode="sync">
+        {activeConnections.map((conn) => {
+          const colors = GROUP_COLOR_MAP[conn.groupId] || GROUP_COLOR_MAP[1];
 
-        return (
-          <ConnectionSVG
-            key={conn.id}
-            id={conn.id}
-            x={conn.bounds.x}
-            y={conn.bounds.y}
-            width={conn.bounds.width}
-            height={conn.bounds.height}
-            path={conn.path}
-            pathLength={conn.pathLength}
-            colors={colors}
-            isActive={conn.isActive}
-            startRotation={conn.startRotation}
-          />
-        );
-      })}
+          return (
+            <ConnectionSVG
+              key={conn.id}
+              id={conn.id}
+              x={conn.bounds.x}
+              y={conn.bounds.y}
+              width={conn.bounds.width}
+              height={conn.bounds.height}
+              path={conn.path}
+              pathLength={conn.pathLength}
+              colors={colors}
+              isActive={conn.isActive}
+              startRotation={conn.startRotation}
+            />
+          );
+        })}
+      </AnimatePresence>
     </div>
   );
 }
