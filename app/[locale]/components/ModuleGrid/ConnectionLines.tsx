@@ -21,6 +21,7 @@ import {
 
 interface ConnectionLinesProps {
   activeGroupId: number;
+  visibleModuleIds: string[];
   gridWidth: number;
   gridHeight: number;
   cardSize: number;
@@ -65,6 +66,7 @@ function getRotationForConnection(index: number): number {
 
 function buildConnections(
   activeGroupId: number,
+  visibleModuleIds: string[],
   cardSize: number,
   gap: number,
   isMobile: boolean
@@ -73,6 +75,9 @@ function buildConnections(
   let connectionIndex = 0;
 
   moduleGroups.forEach((group) => {
+    // Only build connections for the active group
+    if (group.id !== activeGroupId) return;
+
     const sourceModule = getModuleById(group.sourceModuleId);
     if (!sourceModule) return;
 
@@ -101,6 +106,11 @@ function buildConnections(
         preferredDirection: 'auto',
       });
 
+      // Check if both source and target modules are visible
+      const isSourceVisible = visibleModuleIds.includes(group.sourceModuleId);
+      const isTargetVisible = visibleModuleIds.includes(targetId);
+      const isConnectionActive = isSourceVisible && isTargetVisible;
+
       connections.push({
         id: `${group.sourceModuleId}-${targetId}`,
         sourceId: group.sourceModuleId,
@@ -114,7 +124,7 @@ function buildConnections(
         path: bounds.localPath,
         pathLength: bounds.pathLength,
         groupId: group.id,
-        isActive: group.id === activeGroupId,
+        isActive: isConnectionActive,
         startRotation: getRotationForConnection(connectionIndex),
       });
 
@@ -130,7 +140,8 @@ function buildConnections(
 // ==========================================================================
 
 /**
- * Renders all connection lines using Stripe-style per-connection SVGs.
+ * Renders connection lines only for the active group.
+ * Lines are only visible when both connected cards are visible.
  * 
  * Each connection is an independent SVG with:
  * - Its own rotating gradient
@@ -139,13 +150,20 @@ function buildConnections(
  */
 export function ConnectionLines({
   activeGroupId,
+  visibleModuleIds,
   gridWidth,
   gridHeight,
   cardSize,
   gap,
   isMobile,
 }: ConnectionLinesProps) {
-  const connections = buildConnections(activeGroupId, cardSize, gap, isMobile);
+  const connections = buildConnections(
+    activeGroupId,
+    visibleModuleIds,
+    cardSize,
+    gap,
+    isMobile
+  );
 
   return (
     <div

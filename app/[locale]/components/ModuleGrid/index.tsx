@@ -42,12 +42,12 @@ function useMediaQuery(query: string): boolean {
  * - Cards appear one by one with short delays
  * - Group stays fully visible for display duration
  * - Cards disappear in reverse order
- * - 1 second pause between groups
+ * - 0.6 second pause between groups
  */
 const SEQUENTIAL_CONFIG = {
   cardActivationDelay: 200,      // 200ms between each card appearing
   groupDisplayDuration: 2500,    // 2.5s all cards visible
-  groupTransitionDelay: 1000,    // 1s pause between groups
+  groupTransitionDelay: 600,     // 0.6s pause between groups
   cardDeactivationDelay: 150,    // 150ms between each card disappearing
 };
 
@@ -119,9 +119,10 @@ export function ModuleGrid() {
       aria-label={tGrid('ariaLabel')}
       aria-live="polite"
     >
-      {/* Connection Lines SVG - behind cards */}
+      {/* Connection Lines SVG - behind cards, only for active group */}
       <ConnectionLines
         activeGroupId={activeGroupId}
+        visibleModuleIds={visibleModuleIds}
         gridWidth={gridDimensions.width}
         gridHeight={gridDimensions.height}
         cardSize={cardSize}
