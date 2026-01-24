@@ -1,13 +1,7 @@
-/**
- * ModuleGrid Hooks
- * 
- * Custom hooks for the ModuleGrid component system.
- */
-
-export {
-  useRotatingGradient,
-  useRotatingGradients,
-  type RotatingGradientConfig,
-  type GradientCoordinates,
-  type BatchGradientConfig,
-} from './useRotatingGradient';
+export { useRotatingGradient } from './useRotatingGradient';
+export { 
+  useSequentialActivation, 
+  DEFAULT_SEQUENTIAL_CONFIG,
+  type SequentialActivationConfig,
+  type SequentialActivationState 
+} from './useSequentialActivation';
