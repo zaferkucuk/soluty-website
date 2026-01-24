@@ -14,17 +14,17 @@ interface ModuleCardProps {
 }
 
 // ==========================================================================
-// Stripe-style Card Constants
+// Card Style Constants
 // ==========================================================================
 
 /**
- * Stripe's exact styling values:
- * - Inactive scale: 0.886
- * - Active scale: 1.0
+ * Card scaling and styling values:
+ * - Inactive scale: 0.886 (Stripe's exact value)
+ * - Active scale: 1.1 (slightly larger for emphasis)
  */
 const CARD_STYLES = {
   inactiveScale: 0.886,
-  activeScale: 1.0,
+  activeScale: 1.1,       // 10% larger when active
   inactiveBg: '#f6f9fc',
   activeBg: '#ffffff',
   activeShadow: 'rgba(50, 50, 93, 0.25) 0px 12.6px 25.2px -11.5733px, rgba(0, 0, 0, 0.1) 0px 7.56px 15.12px -7.56px',
@@ -48,8 +48,9 @@ export function ModuleCard({
   const Icon = module.icon;
   const groupGradient = GROUP_GRADIENTS[module.groupId];
   
-  const iconSize = cardSize === 80 ? 32 : cardSize === 72 ? 28 : 24;
-  const fontSize = cardSize === 80 ? 11 : 10;
+  // Smaller icon and font sizes to fit within card with padding
+  const iconSize = cardSize === 80 ? 28 : cardSize === 72 ? 24 : 20;
+  const fontSize = cardSize === 80 ? 10 : 9;
   const borderRadius = cardSize === 80 ? 12 : cardSize === 72 ? 10 : 8;
 
   return (
@@ -90,7 +91,7 @@ export function ModuleCard({
 
       {/* Layer 2: Solid (visible when active) */}
       <motion.div
-        className="absolute flex flex-col items-center justify-center"
+        className="absolute flex flex-col items-center justify-center p-2"
         style={{
           width: cardSize,
           height: cardSize,
@@ -108,7 +109,8 @@ export function ModuleCard({
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
         key={`solid-${module.id}`}
       >
-        <div className="flex items-center justify-center">
+        {/* Icon container with fixed size */}
+        <div className="flex items-center justify-center flex-shrink-0">
           <svg width={iconSize} height={iconSize} viewBox="0 0 24 24">
             <defs>
               <linearGradient
@@ -131,12 +133,14 @@ export function ModuleCard({
           </svg>
         </div>
 
+        {/* Label - truncated to fit */}
         <motion.span
-          className="mt-1.5 text-center leading-tight px-1 w-full truncate"
+          className="mt-1 text-center leading-tight w-full truncate flex-shrink-0"
           style={{ 
             fontSize,
             color: DESIGN_TOKENS.colors.activeLabel,
             fontWeight: 500,
+            maxWidth: '100%',
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: isActive ? 1 : 0 }}
