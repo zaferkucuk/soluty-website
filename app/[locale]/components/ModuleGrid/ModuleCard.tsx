@@ -82,20 +82,19 @@ export function ModuleCard({
   const groupGradient = GROUP_GRADIENTS[module.groupId];
   
   // Stripe uses ~45% of card size for icon (35px in 78px card)
-  // We calculate proportionally for our card sizes
-  const iconSize = Math.round(cardSize * 0.40); // 40% of card = 32px for 80px card
+  const iconSize = Math.round(cardSize * 0.40); // 40% of card
   const borderRadius = Math.round(cardSize * 0.10); // ~10% = 8px for 80px card
   
-  // Label positioned below the card (like Stripe's top: 73px for 78px card)
-  // This means label starts ~6% above the card bottom, extending below
-  const labelTopOffset = Math.round(cardSize * 0.90); // 90% down = slight overlap
+  // Gap between card bottom and label top (in pixels)
+  // Stripe: label at top:73px for 78px card = ~6px gap below card
+  const labelGap = 6;
 
   return (
     <div
       className="relative cursor-pointer select-none"
       style={{ 
         width: cardSize, 
-        height: cardSize + 20, // Extra space for label below
+        height: cardSize,
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -172,21 +171,25 @@ export function ModuleCard({
         </svg>
       </motion.div>
 
-      {/* Label - positioned below card like Stripe */}
+      {/* Label - positioned below card, NOT affected by card scale */}
       <motion.span
-        className="absolute text-center w-full left-0"
+        className="absolute text-center w-full left-0 pointer-events-none"
         style={{ 
-          top: labelTopOffset,
+          top: cardSize + labelGap,
           fontFamily: CARD_STYLES.label.fontFamily,
           fontSize: CARD_STYLES.label.fontSize,
           fontWeight: CARD_STYLES.label.fontWeight,
           letterSpacing: CARD_STYLES.label.letterSpacing,
           lineHeight: CARD_STYLES.label.lineHeight,
           color: CARD_STYLES.label.color,
+          whiteSpace: 'nowrap',
         }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isActive ? 1 : 0 }}
-        transition={{ duration: 0.2, delay: isActive ? 0.1 : 0 }}
+        initial={{ opacity: 0, y: -4 }}
+        animate={{ 
+          opacity: isActive ? 1 : 0,
+          y: isActive ? 0 : -4,
+        }}
+        transition={{ duration: 0.2, delay: isActive ? 0.15 : 0 }}
       >
         {moduleName}
       </motion.span>
