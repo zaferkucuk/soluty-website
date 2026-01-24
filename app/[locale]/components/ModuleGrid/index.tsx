@@ -6,15 +6,13 @@ import { useTranslations } from 'next-intl';
 import {
   modules,
   mobileGridPositions,
-  getActiveModuleIdsForGroup,
   getGridDimensions,
-  getRandomStartGroup,
-  getNextGroupId,
   gridToPixel,
   DESIGN_TOKENS,
 } from './modules-data';
 import { ModuleCard } from './ModuleCard';
 import { ConnectionLines } from './ConnectionLines';
+import { useSequentialActivation } from './hooks';
 
 // ==========================================================================
 // Hook: useMediaQuery
@@ -36,13 +34,31 @@ function useMediaQuery(query: string): boolean {
 }
 
 // ==========================================================================
+// Sequential Activation Configuration
+// ==========================================================================
+
+/**
+ * Timing configuration for card animations:
+ * - Cards appear one by one with short delays
+ * - Group stays fully visible for display duration
+ * - Cards disappear in reverse order
+ * - 1 second pause between groups
+ */
+const SEQUENTIAL_CONFIG = {
+  cardActivationDelay: 200,      // 200ms between each card appearing
+  groupDisplayDuration: 2500,    // 2.5s all cards visible
+  groupTransitionDelay: 1000,    // 1s pause between groups
+  cardDeactivationDelay: 150,    // 150ms between each card disappearing
+};
+
+// ==========================================================================
 // ModuleGrid Component
 // ==========================================================================
 
 export function ModuleGrid() {
   const t = useTranslations('moduleGrid.modules');
   const tGrid = useTranslations('moduleGrid');
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion() ?? false;
   
   // Responsive breakpoint
   const isMobile = useMediaQuery('(max-width: 767px)');
@@ -80,39 +96,17 @@ export function ModuleGrid() {
     [columns, rows, cardSize, gap]
   );
   
-  // Active group state - starts with random group
-  const [activeGroupId, setActiveGroupId] = useState(() => {
-    // Use 1 for SSR, will be randomized on client
-    return 1;
-  });
-  
-  // Initialize with random group on client
-  useEffect(() => {
-    setActiveGroupId(getRandomStartGroup());
-  }, []);
+  // Sequential activation state - cards appear/disappear one by one
+  const { visibleModuleIds, activeGroupId } = useSequentialActivation(
+    SEQUENTIAL_CONFIG,
+    shouldReduceMotion
+  );
   
   // Hover state
   const [hoveredModuleId, setHoveredModuleId] = useState<string | null>(null);
   
-  // Get active module IDs for current group
-  const activeModuleIds = useMemo(
-    () => getActiveModuleIdsForGroup(activeGroupId),
-    [activeGroupId]
-  );
-  
-  // Auto-cycle through groups
-  useEffect(() => {
-    if (shouldReduceMotion) return;
-    
-    const timer = setInterval(() => {
-      setActiveGroupId((prev) => getNextGroupId(prev));
-    }, DESIGN_TOKENS.animation.groupDuration);
-    
-    return () => clearInterval(timer);
-  }, [shouldReduceMotion]);
-  
-  // Check if module is active
-  const isModuleActive = (moduleId: string) => activeModuleIds.includes(moduleId);
+  // Check if module is currently visible (active)
+  const isModuleActive = (moduleId: string) => visibleModuleIds.includes(moduleId);
   
   return (
     <div
