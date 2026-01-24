@@ -24,42 +24,42 @@ export const STRIPE_COLOR_PAIRS: Record<string, ColorPair> = {
   cyanPurple: {
     start: '#11EFE3',
     end: '#9966FF',
-    glow: 'rgba(17, 239, 227, 0.4)',
+    glow: 'rgba(17, 239, 227, 0.6)',
   },
   
   // Cyan → Blue (8 uses)
   cyanBlue: {
     start: '#11EFE3',
     end: '#0073E6',
-    glow: 'rgba(17, 239, 227, 0.4)',
+    glow: 'rgba(17, 239, 227, 0.6)',
   },
   
   // Pink → Purple (12 uses)
   pinkPurple: {
     start: '#FF5996',
     end: '#9966FF',
-    glow: 'rgba(255, 89, 150, 0.4)',
+    glow: 'rgba(255, 89, 150, 0.6)',
   },
   
   // Yellow → Green (6 uses)
   yellowGreen: {
     start: '#FFD848',
     end: '#00D924',
-    glow: 'rgba(255, 216, 72, 0.4)',
+    glow: 'rgba(255, 216, 72, 0.6)',
   },
   
   // Blue → Pink/Magenta (6 uses)
   bluePink: {
     start: '#0073E6',
     end: '#FF80FF',
-    glow: 'rgba(0, 115, 230, 0.4)',
+    glow: 'rgba(0, 115, 230, 0.6)',
   },
   
   // Teal → Green (4 uses)
   tealGreen: {
     start: '#1DF5E9',
     end: '#00D924',
-    glow: 'rgba(29, 245, 233, 0.4)',
+    glow: 'rgba(29, 245, 233, 0.6)',
   },
 };
 
@@ -89,25 +89,25 @@ export const LINE_STYLES = {
   strokeWidthInactive: 2,
   
   /** Stroke width when connection is active */
-  strokeWidthActive: 2,
+  strokeWidthActive: 2.5,
   
   /** Background trace stroke width */
   traceStrokeWidth: 2,
   
-  /** Background trace color */
-  traceColor: '#94a3b8',
+  /** Background trace color - lighter for better visibility */
+  traceColor: '#cbd5e1',
   
-  /** Background trace opacity */
-  traceOpacity: 0.12,
+  /** Background trace opacity - increased for visibility */
+  traceOpacity: 0.35,
   
   /** Glow blur radius in pixels */
-  glowBlur: 8,
+  glowBlur: 6,
   
   /** Glow stroke width */
-  glowStrokeWidth: 12,
+  glowStrokeWidth: 10,
   
-  /** Glow opacity */
-  glowOpacity: 0.4,
+  /** Glow opacity - increased for visibility */
+  glowOpacity: 0.6,
   
   /** Flow particle radius */
   particleRadius: 4,
@@ -121,21 +121,21 @@ export const LINE_STYLES = {
 // ==========================================================================
 
 export const ANIMATION_CONSTANTS = {
-  /** Gradient rotation speed (degrees per second) */
-  rotationSpeed: 30,
+  /** Gradient rotation speed (degrees per second) - faster for visible effect */
+  rotationSpeed: 50,
   
   /** Base flow particle duration in seconds */
-  baseParticleDuration: 2.0,
+  baseParticleDuration: 1.8,
   
   /** Minimum particle duration */
-  minParticleDuration: 1.8,
+  minParticleDuration: 1.5,
   
-  /** Pixels per second for particle speed calculation */
-  particleSpeedFactor: 150,
+  /** Pixels per second for particle speed calculation - faster */
+  particleSpeedFactor: 120,
   
-  /** Line draw animation duration in seconds */
-  lineDrawDuration: 0.5,
+  /** Line draw animation duration in seconds - faster */
+  lineDrawDuration: 0.35,
   
-  /** Fade transition duration in seconds */
-  fadeTransitionDuration: 0.4,
+  /** Fade transition duration in seconds - faster */
+  fadeTransitionDuration: 0.25,
 } as const;
