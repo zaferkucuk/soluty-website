@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRotatingGradient } from './hooks';
 import { LINE_STYLES, ANIMATION_CONSTANTS, type ColorPair } from './constants';
 
@@ -56,6 +56,7 @@ function FlowParticle({ path, duration, delay }: FlowParticleProps) {
         offsetDistance: ['0%', '100%'],
         opacity: [0, 1, 1, 1, 0],
       }}
+      exit={{ opacity: 0 }}
       transition={{
         duration,
         delay,
@@ -72,10 +73,12 @@ function FlowParticle({ path, duration, delay }: FlowParticleProps) {
 // ==========================================================================
 
 /**
- * Stripe-style connection line with rotating gradient.
+ * Stripe-style connection line with draw/erase animation.
  * 
- * ONLY renders when isActive is true - no background trace for inactive connections.
- * This keeps the grid clean and only shows lines between active cards.
+ * Draw animation: Line draws from source to target
+ * Erase animation: Line erases from source (retracts back)
+ * 
+ * This creates the "flowing connection" effect seen on Stripe.com
  */
 export function ConnectionSVG({
   id,
@@ -120,10 +123,9 @@ export function ConnectionSVG({
       }}
       width={width}
       height={height}
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      exit={{ opacity: 1 }}
     >
       <defs>
         {/* Rotating gradient */}
@@ -149,17 +151,20 @@ export function ConnectionSVG({
         </filter>
       </defs>
       
-      {/* Layer 1: Background trace (subtle, only for active) */}
-      <path
+      {/* Layer 1: Background trace (subtle) */}
+      <motion.path
         d={path}
         fill="none"
         stroke={LINE_STYLES.traceColor}
         strokeWidth={LINE_STYLES.traceStrokeWidth}
         strokeLinecap="round"
-        opacity={LINE_STYLES.traceOpacity}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: LINE_STYLES.traceOpacity }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
       />
       
-      {/* Layer 2: Main gradient line with draw animation */}
+      {/* Layer 2: Main gradient line with draw/erase animation */}
       <motion.path
         d={path}
         fill="none"
@@ -169,24 +174,35 @@ export function ConnectionSVG({
         strokeDasharray={pathLength}
         initial={{ strokeDashoffset: pathLength }}
         animate={{ strokeDashoffset: 0 }}
+        exit={{ 
+          strokeDashoffset: -pathLength,
+        }}
         transition={{ 
           duration: ANIMATION_CONSTANTS.lineDrawDuration,
-          ease: 'easeOut',
+          ease: 'easeInOut',
         }}
         style={{ opacity: 0.85 }}
       />
       
-      {/* Layer 3: Glow halo */}
+      {/* Layer 3: Glow halo with draw/erase animation */}
       <motion.path
         d={path}
         fill="none"
         stroke={colors.glow}
         strokeWidth={LINE_STYLES.glowStrokeWidth}
         strokeLinecap="round"
+        strokeDasharray={pathLength}
         style={{ filter: `blur(${LINE_STYLES.glowBlur}px)` }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: LINE_STYLES.glowOpacity }}
-        transition={{ duration: 0.3 }}
+        initial={{ strokeDashoffset: pathLength, opacity: 0 }}
+        animate={{ strokeDashoffset: 0, opacity: LINE_STYLES.glowOpacity }}
+        exit={{ 
+          strokeDashoffset: -pathLength,
+          opacity: 0,
+        }}
+        transition={{ 
+          duration: ANIMATION_CONSTANTS.lineDrawDuration,
+          ease: 'easeInOut',
+        }}
       />
       
       {/* Layer 4: Flow particles */}
