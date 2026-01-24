@@ -14,27 +14,9 @@ interface ModuleCardProps {
 }
 
 // ==========================================================================
-// Card Style Constants - Based on Stripe's exact measurements
+// Card Style Constants
 // ==========================================================================
 
-/**
- * Stripe's ACTUAL layout (measured from their homepage):
- * 
- * Card: 78×78px
- * 
- * Layout (inside the card):
- * ┌──────────────────────┐
- * │      ~21px padding   │  (27% of card height)
- * │  ┌──────────────┐    │
- * │  │    ICON      │    │  Icon: 35×35px (45% of card)
- * │  │   35×35px    │    │
- * │  └──────────────┘    │
- * │      ~8px gap        │  (10% of card height)
- * │       LABEL          │  Label at top: 65px (83% down)
- * └──────────────────────┘  Label: 13px height, INSIDE card
- * 
- * Key insight: Label is INSIDE the card, not outside!
- */
 const CARD_STYLES = {
   // Scale values
   inactiveScale: 0.886,
@@ -44,7 +26,7 @@ const CARD_STYLES = {
   inactiveBg: '#f6f9fc',
   activeBg: '#ffffff',
   
-  // Shadows (Stripe exact)
+  // Shadows
   activeShadow: 'rgba(50, 50, 93, 0.25) 0px 12.6px 25.2px -11.5733px, rgba(0, 0, 0, 0.1) 0px 7.56px 15.12px -7.56px',
   noShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
   
@@ -52,11 +34,11 @@ const CARD_STYLES = {
   inactiveBorder: '1px solid rgba(0, 0, 0, 0.04)',
   activeBorder: '1px solid rgba(0, 0, 0, 0.06)',
   
-  // Label styling (Stripe exact values)
+  // Label styling
   label: {
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    fontSize: 11,          // Slightly smaller to fit in card
-    fontWeight: 450,       // Stripe: 425
+    fontSize: 11,
+    fontWeight: 450,
     letterSpacing: '0.2px',
     lineHeight: '13px',
     color: 'rgb(46, 58, 85)',
@@ -78,16 +60,9 @@ export function ModuleCard({
   const Icon = module.icon;
   const groupGradient = GROUP_GRADIENTS[module.groupId];
   
-  // Stripe proportions (from 78px card):
-  // Icon: 35px = 45% of card
-  // Icon top padding: 21px = 27% of card  
-  // Gap between icon and label: 8px = 10% of card
-  // Label top: 65px = 83% of card height
-  
-  const iconSize = Math.round(cardSize * 0.40);  // 40% for our cards
+  // Icon size: 36% of card to leave room for label
+  const iconSize = Math.round(cardSize * 0.36);
   const borderRadius = Math.round(cardSize * 0.10);
-  const iconTopPadding = Math.round(cardSize * 0.18); // Where icon starts
-  const labelTopPosition = Math.round(cardSize * 0.80); // Where label starts (80% down)
 
   return (
     <div
@@ -99,7 +74,7 @@ export function ModuleCard({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {/* Layer 1: Outline/Ghost (visible when inactive) - icon only, centered */}
+      {/* Layer 1: Outline/Ghost (visible when inactive) */}
       <motion.div
         className="absolute flex items-center justify-center"
         style={{
@@ -127,9 +102,9 @@ export function ModuleCard({
         />
       </motion.div>
 
-      {/* Layer 2: Solid (visible when active) - icon on top, label at bottom, ALL INSIDE CARD */}
+      {/* Layer 2: Solid (visible when active) */}
       <motion.div
-        className="absolute flex flex-col items-center overflow-hidden"
+        className="absolute flex flex-col items-center justify-center"
         style={{
           width: cardSize,
           height: cardSize,
@@ -139,7 +114,7 @@ export function ModuleCard({
           transformOrigin: 'center center',
           top: 0,
           left: 0,
-          paddingTop: iconTopPadding,
+          gap: 4,
         }}
         initial={{ scale: CARD_STYLES.inactiveScale, opacity: 0 }}
         animate={{ 
@@ -149,12 +124,11 @@ export function ModuleCard({
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >
-        {/* Gradient Icon - positioned in upper portion */}
+        {/* Gradient Icon */}
         <svg 
           width={iconSize} 
           height={iconSize} 
           viewBox="0 0 24 24"
-          style={{ flexShrink: 0 }}
         >
           <defs>
             <linearGradient
@@ -176,9 +150,9 @@ export function ModuleCard({
           />
         </svg>
 
-        {/* Label - INSIDE the card, at bottom */}
+        {/* Label */}
         <span
-          className="text-center w-full px-1 mt-auto"
+          className="text-center"
           style={{ 
             fontFamily: CARD_STYLES.label.fontFamily,
             fontSize: CARD_STYLES.label.fontSize,
@@ -187,9 +161,6 @@ export function ModuleCard({
             lineHeight: CARD_STYLES.label.lineHeight,
             color: CARD_STYLES.label.color,
             whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            paddingBottom: 6,
           }}
         >
           {moduleName}
