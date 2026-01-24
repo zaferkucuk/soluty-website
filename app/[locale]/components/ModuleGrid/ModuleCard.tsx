@@ -60,9 +60,12 @@ export function ModuleCard({
   const Icon = module.icon;
   const groupGradient = GROUP_GRADIENTS[module.groupId];
   
-  // Icon size: 36% of card to leave room for label
-  const iconSize = Math.round(cardSize * 0.36);
+  // Icon size: 32% of card to ensure it fits with label
+  const iconSize = Math.round(cardSize * 0.32);
   const borderRadius = Math.round(cardSize * 0.10);
+  
+  // Unique gradient ID for this card
+  const gradientId = `icon-gradient-${module.id}`;
 
   return (
     <div
@@ -124,15 +127,11 @@ export function ModuleCard({
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >
-        {/* Gradient Icon */}
-        <svg 
-          width={iconSize} 
-          height={iconSize} 
-          viewBox="0 0 24 24"
-        >
+        {/* SVG Gradient Definition (hidden) */}
+        <svg width="0" height="0" style={{ position: 'absolute' }}>
           <defs>
             <linearGradient
-              id={`icon-gradient-${module.id}`}
+              id={gradientId}
               x1="0%"
               y1="0%"
               x2="100%"
@@ -142,13 +141,15 @@ export function ModuleCard({
               <stop offset="100%" stopColor={groupGradient.end} />
             </linearGradient>
           </defs>
-          <Icon
-            size={iconSize}
-            strokeWidth={1.5}
-            stroke={`url(#icon-gradient-${module.id})`}
-            fill="none"
-          />
         </svg>
+
+        {/* Gradient Icon - rendered directly */}
+        <Icon
+          size={iconSize}
+          strokeWidth={1.5}
+          stroke={`url(#${gradientId})`}
+          fill="none"
+        />
 
         {/* Label */}
         <span
