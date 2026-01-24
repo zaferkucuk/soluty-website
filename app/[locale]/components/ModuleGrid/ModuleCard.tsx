@@ -14,17 +14,39 @@ interface ModuleCardProps {
 }
 
 // ==========================================================================
-// Stripe-style Shadows
+// Stripe-style Card Constants
 // ==========================================================================
 
-const cardShadows = {
-  inactive: 'none',
-  hover: '0 2px 8px rgba(0, 0, 0, 0.08)',
-  active: '0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(77, 182, 160, 0.1)',
-};
+/**
+ * Stripe's exact styling values extracted from their homepage.
+ * The dual-layer system uses:
+ * - Outline layer: visible when inactive (ghost state)
+ * - Solid layer: visible when active (elevated state)
+ */
+const STRIPE_CARD_STYLES = {
+  // Scale values
+  inactiveScale: 0.886,  // ~88.6% when inactive
+  activeScale: 1.0,      // 100% when active
+  
+  // Background colors
+  inactiveBg: '#f6f9fc', // Light gray (outline layer)
+  activeBg: '#ffffff',   // Pure white (solid layer)
+  
+  // Stripe's exact box-shadow for active cards
+  // Two-layer shadow for depth and softness
+  activeShadow: 'rgba(50, 50, 93, 0.25) 0px 12.6px 25.2px -11.5733px, rgba(0, 0, 0, 0.1) 0px 7.56px 15.12px -7.56px',
+  
+  // Border for subtle definition
+  inactiveBorder: '1px solid rgba(0, 0, 0, 0.04)',
+  activeBorder: '1px solid rgba(0, 0, 0, 0.06)',
+  
+  // Animation timing
+  transitionDuration: 0.3,
+  transitionEase: [0.4, 0, 0.2, 1], // Material Design easing
+} as const;
 
 // ==========================================================================
-// ModuleCard Component
+// ModuleCard Component - Stripe-style Dual Layer
 // ==========================================================================
 
 export function ModuleCard({
@@ -38,52 +60,71 @@ export function ModuleCard({
   const Icon = module.icon;
   const groupGradient = GROUP_GRADIENTS[module.groupId];
   
-  // Calculate icon size based on card size
+  // Calculate sizes based on card size
   const iconSize = cardSize === 80 ? 32 : cardSize === 72 ? 28 : 24;
   const fontSize = cardSize === 80 ? 11 : 10;
-  const borderRadius = cardSize === 80 ? 16 : cardSize === 72 ? 14 : 12;
+  const borderRadius = cardSize === 80 ? 12 : cardSize === 72 ? 10 : 8;
 
   return (
-    <motion.div
-      className="relative flex flex-col items-center justify-center bg-white cursor-pointer select-none"
+    <div
+      className="relative cursor-pointer select-none"
       style={{
         width: cardSize,
         height: cardSize,
-        borderRadius,
       }}
-      initial={false}
-      animate={{
-        borderColor: isActive 
-          ? 'rgba(77, 182, 160, 0.3)' 
-          : 'rgba(0, 0, 0, 0.06)',
-        borderWidth: 1,
-        borderStyle: 'solid',
-        boxShadow: isActive ? cardShadows.active : cardShadows.inactive,
-      }}
-      whileHover={{
-        borderColor: isActive 
-          ? 'rgba(77, 182, 160, 0.3)' 
-          : 'rgba(0, 0, 0, 0.1)',
-        boxShadow: isActive ? cardShadows.active : cardShadows.hover,
-      }}
-      transition={{ duration: 0.2, ease: 'easeOut' }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {/* Icon with gradient for active state */}
+      {/* Layer 1: Outline/Ghost (visible when inactive) */}
       <motion.div
-        className="flex items-center justify-center"
+        className="absolute inset-0 flex flex-col items-center justify-center"
+        style={{
+          borderRadius,
+          border: STRIPE_CARD_STYLES.inactiveBorder,
+        }}
         initial={false}
         animate={{
-          opacity: isActive ? 1 : DESIGN_TOKENS.colors.inactiveIconOpacity,
+          backgroundColor: STRIPE_CARD_STYLES.inactiveBg,
+          scale: isActive ? STRIPE_CARD_STYLES.activeScale : STRIPE_CARD_STYLES.inactiveScale,
+          opacity: isActive ? 0 : 1,
         }}
-        whileHover={{
-          opacity: isActive ? 1 : DESIGN_TOKENS.colors.hoverIconOpacity,
+        transition={{
+          duration: STRIPE_CARD_STYLES.transitionDuration,
+          ease: STRIPE_CARD_STYLES.transitionEase,
         }}
-        transition={{ duration: 0.2 }}
       >
-        {isActive ? (
-          // Gradient icon for active state
+        {/* Inactive icon */}
+        <div className="flex items-center justify-center">
+          <Icon
+            size={iconSize}
+            strokeWidth={1.5}
+            color={DESIGN_TOKENS.colors.inactiveIcon}
+            style={{ opacity: DESIGN_TOKENS.colors.inactiveIconOpacity }}
+          />
+        </div>
+      </motion.div>
+
+      {/* Layer 2: Solid (visible when active) */}
+      <motion.div
+        className="absolute inset-0 flex flex-col items-center justify-center"
+        style={{
+          borderRadius,
+          border: STRIPE_CARD_STYLES.activeBorder,
+        }}
+        initial={false}
+        animate={{
+          backgroundColor: STRIPE_CARD_STYLES.activeBg,
+          scale: isActive ? STRIPE_CARD_STYLES.activeScale : STRIPE_CARD_STYLES.inactiveScale,
+          opacity: isActive ? 1 : 0,
+          boxShadow: isActive ? STRIPE_CARD_STYLES.activeShadow : 'none',
+        }}
+        transition={{
+          duration: STRIPE_CARD_STYLES.transitionDuration,
+          ease: STRIPE_CARD_STYLES.transitionEase,
+        }}
+      >
+        {/* Active gradient icon */}
+        <div className="flex items-center justify-center">
           <svg width={iconSize} height={iconSize} viewBox="0 0 24 24">
             <defs>
               <linearGradient
@@ -104,35 +145,28 @@ export function ModuleCard({
               fill="none"
             />
           </svg>
-        ) : (
-          // Simple gray icon for inactive state
-          <Icon
-            size={iconSize}
-            strokeWidth={1.5}
-            color={DESIGN_TOKENS.colors.inactiveIcon}
-          />
-        )}
-      </motion.div>
+        </div>
 
-      {/* Label - visible when active or hovered */}
-      <motion.span
-        className="mt-1.5 text-center leading-tight px-1 w-full truncate"
-        style={{ fontSize }}
-        initial={false}
-        animate={{
-          opacity: isActive ? 1 : 0,
-          color: isActive 
-            ? DESIGN_TOKENS.colors.activeLabel 
-            : DESIGN_TOKENS.colors.inactiveLabel,
-          fontWeight: isActive ? 500 : 400,
-        }}
-        whileHover={{
-          opacity: isActive ? 1 : 0.7,
-        }}
-        transition={{ duration: 0.15 }}
-      >
-        {moduleName}
-      </motion.span>
-    </motion.div>
+        {/* Label - only in solid layer */}
+        <motion.span
+          className="mt-1.5 text-center leading-tight px-1 w-full truncate"
+          style={{ 
+            fontSize,
+            color: DESIGN_TOKENS.colors.activeLabel,
+            fontWeight: 500,
+          }}
+          initial={false}
+          animate={{
+            opacity: isActive ? 1 : 0,
+          }}
+          transition={{
+            duration: 0.2,
+            delay: isActive ? 0.1 : 0,
+          }}
+        >
+          {moduleName}
+        </motion.span>
+      </motion.div>
+    </div>
   );
 }
