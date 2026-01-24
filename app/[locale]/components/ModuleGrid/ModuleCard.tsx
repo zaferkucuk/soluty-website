@@ -18,36 +18,20 @@ interface ModuleCardProps {
 // ==========================================================================
 
 /**
- * Stripe's exact styling values extracted from their homepage.
- * 
- * From Stripe.com analysis:
- * - Inactive scale: 0.886364 (matrix value from computed style)
+ * Stripe's exact styling values:
+ * - Inactive scale: 0.886
  * - Active scale: 1.0
  */
 const CARD_STYLES = {
-  // Scale values - exact Stripe values
   inactiveScale: 0.886,
   activeScale: 1.0,
-  
-  // Background colors
   inactiveBg: '#f6f9fc',
   activeBg: '#ffffff',
-  
-  // Shadow for active cards
   activeShadow: 'rgba(50, 50, 93, 0.25) 0px 12.6px 25.2px -11.5733px, rgba(0, 0, 0, 0.1) 0px 7.56px 15.12px -7.56px',
-  noShadow: 'rgba(0, 0, 0, 0) 0px 0px 0px 0px',
-  
-  // Border
+  noShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
   inactiveBorder: '1px solid rgba(0, 0, 0, 0.04)',
   activeBorder: '1px solid rgba(0, 0, 0, 0.06)',
 } as const;
-
-// Transition config
-const transition = {
-  type: 'spring',
-  stiffness: 300,
-  damping: 25,
-};
 
 // ==========================================================================
 // ModuleCard Component
@@ -64,21 +48,14 @@ export function ModuleCard({
   const Icon = module.icon;
   const groupGradient = GROUP_GRADIENTS[module.groupId];
   
-  // Calculate sizes based on card size
   const iconSize = cardSize === 80 ? 32 : cardSize === 72 ? 28 : 24;
   const fontSize = cardSize === 80 ? 11 : 10;
   const borderRadius = cardSize === 80 ? 12 : cardSize === 72 ? 10 : 8;
 
-  // Calculate current scale based on active state
-  const currentScale = isActive ? CARD_STYLES.activeScale : CARD_STYLES.inactiveScale;
-
   return (
     <div
       className="relative cursor-pointer select-none"
-      style={{
-        width: cardSize,
-        height: cardSize,
-      }}
+      style={{ width: cardSize, height: cardSize }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -93,11 +70,13 @@ export function ModuleCard({
           backgroundColor: CARD_STYLES.inactiveBg,
           transformOrigin: 'center center',
         }}
-        animate={{
-          scale: currentScale,
+        initial={{ scale: CARD_STYLES.inactiveScale, opacity: 1 }}
+        animate={{ 
+          scale: isActive ? CARD_STYLES.activeScale : CARD_STYLES.inactiveScale,
           opacity: isActive ? 0 : 1,
         }}
-        transition={transition}
+        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+        key={`outline-${module.id}`}
       >
         <div className="flex items-center justify-center">
           <Icon
@@ -120,12 +99,14 @@ export function ModuleCard({
           backgroundColor: CARD_STYLES.activeBg,
           transformOrigin: 'center center',
         }}
-        animate={{
-          scale: currentScale,
+        initial={{ scale: CARD_STYLES.inactiveScale, opacity: 0 }}
+        animate={{ 
+          scale: isActive ? CARD_STYLES.activeScale : CARD_STYLES.inactiveScale,
           opacity: isActive ? 1 : 0,
           boxShadow: isActive ? CARD_STYLES.activeShadow : CARD_STYLES.noShadow,
         }}
-        transition={transition}
+        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+        key={`solid-${module.id}`}
       >
         <div className="flex items-center justify-center">
           <svg width={iconSize} height={iconSize} viewBox="0 0 24 24">
@@ -157,13 +138,9 @@ export function ModuleCard({
             color: DESIGN_TOKENS.colors.activeLabel,
             fontWeight: 500,
           }}
-          animate={{
-            opacity: isActive ? 1 : 0,
-          }}
-          transition={{
-            duration: 0.2,
-            delay: isActive ? 0.1 : 0,
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isActive ? 1 : 0 }}
+          transition={{ duration: 0.2, delay: isActive ? 0.1 : 0 }}
         >
           {moduleName}
         </motion.span>
