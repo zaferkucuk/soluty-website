@@ -23,73 +23,34 @@ interface ModuleCardProps {
  * From Stripe.com analysis:
  * - Inactive scale: 0.886364 (matrix value from computed style)
  * - Active scale: 1.0
- * - Icon container: 78px × 78px
- * 
- * The dual-layer system uses:
- * - Outline layer: visible when inactive (ghost state)
- * - Solid layer: visible when active (elevated state)
  */
-const STRIPE_CARD_STYLES = {
+const CARD_STYLES = {
   // Scale values - exact Stripe values
-  inactiveScale: 0.886,  // Stripe uses 0.886364 ≈ 0.886
-  activeScale: 1.0,      // Full size when active
+  inactiveScale: 0.886,
+  activeScale: 1.0,
   
   // Background colors
-  inactiveBg: '#f6f9fc', // Light gray (outline layer)
-  activeBg: '#ffffff',   // Pure white (solid layer)
+  inactiveBg: '#f6f9fc',
+  activeBg: '#ffffff',
   
-  // Stripe's exact box-shadow for active cards
-  // Two-layer shadow for depth and softness
+  // Shadow for active cards
   activeShadow: 'rgba(50, 50, 93, 0.25) 0px 12.6px 25.2px -11.5733px, rgba(0, 0, 0, 0.1) 0px 7.56px 15.12px -7.56px',
+  noShadow: 'rgba(0, 0, 0, 0) 0px 0px 0px 0px',
   
-  // Border for subtle definition
+  // Border
   inactiveBorder: '1px solid rgba(0, 0, 0, 0.04)',
   activeBorder: '1px solid rgba(0, 0, 0, 0.06)',
-  
-  // Animation timing
-  transitionDuration: 0.3,
-  transitionEase: [0.4, 0, 0.2, 1], // Material Design easing
 } as const;
 
-// ==========================================================================
-// Animation Variants
-// ==========================================================================
-
-const outlineVariants = {
-  active: {
-    scale: STRIPE_CARD_STYLES.activeScale,
-    opacity: 0,
-    backgroundColor: STRIPE_CARD_STYLES.inactiveBg,
-  },
-  inactive: {
-    scale: STRIPE_CARD_STYLES.inactiveScale,
-    opacity: 1,
-    backgroundColor: STRIPE_CARD_STYLES.inactiveBg,
-  },
-};
-
-const solidVariants = {
-  active: {
-    scale: STRIPE_CARD_STYLES.activeScale,
-    opacity: 1,
-    backgroundColor: STRIPE_CARD_STYLES.activeBg,
-    boxShadow: STRIPE_CARD_STYLES.activeShadow,
-  },
-  inactive: {
-    scale: STRIPE_CARD_STYLES.inactiveScale,
-    opacity: 0,
-    backgroundColor: STRIPE_CARD_STYLES.activeBg,
-    boxShadow: 'rgba(0, 0, 0, 0) 0px 0px 0px 0px',
-  },
-};
-
-const labelVariants = {
-  active: { opacity: 1 },
-  inactive: { opacity: 0 },
+// Transition config
+const transition = {
+  type: 'spring',
+  stiffness: 300,
+  damping: 25,
 };
 
 // ==========================================================================
-// ModuleCard Component - Stripe-style Dual Layer
+// ModuleCard Component
 // ==========================================================================
 
 export function ModuleCard({
@@ -107,9 +68,9 @@ export function ModuleCard({
   const iconSize = cardSize === 80 ? 32 : cardSize === 72 ? 28 : 24;
   const fontSize = cardSize === 80 ? 11 : 10;
   const borderRadius = cardSize === 80 ? 12 : cardSize === 72 ? 10 : 8;
-  
-  // Animation state
-  const animationState = isActive ? 'active' : 'inactive';
+
+  // Calculate current scale based on active state
+  const currentScale = isActive ? CARD_STYLES.activeScale : CARD_STYLES.inactiveScale;
 
   return (
     <div
@@ -123,19 +84,21 @@ export function ModuleCard({
     >
       {/* Layer 1: Outline/Ghost (visible when inactive) */}
       <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-center origin-center"
+        className="absolute flex flex-col items-center justify-center"
         style={{
+          width: cardSize,
+          height: cardSize,
           borderRadius,
-          border: STRIPE_CARD_STYLES.inactiveBorder,
+          border: CARD_STYLES.inactiveBorder,
+          backgroundColor: CARD_STYLES.inactiveBg,
+          transformOrigin: 'center center',
         }}
-        variants={outlineVariants}
-        animate={animationState}
-        transition={{
-          duration: STRIPE_CARD_STYLES.transitionDuration,
-          ease: STRIPE_CARD_STYLES.transitionEase,
+        animate={{
+          scale: currentScale,
+          opacity: isActive ? 0 : 1,
         }}
+        transition={transition}
       >
-        {/* Inactive icon */}
         <div className="flex items-center justify-center">
           <Icon
             size={iconSize}
@@ -148,19 +111,22 @@ export function ModuleCard({
 
       {/* Layer 2: Solid (visible when active) */}
       <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-center origin-center"
+        className="absolute flex flex-col items-center justify-center"
         style={{
+          width: cardSize,
+          height: cardSize,
           borderRadius,
-          border: STRIPE_CARD_STYLES.activeBorder,
+          border: CARD_STYLES.activeBorder,
+          backgroundColor: CARD_STYLES.activeBg,
+          transformOrigin: 'center center',
         }}
-        variants={solidVariants}
-        animate={animationState}
-        transition={{
-          duration: STRIPE_CARD_STYLES.transitionDuration,
-          ease: STRIPE_CARD_STYLES.transitionEase,
+        animate={{
+          scale: currentScale,
+          opacity: isActive ? 1 : 0,
+          boxShadow: isActive ? CARD_STYLES.activeShadow : CARD_STYLES.noShadow,
         }}
+        transition={transition}
       >
-        {/* Active gradient icon */}
         <div className="flex items-center justify-center">
           <svg width={iconSize} height={iconSize} viewBox="0 0 24 24">
             <defs>
@@ -184,7 +150,6 @@ export function ModuleCard({
           </svg>
         </div>
 
-        {/* Label - only in solid layer */}
         <motion.span
           className="mt-1.5 text-center leading-tight px-1 w-full truncate"
           style={{ 
@@ -192,8 +157,9 @@ export function ModuleCard({
             color: DESIGN_TOKENS.colors.activeLabel,
             fontWeight: 500,
           }}
-          variants={labelVariants}
-          animate={animationState}
+          animate={{
+            opacity: isActive ? 1 : 0,
+          }}
           transition={{
             duration: 0.2,
             delay: isActive ? 0.1 : 0,
