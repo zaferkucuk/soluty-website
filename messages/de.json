@@ -19,7 +19,11 @@
     "skipToContent": "Zum Hauptinhalt springen"
   },
   "hero": {
-    "headline": "Führen Sie Ihr Unternehmen digital.",
+    "headline": {
+      "line1": "Führen Sie",
+      "line2": "Ihr Unternehmen",
+      "line3": "digital"
+    },
     "subheadline": "Einfach, effizient, individuell.",
     "cta": {
       "primary": "Beratung anfragen",
