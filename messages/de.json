@@ -19,14 +19,11 @@
     "skipToContent": "Zum Hauptinhalt springen"
   },
   "hero": {
-    "headline": {
-      "line1": "Hören Sie auf, Ihr Unternehmen an Software anzupassen.",
-      "line2": "Wir entwickeln ERP-Systeme, die sich Ihren Lieferprozessen anpassen."
-    },
-    "subheadline": "Individuelle ERP-Lösungen für kleine und mittlere Lieferunternehmen — entwickelt nach Ihrem Workflow, nicht umgekehrt.",
+    "headline": "Führen Sie Ihr Unternehmen digital.",
+    "subheadline": "Einfach, effizient, individuell.",
     "cta": {
-      "primary": "Sprechen Sie mit uns über Ihre Lieferlogistik",
-      "secondary": "So funktioniert individuelles ERP"
+      "primary": "Beratung anfragen",
+      "secondary": "Mehr erfahren"
     },
     "trust": {
       "builtInGermany": "Entwickelt in Deutschland",
@@ -62,7 +59,7 @@
     }
   },
   "metadata": {
-    "title": "Soluty GmbH | Individuelle ERP-Lösungen für Lieferunternehmen",
-    "description": "Wir entwickeln maßgeschneiderte ERP-Systeme, die sich Ihren Lieferprozessen anpassen. Von der Auftragsannahme bis zur Rechnungsstellung — für kleine und mittlere Lieferunternehmen in Deutschland."
+    "title": "Soluty GmbH | Individuelle ERP-Lösungen für Unternehmen",
+    "description": "Führen Sie Ihr Unternehmen digital. Einfach, effizient, individuell — maßgeschneiderte Softwarelösungen entwickelt in Deutschland."
   }
 }
