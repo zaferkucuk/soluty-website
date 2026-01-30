@@ -14,7 +14,7 @@ export default function HomePage() {
             <h1 className="text-4xl font-bold leading-tight tracking-tight text-black sm:text-5xl">
               {t("headline.line1")}
               <br />
-              <span className="text-teal-600">{t("headline.line2")}</span>
+              <span>{t("headline.line2")}</span>
             </h1>
             
             <p className="max-w-xl text-lg leading-8 text-zinc-600">
