@@ -19,7 +19,11 @@
     "skipToContent": "Skip to main content"
   },
   "hero": {
-    "headline": "Manage your business digitally.",
+    "headline": {
+      "line1": "Manage",
+      "line2": "your business",
+      "line3": "digitally"
+    },
     "subheadline": "Simple, efficient, made for you.",
     "cta": {
       "primary": "Request Consultation",
