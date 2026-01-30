@@ -19,14 +19,11 @@
     "skipToContent": "Ana içeriğe geç"
   },
   "hero": {
-    "headline": {
-      "line1": "İşinizi yazılıma uydurmayı bırakın.",
-      "line2": "Teslimat süreçlerinize uyum sağlayan ERP sistemleri geliştiriyoruz."
-    },
-    "subheadline": "Küçük ve orta ölçekli teslimat işletmeleri için özel ERP çözümleri — sizin iş akışınıza göre tasarlandı.",
+    "headline": "İşinizi dijital olarak yönetin.",
+    "subheadline": "Basit, etkili, size özel.",
     "cta": {
-      "primary": "Teslimat sürecinizi konuşalım",
-      "secondary": "Özel ERP nasıl çalışır?"
+      "primary": "Danışmanlık Talep Et",
+      "secondary": "Daha Fazla Bilgi"
     },
     "trust": {
       "builtInGermany": "Almanya'da geliştirildi",
@@ -62,7 +59,7 @@
     }
   },
   "metadata": {
-    "title": "Soluty GmbH | Teslimat İşletmeleri için Özel ERP Çözümleri",
-    "description": "Teslimat süreçlerinize uyum sağlayan özel ERP sistemleri geliştiriyoruz. Sipariş alımından faturalandırmaya — Almanya'daki küçük ve orta ölçekli teslimat işletmeleri için."
+    "title": "Soluty GmbH | İşletmeler için Özel Yazılım Çözümleri",
+    "description": "İşinizi dijital olarak yönetin. Basit, etkili, size özel — Almanya'da geliştirilen özel yazılım çözümleri."
   }
 }
