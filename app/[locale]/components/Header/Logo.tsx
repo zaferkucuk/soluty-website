@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { useLocale } from 'next-intl'
 
@@ -10,7 +12,7 @@ export function Logo() {
       className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2 rounded"
       aria-label="Soluty - Home"
     >
-      {/* Logo Icon - Stylized S flow/path */}
+      {/* Logo Icon - Stylized S flow/path matching brand */}
       <svg
         width="40"
         height="40"
@@ -23,17 +25,15 @@ export function Logo() {
         {/* Rounded rectangle background */}
         <rect width="100" height="100" rx="18" fill="#4DB6A0" />
         
-        {/* Stylized S path - flowing road/connection shape */}
+        {/* Stylized S path - smooth flowing curve like a road */}
         <path
-          d="M30 30
-             Q30 20, 45 20
-             Q65 20, 65 40
-             Q65 55, 45 58
-             Q30 61, 30 75
-             Q30 88, 50 88
-             Q70 88, 75 75"
+          d="M32 25
+             C42 25, 68 25, 68 42
+             C68 55, 50 58, 40 60
+             C30 62, 32 75, 32 75
+             C32 88, 58 88, 68 78"
           stroke="white"
-          strokeWidth="9"
+          strokeWidth="8"
           strokeLinecap="round"
           strokeLinejoin="round"
           fill="none"
