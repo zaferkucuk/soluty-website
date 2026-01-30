@@ -103,11 +103,11 @@ export const LINE_STYLES = {
   /** Glow blur radius in pixels */
   glowBlur: 6,
   
-  /** Glow stroke width - disabled */
-  glowStrokeWidth: 0,
+  /** Glow stroke width - subtle */
+  glowStrokeWidth: 1,
   
-  /** Glow opacity - disabled */
-  glowOpacity: 0,
+  /** Glow opacity - subtle */
+  glowOpacity: 0.1,
   
   /** Flow particle radius */
   particleRadius: 4,
