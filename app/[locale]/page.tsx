@@ -6,12 +6,12 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-zinc-50">
-      <main className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
+      <main className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
         {/* Hero Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text Content */}
           <div className="flex flex-col gap-6">
-            {/* Stripe-style Large Headline */}
+            {/* Stripe-style Large Headline - 3 lines */}
             <h1 
               className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight"
               style={{ 
@@ -19,7 +19,9 @@ export default function HomePage() {
                 color: '#0a2540'
               }}
             >
-              {t("headline")}
+              <span className="block">{t("headline.line1")}</span>
+              <span className="block">{t("headline.line2")}</span>
+              <span className="block">{t("headline.line3")}</span>
             </h1>
             
             {/* Subheadline */}
