@@ -19,7 +19,11 @@
     "skipToContent": "Ana içeriğe geç"
   },
   "hero": {
-    "headline": "İşinizi dijital olarak yönetin.",
+    "headline": {
+      "line1": "İşinizi",
+      "line2": "dijital olarak",
+      "line3": "yönetin"
+    },
     "subheadline": "Basit, etkili, size özel.",
     "cta": {
       "primary": "Danışmanlık Talep Et",
