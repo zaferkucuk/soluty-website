@@ -1,4 +1,4 @@
-# Homepage Wireframe v2.0
+# Homepage Wireframe v3.0
 
 **Status:** Approved  
 **Date:** January 2026  
@@ -11,10 +11,10 @@
 | Section | Purpose |
 |---------|--------|
 | Header | Navigation, language switch, primary CTA |
-| Hero | Value proposition, Delivery + SMB focus, Made in Germany badge |
-| Problem Statement | Delivery sector pain points (6 items) |
-| Services | Delivery ERP (featured) + 3 supporting services |
-| Why Custom ERP | Comparison table: Off-the-shelf vs Custom |
+| Hero | Value proposition, SME digitalization focus, Made in Germany badge |
+| Problem Statement | SME digitalization pain points (6 items) |
+| Services | 3 equal services (Custom ERP highlighted) |
+| Why Custom Software | Comparison: Standard vs Custom solutions |
 | References | 3 projects with integrated testimonials |
 | Final CTA | Consultation booking, contact info |
 | Footer | Links, legal, social |
@@ -24,10 +24,10 @@
 ## Business Context
 
 - **Company:** Soluty GmbH (founded 2022)
-- **Target:** Small and medium businesses (SMBs)
-- **Primary focus:** Delivery sector (fleet-based goods delivery)
+- **Mission:** Helping businesses digitalize with tailored technology solutions
+- **Target:** SMEs (primary) + general businesses
+- **Positioning:** Custom software solutions, Made in Germany
 - **References:** 3 real projects
-- **Positioning:** Custom ERP solutions, Made in Germany
 
 ---
 
@@ -50,14 +50,16 @@
 **Purpose:** First impression, value proposition
 
 **Elements:**
-- Headline (delivery/SMB focused, benefit-driven)
+- Headline (digitalization/SME focused, benefit-driven)
 - Subheadline (1-2 sentences)
 - Primary CTA: "Free Consultation"
 - Secondary CTA: "Learn More"
 - Trust badge: 🇩🇪 Made in Germany + GDPR Compliant
-- Hero visual (delivery/logistics themed illustration)
+- Hero visual (technology/digitalization themed)
 
 **Layout:** Two-column (text left, visual right)
+
+**Note:** Existing ModuleGrid component can be adapted
 
 ---
 
@@ -65,17 +67,17 @@
 
 **Purpose:** Empathy, identify pain points
 
-**Headline:** "Challenges Delivery Businesses Face Every Day"
+**Headline:** "Challenges Businesses Face in Digital Transformation"
 
 **Items (3x2 grid):**
-1. Inefficient Route Planning
-2. No Real-Time Fleet Tracking
-3. Manual Order Management
-4. Customer Communication Gaps
-5. Disconnected Systems
-6. Scaling Difficulties
+1. Fragmented Systems & Data Silos
+2. Inefficient Manual Processes
+3. Software That Doesn't Fit
+4. Scaling Difficulties
+5. High Costs of Standard Solutions
+6. Lack of Technical Expertise
 
-**Note:** All problems are delivery-sector specific
+**Note:** General SME digitalization challenges, not sector-specific
 
 ---
 
@@ -83,31 +85,32 @@
 
 **Purpose:** Present offerings
 
-**Layout:** 1 featured card + 3 standard cards
+**Layout:** 3 equal cards (Custom ERP visually highlighted)
 
-**Featured Service:**
-- Delivery ERP System (all-in-one solution)
+**Services:**
+1. **Custom ERP** — Tailored business management systems
+2. **Custom Enterprise Projects** — Bespoke software development
+3. **AI Solutions** — Intelligent automation (local/on-premise option in details)
 
-**Supporting Services:**
-1. Custom Software Development
-2. System Integration
-3. Maintenance & Support
+**Note:** All services equal weight, Custom ERP gets subtle visual prominence
 
 ---
 
-### 5. Why Custom ERP
+### 5. Why Custom Software
 
 **Purpose:** Differentiation, overcome objections
 
 **Format:** Comparison table
 
-| Off-the-Shelf | Custom-Built |
-|---------------|-------------|
+| Standard Software | Custom-Built |
+|-------------------|--------------|
 | ✗ You adapt to software | ✓ Software adapts to you |
 | ✗ Pay for unused features | ✓ Pay only for what you need |
 | ✗ Per-user monthly fees | ✓ No recurring license costs |
 | ✗ Limited customization | ✓ Unlimited flexibility |
 | ✗ Vendor lock-in | ✓ You own your data and code |
+
+**Note:** Renamed from "Why Custom ERP" to broader scope
 
 ---
 
@@ -124,8 +127,6 @@
 - Key result or metric
 - Testimonial quote (if available)
 - Client name and position
-
-**Note:** Case study and testimonial combined into single cards
 
 ---
 
@@ -154,19 +155,6 @@
 
 ---
 
-## Removed Sections (with rationale)
-
-| Section | Reason |
-|---------|--------|
-| Social Proof Bar | Metrics not realistic (company founded 2022, limited references) |
-| Process/Timeline | Owner decision - not needed for MVP |
-| Industries | Limited client base, cannot claim multi-sector expertise |
-| German Market Trust | Consolidated into Hero (Made in Germany badge) |
-| Tech Stack | Too technical for SMB audience |
-| Separate Testimonials | Merged with References section |
-
----
-
 ## Design Notes
 
 - Mobile-first responsive design
@@ -178,8 +166,13 @@
 
 ---
 
-## Next Steps
+## Implementation Status
 
-1. [ ] Content writing (German primary)
-2. [ ] UI design based on wireframe
-3. [ ] Component development
+- ✅ Header — Implemented
+- ✅ Hero — Implemented (needs content update for new positioning)
+- ⬜ Problem Statement — Not started
+- ⬜ Services — Not started
+- ⬜ Why Custom Software — Not started
+- ⬜ References — Not started
+- ⬜ Final CTA — Not started
+- ⬜ Footer — Not started
