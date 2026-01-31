@@ -31,11 +31,11 @@ export function Navigation() {
             key={item.key}
             href={href}
             className={`
-              text-base font-medium transition-colors duration-200
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2 rounded
+              text-base font-normal transition-colors duration-200
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-2 rounded
               ${isActive 
-                ? 'text-[#4DB6A0] font-semibold' 
-                : 'text-[#2D3436] hover:text-[#4DB6A0]'
+                ? 'text-[#0a2540] font-medium' 
+                : 'text-[#425466] hover:text-[#635bff]'
               }
             `}
             {...(isActive && { 'aria-current': 'page' })}
