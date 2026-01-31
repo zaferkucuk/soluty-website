@@ -31,11 +31,12 @@ export function Navigation() {
             key={item.key}
             href={href}
             className={`
-              text-base font-normal transition-colors duration-200
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-2 rounded
+              text-base font-medium transition-colors duration-200
+              font-[var(--font-sans)]
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded
               ${isActive 
-                ? 'text-[#0a2540] font-medium' 
-                : 'text-[#425466] hover:text-[#635bff]'
+                ? 'text-[var(--color-text-primary)]' 
+                : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]'
               }
             `}
             {...(isActive && { 'aria-current': 'page' })}

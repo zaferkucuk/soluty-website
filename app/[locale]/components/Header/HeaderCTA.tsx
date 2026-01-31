@@ -3,10 +3,6 @@
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 
-// ==========================================================================
-// Soluty Brand Color: #4DB6A0
-// ==========================================================================
-
 export function HeaderButtons() {
   const t = useTranslations('header')
   const locale = useLocale()
@@ -19,11 +15,12 @@ export function HeaderButtons() {
         className="
           hidden sm:inline-flex items-center justify-center
           px-3 py-1.5 lg:px-4 lg:py-2
-          text-base font-normal
-          text-[#425466] hover:text-[#4DB6A0]
+          text-base font-medium
+          font-[var(--font-sans)]
+          text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]
           rounded-full
           transition-colors duration-200
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2
         "
       >
         {t('login')}
@@ -34,12 +31,14 @@ export function HeaderButtons() {
         href={`/${locale}#contact`}
         className="
           inline-flex items-center justify-center
-          px-3 py-1.5 lg:px-4 lg:py-2
-          text-base font-normal text-white
-          bg-[#4DB6A0] hover:bg-[#3da08c]
+          px-4 py-2 lg:px-5 lg:py-2.5
+          text-[15px] font-medium text-white
+          font-[var(--font-sans)]
+          bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)]
           rounded-full
-          transition-colors duration-200
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2
+          transition-all duration-200
+          hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(77,182,160,0.3)]
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2
           whitespace-nowrap
         "
       >

@@ -31,7 +31,7 @@ export function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t('label')}
-      className="flex items-center gap-1 text-base"
+      className="flex items-center gap-1 text-base font-[var(--font-sans)]"
     >
       {locales.map((locale, index) => (
         <span key={locale} className="flex items-center">
@@ -39,11 +39,11 @@ export function LanguageSwitcher() {
             onClick={() => handleLocaleChange(locale)}
             disabled={isPending}
             className={`
-              px-1 py-0.5 rounded transition-colors duration-200
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-1
+              px-1.5 py-0.5 rounded transition-colors duration-200
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-1
               ${currentLocale === locale
-                ? 'text-[#0a2540] font-medium'
-                : 'text-[#425466] hover:text-[#635bff] font-normal'
+                ? 'text-[var(--color-text-primary)] font-semibold'
+                : 'text-[var(--color-text-muted)] hover:text-[var(--color-brand-primary)] font-medium'
               }
               ${isPending ? 'opacity-50 cursor-wait' : ''}
             `}
@@ -53,7 +53,7 @@ export function LanguageSwitcher() {
             {t(locale)}
           </button>
           {index < locales.length - 1 && (
-            <span className="text-[#E0E0E0] mx-0.5" aria-hidden="true">|</span>
+            <span className="text-[var(--color-border-strong)] mx-0.5" aria-hidden="true">|</span>
           )}
         </span>
       ))}

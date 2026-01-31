@@ -10,7 +10,7 @@ export function Logo() {
   return (
     <Link
       href={`/${locale}`}
-      className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2 rounded"
+      className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
       aria-label="Soluty - Home"
     >
       {/* Logo Icon */}
@@ -23,9 +23,14 @@ export function Logo() {
         priority
       />
 
-      {/* Wordmark - hidden on mobile, visible on md+ */}
+      {/* Wordmark - DM Sans font */}
       <span 
-        className="hidden md:block text-[22px] font-medium tracking-[0.12em] text-[#1a1a1a]"
+        className="
+          hidden md:block 
+          text-[22px] font-semibold tracking-[0.08em]
+          font-[var(--font-sans)]
+          text-[var(--color-text-primary)]
+        "
       >
         SOLUTY
       </span>

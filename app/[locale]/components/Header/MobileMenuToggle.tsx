@@ -18,9 +18,9 @@ export function MobileMenuToggle({ isOpen, onToggle }: MobileMenuToggleProps) {
       className="
         lg:hidden
         p-2 -ml-2
-        text-[#2D3436] hover:text-[#4DB6A0]
+        text-[var(--color-text-primary)] hover:text-[var(--color-brand-primary)]
         transition-colors duration-200
-        focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2
+        focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2
         rounded-lg
       "
       aria-expanded={isOpen}

@@ -72,8 +72,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         className="
           fixed top-16 left-0 right-0
           bg-white
-          border-t border-[#E0E0E0]
-          shadow-lg
+          border-t border-[var(--color-border)]
+          shadow-[var(--shadow-lg)]
           z-50
           lg:hidden
           animate-in slide-in-from-top-2 duration-200
@@ -94,12 +94,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     className={`
                       block py-3 px-4
                       text-lg font-medium
+                      font-[var(--font-sans)]
                       rounded-lg
                       transition-colors duration-200
-                      focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-inset
+                      focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-inset
                       ${isActive
-                        ? 'text-[#4DB6A0] bg-[#4DB6A0]/5 font-semibold'
-                        : 'text-[#2D3436] hover:bg-gray-50 hover:text-[#4DB6A0]'
+                        ? 'text-[var(--color-brand-primary)] bg-[var(--color-brand-subtle)] font-semibold'
+                        : 'text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-brand-primary)]'
                       }
                     `}
                     {...(isActive && { 'aria-current': 'page' })}
@@ -107,7 +108,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     {t(item.key)}
                   </Link>
                   {index < navItems.length - 1 && (
-                    <div className="border-b border-[#E0E0E0]/50 mx-4" aria-hidden="true" />
+                    <div className="border-b border-[var(--color-divider)] mx-4" aria-hidden="true" />
                   )}
                 </li>
               )
