@@ -38,9 +38,10 @@ function LocaleButton({
     <button
       onClick={onClick}
       disabled={isPending}
-      className="px-1.5 py-0.5 rounded transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-1"
+      className="px-2 py-1 rounded transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-1"
       style={{
         fontFamily: FONTS.sans,
+        fontSize: '19px', // 16px * 1.2 = 19px (+20%)
         fontWeight: isActive ? 600 : 500,
         color: isActive 
           ? COLORS.textPrimary 
@@ -83,8 +84,8 @@ export function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t('label')}
-      className="flex items-center gap-1 text-base"
-      style={{ fontFamily: FONTS.sans }}
+      className="flex items-center gap-1"
+      style={{ fontFamily: FONTS.sans, fontSize: '19px' }}
     >
       {locales.map((locale, index) => (
         <span key={locale} className="flex items-center">
@@ -97,7 +98,7 @@ export function LanguageSwitcher() {
           />
           {index < locales.length - 1 && (
             <span 
-              className="mx-0.5" 
+              className="mx-1" 
               style={{ color: COLORS.borderStrong }}
               aria-hidden="true"
             >
