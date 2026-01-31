@@ -171,7 +171,7 @@
 - ✅ Header — Implemented
 - ✅ Hero — Implemented (needs content update for new positioning)
 - ⬜ Problem Statement — Not started
-- ⬜ Services — Not started
+- ✅ Services — Implemented (3-card layout with highlighted Custom ERP)
 - ⬜ Why Custom Software — Not started
 - ⬜ References — Not started
 - ⬜ Final CTA — Not started
