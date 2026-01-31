@@ -58,8 +58,10 @@ export function Header() {
           sticky top-0 z-50
           bg-[var(--color-bg-primary)]
           transition-shadow duration-200
+          border-b border-[var(--color-text-secondary)]
           ${isScrolled ? 'shadow-[var(--shadow-md)]' : ''}
         `}
+        style={{ borderBottomWidth: '1px' }}
       >
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-20 lg:h-[88px]">
@@ -77,7 +79,7 @@ export function Header() {
             </div>
 
             {/* Right: Language Switcher + Buttons */}
-            <div className="flex items-center gap-3 lg:gap-4">
+            <div className="flex items-center gap-3 lg:gap-6">
               <LanguageSwitcher />
               <HeaderButtons />
             </div>
