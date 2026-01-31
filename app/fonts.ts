@@ -5,27 +5,29 @@
  * All components should use CSS variables defined here.
  * 
  * Font Pairing:
- * - Serif (Headlines): Cormorant Garamond — elegant, high-contrast, editorial (Tiempos alternative)
+ * - Serif (Headlines): Crimson Pro — elegant, high-contrast, editorial (Tiempos alternative)
  * - Sans (Body): DM Sans — geometric, modern, excellent readability
  * 
  * Design Reference: Wealthsimple-inspired typography with Soluty brand colors
+ * Crimson Pro: Typewolf's official recommendation for Tiempos Headline alternative
  */
 
-import { Cormorant_Garamond, DM_Sans, JetBrains_Mono } from 'next/font/google'
+import { Crimson_Pro, DM_Sans, JetBrains_Mono } from 'next/font/google'
 
 /**
- * Cormorant Garamond — Serif font for headlines
+ * Crimson Pro — Serif font for headlines
  * Used for: h1, h2, h3, hero headlines, section titles
- * Character: Elegant, high-contrast, editorial (closest free alternative to Tiempos Headline)
+ * Character: Elegant, high-contrast, editorial (Typewolf recommended Tiempos alternative)
  * 
- * Key differences from Libre Baskerville:
- * - Thinner, more refined letterforms
- * - Higher contrast between thick and thin strokes
- * - More modern editorial feel
+ * Key features:
+ * - Official Typewolf recommendation for Tiempos Headline
+ * - 9 weights (200-900) + variable font support
+ * - High contrast between thick and thin strokes
+ * - Modern editorial feel, perfect for fintech/B2B
  */
-export const serifFont = Cormorant_Garamond({
-  subsets: ['latin', 'latin-ext'],
-  weight: ['300', '400', '500', '600', '700'],
+export const serifFont = Crimson_Pro({
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
   variable: '--font-serif',
   display: 'swap',
@@ -69,10 +71,10 @@ export const fontVariables = `${serifFont.variable} ${sansFont.variable} ${monoF
  * Typography scale (for reference)
  * These values are implemented in globals.css
  * 
- * Headlines (serif - Cormorant Garamond):
- * - h1: 56-72px / 400-500 / 1.1 line-height (lighter weight for elegance)
- * - h2: 40-48px / 500 / 1.15 line-height  
- * - h3: 32px / 500 / 1.2 line-height
+ * Headlines (serif - Crimson Pro):
+ * - h1: 56-72px / 400-500 / 1.05-1.08 line-height
+ * - h2: 40-52px / 400-500 / 1.12-1.15 line-height  
+ * - h3: 32-36px / 500 / 1.2 line-height
  * - h4: 24px / 500 / 1.3 line-height
  * 
  * Body (sans - DM Sans):
