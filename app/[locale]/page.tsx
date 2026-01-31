@@ -23,76 +23,73 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
-      {/* Hero Section */}
+      {/* Hero Section - Full width, no max-width constraint */}
       <section style={{ overflowX: 'clip' }}>
-        {/* Container aligned with Header: max-w-[1280px] mx-auto px-4 md:px-6 */}
-        <div className="max-w-[1280px] mx-auto px-4 md:px-6 pt-4 pb-12 lg:pb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-0 items-start">
+        {/* Grid: Left text (with padding) + Right video (full width to edge) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
+          
+          {/* Left: Text Content - aligned with header via padding */}
+          <div 
+            className="flex flex-col py-8 lg:py-12 px-4 md:px-6"
+            style={{ 
+              maxWidth: '640px',
+              marginLeft: 'auto',
+              marginRight: '0',
+              paddingLeft: 'max(1.5rem, calc((100% - 1280px) / 2 + 1.5rem))'
+            }}
+          >
+            <h1 
+              className="heading-1"
+              style={{
+                fontFamily: FONTS.serif,
+                color: COLORS.textPrimary,
+              }}
+            >
+              <span className="block">{t("headline.line1")}</span>
+              <span className="block">{t("headline.line2")}</span>
+              <span className="block">{t("headline.line3")}</span>
+            </h1>
             
-            {/* Left: Text Content - aligned with header logo */}
-            <div className="flex flex-col">
-              <h1 
-                className="heading-1"
-                style={{
-                  fontFamily: FONTS.serif,
-                  color: COLORS.textPrimary,
-                }}
+            <p 
+              className="body-lg mt-6 max-w-md"
+              style={{ 
+                fontFamily: FONTS.sans,
+                color: COLORS.textSecondary,
+                fontSize: '18px',
+                lineHeight: 1.6,
+              }}
+            >
+              {t("subheadline")}
+            </p>
+
+            <div className="mt-8">
+              <HeroEmailForm />
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <svg 
+                className="w-4 h-4" 
+                fill="none" 
+                stroke={COLORS.brandPrimary} 
+                viewBox="0 0 24 24"
               >
-                <span className="block">{t("headline.line1")}</span>
-                <span className="block">{t("headline.line2")}</span>
-                <span className="block">{t("headline.line3")}</span>
-              </h1>
-              
-              <p 
-                className="body-lg mt-6 max-w-md"
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span 
+                className="text-sm font-medium"
                 style={{ 
                   fontFamily: FONTS.sans,
-                  color: COLORS.textSecondary,
-                  fontSize: '18px',
-                  lineHeight: 1.6,
+                  color: COLORS.brandPrimary,
                 }}
               >
-                {t("subheadline")}
-              </p>
-
-              <div className="mt-8">
-                <HeroEmailForm />
-              </div>
-
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                <svg 
-                  className="w-4 h-4" 
-                  fill="none" 
-                  stroke={COLORS.brandPrimary} 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span 
-                  className="text-sm font-medium"
-                  style={{ 
-                    fontFamily: FONTS.sans,
-                    color: COLORS.brandPrimary,
-                  }}
-                >
-                  {t("trust.gdprCompliant")}
-                </span>
-              </div>
+                {t("trust.gdprCompliant")}
+              </span>
             </div>
+          </div>
 
-            {/* Right: Video - overflows right edge of viewport */}
-            <div className="order-first lg:order-last lg:relative">
-              {/* Video extends beyond container to viewport edge */}
-              <div 
-                className="lg:absolute lg:left-0 lg:top-0"
-                style={{ 
-                  width: 'calc(50vw - 24px)',
-                  maxWidth: '800px'
-                }}
-              >
-                <HeroVideo videoSrc="/videos/hero.webm" />
-              </div>
-            </div>
+          {/* Right: Video - fills entire right half */}
+          <div className="order-first lg:order-last">
+            <HeroVideo videoSrc="/videos/hero.webm" />
           </div>
         </div>
 
