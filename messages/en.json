@@ -26,8 +26,10 @@
       "line3": "digitally"
     },
     "subheadline": "Simple, efficient, made for you.",
+    "emailPlaceholder": "Your email address",
     "cta": {
       "primary": "Request Consultation",
+      "submit": "Get Started",
       "secondary": "Learn More"
     },
     "trust": {
