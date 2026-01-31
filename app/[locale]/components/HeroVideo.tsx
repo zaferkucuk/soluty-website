@@ -15,7 +15,7 @@ interface HeroVideoProps {
  * HeroVideo Component
  * 
  * Displays an autoplaying, looping, muted video for the hero section.
- * Falls back to a placeholder if video fails to load.
+ * No card styling - video displays at natural size.
  */
 export function HeroVideo({ 
   videoSrc, 
@@ -30,7 +30,6 @@ export function HeroVideo({
     const video = videoRef.current;
     if (!video) return;
 
-    // Attempt to play video
     const playVideo = async () => {
       try {
         await video.play();
@@ -54,11 +53,10 @@ export function HeroVideo({
     console.error('Video failed to load:', videoSrc);
   };
 
-  // Fallback placeholder if video fails
   if (hasError) {
     return (
       <div 
-        className={`relative w-full max-w-lg aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center ${className}`}
+        className={`w-full aspect-square flex items-center justify-center ${className}`}
       >
         <div className="text-center text-gray-400">
           <svg 
@@ -81,16 +79,16 @@ export function HeroVideo({
   }
 
   return (
-    <div className={`relative w-full max-w-lg ${className}`}>
+    <div className={`relative w-full ${className}`}>
       {/* Loading skeleton */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl animate-pulse" />
+        <div className="absolute inset-0 bg-gray-100 animate-pulse" />
       )}
       
-      {/* Video */}
+      {/* Video - no card, no shadow, no border-radius */}
       <video
         ref={videoRef}
-        className={`w-full h-auto rounded-2xl shadow-xl transition-opacity duration-500 ${
+        className={`w-full h-auto transition-opacity duration-500 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         autoPlay
@@ -102,7 +100,6 @@ export function HeroVideo({
         onError={handleError}
       >
         <source src={videoSrc} type="video/webm" />
-        {/* Fallback for browsers that don't support webm */}
         <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
