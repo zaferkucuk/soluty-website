@@ -1,14 +1,13 @@
 import { useTranslations } from "next-intl";
 import { ModuleGrid } from "./components/ModuleGrid";
+import { Button } from "./components/ui/Button";
 
-// Brand colors (matching CSS variables)
+// Design tokens
 const COLORS = {
-  brandPrimary: '#4DB6A0',
-  brandHover: '#3DA08C',
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
-  textMuted: '#8A8785',
   bgPrimary: '#FCFCFC',
+  brandPrimary: '#4DB6A0',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
 }
 
@@ -37,48 +36,20 @@ export default function HomePage() {
               {t("subheadline")}
             </p>
 
-            {/* Email Input + CTA */}
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              {/* Email Input */}
-              <div className="relative flex-1 max-w-md">
-                <input
-                  type="email"
-                  placeholder={t("emailPlaceholder")}
-                  className="
-                    w-full h-14 px-5 pr-36
-                    text-base
-                    bg-white
-                    rounded-full
-                    transition-all duration-200
-                  "
-                  style={{
-                    color: COLORS.textPrimary,
-                    border: `1px solid ${COLORS.borderStrong}`,
-                  }}
-                />
-                {/* Submit Button inside input */}
-                <button
-                  type="button"
-                  className="
-                    absolute right-2 top-1/2 -translate-y-1/2
-                    inline-flex h-10 items-center justify-center gap-2
-                    rounded-full px-5
-                    text-white font-medium text-sm
-                    transition-all duration-200
-                    focus:outline-none focus:ring-2 focus:ring-offset-2
-                  "
-                  style={{ backgroundColor: COLORS.brandPrimary }}
-                >
-                  {t("cta.submit")}
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </button>
-              </div>
+            {/* CTA Button - Wealthsimple style */}
+            <div className="mt-10">
+              <Button
+                as="link"
+                href="#contact"
+                variant="primary"
+                size="lg"
+              >
+                {t("cta.primary")}
+              </Button>
             </div>
 
             {/* Trust Bar */}
-            <div className="mt-6 flex flex-wrap gap-6">
+            <div className="mt-8 flex flex-wrap gap-4">
               <span 
                 className="inline-flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-full"
                 style={{ 
