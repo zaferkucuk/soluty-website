@@ -3,66 +3,71 @@
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 
-interface HeaderCTAProps {
-  className?: string
-  variant?: 'default' | 'mobile'
-}
+// ==========================================================================
+// Stripe-style Header Buttons
+// ==========================================================================
 
-export function HeaderCTA({ className = '', variant = 'default' }: HeaderCTAProps) {
+export function HeaderButtons() {
   const t = useTranslations('header')
   const locale = useLocale()
 
-  const baseStyles = `
-    inline-flex items-center justify-center
-    font-semibold text-white
-    bg-[#4DB6A0] hover:bg-[#3DA08C]
-    rounded-lg
-    transition-colors duration-200
-    focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2
-  `
-
-  const sizeStyles = variant === 'mobile'
-    ? 'px-4 py-2 text-sm'
-    : 'px-4 py-2 text-sm lg:px-5 lg:py-2.5 lg:text-base'
-
   return (
-    <Link
-      href={`/${locale}#contact`}
-      className={`${baseStyles} ${sizeStyles} ${className}`}
-    >
-      {variant === 'mobile' ? (
-        // Shorter text on mobile header
-        <span className="lg:hidden">{t('cta')}</span>
-      ) : (
-        t('cta')
-      )}
-      {variant === 'default' && (
-        <span className="hidden lg:inline">{t('cta')}</span>
-      )}
-    </Link>
+    <div className="flex items-center gap-2 lg:gap-3">
+      {/* Login Button - Ghost style (Stripe-inspired) */}
+      <Link
+        href={`/${locale}/login`}
+        className="
+          hidden sm:inline-flex items-center justify-center
+          px-3 py-1.5 lg:px-4 lg:py-2
+          text-sm font-medium
+          text-[#0a2540] hover:text-[#635bff]
+          rounded-full
+          transition-colors duration-200
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-2
+        "
+      >
+        {t('login')}
+      </Link>
+
+      {/* Contact Button - Primary style (Stripe-inspired) */}
+      <Link
+        href={`/${locale}#contact`}
+        className="
+          inline-flex items-center justify-center
+          px-3 py-1.5 lg:px-4 lg:py-2
+          text-sm font-medium text-white
+          bg-[#635bff] hover:bg-[#5851ea]
+          rounded-full
+          transition-colors duration-200
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-2
+          whitespace-nowrap
+        "
+      >
+        {t('contact')}
+        <svg 
+          className="ml-1.5 w-4 h-4" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M17 8l4 4m0 0l-4 4m4-4H3" 
+          />
+        </svg>
+      </Link>
+    </div>
   )
 }
 
-// Simpler version for consistent display
+// Legacy exports for compatibility
+export function HeaderCTA({ className = '' }: { className?: string }) {
+  return <HeaderButtons />
+}
+
 export function HeaderCTASimple({ className = '' }: { className?: string }) {
-  const t = useTranslations('header')
-  const locale = useLocale()
-
-  return (
-    <Link
-      href={`/${locale}#contact`}
-      className={`
-        inline-flex items-center justify-center
-        px-4 py-2 text-sm font-semibold text-white
-        bg-[#4DB6A0] hover:bg-[#3DA08C]
-        rounded-lg
-        transition-colors duration-200
-        focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2
-        whitespace-nowrap
-        ${className}
-      `}
-    >
-      {t('cta')}
-    </Link>
-  )
+  return <HeaderButtons />
 }
