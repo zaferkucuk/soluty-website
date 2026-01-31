@@ -26,8 +26,10 @@
       "line3": "digital"
     },
     "subheadline": "Einfach, effizient, individuell.",
+    "emailPlaceholder": "Ihre E-Mail-Adresse",
     "cta": {
       "primary": "Beratung anfragen",
+      "submit": "Absenden",
       "secondary": "Mehr erfahren"
     },
     "trust": {
