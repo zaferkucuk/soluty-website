@@ -23,21 +23,16 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
-      {/* Hero Section - Full width, no max-width constraint */}
-      <section style={{ overflowX: 'clip' }}>
-        {/* Grid: Left text (with padding) + Right video (full width to edge) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
-          
-          {/* Left: Text Content - aligned with header via padding */}
-          <div 
-            className="flex flex-col py-8 lg:py-12 px-4 md:px-6"
-            style={{ 
-              maxWidth: '640px',
-              marginLeft: 'auto',
-              marginRight: '0',
-              paddingLeft: 'max(1.5rem, calc((100% - 1280px) / 2 + 1.5rem))'
-            }}
-          >
+      {/* Hero Section */}
+      <section className="relative" style={{ overflowX: 'clip' }}>
+        {/* Video - Absolute positioned, right half of screen */}
+        <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
+          <HeroVideo videoSrc="/videos/hero.webm" />
+        </div>
+
+        {/* Content Container - Same as Header: max-w-[1280px] mx-auto px-4 md:px-6 */}
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+          <div className="py-8 lg:py-16 lg:w-1/2 lg:pr-12">
             <h1 
               className="heading-1"
               style={{
@@ -87,8 +82,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: Video - fills entire right half */}
-          <div className="order-first lg:order-last">
+          {/* Mobile Video - Below text on small screens */}
+          <div className="lg:hidden pb-8">
             <HeroVideo videoSrc="/videos/hero.webm" />
           </div>
         </div>
