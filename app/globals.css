@@ -7,7 +7,7 @@
    Design Reference: Wealthsimple-inspired with Soluty brand identity
    
    Font Pairing:
-   - Serif (Headlines): Cormorant Garamond — elegant, high-contrast (Tiempos alternative)
+   - Serif (Headlines): Crimson Pro — elegant, high-contrast (Typewolf's Tiempos alternative)
    - Sans (Body): DM Sans
    - Mono (Code): JetBrains Mono
    
@@ -23,7 +23,7 @@
 
 :root {
   /* ---- Typography ---- */
-  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
   --font-sans: 'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
   
@@ -135,14 +135,15 @@ body {
    Typography Utilities
    ==========================================================================
    
-   Cormorant Garamond characteristics:
-   - Elegant, high-contrast serif (Tiempos Headline alternative)
-   - Use lighter weights (300-400) for large headlines
-   - Use medium weight (500) for smaller headings
+   Crimson Pro characteristics:
+   - Elegant, high-contrast serif (Typewolf's official Tiempos Headline alternative)
+   - 9 weights available (200-900) for maximum flexibility
+   - Use weight 400-500 for large headlines
+   - Use weight 500-600 for smaller headings
    - Larger font sizes look best (56-72px for hero)
    ========================================================================== */
 
-/* ---- Headings (Serif - Cormorant Garamond) ---- */
+/* ---- Headings (Serif - Crimson Pro) ---- */
 
 /* Hero headline - largest, most elegant */
 .heading-1 {
