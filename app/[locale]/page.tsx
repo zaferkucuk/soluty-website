@@ -57,19 +57,23 @@ export default function HomePage() {
               <HeroEmailForm />
             </div>
 
-            {/* Trust Bar */}
-            <div className="mt-6 flex flex-wrap gap-4">
+            {/* Trust Bar - simple text with checkmark, no button style */}
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              <svg 
+                className="w-4 h-4" 
+                fill="none" 
+                stroke={COLORS.brandPrimary} 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span 
-                className="inline-flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-full"
+                className="text-sm font-medium"
                 style={{ 
                   fontFamily: FONTS.sans,
-                  backgroundColor: 'rgba(77, 182, 160, 0.1)',
-                  color: COLORS.brandPrimary 
+                  color: COLORS.brandPrimary,
                 }}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
                 {t("trust.gdprCompliant")}
               </span>
             </div>
