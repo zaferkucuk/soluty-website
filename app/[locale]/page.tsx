@@ -24,16 +24,6 @@ export default function HomePage() {
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       <main className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
         
-        {/* ============================================================
-            HERO VISUAL COMPARISON - TOGGLE BETWEEN OPTIONS
-            ============================================================
-            
-            Option A: Current ModuleGrid (Stripe-inspired)
-            Option B: New HeroVideo (Wealthsimple-inspired)
-            
-            To test with video, add file to: public/videos/hero.webm
-            ============================================================ */}
-        
         {/* Hero Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text Content */}
@@ -91,27 +81,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: Visual (Toggle between options) */}
+          {/* Right: Visual - Currently showing HeroVideo with Wealthsimple test video */}
           <div className="order-first lg:order-last flex justify-center lg:justify-end">
-            {/* 
-              =====================================
-              OPTION A: ModuleGrid (Current)
-              =====================================
-              Uncomment this and comment Option B to use ModuleGrid
-            */}
-            {/* <ModuleGrid /> */}
-            
-            {/* 
-              =====================================
-              OPTION B: HeroVideo (Wealthsimple-style)
-              =====================================
-              - Without video: Shows animated floating mockups
-              - With video: Add file to public/videos/hero.webm
-            */}
             <HeroVideo 
-              // Uncomment when you have the video file:
-              // videoSrc="/videos/hero.webm"
-              // posterSrc="/videos/hero-poster.webp"
+              videoSrc="/videos/hero.webm"
             />
           </div>
         </div>
@@ -136,40 +109,28 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Option B: HeroVideo Placeholder */}
+            {/* Option B: HeroVideo with actual video */}
             <div className="p-6 bg-white rounded-xl shadow-lg">
               <h3 className="text-lg font-semibold mb-4 text-center">
                 Option B: HeroVideo
                 <span className="block text-sm font-normal text-slate-500">
-                  (Wealthsimple-inspired, new)
+                  (Wealthsimple-style, with video)
                 </span>
               </h3>
               <div className="flex justify-center">
-                <HeroVideo />
+                <HeroVideo videoSrc="/videos/hero.webm" />
               </div>
             </div>
           </div>
 
-          {/* Instructions */}
-          <div className="mt-8 p-6 bg-slate-100 rounded-xl">
-            <h4 className="font-semibold mb-2">🎬 Video Entegrasyonu için:</h4>
-            <ol className="list-decimal list-inside space-y-2 text-sm text-slate-600">
-              <li>
-                Wealthsimple videosunu indir: 
-                <code className="ml-2 px-2 py-1 bg-slate-200 rounded text-xs break-all">
-                  https://videos.ctfassets.net/.../homeHeroEvoEvergreen-en-CA.webm
-                </code>
-              </li>
-              <li>
-                Dosyayı şuraya kaydet: 
-                <code className="ml-2 px-2 py-1 bg-slate-200 rounded text-xs">
-                  public/videos/hero.webm
-                </code>
-              </li>
-              <li>
-                page.tsx&apos;te HeroVideo componentine videoSrc prop&apos;unu ekle
-              </li>
-            </ol>
+          {/* Decision prompt */}
+          <div className="mt-8 p-6 bg-teal-50 rounded-xl border border-teal-200">
+            <h4 className="font-semibold mb-2 text-teal-800">🤔 Hangi yaklaşımı tercih ediyorsun?</h4>
+            <ul className="space-y-2 text-sm text-teal-700">
+              <li><strong>Option A (ModuleGrid):</strong> Soluty&apos;ye özel, ERP modüllerini gösteren interaktif görsel</li>
+              <li><strong>Option B (Video):</strong> Premium hissi veren, profesyonel video animasyonu</li>
+              <li><strong>Hibrit:</strong> ModuleGrid&apos;i video gibi animate edebiliriz (daha fazla çalışma gerektirir)</li>
+            </ul>
           </div>
         </div>
       </main>
