@@ -62,19 +62,18 @@ export function Header() {
         `}
       >
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-between h-16 lg:h-[72px]">
-            {/* Left: Mobile Menu Toggle + Logo */}
-            <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between h-20 lg:h-[88px]">
+            {/* Left: Mobile Menu Toggle + Logo + Navigation (aligned left) */}
+            <div className="flex items-center gap-2 lg:gap-10">
               <MobileMenuToggle
                 isOpen={isMobileMenuOpen}
                 onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               />
               <Logo />
-            </div>
-
-            {/* Center: Desktop Navigation */}
-            <div className="hidden lg:flex lg:flex-1 lg:justify-center lg:ml-8">
-              <Navigation />
+              {/* Desktop Navigation - now left-aligned after logo */}
+              <div className="hidden lg:flex">
+                <Navigation />
+              </div>
             </div>
 
             {/* Right: Language Switcher + Buttons */}
