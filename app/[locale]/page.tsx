@@ -23,14 +23,17 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-[1400px] px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
-          {/* Hero Content - Asymmetric grid: text narrower, video wider */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-center">
-            {/* Left: Text Content */}
-            <div className="flex flex-col">
-              {/* Headline - Crimson Pro (Typewolf's Tiempos alternative) */}
+      {/* Hero Section - Wealthsimple style with overflow clip */}
+      <section 
+        className="relative"
+        style={{ overflowX: 'clip' }}
+      >
+        <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
+          {/* Hero Content - SplitHero layout */}
+          <div className="flex flex-col lg:flex-row lg:items-center">
+            {/* Left: Text Content - Fixed width */}
+            <div className="flex flex-col lg:w-[45%] lg:flex-shrink-0">
+              {/* Headline - Crimson Pro */}
               <h1 
                 className="heading-1"
                 style={{
@@ -61,7 +64,7 @@ export default function HomePage() {
                 <HeroEmailForm />
               </div>
 
-              {/* Trust Bar - simple text with checkmark, no button style */}
+              {/* Trust Bar */}
               <div className="mt-6 flex flex-wrap items-center gap-2">
                 <svg 
                   className="w-4 h-4" 
@@ -83,8 +86,14 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Video - Takes 1.5fr of the grid (60% of space) */}
-            <div className="order-first lg:order-last">
+            {/* Right: Video - Overflows to the right like Wealthsimple */}
+            <div 
+              className="order-first lg:order-last mt-8 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
+              style={{
+                width: '60vw',
+                maxWidth: '900px',
+              }}
+            >
               <HeroVideo 
                 videoSrc="/videos/hero.webm"
               />
