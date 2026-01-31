@@ -26,8 +26,10 @@
       "line3": "yönetin"
     },
     "subheadline": "Basit, etkili, size özel.",
+    "emailPlaceholder": "E-posta adresiniz",
     "cta": {
       "primary": "Danışmanlık Talep Et",
+      "submit": "Başlayın",
       "secondary": "Daha Fazla Bilgi"
     },
     "trust": {
