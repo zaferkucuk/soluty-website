@@ -3,12 +3,12 @@
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-// Design tokens
+// Design tokens (matching Button component)
 const COLORS = {
   textPrimary: '#32302F',
+  textInverse: '#FFFFFF',
   textMuted: '#8A8785',
   brandPrimary: '#4DB6A0',
-  brandHover: '#3DA08C',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
 }
 
@@ -22,7 +22,7 @@ export function HeroEmailForm() {
         type="email"
         placeholder={t('emailPlaceholder')}
         className="
-          w-full h-14 px-5 pr-36
+          w-full h-14 px-5 pr-40
           text-base
           bg-white
           rounded-full
@@ -40,7 +40,7 @@ export function HeroEmailForm() {
           e.currentTarget.style.borderColor = COLORS.borderStrong
         }}
       />
-      {/* Submit Button inside input */}
+      {/* Submit Button inside input - Primary style (black) */}
       <button
         type="button"
         className="
@@ -49,12 +49,12 @@ export function HeroEmailForm() {
           rounded-full px-5
           text-white font-medium text-sm
           transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-offset-2
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4DB6A0]
         "
         style={{ 
-          backgroundColor: isHovered ? COLORS.brandHover : COLORS.brandPrimary,
+          backgroundColor: isHovered ? '#1a1918' : COLORS.textPrimary,
           transform: isHovered ? 'translateY(-50%) translateY(-1px)' : 'translateY(-50%)',
-          boxShadow: isHovered ? '0 4px 12px rgba(77, 182, 160, 0.3)' : 'none',
+          boxShadow: isHovered ? '0 4px 12px rgba(50, 48, 47, 0.2)' : 'none',
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
