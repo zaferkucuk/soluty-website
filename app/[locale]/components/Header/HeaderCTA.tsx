@@ -3,6 +3,13 @@
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 
+// Brand colors (matching CSS variables)
+const COLORS = {
+  brandPrimary: '#4DB6A0',
+  brandHover: '#3DA08C',
+  textSecondary: '#5C5A58',
+}
+
 export function HeaderButtons() {
   const t = useTranslations('header')
   const locale = useLocale()
@@ -16,12 +23,15 @@ export function HeaderButtons() {
           hidden sm:inline-flex items-center justify-center
           px-3 py-1.5 lg:px-4 lg:py-2
           text-base font-medium
-          font-[var(--font-sans)]
-          text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]
           rounded-full
           transition-colors duration-200
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
         "
+        style={{
+          color: COLORS.textSecondary,
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.color = COLORS.brandPrimary}
+        onMouseLeave={(e) => e.currentTarget.style.color = COLORS.textSecondary}
       >
         {t('login')}
       </Link>
@@ -33,14 +43,24 @@ export function HeaderButtons() {
           inline-flex items-center justify-center
           px-4 py-2 lg:px-5 lg:py-2.5
           text-[15px] font-medium text-white
-          font-[var(--font-sans)]
-          bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)]
           rounded-full
           transition-all duration-200
-          hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(77,182,160,0.3)]
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
           whitespace-nowrap
         "
+        style={{
+          backgroundColor: COLORS.brandPrimary,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = COLORS.brandHover
+          e.currentTarget.style.transform = 'translateY(-1px)'
+          e.currentTarget.style.boxShadow = '0 4px 12px rgba(77,182,160,0.3)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = COLORS.brandPrimary
+          e.currentTarget.style.transform = 'translateY(0)'
+          e.currentTarget.style.boxShadow = 'none'
+        }}
       >
         {t('contact')}
         <svg 

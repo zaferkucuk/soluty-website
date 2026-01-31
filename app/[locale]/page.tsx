@@ -1,11 +1,22 @@
 import { useTranslations } from "next-intl";
 import { ModuleGrid } from "./components/ModuleGrid";
 
+// Brand colors (matching CSS variables)
+const COLORS = {
+  brandPrimary: '#4DB6A0',
+  brandHover: '#3DA08C',
+  textPrimary: '#32302F',
+  textSecondary: '#5C5A58',
+  textMuted: '#8A8785',
+  bgPrimary: '#FCFCFC',
+  borderStrong: 'rgba(50, 48, 47, 0.25)',
+}
+
 export default function HomePage() {
   const t = useTranslations("hero");
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg-primary)]">
+    <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       <main className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
         {/* Hero Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -19,7 +30,10 @@ export default function HomePage() {
             </h1>
             
             {/* Subheadline - Sans font */}
-            <p className="body-lg mt-8 max-w-xl text-xl sm:text-2xl">
+            <p 
+              className="body-lg mt-8 max-w-xl text-xl sm:text-2xl"
+              style={{ color: COLORS.textSecondary }}
+            >
               {t("subheadline")}
             </p>
 
@@ -33,15 +47,14 @@ export default function HomePage() {
                   className="
                     w-full h-14 px-5 pr-36
                     text-base
-                    font-[var(--font-sans)]
-                    text-[var(--color-text-primary)]
                     bg-white
-                    border border-[var(--color-border-strong)]
                     rounded-full
-                    placeholder:text-[var(--color-text-muted)]
-                    focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] focus:border-transparent
                     transition-all duration-200
                   "
+                  style={{
+                    color: COLORS.textPrimary,
+                    border: `1px solid ${COLORS.borderStrong}`,
+                  }}
                 />
                 {/* Submit Button inside input */}
                 <button
@@ -51,11 +64,10 @@ export default function HomePage() {
                     inline-flex h-10 items-center justify-center gap-2
                     rounded-full px-5
                     text-white font-medium text-sm
-                    font-[var(--font-sans)]
-                    bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)]
                     transition-all duration-200
-                    focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] focus:ring-offset-2
+                    focus:outline-none focus:ring-2 focus:ring-offset-2
                   "
+                  style={{ backgroundColor: COLORS.brandPrimary }}
                 >
                   {t("cta.submit")}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +79,13 @@ export default function HomePage() {
 
             {/* Trust Bar */}
             <div className="mt-6 flex flex-wrap gap-6">
-              <span className="badge badge-brand">
+              <span 
+                className="inline-flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-full"
+                style={{ 
+                  backgroundColor: 'rgba(77, 182, 160, 0.1)',
+                  color: COLORS.brandPrimary 
+                }}
+              >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
