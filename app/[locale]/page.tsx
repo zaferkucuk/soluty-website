@@ -12,7 +12,7 @@ const COLORS = {
 
 // Font constants for inline styles (Tailwind v4 CSS variable workaround)
 const FONTS = {
-  serif: "'Cormorant Garamond', Georgia, 'Times New Roman', serif",
+  serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
   sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
 }
 
@@ -26,7 +26,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text Content */}
           <div className="flex flex-col">
-            {/* Headline - Cormorant Garamond (Tiempos alternative) */}
+            {/* Headline - Crimson Pro (Typewolf's Tiempos alternative) */}
             <h1 
               className="heading-1"
               style={{
