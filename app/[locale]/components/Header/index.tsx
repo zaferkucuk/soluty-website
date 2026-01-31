@@ -45,9 +45,9 @@ export function Header() {
           sr-only focus:not-sr-only
           focus:absolute focus:top-4 focus:left-4
           focus:z-[100] focus:px-4 focus:py-2
-          focus:bg-[#635bff] focus:text-white
+          focus:bg-[#4DB6A0] focus:text-white
           focus:rounded-lg focus:outline-none
-          focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#635bff]
+          focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#4DB6A0]
         "
       >
         {t('skipToContent')}
@@ -57,7 +57,6 @@ export function Header() {
         className={`
           sticky top-0 z-50
           bg-zinc-50
-          border-b border-[#E0E0E0]
           transition-shadow duration-200
           ${isScrolled ? 'shadow-[0_2px_8px_rgba(0,0,0,0.08)]' : ''}
         `}
