@@ -31,7 +31,7 @@ export function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t('label')}
-      className="flex items-center gap-1 text-sm"
+      className="flex items-center gap-1 text-base"
     >
       {locales.map((locale, index) => (
         <span key={locale} className="flex items-center">
@@ -42,7 +42,7 @@ export function LanguageSwitcher() {
               px-1 py-0.5 rounded transition-colors duration-200
               focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-1
               ${currentLocale === locale
-                ? 'text-[#0a2540] font-semibold'
+                ? 'text-[#0a2540] font-medium'
                 : 'text-[#425466] hover:text-[#635bff] font-normal'
               }
               ${isPending ? 'opacity-50 cursor-wait' : ''}
