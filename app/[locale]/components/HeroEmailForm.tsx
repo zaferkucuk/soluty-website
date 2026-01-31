@@ -15,45 +15,49 @@ const COLORS = {
 export function HeroEmailForm() {
   const t = useTranslations('hero')
   const [isHovered, setIsHovered] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
 
   return (
-    <div className="relative flex-1 max-w-md">
+    <form 
+      className="relative w-full max-w-md"
+      onSubmit={(e) => e.preventDefault()}
+    >
+      {/* Email Input */}
       <input
         type="email"
         placeholder={t('emailPlaceholder')}
         className="
-          w-full h-14 px-5 pr-40
+          w-full h-14
+          pl-5 pr-44
           text-base
           bg-white
           rounded-full
           transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-offset-0
+          focus:outline-none
         "
         style={{
           color: COLORS.textPrimary,
-          border: `1px solid ${COLORS.borderStrong}`,
+          border: `1px solid ${isFocused ? COLORS.brandPrimary : COLORS.borderStrong}`,
         }}
-        onFocus={(e) => {
-          e.currentTarget.style.borderColor = COLORS.brandPrimary
-        }}
-        onBlur={(e) => {
-          e.currentTarget.style.borderColor = COLORS.borderStrong
-        }}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
-      {/* Submit Button inside input - Primary style (black) */}
+      
+      {/* Submit Button - positioned inside input */}
       <button
-        type="button"
+        type="submit"
         className="
-          absolute right-2 top-1/2 -translate-y-1/2
-          inline-flex h-10 items-center justify-center gap-2
-          rounded-full px-5
-          text-white font-medium text-sm
+          absolute right-1.5 top-1/2
+          inline-flex h-11 items-center justify-center gap-2
+          rounded-full px-6
+          font-medium text-sm
           transition-all duration-200
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4DB6A0]
         "
         style={{ 
           backgroundColor: isHovered ? '#1a1918' : COLORS.textPrimary,
-          transform: isHovered ? 'translateY(-50%) translateY(-1px)' : 'translateY(-50%)',
+          color: COLORS.textInverse,
+          transform: `translateY(-50%)${isHovered ? ' translateY(-1px)' : ''}`,
           boxShadow: isHovered ? '0 4px 12px rgba(50, 48, 47, 0.2)' : 'none',
         }}
         onMouseEnter={() => setIsHovered(true)}
@@ -64,6 +68,6 @@ export function HeroEmailForm() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>
       </button>
-    </div>
+    </form>
   )
 }
