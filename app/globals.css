@@ -1,60 +1,368 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   CSS Variables - Stripe-inspired Gradient Palette
+   Soluty Design System — Typography & Colors
+   ==========================================================================
+   
+   Design Reference: Wealthsimple-inspired with Soluty brand identity
+   
+   Font Pairing:
+   - Serif (Headlines): Libre Baskerville
+   - Sans (Body): DM Sans
+   - Mono (Code): JetBrains Mono
+   
+   Color Palette:
+   - Text: #32302F (warm charcoal)
+   - Background: #FCFCFC (warm white)
+   - Brand: #4DB6A0 (Soluty teal)
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS Variables — Core Design Tokens
    ========================================================================== */
 
 :root {
-  /* Base colors */
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---- Typography ---- */
+  --font-serif: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  --font-sans: 'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
   
-  /* Brand colors */
-  --brand-teal: #4DB6A0;
-  --brand-teal-light: #11EFE3;
+  /* ---- Colors: Text ---- */
+  --color-text-primary: #32302F;
+  --color-text-secondary: #5C5A58;
+  --color-text-muted: #8A8785;
+  --color-text-inverse: #FFFFFF;
   
-  /* Gradient palette (Stripe-inspired) */
+  /* ---- Colors: Background ---- */
+  --color-bg-primary: #FCFCFC;
+  --color-bg-secondary: #F7F6F5;
+  --color-bg-tertiary: #EFEEED;
+  --color-bg-inverse: #32302F;
+  
+  /* ---- Colors: Brand ---- */
+  --color-brand-primary: #4DB6A0;
+  --color-brand-light: #11EFE3;
+  --color-brand-subtle: rgba(77, 182, 160, 0.1);
+  --color-brand-hover: #3DA08C;
+  
+  /* ---- Colors: UI ---- */
+  --color-border: rgba(50, 48, 47, 0.12);
+  --color-border-strong: rgba(50, 48, 47, 0.25);
+  --color-divider: rgba(50, 48, 47, 0.08);
+  
+  /* ---- Gradient Palette (Stripe-inspired, for accents) ---- */
   --gradient-magenta: #E47EED;
   --gradient-orange: #FFB86C;
   --gradient-yellow: #F7C94C;
   --gradient-purple: #AD6AEB;
   --gradient-blue: #6C91F7;
   
-  /* Shadow colors */
-  --shadow-ambient: rgba(50, 50, 93, 0.25);
-  --shadow-direct: rgba(0, 0, 0, 0.3);
-  --shadow-inset: rgba(10, 37, 64, 0.35);
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px rgba(50, 48, 47, 0.06);
+  --shadow-md: 0 4px 12px rgba(50, 48, 47, 0.08);
+  --shadow-lg: 0 8px 24px rgba(50, 48, 47, 0.12);
+  --shadow-xl: 0 16px 48px rgba(50, 48, 47, 0.16);
+  
+  /* ---- Spacing Scale ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  
+  /* ---- Border Radius ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+  
+  /* Legacy support (will be deprecated) */
+  --background: var(--color-bg-primary);
+  --foreground: var(--color-text-primary);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Dark mode (if needed in future) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Dark mode variables would go here */
+    /* Currently not implemented - keeping light mode only */
   }
+}
+
+/* ==========================================================================
+   Tailwind Theme Integration
+   ========================================================================== */
+
+@theme inline {
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 }
 
 /* ==========================================================================
    Base Styles
    ========================================================================== */
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Typography Utilities
+   ========================================================================== */
+
+/* ---- Headings (Serif) ---- */
+.heading-1 {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--color-text-primary);
+}
+
+.heading-2 {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  color: var(--color-text-primary);
+}
+
+.heading-3 {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+
+.heading-4 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+/* Responsive headings */
+@media (max-width: 768px) {
+  .heading-1 {
+    font-size: 32px;
+  }
+  .heading-2 {
+    font-size: 28px;
+  }
+  .heading-3 {
+    font-size: 24px;
+  }
+  .heading-4 {
+    font-size: 20px;
+  }
+}
+
+/* ---- Body Text (Sans) ---- */
+.body-lg {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+.body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.body-sm {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.caption {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  color: var(--color-text-muted);
+}
+
+/* ---- Labels & UI Text ---- */
+.label {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.label-sm {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+  color: var(--color-text-secondary);
+}
+
+/* ---- Code (Mono) ---- */
+.code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: var(--color-bg-secondary);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   Button Styles
+   ========================================================================== */
+
+.btn {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(50, 48, 47, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+.btn-brand {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+.btn-brand:hover {
+  background-color: var(--color-brand-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(77, 182, 160, 0.3);
+}
+
+/* ==========================================================================
+   Badge Styles
+   ========================================================================== */
+
+.badge {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-brand {
+  background-color: var(--color-brand-subtle);
+  color: var(--color-brand-primary);
+}
+
+.badge-neutral {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Card Styles
+   ========================================================================== */
+
+.card {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+}
+
+.card-shadow-hover {
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+}
+
+.card-shadow-hover:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Premium card shadow (Stripe-style) */
+.card-shadow-premium {
+  box-shadow: 
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 /* ==========================================================================
    Hero Section Utilities
    ========================================================================== */
 
-/* Static fallback gradient (for no-JS or reduced motion) */
 .hero-gradient-static {
   background: 
     radial-gradient(ellipse 80% 50% at 20% 40%, rgba(228, 126, 237, 0.35) 0%, transparent 50%),
@@ -66,41 +374,34 @@ body {
 }
 
 /* ==========================================================================
-   Card Shadow Utilities (Stripe-style multi-layer shadows)
+   Link Styles
    ========================================================================== */
 
-.card-shadow-default {
-  box-shadow: 
-    rgba(50, 50, 93, 0.1) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.15) 0px 8px 16px -8px;
+.link {
+  color: var(--color-brand-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
 }
 
-.card-shadow-hover {
-  box-shadow: 
-    rgba(50, 50, 93, 0.2) 0px 20px 40px -8px,
-    rgba(0, 0, 0, 0.2) 0px 12px 24px -12px;
+.link:hover {
+  color: var(--color-brand-hover);
 }
 
-.card-shadow-active {
-  box-shadow: 
-    rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px,
-    rgba(77, 182, 160, 0.2) 0px 0px 0px 3px;
+.link-subtle {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
-/* Premium card shadow (Stripe phone card style) */
-.card-shadow-premium {
-  box-shadow: 
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+.link-subtle:hover {
+  color: var(--color-text-primary);
 }
 
 /* ==========================================================================
    Animation Utilities
    ========================================================================== */
 
-/* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -111,8 +412,24 @@ body {
   }
 }
 
-/* GPU acceleration hints for animated elements */
 .gpu-accelerated {
   transform: translateZ(0);
   will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   Focus Styles (Accessibility)
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+.focus-ring {
+  transition: box-shadow var(--transition-fast);
+}
+
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-brand-subtle);
 }
