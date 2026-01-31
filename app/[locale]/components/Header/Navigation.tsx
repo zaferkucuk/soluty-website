@@ -35,9 +35,10 @@ function NavLink({ item, isActive, children }: { item: NavItem; isActive: boolea
   return (
     <Link
       href={href}
-      className="text-base font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
+      className="font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
       style={{
         fontFamily: FONTS.sans,
+        fontSize: '19px', // 16px * 1.2 = 19.2px → 19px (+20%)
         color: isActive 
           ? COLORS.textPrimary 
           : isHovered 
@@ -59,7 +60,7 @@ export function Navigation() {
   const pathname = usePathname()
 
   return (
-    <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-8">
+    <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-10">
       {navItems.map((item) => {
         const href = `/${locale}${item.href}`
         const isActive = pathname === href || pathname.endsWith(item.href)
