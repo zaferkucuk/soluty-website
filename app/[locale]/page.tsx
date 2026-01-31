@@ -25,9 +25,9 @@ export default function HomePage() {
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
-          {/* Hero Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        <div className="mx-auto max-w-[1400px] px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
+          {/* Hero Content - Asymmetric grid: text narrower, video wider */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-center">
             {/* Left: Text Content */}
             <div className="flex flex-col">
               {/* Headline - Crimson Pro (Typewolf's Tiempos alternative) */}
@@ -83,13 +83,11 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Video - 50% larger, can overflow right edge */}
-            <div className="order-first lg:order-last flex justify-center lg:justify-end lg:-mr-24 xl:-mr-32">
-              <div className="w-full lg:w-[150%] lg:max-w-[800px]">
-                <HeroVideo 
-                  videoSrc="/videos/hero.webm"
-                />
-              </div>
+            {/* Right: Video - Takes 1.5fr of the grid (60% of space) */}
+            <div className="order-first lg:order-last">
+              <HeroVideo 
+                videoSrc="/videos/hero.webm"
+              />
             </div>
           </div>
         </div>
