@@ -23,17 +23,18 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
-      {/* Hero Section - Wealthsimple style with overflow clip */}
-      <section 
-        className="relative"
-        style={{ overflowX: 'clip' }}
-      >
+      {/* Hero Section */}
+      <section style={{ overflowX: 'clip' }}>
         <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
-          {/* Hero Content - SplitHero layout */}
-          <div className="flex flex-col lg:flex-row lg:items-center">
-            {/* Left: Text Content - Fixed width */}
-            <div className="flex flex-col lg:w-[45%] lg:flex-shrink-0">
-              {/* Headline - Crimson Pro */}
+          {/* 
+            Two-column layout using CSS Grid
+            Left: Text (takes content width)
+            Right: Video (overflows to the right edge of viewport)
+          */}
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(400px,500px)_1fr] gap-8 lg:gap-4 items-center">
+            
+            {/* Left: Text Content */}
+            <div className="flex flex-col">
               <h1 
                 className="heading-1"
                 style={{
@@ -46,7 +47,6 @@ export default function HomePage() {
                 <span className="block">{t("headline.line3")}</span>
               </h1>
               
-              {/* Subheadline - DM Sans */}
               <p 
                 className="body-lg mt-8 max-w-xl"
                 style={{ 
@@ -59,12 +59,10 @@ export default function HomePage() {
                 {t("subheadline")}
               </p>
 
-              {/* Email Input + CTA */}
               <div className="mt-10">
                 <HeroEmailForm />
               </div>
 
-              {/* Trust Bar */}
               <div className="mt-6 flex flex-wrap items-center gap-2">
                 <svg 
                   className="w-4 h-4" 
@@ -86,17 +84,19 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Video - Overflows to the right like Wealthsimple */}
-            <div 
-              className="order-first lg:order-last mt-8 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
-              style={{
-                width: '60vw',
-                maxWidth: '900px',
-              }}
-            >
-              <HeroVideo 
-                videoSrc="/videos/hero.webm"
-              />
+            {/* Right: Video - Overflows to right edge */}
+            <div className="order-first lg:order-last relative">
+              {/* 
+                This wrapper allows the video to overflow beyond the grid column
+                calc(100% + X) makes it wider than its container
+                The section's overflow-x:clip prevents horizontal scrollbar
+              */}
+              <div 
+                className="lg:w-[calc(100%+12vw)]"
+                style={{ maxWidth: '800px' }}
+              >
+                <HeroVideo videoSrc="/videos/hero.webm" />
+              </div>
             </div>
           </div>
         </div>
@@ -107,7 +107,6 @@ export default function HomePage() {
             <h2 className="heading-3 mb-8 text-center">Hero Visual Comparison</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Option A: ModuleGrid */}
               <div className="p-6 bg-white rounded-xl shadow-lg">
                 <h3 className="text-lg font-semibold mb-4 text-center">
                   Option A: ModuleGrid
@@ -120,7 +119,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Option B: HeroVideo with actual video */}
               <div className="p-6 bg-white rounded-xl shadow-lg">
                 <h3 className="text-lg font-semibold mb-4 text-center">
                   Option B: HeroVideo
@@ -134,7 +132,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Decision prompt */}
             <div className="mt-8 p-6 bg-teal-50 rounded-xl border border-teal-200">
               <h4 className="font-semibold mb-2 text-teal-800">🤔 Hangi yaklaşımı tercih ediyorsun?</h4>
               <ul className="space-y-2 text-sm text-teal-700">
