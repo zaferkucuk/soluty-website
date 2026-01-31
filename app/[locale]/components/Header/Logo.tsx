@@ -4,6 +4,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useLocale } from 'next-intl'
 
+// Font constant for inline styles (Tailwind v4 CSS variable workaround)
+const FONTS = {
+  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
+}
+
 export function Logo() {
   const locale = useLocale()
 
@@ -25,12 +30,11 @@ export function Logo() {
 
       {/* Wordmark - DM Sans font */}
       <span 
-        className="
-          hidden md:block 
-          text-[22px] font-semibold tracking-[0.08em]
-          font-[var(--font-sans)]
-          text-[var(--color-text-primary)]
-        "
+        className="hidden md:block text-[22px] font-semibold tracking-[0.08em]"
+        style={{
+          fontFamily: FONTS.sans,
+          color: '#32302F',
+        }}
       >
         SOLUTY
       </span>

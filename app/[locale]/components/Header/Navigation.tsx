@@ -3,6 +3,18 @@
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
+
+// Design tokens
+const FONTS = {
+  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
+}
+
+const COLORS = {
+  textPrimary: '#32302F',
+  textSecondary: '#5C5A58',
+  brandPrimary: '#4DB6A0',
+}
 
 interface NavItem {
   key: string
@@ -14,6 +26,32 @@ const navItems: NavItem[] = [
   { key: 'references', href: '#references' },
   { key: 'contact', href: '#contact' },
 ]
+
+function NavLink({ item, isActive, children }: { item: NavItem; isActive: boolean; children: React.ReactNode }) {
+  const locale = useLocale()
+  const href = `/${locale}${item.href}`
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <Link
+      href={href}
+      className="text-base font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
+      style={{
+        fontFamily: FONTS.sans,
+        color: isActive 
+          ? COLORS.textPrimary 
+          : isHovered 
+            ? COLORS.brandPrimary 
+            : COLORS.textSecondary,
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      {...(isActive && { 'aria-current': 'page' })}
+    >
+      {children}
+    </Link>
+  )
+}
 
 export function Navigation() {
   const t = useTranslations('header.nav')
@@ -27,22 +65,9 @@ export function Navigation() {
         const isActive = pathname === href || pathname.endsWith(item.href)
 
         return (
-          <Link
-            key={item.key}
-            href={href}
-            className={`
-              text-base font-medium transition-colors duration-200
-              font-[var(--font-sans)]
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded
-              ${isActive 
-                ? 'text-[var(--color-text-primary)]' 
-                : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]'
-              }
-            `}
-            {...(isActive && { 'aria-current': 'page' })}
-          >
+          <NavLink key={item.key} item={item} isActive={isActive}>
             {t(item.key)}
-          </Link>
+          </NavLink>
         )
       })}
     </nav>

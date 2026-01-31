@@ -1,9 +1,21 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
+
+// Design tokens
+const FONTS = {
+  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
+}
+
+const COLORS = {
+  textPrimary: '#32302F',
+  brandPrimary: '#4DB6A0',
+  brandSubtle: 'rgba(77, 182, 160, 0.1)',
+  bgSecondary: '#F7F6F5',
+}
 
 interface NavItem {
   key: string
@@ -15,6 +27,48 @@ const navItems: NavItem[] = [
   { key: 'references', href: '#references' },
   { key: 'contact', href: '#contact' },
 ]
+
+function MobileNavLink({ 
+  item, 
+  isActive, 
+  onClick, 
+  linkRef,
+  children,
+}: { 
+  item: NavItem
+  isActive: boolean
+  onClick: () => void
+  linkRef?: React.Ref<HTMLAnchorElement>
+  children: React.ReactNode
+}) {
+  const locale = useLocale()
+  const href = `/${locale}${item.href}`
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <Link
+      ref={linkRef}
+      href={href}
+      onClick={onClick}
+      className="block py-3 px-4 text-lg rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-inset"
+      style={{
+        fontFamily: FONTS.sans,
+        fontWeight: isActive ? 600 : 500,
+        color: isActive ? COLORS.brandPrimary : COLORS.textPrimary,
+        backgroundColor: isActive 
+          ? COLORS.brandSubtle 
+          : isHovered 
+            ? COLORS.bgSecondary 
+            : 'transparent',
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      {...(isActive && { 'aria-current': 'page' })}
+    >
+      {children}
+    </Link>
+  )
+}
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -28,7 +82,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null)
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
 
-  // Focus trap and escape key handling
   useEffect(() => {
     if (!isOpen) return
 
@@ -38,11 +91,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       }
     }
 
-    // Focus first link when menu opens
     firstLinkRef.current?.focus()
-
     document.addEventListener('keydown', handleEscape)
-    // Prevent body scroll when menu is open
     document.body.style.overflow = 'hidden'
 
     return () => {
@@ -87,28 +137,20 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
               return (
                 <li key={item.key}>
-                  <Link
-                    ref={index === 0 ? firstLinkRef : undefined}
-                    href={href}
+                  <MobileNavLink
+                    item={item}
+                    isActive={isActive}
                     onClick={onClose}
-                    className={`
-                      block py-3 px-4
-                      text-lg font-medium
-                      font-[var(--font-sans)]
-                      rounded-lg
-                      transition-colors duration-200
-                      focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-inset
-                      ${isActive
-                        ? 'text-[var(--color-brand-primary)] bg-[var(--color-brand-subtle)] font-semibold'
-                        : 'text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-brand-primary)]'
-                      }
-                    `}
-                    {...(isActive && { 'aria-current': 'page' })}
+                    linkRef={index === 0 ? firstLinkRef : undefined}
                   >
                     {t(item.key)}
-                  </Link>
+                  </MobileNavLink>
                   {index < navItems.length - 1 && (
-                    <div className="border-b border-[var(--color-divider)] mx-4" aria-hidden="true" />
+                    <div 
+                      className="border-b mx-4" 
+                      style={{ borderColor: 'rgba(50, 48, 47, 0.08)' }}
+                      aria-hidden="true" 
+                    />
                   )}
                 </li>
               )
