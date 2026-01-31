@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { ModuleGrid } from "./components/ModuleGrid";
-import { Button } from "./components/ui/Button";
+import { HeroEmailForm } from "./components/HeroEmailForm";
 
 // Design tokens
 const COLORS = {
@@ -8,7 +8,6 @@ const COLORS = {
   textSecondary: '#5C5A58',
   bgPrimary: '#FCFCFC',
   brandPrimary: '#4DB6A0',
-  borderStrong: 'rgba(50, 48, 47, 0.25)',
 }
 
 export default function HomePage() {
@@ -36,20 +35,13 @@ export default function HomePage() {
               {t("subheadline")}
             </p>
 
-            {/* CTA Button - Wealthsimple style */}
+            {/* Email Input + CTA */}
             <div className="mt-10">
-              <Button
-                as="link"
-                href="#contact"
-                variant="primary"
-                size="lg"
-              >
-                {t("cta.primary")}
-              </Button>
+              <HeroEmailForm />
             </div>
 
             {/* Trust Bar */}
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-6 flex flex-wrap gap-4">
               <span 
                 className="inline-flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-full"
                 style={{ 
