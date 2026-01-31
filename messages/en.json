@@ -5,12 +5,13 @@
       "references": "References",
       "contact": "Contact"
     },
+    "login": "Sign in",
+    "contact": "Contact",
     "cta": "Request Consultation",
     "languageSwitcher": {
       "label": "Select Language",
       "de": "DE",
-      "en": "EN",
-      "tr": "TR"
+      "en": "EN"
     },
     "mobileMenu": {
       "open": "Open menu",
