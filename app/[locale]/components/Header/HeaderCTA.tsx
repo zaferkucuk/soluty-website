@@ -19,8 +19,8 @@ export function HeaderButtons() {
         className="
           hidden sm:inline-flex items-center justify-center
           px-3 py-1.5 lg:px-4 lg:py-2
-          text-sm font-medium
-          text-[#0a2540] hover:text-[#635bff]
+          text-base font-normal
+          text-[#425466] hover:text-[#635bff]
           rounded-full
           transition-colors duration-200
           focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-2
@@ -35,7 +35,7 @@ export function HeaderButtons() {
         className="
           inline-flex items-center justify-center
           px-3 py-1.5 lg:px-4 lg:py-2
-          text-sm font-medium text-white
+          text-base font-normal text-white
           bg-[#635bff] hover:bg-[#5851ea]
           rounded-full
           transition-colors duration-200
