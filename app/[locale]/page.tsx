@@ -10,10 +10,10 @@ export default function HomePage() {
         {/* Hero Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text Content */}
-          <div className="flex flex-col gap-6">
-            {/* Stripe-style Large Headline - 3 lines */}
+          <div className="flex flex-col">
+            {/* Headline - slightly larger */}
             <h1 
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight"
+              className="text-5xl sm:text-6xl lg:text-[5rem] font-bold leading-[1.1] tracking-tight"
               style={{ 
                 fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                 color: '#0a2540'
@@ -24,16 +24,16 @@ export default function HomePage() {
               <span className="block">{t("headline.line3")}</span>
             </h1>
             
-            {/* Subheadline */}
+            {/* Subheadline - more space from headline */}
             <p 
-              className="max-w-xl text-xl sm:text-2xl leading-relaxed"
+              className="mt-8 max-w-xl text-xl sm:text-2xl leading-relaxed"
               style={{ color: '#425466' }}
             >
               {t("subheadline")}
             </p>
 
-            {/* Email Input + CTA */}
-            <div className="flex flex-col gap-4 sm:flex-row mt-4">
+            {/* Email Input + CTA - moved down */}
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               {/* Email Input */}
               <div className="relative flex-1 max-w-md">
                 <input
@@ -71,23 +71,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Secondary Link */}
-            <a
-              className="inline-flex items-center gap-1 text-[#4DB6A0] hover:text-[#3da08c] font-medium transition-colors"
-              href="#services"
-            >
-              {t("cta.secondary")}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </a>
-
-            {/* Trust Bar */}
-            <div className="mt-4 flex flex-wrap gap-6 text-sm" style={{ color: '#425466' }}>
-              <span className="flex items-center gap-2">
-                <span className="text-lg">🇩🇪</span>
-                {t("trust.builtInGermany")}
-              </span>
+            {/* Trust Bar - only GDPR */}
+            <div className="mt-6 flex flex-wrap gap-6 text-sm" style={{ color: '#425466' }}>
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-[#4DB6A0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
