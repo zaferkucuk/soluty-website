@@ -25,8 +25,8 @@ export default function HomePage() {
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       {/* Hero Section */}
       <section style={{ overflowX: 'clip' }}>
-        <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-4 items-center">
+        <div className="mx-auto max-w-7xl px-6 pt-4 pb-16 lg:pt-6 lg:pb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 lg:gap-4 items-center">
             
             {/* Left: Text Content */}
             <div className="flex flex-col">
