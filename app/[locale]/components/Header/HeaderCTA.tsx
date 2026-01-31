@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 
 // ==========================================================================
-// Stripe-style Header Buttons
+// Soluty Brand Color: #4DB6A0
 // ==========================================================================
 
 export function HeaderButtons() {
@@ -13,33 +13,33 @@ export function HeaderButtons() {
 
   return (
     <div className="flex items-center gap-2 lg:gap-3">
-      {/* Login Button - Ghost style (Stripe-inspired) */}
+      {/* Login Button - Ghost style */}
       <Link
         href={`/${locale}/login`}
         className="
           hidden sm:inline-flex items-center justify-center
           px-3 py-1.5 lg:px-4 lg:py-2
           text-base font-normal
-          text-[#425466] hover:text-[#635bff]
+          text-[#425466] hover:text-[#4DB6A0]
           rounded-full
           transition-colors duration-200
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-2
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2
         "
       >
         {t('login')}
       </Link>
 
-      {/* Contact Button - Primary style (Stripe-inspired) */}
+      {/* Contact Button - Primary style (Soluty brand color) */}
       <Link
         href={`/${locale}#contact`}
         className="
           inline-flex items-center justify-center
           px-3 py-1.5 lg:px-4 lg:py-2
           text-base font-normal text-white
-          bg-[#635bff] hover:bg-[#5851ea]
+          bg-[#4DB6A0] hover:bg-[#3da08c]
           rounded-full
           transition-colors duration-200
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635bff] focus-visible:ring-offset-2
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4DB6A0] focus-visible:ring-offset-2
           whitespace-nowrap
         "
       >
