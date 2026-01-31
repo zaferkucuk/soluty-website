@@ -10,6 +10,12 @@ const COLORS = {
   brandPrimary: '#4DB6A0',
 }
 
+// Font constants for inline styles (Tailwind v4 CSS variable workaround)
+const FONTS = {
+  serif: "'Cormorant Garamond', Georgia, 'Times New Roman', serif",
+  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
+}
+
 export default function HomePage() {
   const t = useTranslations("hero");
 
@@ -20,17 +26,28 @@ export default function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text Content */}
           <div className="flex flex-col">
-            {/* Headline - Serif font */}
-            <h1 className="heading-1 text-5xl sm:text-6xl lg:text-[4.5rem]">
+            {/* Headline - Cormorant Garamond (Tiempos alternative) */}
+            <h1 
+              className="heading-1"
+              style={{
+                fontFamily: FONTS.serif,
+                color: COLORS.textPrimary,
+              }}
+            >
               <span className="block">{t("headline.line1")}</span>
               <span className="block">{t("headline.line2")}</span>
               <span className="block">{t("headline.line3")}</span>
             </h1>
             
-            {/* Subheadline - Sans font */}
+            {/* Subheadline - DM Sans */}
             <p 
-              className="body-lg mt-8 max-w-xl text-xl sm:text-2xl"
-              style={{ color: COLORS.textSecondary }}
+              className="body-lg mt-8 max-w-xl"
+              style={{ 
+                fontFamily: FONTS.sans,
+                color: COLORS.textSecondary,
+                fontSize: '20px',
+                lineHeight: 1.6,
+              }}
             >
               {t("subheadline")}
             </p>
@@ -45,6 +62,7 @@ export default function HomePage() {
               <span 
                 className="inline-flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-full"
                 style={{ 
+                  fontFamily: FONTS.sans,
                   backgroundColor: 'rgba(77, 182, 160, 0.1)',
                   color: COLORS.brandPrimary 
                 }}
