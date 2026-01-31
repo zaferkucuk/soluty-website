@@ -25,16 +25,11 @@ export default function HomePage() {
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       {/* Hero Section */}
       <section style={{ overflowX: 'clip' }}>
-        <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
-          {/* 
-            Two-column layout using CSS Grid
-            Left: Text (narrower)
-            Right: Video (wider, overflows right)
-          */}
-          <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-8 lg:gap-4 items-center">
+        <div className="mx-auto max-w-[1600px] pl-6 pr-0 pt-4 pb-12 lg:pt-6 lg:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[540px_1fr] items-center">
             
             {/* Left: Text Content */}
-            <div className="flex flex-col">
+            <div className="flex flex-col pr-6 lg:pr-0">
               <h1 
                 className="heading-1"
                 style={{
@@ -48,22 +43,22 @@ export default function HomePage() {
               </h1>
               
               <p 
-                className="body-lg mt-8 max-w-xl"
+                className="body-lg mt-6 max-w-md"
                 style={{ 
                   fontFamily: FONTS.sans,
                   color: COLORS.textSecondary,
-                  fontSize: '20px',
+                  fontSize: '18px',
                   lineHeight: 1.6,
                 }}
               >
                 {t("subheadline")}
               </p>
 
-              <div className="mt-10">
+              <div className="mt-8">
                 <HeroEmailForm />
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-2">
+              <div className="mt-4 flex flex-wrap items-center gap-2">
                 <svg 
                   className="w-4 h-4" 
                   fill="none" 
@@ -86,10 +81,7 @@ export default function HomePage() {
 
             {/* Right: Video - Large, overflows to right edge */}
             <div className="order-first lg:order-last">
-              <div 
-                className="lg:w-[calc(100%+20vw)]"
-                style={{ maxWidth: '1100px' }}
-              >
+              <div className="w-full">
                 <HeroVideo videoSrc="/videos/hero.webm" />
               </div>
             </div>
@@ -98,7 +90,7 @@ export default function HomePage() {
 
         {/* Temporary Comparison Section */}
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mt-24 pt-16 border-t border-slate-200">
+          <div className="mt-16 pt-12 border-t border-slate-200">
             <h2 className="heading-3 mb-8 text-center">Hero Visual Comparison</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
