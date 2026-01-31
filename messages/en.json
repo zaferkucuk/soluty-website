@@ -65,6 +65,29 @@
       "notifications": "Notifications"
     }
   },
+  "services": {
+    "eyebrow": "OUR SERVICES",
+    "headline": "Digital Solutions for Your Business",
+    "subheadline": "From custom ERP systems to AI integration – we build software that simplifies your processes.",
+    "cards": {
+      "customProjects": {
+        "headline": "Software That Fits You",
+        "description": "Tailored software solutions for complex business processes. We build exactly what you need – nothing more, nothing less.",
+        "cta": "View Our Process"
+      },
+      "customERP": {
+        "badge": "Core Expertise",
+        "headline": "ERP Systems That Grow With You",
+        "description": "Forget rigid off-the-shelf software. Our ERP solutions adapt to your business – today and tomorrow.",
+        "cta": "Explore ERP Solutions"
+      },
+      "aiSolutions": {
+        "headline": "Intelligence for Your Data",
+        "description": "AI solutions that run on your infrastructure. Local, secure, and specifically designed for European businesses.",
+        "cta": "Explore AI Services"
+      }
+    }
+  },
   "metadata": {
     "title": "Soluty GmbH | Custom Software Solutions for Businesses",
     "description": "Manage your business digitally. Simple, efficient, made for you — custom software solutions developed in Germany."
