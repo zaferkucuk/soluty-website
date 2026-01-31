@@ -25,11 +25,12 @@ export default function HomePage() {
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       {/* Hero Section */}
       <section style={{ overflowX: 'clip' }}>
-        <div className="mx-auto max-w-[1600px] pl-6 pr-0 pt-4 pb-12 lg:pt-6 lg:pb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[540px_1fr] items-center">
+        {/* Container aligned with Header: max-w-[1280px] mx-auto px-4 md:px-6 */}
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6 pt-4 pb-12 lg:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-0 items-start">
             
-            {/* Left: Text Content */}
-            <div className="flex flex-col pr-6 lg:pr-0">
+            {/* Left: Text Content - aligned with header logo */}
+            <div className="flex flex-col">
               <h1 
                 className="heading-1"
                 style={{
@@ -79,9 +80,16 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Video - Large, overflows to right edge */}
-            <div className="order-first lg:order-last">
-              <div className="w-full">
+            {/* Right: Video - overflows right edge of viewport */}
+            <div className="order-first lg:order-last lg:relative">
+              {/* Video extends beyond container to viewport edge */}
+              <div 
+                className="lg:absolute lg:left-0 lg:top-0"
+                style={{ 
+                  width: 'calc(50vw - 24px)',
+                  maxWidth: '800px'
+                }}
+              >
                 <HeroVideo videoSrc="/videos/hero.webm" />
               </div>
             </div>
