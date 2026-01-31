@@ -24,67 +24,67 @@ export default function HomePage() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       {/* Hero Section */}
-      <section className="relative" style={{ overflowX: 'clip' }}>
-        {/* Video - Absolute positioned, right half of screen */}
-        <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full">
-          <HeroVideo videoSrc="/videos/hero.webm" />
-        </div>
-
-        {/* Content Container - Same as Header: max-w-[1280px] mx-auto px-4 md:px-6 */}
-        <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-          <div className="py-8 lg:py-16 lg:w-1/2 lg:pr-12">
-            <h1 
-              className="heading-1"
-              style={{
-                fontFamily: FONTS.serif,
-                color: COLORS.textPrimary,
-              }}
-            >
-              <span className="block">{t("headline.line1")}</span>
-              <span className="block">{t("headline.line2")}</span>
-              <span className="block">{t("headline.line3")}</span>
-            </h1>
+      <section style={{ overflowX: 'clip' }}>
+        <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-4 items-center">
             
-            <p 
-              className="body-lg mt-6 max-w-md"
-              style={{ 
-                fontFamily: FONTS.sans,
-                color: COLORS.textSecondary,
-                fontSize: '18px',
-                lineHeight: 1.6,
-              }}
-            >
-              {t("subheadline")}
-            </p>
-
-            <div className="mt-8">
-              <HeroEmailForm />
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center gap-2">
-              <svg 
-                className="w-4 h-4" 
-                fill="none" 
-                stroke={COLORS.brandPrimary} 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span 
-                className="text-sm font-medium"
-                style={{ 
-                  fontFamily: FONTS.sans,
-                  color: COLORS.brandPrimary,
+            {/* Left: Text Content */}
+            <div className="flex flex-col">
+              <h1 
+                className="heading-1"
+                style={{
+                  fontFamily: FONTS.serif,
+                  color: COLORS.textPrimary,
                 }}
               >
-                {t("trust.gdprCompliant")}
-              </span>
-            </div>
-          </div>
+                <span className="block">{t("headline.line1")}</span>
+                <span className="block">{t("headline.line2")}</span>
+                <span className="block">{t("headline.line3")}</span>
+              </h1>
+              
+              <p 
+                className="body-lg mt-6 max-w-md"
+                style={{ 
+                  fontFamily: FONTS.sans,
+                  color: COLORS.textSecondary,
+                  fontSize: '18px',
+                  lineHeight: 1.6,
+                }}
+              >
+                {t("subheadline")}
+              </p>
 
-          {/* Mobile Video - Below text on small screens */}
-          <div className="lg:hidden pb-8">
-            <HeroVideo videoSrc="/videos/hero.webm" />
+              <div className="mt-8">
+                <HeroEmailForm />
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <svg 
+                  className="w-4 h-4" 
+                  fill="none" 
+                  stroke={COLORS.brandPrimary} 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span 
+                  className="text-sm font-medium"
+                  style={{ 
+                    fontFamily: FONTS.sans,
+                    color: COLORS.brandPrimary,
+                  }}
+                >
+                  {t("trust.gdprCompliant")}
+                </span>
+              </div>
+            </div>
+
+            {/* Right: Video - 20% larger than before */}
+            <div className="order-first lg:order-last">
+              <div className="lg:w-[calc(100%+24vw)]" style={{ maxWidth: '1300px' }}>
+                <HeroVideo videoSrc="/videos/hero.webm" />
+              </div>
+            </div>
           </div>
         </div>
 
