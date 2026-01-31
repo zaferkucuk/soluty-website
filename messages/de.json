@@ -65,6 +65,29 @@
       "notifications": "Benachrichtigungen"
     }
   },
+  "services": {
+    "eyebrow": "UNSERE LEISTUNGEN",
+    "headline": "Digitale Lösungen für Ihr Unternehmen",
+    "subheadline": "Von maßgeschneiderten ERP-Systemen bis zur KI-Integration – wir entwickeln Software, die Ihre Prozesse vereinfacht.",
+    "cards": {
+      "customProjects": {
+        "headline": "Software, die zu Ihnen passt",
+        "description": "Maßgeschneiderte Softwarelösungen für komplexe Geschäftsprozesse. Wir entwickeln was Sie brauchen – nicht mehr, nicht weniger.",
+        "cta": "Projektablauf ansehen"
+      },
+      "customERP": {
+        "badge": "Kernkompetenz",
+        "headline": "ERP-Systeme, die mit Ihnen wachsen",
+        "description": "Vergessen Sie starre Standardsoftware. Unsere ERP-Lösungen passen sich Ihrem Unternehmen an – heute und morgen.",
+        "cta": "ERP-Lösungen entdecken"
+      },
+      "aiSolutions": {
+        "headline": "Intelligenz für Ihre Daten",
+        "description": "KI-Lösungen, die in Ihrer Infrastruktur laufen. Lokal, sicher und speziell für deutsche Unternehmen entwickelt.",
+        "cta": "AI-Services erkunden"
+      }
+    }
+  },
   "metadata": {
     "title": "Soluty GmbH | Individuelle ERP-Lösungen für Unternehmen",
     "description": "Führen Sie Ihr Unternehmen digital. Einfach, effizient, individuell — maßgeschneiderte Softwarelösungen entwickelt in Deutschland."
