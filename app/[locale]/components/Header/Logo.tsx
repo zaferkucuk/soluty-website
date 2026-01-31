@@ -18,21 +18,22 @@ export function Logo() {
       className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
       aria-label="Soluty - Home"
     >
-      {/* Logo Icon */}
+      {/* Logo Icon - increased by 20% */}
       <Image
         src="/soluty-icon.svg"
         alt=""
-        width={40}
-        height={40}
-        className="w-9 h-9 md:w-10 md:h-10"
+        width={48}
+        height={48}
+        className="w-11 h-11 md:w-12 md:h-12"
         priority
       />
 
-      {/* Wordmark - DM Sans font */}
+      {/* Wordmark - DM Sans font, increased by 20% (22px → 26px) */}
       <span 
-        className="hidden md:block text-[22px] font-semibold tracking-[0.08em]"
+        className="hidden md:block font-semibold tracking-[0.08em]"
         style={{
           fontFamily: FONTS.sans,
+          fontSize: '26px',
           color: '#32302F',
         }}
       >
