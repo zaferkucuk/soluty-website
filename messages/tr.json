@@ -5,12 +5,13 @@
       "references": "Referanslar",
       "contact": "İletişim"
     },
+    "login": "Giriş",
+    "contact": "İletişim",
     "cta": "Danışmanlık Talep Et",
     "languageSwitcher": {
       "label": "Dil Seçin",
       "de": "DE",
-      "en": "EN",
-      "tr": "TR"
+      "en": "EN"
     },
     "mobileMenu": {
       "open": "Menüyü aç",
