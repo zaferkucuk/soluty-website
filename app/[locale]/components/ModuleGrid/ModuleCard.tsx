@@ -14,7 +14,7 @@ interface ModuleCardProps {
 }
 
 // ==========================================================================
-// Card Style Constants
+// Card Style Constants (Stripe-inspired)
 // ==========================================================================
 
 const CARD_STYLES = {
@@ -23,15 +23,15 @@ const CARD_STYLES = {
   activeScale: 1.1,
   
   // Background colors
-  inactiveBg: '#f6f9fc',
+  inactiveBg: 'transparent',  // Stripe: transparent background for inactive
   activeBg: '#ffffff',
   
   // Shadows
   activeShadow: 'rgba(50, 50, 93, 0.25) 0px 12.6px 25.2px -11.5733px, rgba(0, 0, 0, 0.1) 0px 7.56px 15.12px -7.56px',
   noShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
   
-  // Borders
-  inactiveBorder: '1px solid rgba(0, 0, 0, 0.04)',
+  // Borders (Stripe: visible gray border for inactive cards)
+  inactiveBorder: '1px solid #e6e6e6',  // Stripe-style visible border
   activeBorder: '1px solid rgba(0, 0, 0, 0.06)',
   
   // Label styling
