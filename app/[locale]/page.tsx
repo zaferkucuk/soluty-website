@@ -28,10 +28,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
           {/* 
             Two-column layout using CSS Grid
-            Left: Text (takes content width)
-            Right: Video (overflows to the right edge of viewport)
+            Left: Text (narrower)
+            Right: Video (wider, overflows right)
           */}
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(400px,500px)_1fr] gap-8 lg:gap-4 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-8 lg:gap-4 items-center">
             
             {/* Left: Text Content */}
             <div className="flex flex-col">
@@ -84,16 +84,11 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Video - Overflows to right edge */}
-            <div className="order-first lg:order-last relative">
-              {/* 
-                This wrapper allows the video to overflow beyond the grid column
-                calc(100% + X) makes it wider than its container
-                The section's overflow-x:clip prevents horizontal scrollbar
-              */}
+            {/* Right: Video - Large, overflows to right edge */}
+            <div className="order-first lg:order-last">
               <div 
-                className="lg:w-[calc(100%+12vw)]"
-                style={{ maxWidth: '800px' }}
+                className="lg:w-[calc(100%+20vw)]"
+                style={{ maxWidth: '1100px' }}
               >
                 <HeroVideo videoSrc="/videos/hero.webm" />
               </div>
