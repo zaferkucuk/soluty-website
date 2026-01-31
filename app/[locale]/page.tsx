@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { ModuleGrid } from "./components/ModuleGrid";
 import { HeroEmailForm } from "./components/HeroEmailForm";
 import { HeroVideo } from "./components/HeroVideo";
+import { ServicesSection } from "./components/ServicesSection";
 
 // Design tokens
 const COLORS = {
@@ -22,8 +23,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
-      <main className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
-        
+      {/* Hero Section */}
+      <section className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-12 lg:pb-24">
         {/* Hero Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text Content */}
@@ -133,7 +134,10 @@ export default function HomePage() {
             </ul>
           </div>
         </div>
-      </main>
+      </section>
+
+      {/* Services Section */}
+      <ServicesSection />
     </div>
   );
 }
