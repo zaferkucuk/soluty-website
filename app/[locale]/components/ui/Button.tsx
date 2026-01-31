@@ -15,7 +15,7 @@ import { forwardRef, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
  * - brand: Brand color (#4DB6A0), white text — special emphasis
  * 
  * Sizes:
- * - sm: Compact (header buttons) — Wealthsimple style: ~44-48px height
+ * - sm: Header buttons — Wealthsimple style: ~44-48px height
  * - md: Default (most buttons)
  * - lg: Large (hero CTAs)
  */
@@ -100,11 +100,11 @@ const variantHoverStyles: Record<ButtonVariant, React.CSSProperties> = {
   },
 }
 
-// Updated size styles - Wealthsimple header buttons are ~44-48px height
+// Updated size styles - All sizes increased by 20% for header consistency
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-5 py-3 text-[15px]',      // ~44px height (Wealthsimple header style)
-  md: 'px-6 py-3.5 text-[15px]',    // ~48px height
-  lg: 'px-8 py-4 text-base',        // ~52px height
+  sm: 'px-6 py-3 text-[18px]',      // ~44-48px height, font 15→18px (+20%)
+  md: 'px-7 py-3.5 text-[18px]',    // ~48-52px height
+  lg: 'px-10 py-4 text-[19px]',     // ~52-56px height
 }
 
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
