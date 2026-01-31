@@ -140,18 +140,18 @@ body {
    - 9 weights available (200-900) for maximum flexibility
    - Use weight 400-500 for large headlines
    - Use weight 500-600 for smaller headings
-   - Extra large font sizes for maximum impact (168-216px for hero)
+   - Large font sizes for hero (84-108px)
    ========================================================================== */
 
 /* ---- Headings (Serif - Crimson Pro) ---- */
 
-/* Hero headline - extra large display size */
+/* Hero headline - large display size */
 .heading-1 {
   font-family: var(--font-serif);
-  font-size: 168px;
+  font-size: 84px;
   font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--color-text-primary);
 }
 
@@ -187,7 +187,7 @@ body {
 /* Responsive headings */
 @media (min-width: 640px) {
   .heading-1 {
-    font-size: 192px;
+    font-size: 96px;
   }
   .heading-2 {
     font-size: 48px;
@@ -196,8 +196,8 @@ body {
 
 @media (min-width: 1024px) {
   .heading-1 {
-    font-size: 216px;
-    line-height: 0.92;
+    font-size: 108px;
+    line-height: 1.02;
   }
   .heading-2 {
     font-size: 52px;
@@ -210,8 +210,8 @@ body {
 /* Mobile styles */
 @media (max-width: 639px) {
   .heading-1 {
-    font-size: 126px;
-    line-height: 0.95;
+    font-size: 63px;
+    line-height: 1.05;
   }
   .heading-2 {
     font-size: 32px;
