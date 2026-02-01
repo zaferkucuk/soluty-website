@@ -28,8 +28,13 @@ interface ModuleFeatureCardProps {
 /**
  * Individual module card for the ERP Features section.
  *
- * Desktop: Vertical layout (icon → title → badge → description)
- * Mobile: Horizontal compact layout (icon left, content right)
+ * Layout (both mobile & desktop):
+ *   Row 1: [Icon] [Title] ............... [Category Badge]
+ *   Row 2: [Description]
+ *
+ * Badge color behavior:
+ *   - Inactive/default: standard text color, neutral background
+ *   - Active/hovered: category color with tinted background
  *
  * Reference: docs/sections/erp-features-section-spec.md Section 5
  */
@@ -71,70 +76,60 @@ export const ModuleFeatureCard = forwardRef<HTMLElement, ModuleFeatureCardProps>
           /* Hover: always override inactive */
           'hover:bg-white hover:border-[var(--color-border)] hover:shadow-[var(--shadow-sm)] hover:opacity-100' +
           ' ' +
-          /* Desktop: vertical layout */
-          'p-6 md:p-5 ' +
-          /* Mobile: horizontal compact layout */
-          'flex flex-row items-start gap-3 md:flex-col md:items-stretch md:gap-0'
+          /* Padding */
+          'p-6 md:p-5'
         }
         style={{
           transitionDelay: isVisible ? `${entryDelay}ms` : '0ms',
         }}
         tabIndex={0}
       >
-        {/* Icon */}
-        <div
-          className={
-            'flex-shrink-0 ' +
-            /* Mobile: 32px, Desktop: 40px */
-            'w-8 h-8 md:w-10 md:h-10 md:mb-4'
-          }
-        >
-          <Icon
-            className="w-full h-full"
-            strokeWidth={1.5}
-            style={{
-              color: isActive ? colors.color : 'var(--color-text-secondary)',
-              transition: 'color 250ms ease',
-            }}
-          />
-        </div>
+        {/* Row 1: Icon + Title + Category Badge */}
+        <div className="flex items-center gap-3">
+          {/* Icon */}
+          <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10">
+            <Icon
+              className="w-full h-full"
+              strokeWidth={1.5}
+              style={{
+                color: isActive ? colors.color : 'var(--color-text-secondary)',
+                transition: 'color 250ms ease',
+              }}
+            />
+          </div>
 
-        {/* Content */}
-        <div className="flex-1 min-w-0">
           {/* Title */}
           <h3
-            className="heading-4 !text-lg md:!text-[22px] !leading-tight"
+            className="heading-4 !text-lg md:!text-[22px] !leading-tight flex-1 min-w-0"
             style={{ color: 'var(--color-text-primary)' }}
           >
             {t(module.titleKey)}
           </h3>
 
-          {/* Category Badge */}
-          <div className="mt-1.5 md:mt-2">
-            <span
-              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium"
-              style={{
-                fontFamily: 'var(--font-sans)',
-                letterSpacing: '0.02em',
-                backgroundColor: colors.bg,
-                color: colors.color,
-              }}
-            >
-              {t(module.categoryKey)}
-            </span>
-          </div>
-
-          {/* Description */}
-          <p
-            className="body-sm mt-2 md:mt-3"
+          {/* Category Badge — right-aligned */}
+          <span
+            className="flex-shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium transition-colors duration-250 ease-out"
             style={{
-              lineHeight: 1.6,
-              color: 'var(--color-text-secondary)',
+              fontFamily: 'var(--font-sans)',
+              letterSpacing: '0.02em',
+              backgroundColor: isActive ? colors.bg : 'var(--color-bg-tertiary, rgba(0,0,0,0.04))',
+              color: isActive ? colors.color : 'var(--color-text-secondary)',
             }}
           >
-            {t(module.descriptionKey)}
-          </p>
+            {t(module.categoryKey)}
+          </span>
         </div>
+
+        {/* Row 2: Description */}
+        <p
+          className="body-sm mt-3 md:mt-3"
+          style={{
+            lineHeight: 1.6,
+            color: 'var(--color-text-secondary)',
+          }}
+        >
+          {t(module.descriptionKey)}
+        </p>
       </article>
     );
   }
