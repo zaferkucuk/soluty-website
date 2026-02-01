@@ -11,13 +11,11 @@ interface HeroVideoProps {
 /**
  * HeroVideo Component
  * 
- * Wealthsimple-style hero video with floating mockup fallback.
- * If no video is provided, shows animated placeholder.
+ * Wealthsimple-style hero video that plays once on page load/refresh
+ * and stops on the last frame. No looping.
  * 
  * Usage:
  * <HeroVideo videoSrc="/videos/hero.webm" />
- * or without video (shows animated placeholder):
- * <HeroVideo />
  */
 export function HeroVideo({ videoSrc, posterSrc, className = '' }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -25,12 +23,14 @@ export function HeroVideo({ videoSrc, posterSrc, className = '' }: HeroVideoProp
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current && videoSrc) {
-      videoRef.current.play().catch(() => {
-        // Autoplay might be blocked
-        setHasError(true);
-      });
-    }
+    const video = videoRef.current;
+    if (!video || !videoSrc) return;
+
+    // Ensure video plays once from the start on mount/refresh
+    video.currentTime = 0;
+    video.play().catch(() => {
+      setHasError(true);
+    });
   }, [videoSrc]);
 
   const showPlaceholder = !videoSrc || hasError || !isVideoLoaded;
@@ -46,7 +46,6 @@ export function HeroVideo({ videoSrc, posterSrc, className = '' }: HeroVideoProp
           }`}
           src={videoSrc}
           poster={posterSrc}
-          autoPlay
           muted
           playsInline
           onLoadedData={() => setIsVideoLoaded(true)}
@@ -54,7 +53,7 @@ export function HeroVideo({ videoSrc, posterSrc, className = '' }: HeroVideoProp
         />
       )}
 
-      {/* Animated Placeholder (Wealthsimple-style floating mockups) */}
+      {/* Animated Placeholder (fallback) */}
       {showPlaceholder && (
         <div className="absolute inset-0 flex items-center justify-center">
           <FloatingMockups />
