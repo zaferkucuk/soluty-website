@@ -21,18 +21,17 @@ const FONTS = {
  * Services Section
  * 
  * Displays 3 service cards in a grid layout:
- * - Desktop: 3 columns (Custom Projects | Custom ERP | AI Solutions)
+ * - Desktop: 3 columns (Custom Projects | Custom ERP [center, elevated] | AI Solutions)
  * - Mobile: 1 column (Custom ERP first for hierarchy)
  * 
- * Custom ERP is visually highlighted with accent border.
- * 
- * Dark background (#5C5A58) with white text for section header.
- * Cards remain white with dark text for readability.
+ * Custom ERP is the core service — positioned center and visually elevated.
  */
 export function ServicesSection() {
   const t = useTranslations('services');
 
-  // Service card data - order matters for mobile (ERP first)
+  // Service card data
+  // Desktop order: Projects (1) | ERP (2, center) | AI (3)
+  // Mobile order: ERP first (1) for hierarchy
   const services = [
     {
       id: 'customProjects',
@@ -46,7 +45,7 @@ export function ServicesSection() {
       icon: Database,
       isHighlighted: true,
       desktopOrder: 2,
-      mobileOrder: 1, // First on mobile
+      mobileOrder: 1,
     },
     {
       id: 'aiSolutions',
@@ -106,19 +105,22 @@ export function ServicesSection() {
           </p>
         </header>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
+        {/* Cards Grid — center card elevated */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 md:items-center">
           {sortedServices.map((service, index) => (
             <div
               key={service.id}
               className={`
                 ${service.mobileOrder === 1 ? 'order-first' : ''}
-                md:order-none
+                ${service.isHighlighted ? 'md:order-2' : ''}
+                ${service.desktopOrder === 1 ? 'md:order-1' : ''}
+                ${service.desktopOrder === 3 ? 'md:order-3' : ''}
               `}
-              style={{
-                // Desktop order via CSS custom property
-                '--desktop-order': service.desktopOrder,
-              } as React.CSSProperties}
+              style={service.isHighlighted ? {
+                transform: 'scale(1.05)',
+                zIndex: 2,
+                position: 'relative' as const,
+              } : undefined}
             >
               <ServiceCard
                 icon={service.icon}
@@ -128,7 +130,7 @@ export function ServicesSection() {
                 ctaHref={`#${service.id}`}
                 badge={service.isHighlighted ? t(`cards.${service.id}.badge`) : undefined}
                 isHighlighted={service.isHighlighted}
-                animationDelay={index * 0.1}
+                animationDelay={service.isHighlighted ? 0 : (service.desktopOrder === 1 ? 0.1 : 0.2)}
               />
             </div>
           ))}
