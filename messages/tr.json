@@ -65,6 +65,78 @@
       "notifications": "Bildirimler"
     }
   },
+  "erpFeatures": {
+    "eyebrow": "ERP MODÜLLERİ",
+    "headline": "Teslimat işiniz için gereken her araç — tek bir çözümde",
+    "subheadline": "Sipariş girişinden faturalamaya: sorunsuz çalışan ve iş akışınıza uyum sağlayan 13 modül.",
+    "modules": {
+      "orders": {
+        "title": "Siparişler",
+        "category": "Sipariş Yönetimi",
+        "description": "Tüm siparişleri merkezi olarak girin, yönetin ve takip edin. Alımdan teslimata — gerçek zamanlı durum güncellemeleri ile."
+      },
+      "sales": {
+        "title": "Satışlar",
+        "category": "Satış & Faturalama",
+        "description": "Fiyat listeleri, teklifler ve satış süreçlerini dijitalleştirin. Otomatik hesaplama ve faturalamaya sorunsuz aktarım."
+      },
+      "planning": {
+        "title": "İş Planlama",
+        "category": "Lojistik",
+        "description": "Günlük planlama, kapasite görünümü ve kaynak atama tek bakışta. Birden fazla ekipli teslimat operasyonları için optimize edildi."
+      },
+      "route": {
+        "title": "Rota Planlama",
+        "category": "Lojistik",
+        "description": "Daha kısa mesafeler ve daha az yakıt için akıllı rota optimizasyonu. Zaman pencerelerini, araç kapasitesini ve trafiği hesaba katar."
+      },
+      "crm": {
+        "title": "CRM",
+        "category": "Müşteri İlişkileri",
+        "description": "Müşteri verileri, iletişim geçmişi ve tercihleri merkezi olarak yönetin. Eksiksiz müşteri görünümü ile daha iyi hizmet."
+      },
+      "warehouse": {
+        "title": "Depo Yönetimi",
+        "category": "Envanter",
+        "description": "Stok seviyelerini gerçek zamanlı izleyin, minimum stok tanımlayın ve otomatik yeniden sipariş tetikleyin."
+      },
+      "products": {
+        "title": "Ürünler",
+        "category": "Envanter",
+        "description": "Varyantlar, fiyat katmanları ve tedarikçi bilgileri içeren ürün kataloğu. Hızlı arama ve esnek kategorizasyon."
+      },
+      "delivery": {
+        "title": "Teslimat",
+        "category": "Lojistik",
+        "description": "Teslimat durumunu gerçek zamanlı takip edin, teslimat kanıtlarını dijital olarak alın ve müşterileri otomatik bilgilendirin."
+      },
+      "cashbox": {
+        "title": "Kasa Takibi",
+        "category": "Finans",
+        "description": "Günlük kasa kapanışları, nakit yönetimi ve banka hareketleri ile mutabakat. Paranızın nerede olduğunu her zaman bilin."
+      },
+      "waybillInvoice": {
+        "title": "İrsaliye & Fatura",
+        "category": "Satış & Faturalama",
+        "description": "Siparişlerden otomatik olarak irsaliye ve fatura oluşturun. Yasal uyumlu ve mali müşaviriniz için hazır."
+      },
+      "payments": {
+        "title": "Ödeme Takibi",
+        "category": "Finans",
+        "description": "Açık kalemleri izleyin, gelen ödemeleri otomatik eşleştirin ve geciken tutarlar için hatırlatma tetikleyin."
+      },
+      "reporting": {
+        "title": "Raporlama & Dashboard",
+        "category": "Müşteri İlişkileri",
+        "description": "Tüm iş alanları için özelleştirilebilir panolar ve raporlar. Gelir analizlerinden sürücü performansına."
+      },
+      "expenses": {
+        "title": "Masraf Yönetimi",
+        "category": "Finans",
+        "description": "İşletme giderlerini kaydedin, kategorilendirin ve analiz edin. Yakıt, bakım, personel — hepsi tek yerde."
+      }
+    }
+  },
   "metadata": {
     "title": "Soluty GmbH | İşletmeler için Özel Yazılım Çözümleri",
     "description": "İşinizi dijital olarak yönetin. Basit, etkili, size özel — Almanya'da geliştirilen özel yazılım çözümleri."
