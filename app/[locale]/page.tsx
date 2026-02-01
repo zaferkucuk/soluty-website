@@ -26,10 +26,10 @@ export default function HomePage() {
       {/* Hero Section */}
       <section style={{ overflowX: 'clip' }}>
         <div className="mx-auto max-w-7xl px-6 pt-4 pb-16 lg:pt-6 lg:pb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 lg:gap-4 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 lg:gap-4 items-start">
             
             {/* Left: Text Content */}
-            <div className="flex flex-col">
+            <div className="flex flex-col lg:pt-8">
               <h1 
                 className="heading-1"
                 style={{
@@ -79,8 +79,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Video */}
-            <div className="order-first lg:order-last">
+            {/* Right: Video — self-center so it visually overflows without inflating grid row height */}
+            <div className="order-first lg:order-last lg:self-center">
               <div className="lg:w-[calc(100%+24vw)]" style={{ maxWidth: '1300px' }}>
                 <HeroVideo videoSrc="/videos/hero.webm" />
               </div>
