@@ -131,17 +131,18 @@ soluty-website/
 
 ## Homepage Wireframe
 
-**Status:** Approved (v2.0)  
+**Status:** Approved (v3.0)  
 **Reference:** [`docs/wireframe.md`](docs/wireframe.md)
 
 **Structure:**
 - ✅ Header — Implemented
 1. ✅ Hero — Implemented
 2. ⬜ Problem Statement — Not started
-3. ⬜ Services — Not started
-4. ⬜ Why Custom ERP — Not started
-5. ⬜ References — Not started
-6. ⬜ Final CTA — Not started
+3. ✅ Services — Implemented
+4. 📋 ERP Features — Spec ready (`docs/sections/erp-features-section-spec.md`)
+5. ⬜ Why Custom Software — Not started
+6. ⬜ References — Not started
+7. ⬜ Final CTA — Not started
 - ⬜ Footer — Not started
 
 ---
