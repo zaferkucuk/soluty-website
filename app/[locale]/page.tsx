@@ -90,7 +90,7 @@ export default function HomePage() {
 
         {/* Temporary Comparison Section */}
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mt-16 pt-12 border-t border-[var(--color-text-secondary)]">
+          <div className="mt-16 pt-12 border-t border-slate-200">
             <h2 className="heading-3 mb-8 text-center">Hero Visual Comparison</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
