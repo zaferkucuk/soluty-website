@@ -58,10 +58,9 @@ export function Header() {
           sticky top-0 z-50
           bg-[var(--color-bg-primary)]
           transition-shadow duration-200
-          border-b border-[var(--color-text-secondary)]
+          border-b border-slate-200
           ${isScrolled ? 'shadow-[var(--shadow-md)]' : ''}
         `}
-        style={{ borderBottomWidth: '1px' }}
       >
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-20 lg:h-[88px]">
