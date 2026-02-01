@@ -65,6 +65,78 @@
       "notifications": "Benachrichtigungen"
     }
   },
+  "erpFeatures": {
+    "eyebrow": "ERP-MODULE",
+    "headline": "Alle Werkzeuge für Ihr Liefergeschäft — in einer Lösung",
+    "subheadline": "Von der Auftragserfassung bis zur Rechnungsstellung: 13 Module, die nahtlos zusammenarbeiten und sich an Ihren Workflow anpassen.",
+    "modules": {
+      "orders": {
+        "title": "Aufträge",
+        "category": "Auftragsverwaltung",
+        "description": "Alle Aufträge zentral erfassen, verwalten und verfolgen. Vom Eingang bis zur Auslieferung — mit Echtzeit-Statusaktualisierung."
+      },
+      "sales": {
+        "title": "Verkauf",
+        "category": "Vertrieb & Abrechnung",
+        "description": "Preislisten, Angebote und Vertriebsprozesse digitalisieren. Automatische Kalkulation und nahtlose Übergabe an die Fakturierung."
+      },
+      "planning": {
+        "title": "Planung",
+        "category": "Logistik",
+        "description": "Tagesplanung, Kapazitätsübersicht und Ressourcenzuweisung in einem Blick. Optimiert für Lieferbetriebe mit mehreren Teams."
+      },
+      "route": {
+        "title": "Routenplanung",
+        "category": "Logistik",
+        "description": "Intelligente Routenoptimierung für kürzere Wege und weniger Kraftstoff. Berücksichtigt Zeitfenster, Fahrzeugkapazität und Verkehr."
+      },
+      "crm": {
+        "title": "CRM",
+        "category": "Kundenbeziehungen",
+        "description": "Kundendaten, Kommunikationshistorie und Präferenzen zentral verwalten. Besserer Service durch vollständige Kundenübersicht."
+      },
+      "warehouse": {
+        "title": "Lagerverwaltung",
+        "category": "Bestandsmanagement",
+        "description": "Lagerbestände in Echtzeit überwachen, Mindestbestände definieren und automatische Nachbestellungen auslösen."
+      },
+      "products": {
+        "title": "Produkte",
+        "category": "Bestandsmanagement",
+        "description": "Produktkatalog mit Varianten, Preisstufen und Lieferanteninformationen. Schnelle Suche und flexible Kategorisierung."
+      },
+      "delivery": {
+        "title": "Lieferung",
+        "category": "Logistik",
+        "description": "Lieferstatus in Echtzeit verfolgen, Zustellnachweise digital erfassen und Kunden automatisch benachrichtigen."
+      },
+      "cashbox": {
+        "title": "Kasse",
+        "category": "Finanzen",
+        "description": "Tägliche Kassenabschlüsse, Bargeldverwaltung und Abgleich mit Bankbewegungen. Immer wissen, wo Ihr Geld ist."
+      },
+      "waybillInvoice": {
+        "title": "Lieferschein & Rechnung",
+        "category": "Vertrieb & Abrechnung",
+        "description": "Lieferscheine und Rechnungen automatisch aus Aufträgen generieren. GoBD-konform und bereit für Ihre Steuerberatung."
+      },
+      "payments": {
+        "title": "Zahlungsverfolgung",
+        "category": "Finanzen",
+        "description": "Offene Posten überwachen, Zahlungseingänge automatisch zuordnen und Mahnungen bei Verzug auslösen."
+      },
+      "reporting": {
+        "title": "Berichte & Dashboard",
+        "category": "Kundenbeziehungen",
+        "description": "Individuelle Dashboards und Berichte für alle Unternehmensbereiche. Von Umsatzanalysen bis zur Fahrerleistung."
+      },
+      "expenses": {
+        "title": "Ausgabenverwaltung",
+        "category": "Finanzen",
+        "description": "Betriebsausgaben erfassen, kategorisieren und auswerten. Kraftstoff, Wartung, Personal — alles an einem Ort."
+      }
+    }
+  },
   "services": {
     "eyebrow": "UNSERE LEISTUNGEN",
     "headline": "Digitale Lösungen für Ihr Unternehmen",
