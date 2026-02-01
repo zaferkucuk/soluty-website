@@ -65,6 +65,78 @@
       "notifications": "Notifications"
     }
   },
+  "erpFeatures": {
+    "eyebrow": "ERP MODULES",
+    "headline": "Every tool your delivery business needs — in one solution",
+    "subheadline": "From order entry to invoicing: 13 modules that work together seamlessly and adapt to your workflow.",
+    "modules": {
+      "orders": {
+        "title": "Orders",
+        "category": "Order Management",
+        "description": "Capture, manage, and track all orders centrally. From receipt to delivery — with real-time status updates."
+      },
+      "sales": {
+        "title": "Sales",
+        "category": "Sales & Billing",
+        "description": "Digitize price lists, quotes, and sales processes. Automatic calculation and seamless handoff to invoicing."
+      },
+      "planning": {
+        "title": "Planning",
+        "category": "Logistics",
+        "description": "Daily planning, capacity overview, and resource allocation at a glance. Optimized for delivery operations with multiple teams."
+      },
+      "route": {
+        "title": "Route Planning",
+        "category": "Logistics",
+        "description": "Intelligent route optimization for shorter distances and less fuel. Considers time windows, vehicle capacity, and traffic."
+      },
+      "crm": {
+        "title": "CRM",
+        "category": "Customer Relations",
+        "description": "Centrally manage customer data, communication history, and preferences. Better service through complete customer overview."
+      },
+      "warehouse": {
+        "title": "Warehouse",
+        "category": "Inventory",
+        "description": "Monitor inventory levels in real time, define minimum stock, and trigger automatic reorders."
+      },
+      "products": {
+        "title": "Products",
+        "category": "Inventory",
+        "description": "Product catalog with variants, price tiers, and supplier info. Fast search and flexible categorization."
+      },
+      "delivery": {
+        "title": "Delivery",
+        "category": "Logistics",
+        "description": "Track delivery status in real time, capture proof of delivery digitally, and notify customers automatically."
+      },
+      "cashbox": {
+        "title": "Cash Tracking",
+        "category": "Finance",
+        "description": "Daily cash closing, cash management, and reconciliation with bank transactions. Always know where your money is."
+      },
+      "waybillInvoice": {
+        "title": "Waybill & Invoice",
+        "category": "Sales & Billing",
+        "description": "Automatically generate waybills and invoices from orders. GoBD-compliant and ready for your tax advisor."
+      },
+      "payments": {
+        "title": "Payment Tracking",
+        "category": "Finance",
+        "description": "Monitor open items, automatically match incoming payments, and trigger reminders for overdue amounts."
+      },
+      "reporting": {
+        "title": "Reports & Dashboard",
+        "category": "Customer Relations",
+        "description": "Custom dashboards and reports for all business areas. From revenue analytics to driver performance."
+      },
+      "expenses": {
+        "title": "Expense Management",
+        "category": "Finance",
+        "description": "Record, categorize, and analyze operating expenses. Fuel, maintenance, personnel — all in one place."
+      }
+    }
+  },
   "services": {
     "eyebrow": "OUR SERVICES",
     "headline": "Digital Solutions for Your Business",
