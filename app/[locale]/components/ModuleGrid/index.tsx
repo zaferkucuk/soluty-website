@@ -160,8 +160,8 @@ export function ModuleGrid({
     >
       {/* Connection Lines SVG */}
       <ConnectionLines
-        activeGroupId={effectiveGroupId}
-        visibleModuleIds={effectiveVisibleIds}
+        activeGroupId={activeGroupId}
+        visibleModuleIds={visibleModuleIds}
         gridWidth={gridDimensions.width}
         gridHeight={gridDimensions.height}
         cardSize={cardSize}
