@@ -58,11 +58,10 @@ export function Header() {
           sticky top-0 z-50
           bg-[var(--color-bg-primary)]
           transition-shadow duration-200
-          border-b border-slate-200
           ${isScrolled ? 'shadow-[var(--shadow-md)]' : ''}
         `}
       >
-        <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6 border-b border-slate-200">
           <div className="flex items-center justify-between h-20 lg:h-[88px]">
             {/* Left: Mobile Menu Toggle + Logo + Navigation (aligned left) */}
             <div className="flex items-center gap-2 lg:gap-10">
