@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { ModuleGrid } from "./components/ModuleGrid";
 import { HeroEmailForm } from "./components/HeroEmailForm";
 import { HeroVideo } from "./components/HeroVideo";
 import { ServicesSection } from "./components/ServicesSection";
@@ -80,53 +79,11 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Video - 20% larger than before */}
+            {/* Right: Video */}
             <div className="order-first lg:order-last">
               <div className="lg:w-[calc(100%+24vw)]" style={{ maxWidth: '1300px' }}>
                 <HeroVideo videoSrc="/videos/hero.webm" />
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Temporary Comparison Section */}
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mt-16 pt-12 border-t border-slate-200">
-            <h2 className="heading-3 mb-8 text-center">Hero Visual Comparison</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-6 bg-white rounded-xl shadow-lg">
-                <h3 className="text-lg font-semibold mb-4 text-center">
-                  Option A: ModuleGrid
-                  <span className="block text-sm font-normal text-slate-500">
-                    (Stripe-inspired, current)
-                  </span>
-                </h3>
-                <div className="flex justify-center">
-                  <ModuleGrid />
-                </div>
-              </div>
-
-              <div className="p-6 bg-white rounded-xl shadow-lg">
-                <h3 className="text-lg font-semibold mb-4 text-center">
-                  Option B: HeroVideo
-                  <span className="block text-sm font-normal text-slate-500">
-                    (Wealthsimple-style, with video)
-                  </span>
-                </h3>
-                <div className="flex justify-center">
-                  <HeroVideo videoSrc="/videos/hero.webm" />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 p-6 bg-teal-50 rounded-xl border border-teal-200">
-              <h4 className="font-semibold mb-2 text-teal-800">🤔 Hangi yaklaşımı tercih ediyorsun?</h4>
-              <ul className="space-y-2 text-sm text-teal-700">
-                <li><strong>Option A (ModuleGrid):</strong> Soluty&apos;ye özel, ERP modüllerini gösteren interaktif görsel</li>
-                <li><strong>Option B (Video):</strong> Premium hissi veren, profesyonel video animasyonu</li>
-                <li><strong>Hibrit:</strong> ModuleGrid&apos;i video gibi animate edebiliriz (daha fazla çalışma gerektirir)</li>
-              </ul>
             </div>
           </div>
         </div>
