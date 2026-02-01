@@ -3,6 +3,7 @@ import { ModuleGrid } from "./components/ModuleGrid";
 import { HeroEmailForm } from "./components/HeroEmailForm";
 import { HeroVideo } from "./components/HeroVideo";
 import { ServicesSection } from "./components/ServicesSection";
+import { ERPFeaturesSection } from "./components/ERPFeaturesSection";
 
 // Design tokens
 const COLORS = {
@@ -133,6 +134,9 @@ export default function HomePage() {
 
       {/* Services Section */}
       <ServicesSection />
+
+      {/* ERP Features Section */}
+      <ERPFeaturesSection />
     </div>
   );
 }

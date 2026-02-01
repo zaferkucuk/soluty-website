@@ -37,25 +37,39 @@ function useMediaQuery(query: string): boolean {
 // Sequential Activation Configuration
 // ==========================================================================
 
-/**
- * Timing configuration for card animations:
- * - Cards appear one by one with short delays
- * - Group stays fully visible for display duration
- * - Cards disappear in reverse order
- * - 0.4 second pause between groups
- */
 const SEQUENTIAL_CONFIG = {
-  cardActivationDelay: 200,      // 200ms between each card appearing
-  groupDisplayDuration: 2500,    // 2.5s all cards visible
-  groupTransitionDelay: 400,     // 0.4s pause between groups
-  cardDeactivationDelay: 150,    // 150ms between each card disappearing
+  cardActivationDelay: 200,
+  groupDisplayDuration: 2500,
+  groupTransitionDelay: 400,
+  cardDeactivationDelay: 150,
 };
+
+// ==========================================================================
+// ModuleGrid Props Interface
+// ==========================================================================
+
+interface ModuleGridProps {
+  /**
+   * Highlight mode:
+   * - 'auto-cycle': Default — groups rotate automatically (3.5s per group)
+   * - 'scroll-linked': External control — auto-cycle pauses, highlightTargets used
+   */
+  highlightMode?: 'auto-cycle' | 'scroll-linked';
+  /**
+   * Module IDs to highlight when in scroll-linked mode.
+   * Ignored when highlightMode is 'auto-cycle'.
+   */
+  highlightTargets?: string[];
+}
 
 // ==========================================================================
 // ModuleGrid Component
 // ==========================================================================
 
-export function ModuleGrid() {
+export function ModuleGrid({
+  highlightMode = 'auto-cycle',
+  highlightTargets = [],
+}: ModuleGridProps) {
   const t = useTranslations('moduleGrid.modules');
   const tGrid = useTranslations('moduleGrid');
   const shouldReduceMotion = useReducedMotion() ?? false;
@@ -96,7 +110,7 @@ export function ModuleGrid() {
     [columns, rows, cardSize, gap]
   );
   
-  // Sequential activation state - cards appear/disappear one by one
+  // Sequential activation state — runs in auto-cycle mode
   const { visibleModuleIds, activeGroupId } = useSequentialActivation(
     SEQUENTIAL_CONFIG,
     shouldReduceMotion
@@ -105,8 +119,33 @@ export function ModuleGrid() {
   // Hover state
   const [hoveredModuleId, setHoveredModuleId] = useState<string | null>(null);
   
-  // Check if module is currently visible (active)
-  const isModuleActive = (moduleId: string) => visibleModuleIds.includes(moduleId);
+  // Determine if a module is active based on current mode
+  const isModuleActive = (moduleId: string): boolean => {
+    if (highlightMode === 'scroll-linked' && highlightTargets.length > 0) {
+      // Scroll-linked: only highlight specified targets
+      return highlightTargets.includes(moduleId);
+    }
+    // Auto-cycle: use sequential activation
+    return visibleModuleIds.includes(moduleId);
+  };
+
+  // Determine active group ID for ConnectionLines
+  const effectiveGroupId = useMemo(() => {
+    if (highlightMode === 'scroll-linked' && highlightTargets.length > 0) {
+      // Find which group the highlighted modules belong to
+      const targetModule = modules.find((m) => highlightTargets.includes(m.id));
+      return targetModule ? targetModule.groupId : activeGroupId;
+    }
+    return activeGroupId;
+  }, [highlightMode, highlightTargets, activeGroupId]);
+
+  // Effective visible module IDs for ConnectionLines
+  const effectiveVisibleIds = useMemo(() => {
+    if (highlightMode === 'scroll-linked' && highlightTargets.length > 0) {
+      return highlightTargets;
+    }
+    return visibleModuleIds;
+  }, [highlightMode, highlightTargets, visibleModuleIds]);
   
   return (
     <div
@@ -119,10 +158,10 @@ export function ModuleGrid() {
       aria-label={tGrid('ariaLabel')}
       aria-live="polite"
     >
-      {/* Connection Lines SVG - behind cards, only for active group */}
+      {/* Connection Lines SVG */}
       <ConnectionLines
-        activeGroupId={activeGroupId}
-        visibleModuleIds={visibleModuleIds}
+        activeGroupId={effectiveGroupId}
+        visibleModuleIds={effectiveVisibleIds}
         gridWidth={gridDimensions.width}
         gridHeight={gridDimensions.height}
         cardSize={cardSize}
@@ -139,7 +178,6 @@ export function ModuleGrid() {
         }}
       >
         {modules.map((module) => {
-          // Get position based on mobile or desktop
           const position = isMobile
             ? mobileGridPositions[module.id]
             : module.gridPosition;
