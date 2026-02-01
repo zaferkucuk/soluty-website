@@ -6,10 +6,10 @@ import { ServiceCard } from './ServiceCard';
 
 // Design tokens
 const COLORS = {
-  textPrimary: '#32302F',
-  textSecondary: '#5C5A58',
+  textInverse: '#FFFFFF',
+  textInverseSecondary: 'rgba(255, 255, 255, 0.75)',
   brandPrimary: '#4DB6A0',
-  bgSecondary: '#F7F6F5',
+  bgSection: '#5C5A58',
 };
 
 const FONTS = {
@@ -25,6 +25,9 @@ const FONTS = {
  * - Mobile: 1 column (Custom ERP first for hierarchy)
  * 
  * Custom ERP is visually highlighted with accent border.
+ * 
+ * Dark background (#5C5A58) with white text for section header.
+ * Cards remain white with dark text for readability.
  */
 export function ServicesSection() {
   const t = useTranslations('services');
@@ -61,7 +64,7 @@ export function ServicesSection() {
     <section
       id="services"
       className="py-12 md:py-16 lg:py-24"
-      style={{ backgroundColor: COLORS.bgSecondary }}
+      style={{ backgroundColor: COLORS.bgSection }}
       aria-labelledby="services-heading"
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-16">
@@ -85,7 +88,7 @@ export function ServicesSection() {
             className="heading-2 mb-4 md:mb-5"
             style={{
               fontFamily: FONTS.serif,
-              color: COLORS.textPrimary,
+              color: COLORS.textInverse,
             }}
           >
             {t('headline')}
@@ -96,7 +99,7 @@ export function ServicesSection() {
             className="body-lg max-w-2xl mx-auto"
             style={{
               fontFamily: FONTS.sans,
-              color: COLORS.textSecondary,
+              color: COLORS.textInverseSecondary,
             }}
           >
             {t('subheadline')}
