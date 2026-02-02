@@ -9,7 +9,7 @@ const COLORS = {
   textInverse: '#FFFFFF',
   textInverseSecondary: 'rgba(255, 255, 255, 0.75)',
   brandPrimary: '#4DB6A0',
-  bgSection: '#5C5A58',
+  bgSection: '#32302F',
 };
 
 const FONTS = {
@@ -87,7 +87,7 @@ export function ServicesSection() {
           background: `
             linear-gradient(180deg, ${COLORS.bgSection} 0%, transparent 20%),
             linear-gradient(0deg, ${COLORS.bgSection} 0%, transparent 20%),
-            linear-gradient(180deg, rgba(92,90,88,0.55) 0%, rgba(92,90,88,0.4) 100%)
+            linear-gradient(180deg, rgba(50,48,47,0.55) 0%, rgba(50,48,47,0.4) 100%)
           `,
         }}
       />
