@@ -8,6 +8,8 @@ const COLORS = {
   textPrimary: '#32302F',
   textInverse: '#FFFFFF',
   textMuted: '#8A8785',
+  bgDark: '#0F2A39',
+  bgDarkHover: '#0A1F2B',
   brandPrimary: '#4DB6A0',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
 }
@@ -55,10 +57,10 @@ export function HeroEmailForm() {
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4DB6A0]
         "
         style={{ 
-          backgroundColor: isHovered ? '#1a1918' : COLORS.textPrimary,
+          backgroundColor: isHovered ? COLORS.bgDarkHover : COLORS.bgDark,
           color: COLORS.textInverse,
           transform: `translateY(-50%)${isHovered ? ' translateY(-1px)' : ''}`,
-          boxShadow: isHovered ? '0 4px 12px rgba(50, 48, 47, 0.2)' : 'none',
+          boxShadow: isHovered ? '0 4px 12px rgba(15, 42, 57, 0.3)' : 'none',
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
