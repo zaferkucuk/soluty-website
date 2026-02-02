@@ -41,7 +41,7 @@ function LocaleButton({
       className="px-2 py-1 rounded transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-1"
       style={{
         fontFamily: FONTS.sans,
-        fontSize: '19px', // 16px * 1.2 = 19px (+20%)
+        fontSize: '18px',
         fontWeight: isActive ? 600 : 500,
         color: isActive 
           ? COLORS.textPrimary 
@@ -85,7 +85,7 @@ export function LanguageSwitcher() {
       role="group"
       aria-label={t('label')}
       className="flex items-center gap-1"
-      style={{ fontFamily: FONTS.sans, fontSize: '19px' }}
+      style={{ fontFamily: FONTS.sans, fontSize: '18px' }}
     >
       {locales.map((locale, index) => (
         <span key={locale} className="flex items-center">
