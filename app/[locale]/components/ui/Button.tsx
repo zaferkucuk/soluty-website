@@ -9,7 +9,7 @@ import { forwardRef, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
  * Inspired by Wealthsimple's button design system
  * 
  * Variants:
- * - primary: Dark background (#32302F), white text — main CTAs
+ * - primary: Dark petrol background (#0F2A39), white text — main CTAs
  * - secondary: White background, dark border — secondary actions
  * - ghost: Transparent, dark text — tertiary actions (nav links)
  * - brand: Brand color (#4DB6A0), white text — special emphasis
@@ -25,6 +25,8 @@ const COLORS = {
   textPrimary: '#32302F',
   textInverse: '#FFFFFF',
   bgPrimary: '#FCFCFC',
+  bgDark: '#0F2A39',
+  bgDarkHover: '#0A1F2B',
   brandPrimary: '#4DB6A0',
   brandHover: '#3DA08C',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
@@ -59,7 +61,7 @@ export type ButtonProps = ButtonAsButton | ButtonAsLink
 // Style configurations
 const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
   primary: {
-    backgroundColor: COLORS.textPrimary,
+    backgroundColor: COLORS.bgDark,
     color: COLORS.textInverse,
     border: 'none',
   },
@@ -82,9 +84,9 @@ const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
 
 const variantHoverStyles: Record<ButtonVariant, React.CSSProperties> = {
   primary: {
-    backgroundColor: '#1a1918',
+    backgroundColor: COLORS.bgDarkHover,
     transform: 'translateY(-1px)',
-    boxShadow: '0 4px 12px rgba(50, 48, 47, 0.2)',
+    boxShadow: '0 4px 12px rgba(15, 42, 57, 0.3)',
   },
   secondary: {
     backgroundColor: '#F7F6F5',
