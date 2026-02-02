@@ -139,6 +139,28 @@
       }
     }
   },
+  "footer": {
+    "companyDescription": "Küçük ve orta ölçekli işletmeler için özel yazılım çözümleri. Almanya'da geliştirilen, kalite ve veri güvenliğine odaklanan çözümler.",
+    "servicesTitle": "Hizmetler",
+    "services": {
+      "customErp": "Özel ERP Sistemleri",
+      "customProjects": "Kurumsal Yazılım Projeleri",
+      "aiSolutions": "Yapay Zeka Çözümleri"
+    },
+    "contactTitle": "İletişim",
+    "address": "Duisburg, Almanya",
+    "legalTitle": "Yasal",
+    "legal": {
+      "imprint": "Künye",
+      "privacy": "Gizlilik Politikası"
+    },
+    "social": {
+      "linkedin": "LinkedIn'de Soluty",
+      "github": "GitHub'da Soluty"
+    },
+    "copyright": "Tüm hakları saklıdır.",
+    "madeInGermany": "Almanya'da geliştirildi"
+  },
   "metadata": {
     "title": "Soluty GmbH | İşletmeler için Özel Yazılım Çözümleri",
     "description": "İşinizi dijital olarak yönetin. Basit, etkili, size özel — Almanya'da geliştirilen özel yazılım çözümleri."
