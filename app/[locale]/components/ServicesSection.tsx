@@ -9,7 +9,7 @@ import { ServiceCard } from './ServiceCard';
 // Adjust playbackRate to change video speed:
 //   1.0 = normal | 0.8 = 80% (slower) | 0.6 = 60% | 0.5 = half speed
 const VIDEO_CONFIG = {
-  playbackRate: 0.8,
+  playbackRate: 0.3,
 };
 
 // Design tokens
