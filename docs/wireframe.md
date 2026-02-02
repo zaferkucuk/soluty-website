@@ -14,6 +14,7 @@
 | Hero | Value proposition, SME digitalization focus, Made in Germany badge |
 | Problem Statement | SME digitalization pain points (6 items) |
 | Services | 3 equal services (Custom ERP highlighted) |
+| ERP Features | Interactive module grid showcasing ERP capabilities |
 | Why Custom Software | Comparison: Standard vs Custom solutions |
 | References | 3 projects with integrated testimonials |
 | Final CTA | Consultation booking, contact info |
@@ -96,7 +97,15 @@
 
 ---
 
-### 5. Why Custom Software
+### 5. ERP Features
+
+**Purpose:** Showcase ERP module capabilities with interactive visualization
+
+**Spec:** `docs/sections/erp-features-section-spec.md`
+
+---
+
+### 6. Why Custom Software
 
 **Purpose:** Differentiation, overcome objections
 
@@ -114,7 +123,7 @@
 
 ---
 
-### 6. References
+### 7. References
 
 **Purpose:** Social proof, credibility
 
@@ -130,7 +139,7 @@
 
 ---
 
-### 7. Final CTA
+### 8. Final CTA
 
 **Purpose:** Conversion
 
@@ -143,7 +152,7 @@
 
 ---
 
-### 8. Footer
+### 9. Footer
 
 **Elements:**
 - Company brief
@@ -172,6 +181,7 @@
 - ✅ Hero — Implemented (needs content update for new positioning)
 - ⬜ Problem Statement — Not started
 - ✅ Services — Implemented (3-card layout with highlighted Custom ERP)
+- ✅ ERP Features — Implemented
 - ⬜ Why Custom Software — Not started
 - ⬜ References — Not started
 - ⬜ Final CTA — Not started
