@@ -10,8 +10,8 @@ const COLORS = {
   textInverseSecondary: 'rgba(255, 255, 255, 0.75)',
   brandPrimary: '#4DB6A0',
   bgSection: '#32302F',
-  bgInnerCard: 'rgba(255, 255, 255, 0.06)',
-  borderInnerCard: 'rgba(255, 255, 255, 0.08)',
+  bgInnerCard: 'rgba(255, 255, 255, 0.1)',
+  borderInnerCard: 'rgba(255, 255, 255, 0.3)',
 };
 
 const FONTS = {
@@ -106,10 +106,11 @@ export function ServicesSection() {
 
         {/* ── Inner Card (Epicor-style raised container) ── */}
         <div
-          className="rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-14"
+          className="p-6 md:p-10 lg:p-14"
           style={{
             backgroundColor: COLORS.bgInnerCard,
-            border: `1px solid ${COLORS.borderInnerCard}`,
+            borderTop: `1px solid ${COLORS.borderInnerCard}`,
+            borderRadius: '40px',
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
           }}
