@@ -114,6 +114,7 @@ These documents must be read at the start of every session, regardless of role:
 ```
 soluty-website/
 ├── .claude/commands/       # Slash command definitions
+├── backup/                 # Component backups (see Backups section)
 ├── docs/
 │   ├── sections/           # Section specifications
 │   ├── tasks/              # Implementation tasks
@@ -126,6 +127,14 @@ soluty-website/
 ├── messages/               # i18n translations (de, en, tr)
 └── CLAUDE.md               # This file
 ```
+
+---
+
+## Backups
+
+| Backup | Path | Date | Description |
+|--------|------|------|-------------|
+| ModuleGrid v1 | `backup/ModuleGrid-v1/` | 2026-02-02 | Before removing inactive card visibility. Contains `index.tsx`, `ModuleCard.tsx`, `README.md`. Snapshot of commit `fa07ff6e`. |
 
 ---
 
