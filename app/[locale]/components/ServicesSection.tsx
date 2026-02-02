@@ -8,8 +8,11 @@ import { ServiceCard } from './ServiceCard';
 // ─── Video Config ────────────────────────────────────────
 // Adjust playbackRate to change video speed:
 //   1.0 = normal | 0.8 = 80% (slower) | 0.6 = 60% | 0.5 = half speed
+// Adjust opacity to change video visibility:
+//   1.0 = full | 0.65 = default | 0.5 = subtle | 0.3 = very faint
 const VIDEO_CONFIG = {
   playbackRate: 1.0,
+  opacity: 0.5,
 };
 
 // Design tokens
@@ -88,7 +91,7 @@ export function ServicesSection() {
           muted
           playsInline
           className="hidden md:block w-full h-full object-cover"
-          style={{ opacity: 0.65 }}
+          style={{ opacity: VIDEO_CONFIG.opacity }}
         >
           <source src="/videos/epicor-bg-video.mp4" type="video/mp4" />
         </video>
