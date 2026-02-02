@@ -22,8 +22,9 @@
   "hero": {
     "headline": {
       "line1": "İşinizi",
-      "line2": "dijital olarak",
-      "line3": "yönetin"
+      "line2": "dijital",
+      "line3": "olarak",
+      "line4": "yönetin"
     },
     "subheadline": "Basit, etkili, size özel.",
     "tagline": "Çözümlerimiz, teknolojik ilerlemenize eşlik ediyor.",
