@@ -35,10 +35,10 @@ function NavLink({ item, isActive, children }: { item: NavItem; isActive: boolea
   return (
     <Link
       href={href}
-      className="font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
+      className="font-normal transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
       style={{
         fontFamily: FONTS.sans,
-        fontSize: '19px', // 16px * 1.2 = 19.2px → 19px (+20%)
+        fontSize: '19px',
         color: isActive 
           ? COLORS.textPrimary 
           : isHovered 
