@@ -148,7 +148,7 @@ soluty-website/
 1. ✅ Hero — Implemented
 2. ⬜ Problem Statement — Not started
 3. ✅ Services — Implemented
-4. 📋 ERP Features — Spec ready (`docs/sections/erp-features-section-spec.md`)
+4. ✅ ERP Features — Implemented
 5. ⬜ Why Custom Software — Not started
 6. ⬜ References — Not started
 7. ⬜ Final CTA — Not started
