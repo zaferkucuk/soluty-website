@@ -22,8 +22,9 @@
   "hero": {
     "headline": {
       "line1": "Manage",
-      "line2": "your business",
-      "line3": "digitally"
+      "line2": "your",
+      "line3": "business",
+      "line4": "digitally"
     },
     "subheadline": "Simple, efficient, made for you.",
     "tagline": "Our solutions keep pace with your technological progress.",
