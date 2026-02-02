@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Code2, Database, Brain } from 'lucide-react';
 import { ServiceCard } from './ServiceCard';
@@ -31,6 +32,14 @@ const FONTS = {
  */
 export function ServicesSection() {
   const t = useTranslations('services');
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Slow down video playback to 50%
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
+  }, []);
 
   const services = [
     {
@@ -68,6 +77,7 @@ export function ServicesSection() {
       {/* ── Video Background Layer ── */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
