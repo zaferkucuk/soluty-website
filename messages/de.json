@@ -162,6 +162,28 @@
       }
     }
   },
+  "footer": {
+    "companyDescription": "Maßgeschneiderte Softwarelösungen für den Mittelstand. Entwickelt in Deutschland, mit Fokus auf Qualität und Datenschutz.",
+    "servicesTitle": "Leistungen",
+    "services": {
+      "customErp": "Individuelle ERP-Systeme",
+      "customProjects": "Enterprise-Softwareprojekte",
+      "aiSolutions": "KI-Lösungen"
+    },
+    "contactTitle": "Kontakt",
+    "address": "Duisburg, Deutschland",
+    "legalTitle": "Rechtliches",
+    "legal": {
+      "imprint": "Impressum",
+      "privacy": "Datenschutz"
+    },
+    "social": {
+      "linkedin": "Soluty auf LinkedIn",
+      "github": "Soluty auf GitHub"
+    },
+    "copyright": "Alle Rechte vorbehalten.",
+    "madeInGermany": "Entwickelt in Deutschland"
+  },
   "metadata": {
     "title": "Soluty GmbH | Individuelle ERP-Lösungen für Unternehmen",
     "description": "Führen Sie Ihr Unternehmen digital. Einfach, effizient, individuell — maßgeschneiderte Softwarelösungen entwickelt in Deutschland."
