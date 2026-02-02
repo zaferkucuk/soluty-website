@@ -4,15 +4,17 @@ import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTransition, useState } from 'react'
 
+// Design tokens
 const COLORS = {
   brandPrimary: '#4DB6A0',
+  borderStrong: 'rgba(50, 48, 47, 0.15)',
 }
 
 const locales = ['de', 'en'] as const
 type Locale = typeof locales[number]
 
-// Circular flag icons — clean, professional look
-function GermanyFlag({ size = 20 }: { size?: number }) {
+// Circular flag SVG components
+function GermanyFlag({ size = 24 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
       <clipPath id="deCircle"><circle cx="16" cy="16" r="16" /></clipPath>
@@ -25,16 +27,16 @@ function GermanyFlag({ size = 20 }: { size?: number }) {
   )
 }
 
-function UKFlag({ size = 20 }: { size?: number }) {
+function UKFlag({ size = 24 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
       <clipPath id="ukCircle"><circle cx="16" cy="16" r="16" /></clipPath>
       <g clipPath="url(#ukCircle)">
         <rect width="32" height="32" fill="#012169" />
-        <path d="M0 0L32 32M32 0L0 32" stroke="#fff" strokeWidth="5.3" />
-        <path d="M0 0L32 32M32 0L0 32" stroke="#C8102E" strokeWidth="3.2" />
-        <path d="M16 0V32M0 16H32" stroke="#fff" strokeWidth="8.5" />
-        <path d="M16 0V32M0 16H32" stroke="#C8102E" strokeWidth="5.3" />
+        <path d="M0 0L32 32M32 0L0 32" stroke="#fff" strokeWidth="5.5" />
+        <path d="M0 0L32 32M32 0L0 32" stroke="#C8102E" strokeWidth="3.5" />
+        <path d="M16 0V32M0 16H32" stroke="#fff" strokeWidth="9" />
+        <path d="M16 0V32M0 16H32" stroke="#C8102E" strokeWidth="5.5" />
       </g>
     </svg>
   )
@@ -45,21 +47,18 @@ const flagComponents: Record<Locale, React.FC<{ size?: number }>> = {
   en: UKFlag,
 }
 
-const localeLabels: Record<Locale, string> = {
-  de: 'DE',
-  en: 'EN',
-}
-
 function LocaleButton({ 
   locale, 
   isActive, 
   isPending,
   onClick,
+  label,
 }: { 
   locale: Locale
   isActive: boolean
   isPending: boolean
   onClick: () => void
+  label: string
 }) {
   const [isHovered, setIsHovered] = useState(false)
   const FlagIcon = flagComponents[locale]
@@ -68,29 +67,24 @@ function LocaleButton({
     <button
       onClick={onClick}
       disabled={isPending}
-      className="flex items-center gap-1.5 px-2 py-1.5 rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-1"
+      className="relative rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2"
       style={{
-        opacity: isActive ? 1 : isHovered ? 0.8 : 0.45,
+        width: 28,
+        height: 28,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        opacity: isActive ? 1 : isHovered ? 0.8 : 0.4,
         cursor: isPending ? 'wait' : 'pointer',
+        transform: isHovered && !isActive ? 'scale(1.08)' : 'scale(1)',
+        boxShadow: isActive ? `0 0 0 2px ${COLORS.borderStrong}` : 'none',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-pressed={isActive}
-      aria-label={`Switch to ${localeLabels[locale]}`}
+      aria-label={label}
     >
-      <span className="rounded-full overflow-hidden flex items-center justify-center" style={{ width: 20, height: 20 }}>
-        <FlagIcon size={20} />
-      </span>
-      <span 
-        className="text-xs tracking-wide"
-        style={{ 
-          fontFamily: "'DM Sans', system-ui, sans-serif",
-          fontWeight: isActive ? 600 : 400,
-          color: '#32302F',
-        }}
-      >
-        {localeLabels[locale]}
-      </span>
+      <FlagIcon size={28} />
     </button>
   )
 }
@@ -118,7 +112,7 @@ export function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t('label')}
-      className="flex items-center"
+      className="flex items-center gap-2"
     >
       {locales.map((locale) => (
         <LocaleButton
@@ -127,6 +121,7 @@ export function LanguageSwitcher() {
           isActive={currentLocale === locale}
           isPending={isPending}
           onClick={() => handleLocaleChange(locale)}
+          label={`Switch to ${locale.toUpperCase()}`}
         />
       ))}
     </div>
