@@ -25,13 +25,13 @@ const FONTS = {
  * - Mobile: 1 column (Custom ERP first for hierarchy)
  * 
  * Custom ERP is the core service — positioned center and visually elevated.
+ * 
+ * Background: Video layer (Epicor-style) for visual evaluation.
+ * This is a TEST implementation — video will be replaced with a custom solution.
  */
 export function ServicesSection() {
   const t = useTranslations('services');
 
-  // Service card data
-  // Desktop order: Projects (1) | ERP (2, center) | AI (3)
-  // Mobile order: ERP first (1) for hierarchy
   const services = [
     {
       id: 'customProjects',
@@ -56,20 +56,46 @@ export function ServicesSection() {
     },
   ];
 
-  // Sort for mobile (ERP first) - CSS handles desktop order
   const sortedServices = [...services].sort((a, b) => a.mobileOrder - b.mobileOrder);
 
   return (
     <section
       id="services"
-      className="py-12 md:py-16 lg:py-24"
+      className="relative overflow-hidden py-12 md:py-16 lg:py-24"
       style={{ backgroundColor: COLORS.bgSection }}
       aria-labelledby="services-heading"
     >
-      <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-16">
+      {/* ── Video Background Layer ── */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="hidden md:block w-full h-full object-cover"
+          style={{ opacity: 0.3 }}
+        >
+          <source src="/videos/epicor-bg-video.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* ── Gradient Overlay (blends video into section bg) ── */}
+      <div
+        className="absolute inset-0 z-[1]"
+        aria-hidden="true"
+        style={{
+          background: `
+            linear-gradient(180deg, ${COLORS.bgSection} 0%, transparent 20%),
+            linear-gradient(0deg, ${COLORS.bgSection} 0%, transparent 20%),
+            linear-gradient(180deg, rgba(92,90,88,0.55) 0%, rgba(92,90,88,0.4) 100%)
+          `,
+        }}
+      />
+
+      {/* ── Content (above video + overlay) ── */}
+      <div className="relative z-[2] max-w-7xl mx-auto px-5 md:px-8 lg:px-16">
         {/* Section Header */}
         <header className="text-center mb-10 md:mb-12 lg:mb-16">
-          {/* Eyebrow */}
           <p
             className="text-xs md:text-sm font-semibold tracking-widest uppercase mb-3 md:mb-4"
             style={{
@@ -81,7 +107,6 @@ export function ServicesSection() {
             {t('eyebrow')}
           </p>
 
-          {/* Headline */}
           <h2
             id="services-heading"
             className="heading-2 mb-4 md:mb-5"
@@ -93,7 +118,6 @@ export function ServicesSection() {
             {t('headline')}
           </h2>
 
-          {/* Subheadline */}
           <p
             className="body-lg max-w-2xl mx-auto"
             style={{
@@ -105,9 +129,9 @@ export function ServicesSection() {
           </p>
         </header>
 
-        {/* Cards Grid — center card elevated */}
+        {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 md:items-center">
-          {sortedServices.map((service, index) => (
+          {sortedServices.map((service) => (
             <div
               key={service.id}
               className={`
