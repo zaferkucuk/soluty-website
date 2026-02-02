@@ -99,6 +99,18 @@ function HeroTextContent({
         {t("subheadline")}
       </p>
 
+      <p
+        className="mt-2 max-w-md"
+        style={{
+          fontFamily: fonts.sans,
+          color: colors.textSecondary,
+          fontSize: '15px',
+          lineHeight: 1.6,
+        }}
+      >
+        {t("tagline")}
+      </p>
+
       <div className="mt-8">
         <HeroEmailForm />
       </div>
