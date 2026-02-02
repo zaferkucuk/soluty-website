@@ -15,7 +15,7 @@ import { forwardRef, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
  * - brand: Brand color (#4DB6A0), white text — special emphasis
  * 
  * Sizes:
- * - sm: Header buttons — Wealthsimple style: ~44-48px height
+ * - sm: Header buttons — h-11 (44px) matching HeroEmailForm submit button
  * - md: Default (most buttons)
  * - lg: Large (hero CTAs)
  */
@@ -102,11 +102,11 @@ const variantHoverStyles: Record<ButtonVariant, React.CSSProperties> = {
   },
 }
 
-// Updated size styles - All sizes increased by 20% for header consistency
+// Size styles — sm uses fixed h-11 (44px) to match HeroEmailForm submit button
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-6 py-3 text-[18px]',      // ~44-48px height, font 15→18px (+20%)
-  md: 'px-7 py-3.5 text-[18px]',    // ~48-52px height
-  lg: 'px-10 py-4 text-[19px]',     // ~52-56px height
+  sm: 'h-11 px-6 text-sm',           // 44px height, matches Absenden button
+  md: 'px-7 py-3.5 text-[18px]',     // ~48-52px height
+  lg: 'px-10 py-4 text-[19px]',      // ~52-56px height
 }
 
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
