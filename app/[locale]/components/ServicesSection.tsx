@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Code2, Database, Brain } from 'lucide-react';
 import { ServiceCard } from './ServiceCard';
@@ -30,13 +29,6 @@ const FONTS = {
  */
 export function ServicesSection() {
   const t = useTranslations('services');
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5;
-    }
-  }, []);
 
   const services = [
     {
@@ -74,13 +66,12 @@ export function ServicesSection() {
       {/* ── Video Background Layer ── */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <video
-          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           className="hidden md:block w-full h-full object-cover"
-          style={{ opacity: 0.3 }}
+          style={{ opacity: 0.65 }}
         >
           <source src="/videos/epicor-bg-video.mp4" type="video/mp4" />
         </video>
