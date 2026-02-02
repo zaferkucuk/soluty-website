@@ -100,11 +100,11 @@ function HeroTextContent({
       </p>
 
       <p
-        className="mt-2 max-w-md"
+        className="body-lg mt-2 max-w-md"
         style={{
           fontFamily: fonts.sans,
           color: colors.textSecondary,
-          fontSize: '15px',
+          fontSize: '18px',
           lineHeight: 1.6,
         }}
       >
