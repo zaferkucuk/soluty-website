@@ -162,6 +162,28 @@
       }
     }
   },
+  "footer": {
+    "companyDescription": "Custom software solutions for small and medium enterprises. Developed in Germany, with focus on quality and data privacy.",
+    "servicesTitle": "Services",
+    "services": {
+      "customErp": "Custom ERP Systems",
+      "customProjects": "Enterprise Software Projects",
+      "aiSolutions": "AI Solutions"
+    },
+    "contactTitle": "Contact",
+    "address": "Duisburg, Germany",
+    "legalTitle": "Legal",
+    "legal": {
+      "imprint": "Imprint",
+      "privacy": "Privacy Policy"
+    },
+    "social": {
+      "linkedin": "Soluty on LinkedIn",
+      "github": "Soluty on GitHub"
+    },
+    "copyright": "All rights reserved.",
+    "madeInGermany": "Made in Germany"
+  },
   "metadata": {
     "title": "Soluty GmbH | Custom Software Solutions for Businesses",
     "description": "Manage your business digitally. Simple, efficient, made for you — custom software solutions developed in Germany."
