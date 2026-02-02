@@ -9,7 +9,7 @@ const COLORS = {
   textInverse: '#FFFFFF',
   textInverseSecondary: 'rgba(255, 255, 255, 0.75)',
   brandPrimary: '#4DB6A0',
-  bgSection: '#32302F',
+  bgSection: '#0F2A39',
   bgInnerCard: 'rgba(255, 255, 255, 0.1)',
   borderInnerCard: 'rgba(255, 255, 255, 0.3)',
 };
@@ -77,15 +77,15 @@ export function ServicesSection() {
         </video>
       </div>
 
-      {/* ── Gradient Overlay ── */}
+      {/* ── Gradient Overlay (Epicor-style: transparent → bgSection at 70%) ── */}
       <div
         className="absolute inset-0 z-[1]"
         aria-hidden="true"
         style={{
           background: `
-            linear-gradient(180deg, ${COLORS.bgSection} 0%, transparent 20%),
-            linear-gradient(0deg, ${COLORS.bgSection} 0%, transparent 20%),
-            linear-gradient(180deg, rgba(50,48,47,0.55) 0%, rgba(50,48,47,0.4) 100%)
+            linear-gradient(180deg, ${COLORS.bgSection} 0%, transparent 15%),
+            linear-gradient(0deg, ${COLORS.bgSection} 0%, transparent 15%),
+            linear-gradient(180deg, rgba(15,42,57,0) 0%, rgba(15,42,57,0.7) 70%)
           `,
         }}
       />
