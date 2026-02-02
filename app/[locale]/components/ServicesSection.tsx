@@ -1,8 +1,16 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Code2, Database, Brain } from 'lucide-react';
 import { ServiceCard } from './ServiceCard';
+
+// ─── Video Config ────────────────────────────────────────
+// Adjust playbackRate to change video speed:
+//   1.0 = normal | 0.8 = 80% (slower) | 0.6 = 60% | 0.5 = half speed
+const VIDEO_CONFIG = {
+  playbackRate: 0.8,
+};
 
 // Design tokens
 const COLORS = {
@@ -29,6 +37,14 @@ const FONTS = {
  */
 export function ServicesSection() {
   const t = useTranslations('services');
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Apply playback speed
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = VIDEO_CONFIG.playbackRate;
+    }
+  }, []);
 
   const services = [
     {
@@ -66,6 +82,7 @@ export function ServicesSection() {
       {/* ── Video Background Layer ── */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
