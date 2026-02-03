@@ -130,6 +130,14 @@ soluty-website/
 
 ---
 
+## Research & Reference Documents
+
+| Document | Path | Description |
+|----------|------|-------------|
+| Quality Audit Plan | [`docs/research/quality-audit-plan.md`](docs/research/quality-audit-plan.md) | 7 kategoride 20+ ücretsiz araçla kapsamlı kalite denetim planı (Performance, SEO, A11y, i18n, HTML/CSS, Security, GDPR) |
+
+---
+
 ## Backups
 
 | Backup | Path | Date | Description |
@@ -152,7 +160,42 @@ soluty-website/
 5. ⬜ Why Custom Software — Not started
 6. ⬜ References — Not started
 7. ⬜ Final CTA — Not started
-- ⬜ Footer — Not started
+- ✅ Footer — Implemented
+
+---
+
+## Work Plan
+
+### Phase 1: Remaining Sections
+| # | Task | Status |
+|---|------|--------|
+| 1 | Problem Statement section | ⬜ Not started |
+| 2 | Why Custom Software section | ⬜ Not started |
+| 3 | References section | ⬜ Not started |
+| 4 | Final CTA section | ⬜ Not started |
+
+### Phase 2: SEO & Technical Infrastructure
+| # | Task | Status |
+|---|------|--------|
+| 5 | robots.txt + sitemap.xml | ⬜ Not started |
+| 6 | JSON-LD structured data (Organization) | ⬜ Not started |
+| 7 | Open Graph + Twitter Card meta tags | ⬜ Not started |
+| 8 | hreflang etiketleri | ⬜ Not started |
+| 9 | Security headers (next.config.ts) | ⬜ Not started |
+| 10 | Impressum sayfası | ⬜ Not started |
+| 11 | Datenschutz sayfası | ⬜ Not started |
+
+### Phase 3: Quality Audit
+| # | Task | Reference | Status |
+|---|------|-----------|--------|
+| 12 | Vercel'e deploy | — | ⬜ Not started |
+| 13 | Performance & Core Web Vitals testi | [`quality-audit-plan.md`](docs/research/quality-audit-plan.md#1-performance--core-web-vitals) | ⬜ Not started |
+| 14 | SEO denetimi | [`quality-audit-plan.md`](docs/research/quality-audit-plan.md#2-seo) | ⬜ Not started |
+| 15 | Erişilebilirlik (WCAG 2.1 AA) testi | [`quality-audit-plan.md`](docs/research/quality-audit-plan.md#4-erişilebilirlik-accessibility--wcag-21-aa) | ⬜ Not started |
+| 16 | Çok dillilik / hreflang doğrulaması | [`quality-audit-plan.md`](docs/research/quality-audit-plan.md#3-çok-dillilik-i18n--hreflang) | ⬜ Not started |
+| 17 | HTML/CSS validasyon | [`quality-audit-plan.md`](docs/research/quality-audit-plan.md#6-html--css-validasyon) | ⬜ Not started |
+| 18 | Güvenlik header testi | [`quality-audit-plan.md`](docs/research/quality-audit-plan.md#5-güvenlik--http-headers) | ⬜ Not started |
+| 19 | GDPR uyumluluk taraması | [`quality-audit-plan.md`](docs/research/quality-audit-plan.md#7-gdpr--gizlilik-uyumluluğu) | ⬜ Not started |
 
 ---
 
