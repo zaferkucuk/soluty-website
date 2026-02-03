@@ -171,7 +171,8 @@
       "aiSolutions": "AI Solutions"
     },
     "contactTitle": "Contact",
-    "address": "Duisburg, Germany",
+    "addressStreet": "Chausseestraße 93",
+    "addressCity": "10115 Berlin",
     "legalTitle": "Legal",
     "legal": {
       "imprint": "Imprint",
@@ -182,7 +183,7 @@
       "github": "Soluty on GitHub"
     },
     "copyright": "All rights reserved.",
-    "madeInGermany": "Made in Germany"
+    "madeInEU": "Made in EU"
   },
   "metadata": {
     "title": "Soluty GmbH | Custom Software Solutions for Businesses",

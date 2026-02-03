@@ -17,6 +17,40 @@ const COLORS = {
   brandPrimary: '#4DB6A0',
 }
 
+/** Circular EU flag SVG — matches header LanguageSwitcher flag style */
+function EUFlag({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 32 32"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <clipPath id="euCircleFooter">
+        <circle cx="16" cy="16" r="16" />
+      </clipPath>
+      <g clipPath="url(#euCircleFooter)">
+        <rect width="32" height="32" fill="#003399" />
+        {/* 12 stars in a circle */}
+        {Array.from({ length: 12 }).map((_, i) => {
+          const angle = (i * 30 - 90) * (Math.PI / 180)
+          const cx = 16 + 9 * Math.cos(angle)
+          const cy = 16 + 9 * Math.sin(angle)
+          return (
+            <g key={i} transform={`translate(${cx}, ${cy})`}>
+              <polygon
+                points="0,-2.2 0.66,-0.7 2.1,-0.7 1.05,0.27 1.38,1.78 0,1.05 -1.38,1.78 -1.05,0.27 -2.1,-0.7 -0.66,-0.7"
+                fill="#FFCC00"
+              />
+            </g>
+          )
+        })}
+      </g>
+    </svg>
+  )
+}
+
 export function Footer() {
   const t = useTranslations('footer')
   const locale = useLocale()
@@ -46,7 +80,10 @@ export function Footer() {
                 alt=""
                 width={40}
                 height={40}
-                className="w-9 h-9 brightness-0 invert"
+                className="w-9 h-9"
+                style={{
+                  filter: 'brightness(0) invert(1)',
+                }}
               />
               <span
                 className="font-semibold tracking-[0.08em]"
@@ -114,10 +151,16 @@ export function Footer() {
               </li>
               <li>
                 <span
-                  className="text-sm leading-relaxed"
+                  className="text-sm leading-relaxed block"
                   style={{ color: COLORS.textSecondary }}
                 >
-                  {t('address')}
+                  {t('addressStreet')}
+                </span>
+                <span
+                  className="text-sm leading-relaxed block"
+                  style={{ color: COLORS.textSecondary }}
+                >
+                  {t('addressCity')}
                 </span>
               </li>
             </ul>
@@ -199,13 +242,13 @@ export function Footer() {
           >
             © {currentYear} Soluty GmbH. {t('copyright')}
           </p>
-          <p
-            className="text-xs flex items-center gap-1.5"
+          <div
+            className="text-xs flex items-center gap-2"
             style={{ color: COLORS.textMuted }}
           >
-            <span aria-hidden="true">🇩🇪</span>
-            {t('madeInGermany')}
-          </p>
+            <EUFlag size={20} />
+            <span>{t('madeInEU')}</span>
+          </div>
         </div>
       </div>
     </footer>

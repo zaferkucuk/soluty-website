@@ -171,7 +171,8 @@
       "aiSolutions": "KI-Lösungen"
     },
     "contactTitle": "Kontakt",
-    "address": "Duisburg, Deutschland",
+    "addressStreet": "Chausseestraße 93",
+    "addressCity": "10115 Berlin",
     "legalTitle": "Rechtliches",
     "legal": {
       "imprint": "Impressum",
@@ -182,7 +183,7 @@
       "github": "Soluty auf GitHub"
     },
     "copyright": "Alle Rechte vorbehalten.",
-    "madeInGermany": "Entwickelt in Deutschland"
+    "madeInEU": "Made in EU"
   },
   "metadata": {
     "title": "Soluty GmbH | Individuelle ERP-Lösungen für Unternehmen",
