@@ -12,7 +12,7 @@ const COLORS = {
   textInverse: '#FFFFFF',
   textMuted: 'rgba(255, 255, 255, 0.5)',
   textSecondary: 'rgba(255, 255, 255, 0.7)',
-  bgInverse: '#32302F',
+  bgInverse: '#0F2A39',
   border: 'rgba(255, 255, 255, 0.1)',
   brandPrimary: '#4DB6A0',
 }
@@ -150,7 +150,7 @@ export function Footer() {
                 href="https://www.linkedin.com/company/soluty"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#32302F] rounded"
+                className="transition-opacity hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F2A39] rounded"
                 style={{ opacity: 0.5 }}
                 aria-label={t('social.linkedin')}
               >
@@ -169,7 +169,7 @@ export function Footer() {
                 href="https://github.com/soluty-gmbh"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#32302F] rounded"
+                className="transition-opacity hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F2A39] rounded"
                 style={{ opacity: 0.5 }}
                 aria-label={t('social.github')}
               >
@@ -226,7 +226,7 @@ function FooterLink({
     return (
       <a
         href={href}
-        className="text-sm transition-colors duration-150 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#32302F] rounded"
+        className="text-sm transition-colors duration-150 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F2A39] rounded"
         style={{ color: COLORS.textSecondary }}
         {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
@@ -238,7 +238,7 @@ function FooterLink({
   return (
     <Link
       href={href}
-      className="text-sm transition-colors duration-150 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#32302F] rounded"
+      className="text-sm transition-colors duration-150 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F2A39] rounded"
       style={{ color: COLORS.textSecondary }}
     >
       {children}
