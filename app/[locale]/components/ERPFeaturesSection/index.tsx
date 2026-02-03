@@ -67,6 +67,9 @@ function useInViewOnce(ref: React.RefObject<HTMLElement | null>): boolean {
  * Mobile (<768px): Stacked — ModuleGrid above, compact card stack
  *
  * Reference: docs/sections/erp-features-section-spec.md
+ *
+ * TODO: Add highlightMode and highlightTargets props to ModuleGrid
+ *       to enable scroll-linked highlighting from ERPFeaturesSection.
  */
 export function ERPFeaturesSection() {
   const t = useTranslations();
@@ -94,13 +97,15 @@ export function ERPFeaturesSection() {
   const moduleIds = useMemo(() => erpModules.map((m) => m.id), []);
 
   // Scroll-linked highlight (desktop only)
+  // TODO: Pass activeModuleId and highlightTargets to ModuleGrid
+  //       when ModuleGrid prop support is implemented.
   const { activeModuleId, isScrollLinked } = useScrollLinkedHighlight(
     cardRefsArray,
     moduleIds,
     isDesktop
   );
 
-  // Compute highlight targets for ModuleGrid
+  // Compute highlight targets for ModuleGrid (prepared for future use)
   const highlightTargets = useMemo(() => {
     if (!activeModuleId) return [];
     const activeModule = erpModules.find((m) => m.id === activeModuleId);
@@ -209,10 +214,10 @@ export function ERPFeaturesSection() {
                 'lg:scale-100 lg:origin-top'
               }
             >
-              <ModuleGrid
-                highlightMode={isScrollLinked ? 'scroll-linked' : 'auto-cycle'}
-                highlightTargets={highlightTargets}
-              />
+              {/* TODO: Add highlightMode={isScrollLinked ? 'scroll-linked' : 'auto-cycle'}
+                        and highlightTargets={highlightTargets} props when ModuleGrid
+                        prop support is implemented */}
+              <ModuleGrid />
             </div>
           </div>
 
