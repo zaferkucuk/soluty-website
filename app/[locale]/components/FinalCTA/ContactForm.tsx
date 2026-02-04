@@ -13,6 +13,8 @@ const COLORS = {
   textInverse: '#FFFFFF',
   brandPrimary: '#4DB6A0',
   brandHover: '#3DA08C',
+  bgDark: '#0F2A39',
+  bgDarkHover: '#0A1F2B',
   error: '#DC2626',
   errorSubtle: 'rgba(220, 38, 38, 0.1)',
   bgCard: '#FFFFFF',
@@ -376,7 +378,7 @@ export function ContactForm() {
                 onClick={handleRetry}
                 className="mt-3 text-sm font-medium underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                 style={{
-                  color: COLORS.brandPrimary,
+                  color: COLORS.bgDark,
                 }}
               >
                 {t('error.retry')}
@@ -391,16 +393,16 @@ export function ContactForm() {
             className="w-full h-12 rounded-lg font-medium text-base transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
             style={{
               fontFamily: FONTS.sans,
-              backgroundColor: isSubmitting ? COLORS.brandPrimary : COLORS.brandPrimary,
+              backgroundColor: COLORS.bgDark,
               color: COLORS.textInverse,
             }}
             onMouseEnter={(e) => {
               if (!isSubmitting) {
-                e.currentTarget.style.backgroundColor = COLORS.brandHover;
+                e.currentTarget.style.backgroundColor = COLORS.bgDarkHover;
               }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = COLORS.brandPrimary;
+              e.currentTarget.style.backgroundColor = COLORS.bgDark;
             }}
           >
             {isSubmitting ? (
@@ -446,7 +448,7 @@ export function ContactForm() {
                 <a
                   href="/de/datenschutz"
                   className="underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                  style={{ color: COLORS.brandPrimary }}
+                  style={{ color: COLORS.bgDark }}
                 >
                   {chunks}
                 </a>
