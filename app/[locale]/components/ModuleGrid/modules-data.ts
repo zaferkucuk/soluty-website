@@ -103,6 +103,12 @@ export const GRID_CONFIG = {
 
 // ==========================================================================
 // Icon Gradient System (per group)
+//
+// Derived from Soluty brand palette:
+//   #4DB6A0  (brand teal)
+//   #332436  (deep plum)
+//   #be95c2  (soft lavender)
+//   #363439  (charcoal)
 // ==========================================================================
 
 export const GROUP_GRADIENTS: Record<number, {
@@ -110,12 +116,12 @@ export const GROUP_GRADIENTS: Record<number, {
   end: string;
   glow: string;
 }> = {
-  1: { start: '#4DB6A0', end: '#2DD4BF', glow: 'rgba(77, 182, 160, 0.3)' },   // Order - Teal
-  2: { start: '#8B5CF6', end: '#A78BFA', glow: 'rgba(139, 92, 246, 0.3)' },   // Logistics - Purple
-  3: { start: '#3B82F6', end: '#60A5FA', glow: 'rgba(59, 130, 246, 0.3)' },   // Sales - Blue
-  4: { start: '#F59E0B', end: '#FBBF24', glow: 'rgba(245, 158, 11, 0.3)' },   // Inventory - Amber
-  5: { start: '#10B981', end: '#34D399', glow: 'rgba(16, 185, 129, 0.3)' },   // Finance - Emerald
-  6: { start: '#EC4899', end: '#F472B6', glow: 'rgba(236, 72, 153, 0.3)' },   // Customer - Pink
+  1: { start: '#4DB6A0', end: '#332436', glow: 'rgba(77, 182, 160, 0.3)' },   // Order – Teal → Plum
+  2: { start: '#332436', end: '#be95c2', glow: 'rgba(190, 149, 194, 0.3)' },  // Logistics – Plum → Lavender
+  3: { start: '#363439', end: '#4DB6A0', glow: 'rgba(77, 182, 160, 0.25)' },  // Sales – Charcoal → Teal
+  4: { start: '#be95c2', end: '#4DB6A0', glow: 'rgba(133, 166, 177, 0.3)' },  // Inventory – Lavender → Teal
+  5: { start: '#4DB6A0', end: '#be95c2', glow: 'rgba(133, 166, 177, 0.3)' },  // Finance – Teal → Lavender
+  6: { start: '#be95c2', end: '#363439', glow: 'rgba(190, 149, 194, 0.25)' }, // Customer – Lavender → Charcoal
 };
 
 // ==========================================================================
