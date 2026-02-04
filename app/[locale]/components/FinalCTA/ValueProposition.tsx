@@ -5,6 +5,7 @@ const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
   textMuted: '#8A8785',
+  bgDark: '#0F2A39',
   brandPrimary: '#4DB6A0',
   brandSubtle: 'rgba(77, 182, 160, 0.1)',
 };
@@ -178,7 +179,7 @@ export function ValueProposition() {
             className="inline-flex items-center gap-2 text-base hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               fontFamily: FONTS.sans,
-              color: COLORS.brandPrimary,
+              color: COLORS.bgDark,
             }}
           >
             <svg
@@ -202,7 +203,7 @@ export function ValueProposition() {
             className="inline-flex items-center gap-2 text-base hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               fontFamily: FONTS.sans,
-              color: COLORS.brandPrimary,
+              color: COLORS.bgDark,
             }}
           >
             <svg
