@@ -72,17 +72,39 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center mb-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
+              className="inline-flex items-center gap-3 mb-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
               aria-label="Soluty Business Solutions - Home"
             >
-              {/* Full logo SVG — original colors, no filter */}
               <Image
-                src="/images/logo-full.svg"
-                alt="Soluty Business Solutions"
-                width={220}
-                height={88}
+                src="/images/logo-icon.svg"
+                alt="Soluty"
+                width={100}
+                height={100}
                 className="h-12 md:h-14 w-auto"
               />
+              <div className="flex flex-col items-center leading-tight">
+                <span
+                  style={{
+                    fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
+                    fontSize: '26px',
+                    fontWeight: 400,
+                    color: COLORS.textSecondary,
+                    letterSpacing: '0.18em',
+                  }}
+                >
+                  SOLUTY
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
+                    fontSize: '13px',
+                    fontWeight: 400,
+                    color: COLORS.textSecondary,
+                  }}
+                >
+                  BUSINESS SOLUTIONS
+                </span>
+              </div>
             </Link>
             <p
               className="text-sm leading-relaxed max-w-[280px]"
