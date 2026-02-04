@@ -161,6 +161,69 @@
     "copyright": "Tüm hakları saklıdır.",
     "madeInGermany": "Almanya'da geliştirildi"
   },
+  "finalCta": {
+    "eyebrow": "İLETİŞİM",
+    "heading": "Gereksinimlerinizi birlikte konuşalım",
+    "subtext": "Bağlayıcı olmayan bir ilk görüşmede mevcut süreçlerinizi birlikte analiz edecek ve somut optimizasyon fırsatlarını göstereceğiz.",
+    "benefits": {
+      "free": "Ücretsiz ve bağlayıcı değil",
+      "duration": "30 dakikalık ilk görüşme",
+      "analysis": "Bireysel süreç analizi"
+    },
+    "responsePromise": "24 saat içinde size geri dönüş yapacağız.",
+    "form": {
+      "name": {
+        "label": "İsim",
+        "placeholder": "Ahmet Yılmaz"
+      },
+      "company": {
+        "label": "Şirket",
+        "placeholder": "ABC Ltd. Şti."
+      },
+      "email": {
+        "label": "E-posta",
+        "placeholder": "ahmet@sirket.com"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "+90 532 123 4567",
+        "optional": "(isteğe bağlı)"
+      },
+      "message": {
+        "label": "Mesaj",
+        "placeholder": "Talebinizi veya mevcut zorluklarınızı kısaca açıklayın...",
+        "optional": "(isteğe bağlı)"
+      },
+      "submit": "Danışmanlık Talep Et",
+      "submitting": "Gönderiliyor...",
+      "privacy": "Göndererek <privacyLink>Gizlilik Politikamızı</privacyLink> kabul etmiş olursunuz."
+    },
+    "validation": {
+      "nameRequired": "Lütfen adınızı girin.",
+      "nameMinLength": "İsim en az 2 karakter olmalıdır.",
+      "companyRequired": "Lütfen şirket adınızı girin.",
+      "companyMinLength": "Şirket adı en az 2 karakter olmalıdır.",
+      "emailRequired": "Lütfen e-posta adresinizi girin.",
+      "emailInvalid": "Lütfen geçerli bir e-posta adresi girin.",
+      "phoneInvalid": "Lütfen geçerli bir telefon numarası girin.",
+      "messageMaxLength": "Mesaj en fazla 1000 karakter olmalıdır."
+    },
+    "success": {
+      "heading": "Talebiniz için teşekkür ederiz!",
+      "message": "Mesajınızı aldık ve 24 saat içinde size geri dönüş yapacağız.",
+      "cta": "Başka bir talep gönder"
+    },
+    "error": {
+      "heading": "Bir şeyler yanlış gitti.",
+      "message": "Lütfen tekrar deneyin veya bize doğrudan {email} adresinden ulaşın.",
+      "retry": "Tekrar dene"
+    },
+    "alternative": {
+      "or": "veya bize doğrudan ulaşın:",
+      "email": "info@soluty.de",
+      "phone": "+49 176 4775 7322"
+    }
+  },
   "metadata": {
     "title": "Soluty GmbH | İşletmeler için Özel Yazılım Çözümleri",
     "description": "İşinizi dijital olarak yönetin. Basit, etkili, size özel — Almanya'da geliştirilen özel yazılım çözümleri."

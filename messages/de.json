@@ -185,6 +185,69 @@
     "copyright": "Alle Rechte vorbehalten.",
     "madeInEU": "Made in EU"
   },
+  "finalCta": {
+    "eyebrow": "KONTAKT",
+    "heading": "Lassen Sie uns über Ihre Anforderungen sprechen",
+    "subtext": "In einem unverbindlichen Erstgespräch analysieren wir gemeinsam Ihre aktuellen Prozesse und zeigen Ihnen konkrete Optimierungspotenziale auf.",
+    "benefits": {
+      "free": "Kostenlos und unverbindlich",
+      "duration": "30 Minuten Erstgespräch",
+      "analysis": "Individuelle Prozessanalyse"
+    },
+    "responsePromise": "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Max Mustermann"
+      },
+      "company": {
+        "label": "Unternehmen",
+        "placeholder": "Firma GmbH"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "max@firma.de"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "+49 176 1234567",
+        "optional": "(optional)"
+      },
+      "message": {
+        "label": "Nachricht",
+        "placeholder": "Beschreiben Sie kurz Ihr Anliegen oder Ihre aktuellen Herausforderungen...",
+        "optional": "(optional)"
+      },
+      "submit": "Beratung anfragen",
+      "submitting": "Wird gesendet...",
+      "privacy": "Mit dem Absenden stimmen Sie unserer <privacyLink>Datenschutzerklärung</privacyLink> zu."
+    },
+    "validation": {
+      "nameRequired": "Bitte geben Sie Ihren Namen ein.",
+      "nameMinLength": "Name muss mindestens 2 Zeichen lang sein.",
+      "companyRequired": "Bitte geben Sie Ihren Firmennamen ein.",
+      "companyMinLength": "Firmenname muss mindestens 2 Zeichen lang sein.",
+      "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein.",
+      "messageMaxLength": "Nachricht darf maximal 1000 Zeichen lang sein."
+    },
+    "success": {
+      "heading": "Vielen Dank für Ihre Anfrage!",
+      "message": "Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.",
+      "cta": "Weitere Anfrage senden"
+    },
+    "error": {
+      "heading": "Etwas ist schiefgelaufen.",
+      "message": "Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter {email}.",
+      "retry": "Erneut versuchen"
+    },
+    "alternative": {
+      "or": "oder kontaktieren Sie uns direkt:",
+      "email": "info@soluty.de",
+      "phone": "+49 176 4775 7322"
+    }
+  },
   "metadata": {
     "title": "Soluty GmbH | Individuelle ERP-Lösungen für Unternehmen",
     "description": "Führen Sie Ihr Unternehmen digital. Einfach, effizient, individuell — maßgeschneiderte Softwarelösungen entwickelt in Deutschland."

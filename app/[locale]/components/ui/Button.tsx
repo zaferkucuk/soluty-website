@@ -193,17 +193,17 @@ Button.displayName = 'Button'
 
 // Convenience exports for common button types
 export function PrimaryButton(props: Omit<ButtonProps, 'variant'>) {
-  return <Button variant="primary" {...props} />
+  return <Button variant="primary" {...props as ButtonProps} />
 }
 
 export function SecondaryButton(props: Omit<ButtonProps, 'variant'>) {
-  return <Button variant="secondary" {...props} />
+  return <Button variant="secondary" {...props as ButtonProps} />
 }
 
 export function GhostButton(props: Omit<ButtonProps, 'variant'>) {
-  return <Button variant="ghost" {...props} />
+  return <Button variant="ghost" {...props as ButtonProps} />
 }
 
 export function BrandButton(props: Omit<ButtonProps, 'variant'>) {
-  return <Button variant="brand" {...props} />
+  return <Button variant="brand" {...props as ButtonProps} />
 }
