@@ -72,28 +72,20 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center gap-3 mb-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
-              aria-label="Soluty - Home"
+              className="inline-flex items-center mb-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
+              aria-label="Soluty Business Solutions - Home"
             >
+              {/* Full logo SVG with white filter for dark background */}
               <Image
-                src="/soluty-icon.svg"
-                alt=""
-                width={40}
-                height={40}
-                className="w-9 h-9"
+                src="/images/logo-full.svg"
+                alt="Soluty Business Solutions"
+                width={180}
+                height={72}
+                className="h-9 md:h-10 w-auto"
                 style={{
                   filter: 'brightness(0) invert(1)',
                 }}
               />
-              <span
-                className="font-semibold tracking-[0.08em]"
-                style={{
-                  fontSize: '22px',
-                  color: COLORS.textInverse,
-                }}
-              >
-                SOLUTY
-              </span>
             </Link>
             <p
               className="text-sm leading-relaxed max-w-[280px]"
