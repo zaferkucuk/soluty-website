@@ -13,16 +13,16 @@ export function Logo() {
       className="inline-flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
       aria-label="Soluty Business Solutions - Home"
     >
-      {/* Logo icon only */}
+      {/* Original logo SVG — no filters, no modifications */}
       <Image
-        src="/images/logo-icon.svg"
-        alt=""
-        width={48}
-        height={48}
-        className="w-10 h-10 md:w-12 md:h-12"
+        src="/images/logo-full.svg"
+        alt="Soluty Business Solutions"
+        width={250}
+        height={100}
+        className="h-14 md:h-16 w-auto"
         priority
       />
-      {/* Company name — Crimson Pro (hero font), nav-link size */}
+      {/* Two-line text between logo and navbar */}
       <div className="flex flex-col leading-tight">
         <span
           style={{
