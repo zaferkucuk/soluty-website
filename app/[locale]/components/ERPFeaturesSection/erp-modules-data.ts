@@ -58,16 +58,25 @@ export interface ERPModule {
 }
 
 // ==========================================================================
-// Category Colors (from spec Section 2.2)
+// Category Colors
+//
+// Derived from Soluty brand palette:
+//   #4DB6A0  (brand teal)
+//   #332436  (deep plum)
+//   #be95c2  (soft lavender)
+//   #363439  (charcoal)
+//
+// Each category uses one brand color for icon + badge text,
+// with a 10% opacity tint for the active badge background.
 // ==========================================================================
 
 export const CATEGORY_COLORS: Record<CategoryId, { color: string; bg: string }> = {
-  order: { color: '#4DB6A0', bg: 'rgba(77, 182, 160, 0.1)' },
-  logistics: { color: '#8B5CF6', bg: 'rgba(139, 92, 246, 0.1)' },
-  sales: { color: '#3B82F6', bg: 'rgba(59, 130, 246, 0.1)' },
-  inventory: { color: '#F59E0B', bg: 'rgba(245, 158, 11, 0.1)' },
-  finance: { color: '#10B981', bg: 'rgba(16, 185, 129, 0.1)' },
-  customer: { color: '#EC4899', bg: 'rgba(236, 72, 153, 0.1)' },
+  order:     { color: '#4DB6A0', bg: 'rgba(77, 182, 160, 0.1)' },   // Teal
+  logistics: { color: '#332436', bg: 'rgba(51, 36, 54, 0.08)' },    // Deep Plum
+  sales:     { color: '#be95c2', bg: 'rgba(190, 149, 194, 0.12)' },  // Soft Lavender
+  inventory: { color: '#363439', bg: 'rgba(54, 52, 57, 0.08)' },    // Charcoal
+  finance:   { color: '#4DB6A0', bg: 'rgba(77, 182, 160, 0.1)' },   // Teal
+  customer:  { color: '#be95c2', bg: 'rgba(190, 149, 194, 0.12)' },  // Soft Lavender
 };
 
 // ==========================================================================
