@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 // Design tokens
 const FONTS = {
-  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
+  serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
 }
 
 const COLORS = {
@@ -35,10 +35,11 @@ function NavLink({ item, isActive, children }: { item: NavItem; isActive: boolea
   return (
     <Link
       href={href}
-      className="font-normal transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
+      className="transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
       style={{
-        fontFamily: FONTS.sans,
+        fontFamily: FONTS.serif,
         fontSize: '19px',
+        fontWeight: 600,
         color: isActive 
           ? COLORS.textPrimary 
           : isHovered 
