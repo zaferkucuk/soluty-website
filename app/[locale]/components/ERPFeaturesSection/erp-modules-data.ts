@@ -60,23 +60,18 @@ export interface ERPModule {
 // ==========================================================================
 // Category Colors
 //
-// Derived from Soluty brand palette:
-//   #4DB6A0  (brand teal)
-//   #332436  (deep plum)
-//   #be95c2  (soft lavender)
-//   #363439  (charcoal)
-//
-// Each category uses one brand color for icon + badge text,
-// with a 10% opacity tint for the active badge background.
+// Unified: all categories use #be95c2 (soft lavender)
 // ==========================================================================
 
+const LAVENDER = { color: '#be95c2', bg: 'rgba(190, 149, 194, 0.12)' };
+
 export const CATEGORY_COLORS: Record<CategoryId, { color: string; bg: string }> = {
-  order:     { color: '#4DB6A0', bg: 'rgba(77, 182, 160, 0.1)' },   // Teal
-  logistics: { color: '#332436', bg: 'rgba(51, 36, 54, 0.08)' },    // Deep Plum
-  sales:     { color: '#be95c2', bg: 'rgba(190, 149, 194, 0.12)' },  // Soft Lavender
-  inventory: { color: '#363439', bg: 'rgba(54, 52, 57, 0.08)' },    // Charcoal
-  finance:   { color: '#4DB6A0', bg: 'rgba(77, 182, 160, 0.1)' },   // Teal
-  customer:  { color: '#be95c2', bg: 'rgba(190, 149, 194, 0.12)' },  // Soft Lavender
+  order:     LAVENDER,
+  logistics: LAVENDER,
+  sales:     LAVENDER,
+  inventory: LAVENDER,
+  finance:   LAVENDER,
+  customer:  LAVENDER,
 };
 
 // ==========================================================================
