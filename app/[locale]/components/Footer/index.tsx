@@ -75,16 +75,13 @@ export function Footer() {
               className="inline-flex items-center mb-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 rounded"
               aria-label="Soluty Business Solutions - Home"
             >
-              {/* Full logo SVG with white filter for dark background */}
+              {/* Full logo SVG — original colors, no filter */}
               <Image
                 src="/images/logo-full.svg"
                 alt="Soluty Business Solutions"
-                width={180}
-                height={72}
-                className="h-9 md:h-10 w-auto"
-                style={{
-                  filter: 'brightness(0) invert(1)',
-                }}
+                width={220}
+                height={88}
+                className="h-12 md:h-14 w-auto"
               />
             </Link>
             <p
