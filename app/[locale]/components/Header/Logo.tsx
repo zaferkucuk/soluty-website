@@ -29,8 +29,7 @@ export function Logo() {
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
             fontSize: '19px',
             fontWeight: 400,
-            color: '#1a1a1a',
-            letterSpacing: '0.04em',
+            color: '#32302F',
           }}
         >
           SOLUTY
@@ -40,8 +39,7 @@ export function Logo() {
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
             fontSize: '14px',
             fontWeight: 400,
-            color: '#555555',
-            letterSpacing: '0.06em',
+            color: '#5C5A58',
           }}
         >
           BUSINESS SOLUTIONS
