@@ -37,7 +37,7 @@ export function Logo() {
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '15px',
+            fontSize: '10px',
             fontWeight: 400,
             color: '#32302F',
           }}
