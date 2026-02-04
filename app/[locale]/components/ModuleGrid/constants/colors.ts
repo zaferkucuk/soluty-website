@@ -1,12 +1,15 @@
 /**
  * Color Constants for ModuleGrid Connection Lines
- * 
- * Based on Stripe.com analysis (January 2026)
- * These are the actual gradient color pairs used by Stripe.
+ *
+ * Soluty brand palette – derived from four base colors:
+ *   #4DB6A0  (brand teal)
+ *   #332436  (deep plum)
+ *   #be95c2  (soft lavender)
+ *   #363439  (charcoal)
  */
 
 // ==========================================================================
-// Stripe-Extracted Color Pairs
+// Types
 // ==========================================================================
 
 export interface ColorPair {
@@ -15,51 +18,56 @@ export interface ColorPair {
   glow: string;
 }
 
+// ==========================================================================
+// Soluty Brand Color Pairs
+// ==========================================================================
+
 /**
- * Stripe's actual gradient color combinations.
- * Extracted from Stripe.com HomepageFrontdoor component.
+ * Six gradient pairs built from the four Soluty brand colors.
+ * Each pair blends two of the base colors or a tinted variation
+ * to keep all groups distinguishable while staying on-palette.
  */
-export const STRIPE_COLOR_PAIRS: Record<string, ColorPair> = {
-  // Cyan → Purple (most common, 12 uses)
-  cyanPurple: {
-    start: '#11EFE3',
-    end: '#9966FF',
-    glow: 'rgba(17, 239, 227, 0.6)',
+export const SOLUTY_COLOR_PAIRS: Record<string, ColorPair> = {
+  // Teal → Deep Plum
+  tealPlum: {
+    start: '#4DB6A0',
+    end: '#332436',
+    glow: 'rgba(77, 182, 160, 0.45)',
   },
-  
-  // Cyan → Blue (8 uses)
-  cyanBlue: {
-    start: '#11EFE3',
-    end: '#0073E6',
-    glow: 'rgba(17, 239, 227, 0.6)',
+
+  // Deep Plum → Soft Lavender
+  plumLavender: {
+    start: '#332436',
+    end: '#be95c2',
+    glow: 'rgba(190, 149, 194, 0.40)',
   },
-  
-  // Pink → Purple (12 uses)
-  pinkPurple: {
-    start: '#FF5996',
-    end: '#9966FF',
-    glow: 'rgba(255, 89, 150, 0.6)',
+
+  // Soft Lavender → Teal
+  lavenderTeal: {
+    start: '#be95c2',
+    end: '#4DB6A0',
+    glow: 'rgba(133, 166, 177, 0.40)',
   },
-  
-  // Yellow → Green (6 uses)
-  yellowGreen: {
-    start: '#FFD848',
-    end: '#00D924',
-    glow: 'rgba(255, 216, 72, 0.6)',
+
+  // Charcoal → Teal
+  charcoalTeal: {
+    start: '#363439',
+    end: '#4DB6A0',
+    glow: 'rgba(77, 182, 160, 0.35)',
   },
-  
-  // Blue → Pink/Magenta (6 uses)
-  bluePink: {
-    start: '#0073E6',
-    end: '#FF80FF',
-    glow: 'rgba(0, 115, 230, 0.6)',
+
+  // Teal → Soft Lavender
+  tealLavender: {
+    start: '#4DB6A0',
+    end: '#be95c2',
+    glow: 'rgba(133, 166, 177, 0.40)',
   },
-  
-  // Teal → Green (4 uses)
-  tealGreen: {
-    start: '#1DF5E9',
-    end: '#00D924',
-    glow: 'rgba(29, 245, 233, 0.6)',
+
+  // Soft Lavender → Charcoal
+  lavenderCharcoal: {
+    start: '#be95c2',
+    end: '#363439',
+    glow: 'rgba(190, 149, 194, 0.35)',
   },
 };
 
@@ -68,16 +76,16 @@ export const STRIPE_COLOR_PAIRS: Record<string, ColorPair> = {
 // ==========================================================================
 
 /**
- * Maps Soluty module groups to Stripe-style color pairs.
- * Chosen for visual harmony and brand alignment.
+ * Maps module groups to brand-derived color pairs.
+ * Ordering maximises visual contrast between adjacent active groups.
  */
 export const GROUP_COLOR_MAP: Record<number, ColorPair> = {
-  1: STRIPE_COLOR_PAIRS.cyanPurple,   // Order Management - Teal/Purple
-  2: STRIPE_COLOR_PAIRS.pinkPurple,   // Logistics - Pink/Purple
-  3: STRIPE_COLOR_PAIRS.cyanBlue,     // Sales & Billing - Cyan/Blue
-  4: STRIPE_COLOR_PAIRS.yellowGreen,  // Inventory - Yellow/Green
-  5: STRIPE_COLOR_PAIRS.tealGreen,    // Finance - Teal/Green
-  6: STRIPE_COLOR_PAIRS.bluePink,     // Customer - Blue/Pink
+  1: SOLUTY_COLOR_PAIRS.tealPlum,          // Order Management
+  2: SOLUTY_COLOR_PAIRS.plumLavender,      // Logistics
+  3: SOLUTY_COLOR_PAIRS.charcoalTeal,      // Sales & Billing
+  4: SOLUTY_COLOR_PAIRS.lavenderTeal,      // Inventory
+  5: SOLUTY_COLOR_PAIRS.tealLavender,      // Finance
+  6: SOLUTY_COLOR_PAIRS.lavenderCharcoal,  // Customer
 };
 
 // ==========================================================================
@@ -87,31 +95,31 @@ export const GROUP_COLOR_MAP: Record<number, ColorPair> = {
 export const LINE_STYLES = {
   /** Stroke width when connection is inactive */
   strokeWidthInactive: 2,
-  
+
   /** Stroke width when connection is active */
   strokeWidthActive: 2.5,
-  
+
   /** Background trace stroke width */
   traceStrokeWidth: 2,
-  
-  /** Background trace color - lighter for better visibility */
+
+  /** Background trace color */
   traceColor: '#cbd5e1',
-  
-  /** Background trace opacity - increased for visibility */
+
+  /** Background trace opacity */
   traceOpacity: 0.35,
-  
+
   /** Glow blur radius in pixels */
   glowBlur: 6,
-  
-  /** Glow stroke width - subtle */
+
+  /** Glow stroke width */
   glowStrokeWidth: 1,
-  
-  /** Glow opacity - subtle */
+
+  /** Glow opacity */
   glowOpacity: 0.1,
-  
+
   /** Flow particle radius */
   particleRadius: 4,
-  
+
   /** Flow particle color */
   particleColor: '#FFFFFF',
 } as const;
@@ -121,21 +129,21 @@ export const LINE_STYLES = {
 // ==========================================================================
 
 export const ANIMATION_CONSTANTS = {
-  /** Gradient rotation speed (degrees per second) - faster for visible effect */
+  /** Gradient rotation speed (degrees per second) */
   rotationSpeed: 50,
-  
+
   /** Base flow particle duration in seconds */
   baseParticleDuration: 1.8,
-  
+
   /** Minimum particle duration */
   minParticleDuration: 1.5,
-  
-  /** Pixels per second for particle speed calculation - faster */
+
+  /** Pixels per second for particle speed calculation */
   particleSpeedFactor: 120,
-  
-  /** Line draw animation duration in seconds - faster */
+
+  /** Line draw animation duration in seconds */
   lineDrawDuration: 0.35,
-  
-  /** Fade transition duration in seconds - faster */
+
+  /** Fade transition duration in seconds */
   fadeTransitionDuration: 0.25,
 } as const;
