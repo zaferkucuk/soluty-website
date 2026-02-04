@@ -1,0 +1,3 @@
+Logo placeholder - replace with actual logo.png via manual upload or CI pipeline.
+The correct logo file is: logo_big_500x200.png (JPEG format, 500x200px)
+Upload it to: public/images/logo.png
