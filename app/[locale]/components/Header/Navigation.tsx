@@ -12,7 +12,6 @@ const FONTS = {
 
 const COLORS = {
   textPrimary: '#32302F',
-  textSecondary: '#5C5A58',
   brandPrimary: '#4DB6A0',
 }
 
@@ -40,11 +39,9 @@ function NavLink({ item, isActive, children }: { item: NavItem; isActive: boolea
         fontFamily: FONTS.serif,
         fontSize: '92px',
         fontWeight: 400,
-        color: isActive 
-          ? COLORS.textPrimary 
-          : isHovered 
-            ? COLORS.brandPrimary 
-            : COLORS.textSecondary,
+        color: isHovered 
+          ? COLORS.brandPrimary 
+          : COLORS.textPrimary,
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
