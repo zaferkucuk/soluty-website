@@ -21,14 +21,14 @@ export function Logo() {
         className="h-14 md:h-16 w-auto"
         priority
       />
-      <div className="flex flex-col leading-tight">
+      <div className="flex flex-col items-center leading-tight">
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '24px',
+            fontSize: '26px',
             fontWeight: 400,
             color: '#32302F',
-            letterSpacing: '0.16em',
+            letterSpacing: '0.18em',
           }}
         >
           SOLUTY
@@ -36,7 +36,7 @@ export function Logo() {
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '15px',
+            fontSize: '13px',
             fontWeight: 400,
             color: '#32302F',
           }}
