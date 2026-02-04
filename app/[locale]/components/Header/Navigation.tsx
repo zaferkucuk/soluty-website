@@ -39,7 +39,7 @@ function NavLink({ item, isActive, children }: { item: NavItem; isActive: boolea
       style={{
         fontFamily: FONTS.serif,
         fontSize: '19px',
-        fontWeight: 600,
+        fontWeight: 400,
         color: isActive 
           ? COLORS.textPrimary 
           : isHovered 
