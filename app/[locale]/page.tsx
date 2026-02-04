@@ -4,7 +4,6 @@ import { HeroVideo } from "./components/HeroVideo";
 import { ServicesSection } from "./components/ServicesSection";
 import { ERPFeaturesSection } from "./components/ERPFeaturesSection";
 import { FinalCTASection } from "./components/FinalCTA";
-import { Footer } from "./components/Footer";
 
 // Design tokens
 const COLORS = {
@@ -64,9 +63,6 @@ export default function HomePage() {
 
       {/* Final CTA Section */}
       <FinalCTASection />
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
