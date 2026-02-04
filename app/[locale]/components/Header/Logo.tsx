@@ -25,10 +25,10 @@ export function Logo() {
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '22px',
+            fontSize: '24px',
             fontWeight: 400,
             color: '#32302F',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.16em',
           }}
         >
           SOLUTY
