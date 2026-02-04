@@ -39,7 +39,7 @@ export function Logo() {
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
             fontSize: '92px',
             fontWeight: 400,
-            color: '#5C5A58',
+            color: '#32302F',
           }}
         >
           BUSINESS SOLUTIONS
