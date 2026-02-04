@@ -29,6 +29,7 @@ export function Logo() {
             fontSize: '19px',
             fontWeight: 400,
             color: '#32302F',
+            letterSpacing: '0.08em',
           }}
         >
           SOLUTY
@@ -36,7 +37,7 @@ export function Logo() {
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '19px',
+            fontSize: '15px',
             fontWeight: 400,
             color: '#32302F',
           }}
