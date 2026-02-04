@@ -22,12 +22,12 @@ export function Logo() {
         className="h-14 md:h-16 w-auto"
         priority
       />
-      {/* Two-line text between logo and navbar */}
+      {/* Two-line text — temporarily 92px for font comparison test */}
       <div className="flex flex-col leading-tight">
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '19px',
+            fontSize: '92px',
             fontWeight: 400,
             color: '#32302F',
           }}
@@ -37,7 +37,7 @@ export function Logo() {
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '14px',
+            fontSize: '92px',
             fontWeight: 400,
             color: '#5C5A58',
           }}
