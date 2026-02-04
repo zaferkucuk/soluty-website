@@ -27,7 +27,7 @@ export function Logo() {
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '16px',
+            fontSize: '19px',
             fontWeight: 600,
             color: '#1a1a1a',
             letterSpacing: '0.04em',
@@ -38,7 +38,7 @@ export function Logo() {
         <span
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-            fontSize: '12px',
+            fontSize: '14px',
             fontWeight: 400,
             color: '#555555',
             letterSpacing: '0.06em',
