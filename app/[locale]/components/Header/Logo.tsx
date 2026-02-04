@@ -28,7 +28,7 @@ export function Logo() {
           style={{
             fontFamily: "'Crimson Pro', Georgia, 'Times New Roman', serif",
             fontSize: '19px',
-            fontWeight: 600,
+            fontWeight: 400,
             color: '#1a1a1a',
             letterSpacing: '0.04em',
           }}
