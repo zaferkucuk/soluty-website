@@ -5,11 +5,25 @@ import { ServicesSection } from "./components/ServicesSection";
 import { ERPFeaturesSection } from "./components/ERPFeaturesSection";
 import { FinalCTASection } from "./components/FinalCTA";
 
+// Design tokens
+const COLORS = {
+  textPrimary: '#32302F',
+  textSecondary: '#5C5A58',
+  bgPrimary: '#FCFCFC',
+  brandPrimary: '#4DB6A0',
+}
+
+// Font constants for inline styles (Tailwind v4 CSS variable workaround)
+const FONTS = {
+  serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
+  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
+}
+
 export default function HomePage() {
   const t = useTranslations("hero");
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
+    <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       {/* Hero Section */}
       <section style={{ overflowX: 'clip' }}>
         {/* Mobile: stacked layout */}
@@ -17,7 +31,7 @@ export default function HomePage() {
           <div className="max-w-md mx-auto mb-8">
             <HeroVideo videoSrc="/videos/hero.webm" />
           </div>
-          <HeroTextContent t={t} />
+          <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
         </div>
 
         {/* Desktop: relative positioning — video is absolute, text drives height */}
@@ -25,7 +39,7 @@ export default function HomePage() {
           {/* Text — normal flow, determines section height */}
           <div className="relative z-10 max-w-7xl mx-auto px-6 py-10">
             <div className="max-w-[500px]">
-              <HeroTextContent t={t} />
+              <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
             </div>
           </div>
 
@@ -56,16 +70,20 @@ export default function HomePage() {
 /** Shared text content to avoid duplication between mobile and desktop */
 function HeroTextContent({ 
   t, 
+  colors, 
+  fonts 
 }: { 
   t: ReturnType<typeof useTranslations<'hero'>>; 
+  colors: typeof COLORS; 
+  fonts: typeof FONTS;
 }) {
   return (
     <>
       <h1
         className="heading-1"
         style={{
-          fontFamily: 'var(--font-serif)',
-          color: 'var(--color-text-primary)',
+          fontFamily: fonts.serif,
+          color: colors.textPrimary,
         }}
       >
         <span className="block">{t("headline.line1")}</span>
@@ -77,8 +95,8 @@ function HeroTextContent({
       <p
         className="body-lg mt-6 max-w-md"
         style={{
-          fontFamily: 'var(--font-sans)',
-          color: 'var(--color-text-secondary)',
+          fontFamily: fonts.sans,
+          color: colors.textSecondary,
           fontSize: '18px',
           lineHeight: 1.6,
         }}
@@ -89,8 +107,8 @@ function HeroTextContent({
       <p
         className="body-lg mt-2 max-w-md"
         style={{
-          fontFamily: 'var(--font-sans)',
-          color: 'var(--color-text-secondary)',
+          fontFamily: fonts.sans,
+          color: colors.textSecondary,
           fontSize: '18px',
           lineHeight: 1.6,
         }}
@@ -106,7 +124,7 @@ function HeroTextContent({
         <svg
           className="w-4 h-4"
           fill="none"
-          stroke="var(--color-brand-primary)"
+          stroke={colors.brandPrimary}
           viewBox="0 0 24 24"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -114,8 +132,8 @@ function HeroTextContent({
         <span
           className="text-sm font-medium"
           style={{
-            fontFamily: 'var(--font-sans)',
-            color: 'var(--color-brand-primary)',
+            fontFamily: fonts.sans,
+            color: colors.brandPrimary,
           }}
         >
           {t("trust.gdprCompliant")}

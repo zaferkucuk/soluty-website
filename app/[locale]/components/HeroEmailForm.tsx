@@ -3,6 +3,17 @@
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
+// Design tokens (matching Button component)
+const COLORS = {
+  textPrimary: '#32302F',
+  textInverse: '#FFFFFF',
+  textMuted: '#8A8785',
+  bgDark: '#0F2A39',
+  bgDarkHover: '#0A1F2B',
+  brandPrimary: '#4DB6A0',
+  borderStrong: 'rgba(50, 48, 47, 0.25)',
+}
+
 export function HeroEmailForm() {
   const t = useTranslations('hero')
   const [isHovered, setIsHovered] = useState(false)
@@ -27,8 +38,8 @@ export function HeroEmailForm() {
           focus:outline-none
         "
         style={{
-          color: 'var(--color-text-primary)',
-          border: `1px solid ${isFocused ? 'var(--color-brand-primary)' : 'var(--color-border-strong)'}`,
+          color: COLORS.textPrimary,
+          border: `1px solid ${isFocused ? COLORS.brandPrimary : COLORS.borderStrong}`,
         }}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -46,8 +57,8 @@ export function HeroEmailForm() {
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4DB6A0]
         "
         style={{ 
-          backgroundColor: isHovered ? 'var(--color-bg-dark-hover)' : 'var(--color-bg-dark)',
-          color: 'var(--color-text-inverse)',
+          backgroundColor: isHovered ? COLORS.bgDarkHover : COLORS.bgDark,
+          color: COLORS.textInverse,
           transform: `translateY(-50%)${isHovered ? ' translateY(-1px)' : ''}`,
           boxShadow: isHovered ? '0 4px 12px rgba(15, 42, 57, 0.3)' : 'none',
         }}

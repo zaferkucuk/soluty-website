@@ -38,9 +38,6 @@
   --color-bg-secondary: #F7F6F5;
   --color-bg-tertiary: #EFEEED;
   --color-bg-inverse: #32302F;
-  --color-bg-dark: #0F2A39;
-  --color-bg-dark-hover: #0A1F2B;
-  --color-bg-card: #FFFFFF;
   
   /* ---- Colors: Brand ---- */
   --color-brand-primary: #4DB6A0;
@@ -52,20 +49,6 @@
   --color-border: rgba(50, 48, 47, 0.12);
   --color-border-strong: rgba(50, 48, 47, 0.25);
   --color-divider: rgba(50, 48, 47, 0.08);
-  
-  /* ---- Colors: Error ---- */
-  --color-error: #DC2626;
-  --color-error-subtle: rgba(220, 38, 38, 0.1);
-  
-  /* ---- Colors: Footer/Inverse Context ---- */
-  --color-text-inverse-secondary: rgba(255, 255, 255, 0.7);
-  --color-text-inverse-muted: rgba(255, 255, 255, 0.5);
-  --color-border-inverse: rgba(255, 255, 255, 0.1);
-  
-  /* ---- Colors: Services Section ---- */
-  --color-services-bg: #0F2A39;
-  --color-services-inner-bg: rgba(255, 255, 255, 0.1);
-  --color-services-inner-border: rgba(255, 255, 255, 0.3);
   
   /* ---- Gradient Palette (Stripe-inspired, for accents) ---- */
   --gradient-magenta: #E47EED;

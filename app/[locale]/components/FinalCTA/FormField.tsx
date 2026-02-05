@@ -2,6 +2,24 @@
 
 import { useId } from 'react';
 
+// Design tokens
+const COLORS = {
+  textPrimary: '#32302F',
+  textSecondary: '#5C5A58',
+  textMuted: '#8A8785',
+  brandPrimary: '#4DB6A0',
+  brandSubtle: 'rgba(77, 182, 160, 0.1)',
+  error: '#DC2626',
+  errorSubtle: 'rgba(220, 38, 38, 0.1)',
+  border: 'rgba(50, 48, 47, 0.12)',
+  borderStrong: 'rgba(50, 48, 47, 0.25)',
+  bgCard: '#FFFFFF',
+};
+
+const FONTS = {
+  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
+};
+
 interface FormFieldProps {
   label: string;
   name: string;
@@ -40,23 +58,23 @@ export function FormField({
   const hasError = !!error;
 
   const getBorderColor = () => {
-    if (hasError) return 'var(--color-error)';
-    if (isFocused) return 'var(--color-brand-primary)';
-    return 'var(--color-border)';
+    if (hasError) return COLORS.error;
+    if (isFocused) return COLORS.brandPrimary;
+    return COLORS.border;
   };
 
   const getBoxShadow = () => {
-    if (hasError) return '0 0 0 3px var(--color-error-subtle)';
-    if (isFocused) return '0 0 0 3px var(--color-brand-subtle)';
+    if (hasError) return `0 0 0 3px ${COLORS.errorSubtle}`;
+    if (isFocused) return `0 0 0 3px ${COLORS.brandSubtle}`;
     return 'none';
   };
 
-  const sharedStyles: React.CSSProperties = {
+  const sharedStyles = {
     width: '100%',
-    fontFamily: 'var(--font-sans)',
+    fontFamily: FONTS.sans,
     fontSize: '16px',
-    color: 'var(--color-text-primary)',
-    backgroundColor: 'var(--color-bg-card)',
+    color: COLORS.textPrimary,
+    backgroundColor: COLORS.bgCard,
     border: `1px solid ${getBorderColor()}`,
     borderRadius: '8px',
     padding: '12px 16px',
@@ -74,10 +92,10 @@ export function FormField({
         htmlFor={inputId}
         className="flex items-baseline gap-1"
         style={{
-          fontFamily: 'var(--font-sans)',
+          fontFamily: FONTS.sans,
           fontSize: '14px',
           fontWeight: 500,
-          color: 'var(--color-text-primary)',
+          color: COLORS.textPrimary,
         }}
       >
         {label}
@@ -86,7 +104,7 @@ export function FormField({
             style={{
               fontSize: '13px',
               fontWeight: 400,
-              color: 'var(--color-text-muted)',
+              color: COLORS.textMuted,
             }}
           >
             {optionalText}
@@ -143,9 +161,9 @@ export function FormField({
           id={errorId}
           role="alert"
           style={{
-            fontFamily: 'var(--font-sans)',
+            fontFamily: FONTS.sans,
             fontSize: '13px',
-            color: 'var(--color-error)',
+            color: COLORS.error,
             marginTop: '2px',
           }}
         >

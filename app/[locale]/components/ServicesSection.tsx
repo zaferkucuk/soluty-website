@@ -6,9 +6,28 @@ import { Code2, Database, Brain } from 'lucide-react';
 import { ServiceCard } from './ServiceCard';
 
 // ─── Video Config ────────────────────────────────────────
+// Adjust playbackRate to change video speed:
+//   1.0 = normal | 0.8 = 80% (slower) | 0.6 = 60% | 0.5 = half speed
+// Adjust opacity to change video visibility:
+//   1.0 = full | 0.65 = default | 0.5 = subtle | 0.3 = very faint
 const VIDEO_CONFIG = {
   playbackRate: 1.0,
   opacity: 0.5,
+};
+
+// Design tokens
+const COLORS = {
+  textInverse: '#FFFFFF',
+  textInverseSecondary: 'rgba(255, 255, 255, 0.75)',
+  brandPrimary: '#4DB6A0',
+  bgSection: '#0F2A39',
+  bgInnerCard: 'rgba(255, 255, 255, 0.1)',
+  borderInnerCard: 'rgba(255, 255, 255, 0.3)',
+};
+
+const FONTS = {
+  serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
+  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
 };
 
 /**
@@ -60,7 +79,7 @@ export function ServicesSection() {
     <section
       id="services"
       className="relative overflow-hidden py-12 md:py-16 lg:py-24"
-      style={{ backgroundColor: 'var(--color-services-bg)' }}
+      style={{ backgroundColor: COLORS.bgSection }}
       aria-labelledby="services-heading"
     >
       {/* ── Video Background Layer ── */}
@@ -78,14 +97,14 @@ export function ServicesSection() {
         </video>
       </div>
 
-      {/* ── Gradient Overlay (Epicor-style) ── */}
+      {/* ── Gradient Overlay (Epicor-style: transparent → bgSection at 70%) ── */}
       <div
         className="absolute inset-0 z-[1]"
         aria-hidden="true"
         style={{
           background: `
-            linear-gradient(180deg, var(--color-services-bg) 0%, transparent 15%),
-            linear-gradient(0deg, var(--color-services-bg) 0%, transparent 15%),
+            linear-gradient(180deg, ${COLORS.bgSection} 0%, transparent 15%),
+            linear-gradient(0deg, ${COLORS.bgSection} 0%, transparent 15%),
             linear-gradient(180deg, rgba(15,42,57,0) 0%, rgba(15,42,57,0.7) 70%)
           `,
         }}
@@ -97,8 +116,8 @@ export function ServicesSection() {
         <p
           className="text-xs md:text-sm font-semibold tracking-widest uppercase mb-6 md:mb-8 text-center"
           style={{
-            color: 'var(--color-brand-primary)',
-            fontFamily: 'var(--font-sans)',
+            color: COLORS.brandPrimary,
+            fontFamily: FONTS.sans,
             letterSpacing: '0.1em',
           }}
         >
@@ -109,8 +128,8 @@ export function ServicesSection() {
         <div
           className="p-6 md:p-10 lg:p-14"
           style={{
-            backgroundColor: 'var(--color-services-inner-bg)',
-            borderTop: `1px solid var(--color-services-inner-border)`,
+            backgroundColor: COLORS.bgInnerCard,
+            borderTop: `1px solid ${COLORS.borderInnerCard}`,
             borderRadius: '40px',
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
@@ -122,8 +141,8 @@ export function ServicesSection() {
               id="services-heading"
               className="heading-2 mb-4 md:mb-5"
               style={{
-                fontFamily: 'var(--font-serif)',
-                color: 'var(--color-text-inverse)',
+                fontFamily: FONTS.serif,
+                color: COLORS.textInverse,
               }}
             >
               {t('headline')}
@@ -132,8 +151,8 @@ export function ServicesSection() {
             <p
               className="body-lg max-w-2xl mx-auto"
               style={{
-                fontFamily: 'var(--font-sans)',
-                color: 'rgba(255, 255, 255, 0.75)',
+                fontFamily: FONTS.sans,
+                color: COLORS.textInverseSecondary,
               }}
             >
               {t('subheadline')}
