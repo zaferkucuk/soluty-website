@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 
 // Design tokens
@@ -30,6 +30,7 @@ const FAQ_ITEMS = ['erpNeeded', 'digitalization', 'standardVsCustom'] as const;
  */
 export function HomeFAQ() {
   const t = useTranslations('homeFaq');
+  const locale = useLocale();
   const detailsRefs = useRef<(HTMLDetailsElement | null)[]>([]);
 
   // Handle accordion behavior: close other details when one opens
@@ -152,7 +153,7 @@ export function HomeFAQ() {
         {/* Link to full FAQ page */}
         <div className="mt-8 text-center">
           <Link
-            href="/faq"
+            href={`/${locale}/faq`}
             className="inline-flex items-center gap-2 font-medium transition-colors duration-150 hover:underline"
             style={{
               fontFamily: FONTS.sans,
