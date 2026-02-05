@@ -155,7 +155,7 @@ export function ERPFeaturesSection() {
               'order-first lg:order-last ' +
               /* Desktop: sticky right column */
               'w-full lg:w-[520px] lg:flex-shrink-0 ' +
-              'lg:sticky lg:top-[96px] lg:self-start ' +
+              'lg:sticky lg:top-[30vh] lg:self-start ' +
               /* Centering for tablet/mobile */
               'flex justify-center ' +
               'mb-8 md:mb-12 lg:mb-0 ' +

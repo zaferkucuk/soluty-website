@@ -44,7 +44,7 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         className={
           'relative ' +
           /* Sticky stacking: each card sticks and overlaps previous */
-          'sticky top-[80px] md:top-[88px] lg:top-[96px] ' +
+          'sticky top-[30vh] md:top-[30vh] lg:top-[30vh] ' +
           /* Entry animation */
           'transition-all duration-500 ease-out ' +
           (isVisible

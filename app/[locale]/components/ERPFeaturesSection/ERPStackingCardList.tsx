@@ -40,7 +40,7 @@ export function ERPStackingCardList({
       <div
         role="list"
         aria-label={t('erpFeatures.eyebrow')}
-        className="flex flex-col gap-3 md:gap-4"
+        className="flex flex-col gap-6 md:gap-8"
       >
         {erpModules.map((module, index) => (
           <ERPStackingCard
