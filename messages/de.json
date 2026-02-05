@@ -267,7 +267,7 @@
       },
       "standardVsCustom": {
         "question": "Standardsoftware oder individuelle Lösung — was ist sinnvoller?",
-        "answer": "Standardsoftware passt zu Unternehmen mit typischen, branchenüblichen Prozessen. Individuelle Lösungen sind sinnvoller, wenn Ihre Abläufe vom Standard abweichen oder ein Wettbewerbsvorteil aus optimierten Prozessen entstehen soll. Die Frage ist nicht „Standard oder Individual", sondern „Passen wir uns der Software an, oder passt sich die Software uns an?""
+        "answer": "Standardsoftware passt zu Unternehmen mit typischen, branchenüblichen Prozessen. Individuelle Lösungen sind sinnvoller, wenn Ihre Abläufe vom Standard abweichen oder ein Wettbewerbsvorteil aus optimierten Prozessen entstehen soll. Die Frage ist nicht 'Standard oder Individual', sondern 'Passen wir uns der Software an, oder passt sich die Software uns an?'"
       }
     }
   },
@@ -310,11 +310,11 @@
       "q02": {
         "question": "Braucht mein Unternehmen wirklich ein ERP-System?",
         "answerCapsule": "Ein ERP-System wird notwendig, wenn manuelle Prozesse das Wachstum bremsen. Typische Anzeichen: Aufträge gehen verloren, Lagerbestände stimmen nicht, dieselben Daten werden mehrfach eingegeben, oder Auswertungen erfordern stundenlanges Zusammensuchen von Excel-Dateien. Ab etwa 5–10 Mitarbeitern oder 50+ Aufträgen pro Woche lohnt sich der Umstieg.",
-        "answerExtended": "Die Entscheidung hängt nicht von der Unternehmensgröße ab, sondern von der Prozesskomplexität. Ein kleines Lieferunternehmen mit 3 Fahrzeugen und täglich wechselnden Routen profitiert oft mehr von einem ERP als ein größeres Unternehmen mit einfachen, gleichbleibenden Abläufen. Fragen Sie sich: Wie viel Zeit verbringen Sie täglich mit der Suche nach Informationen? Wie oft passieren Fehler durch fehlende Übersicht? Wenn die Antwort „zu viel" lautet, ist ein ERP-System die richtige Investition."
+        "answerExtended": "Die Entscheidung hängt nicht von der Unternehmensgröße ab, sondern von der Prozesskomplexität. Ein kleines Lieferunternehmen mit 3 Fahrzeugen und täglich wechselnden Routen profitiert oft mehr von einem ERP als ein größeres Unternehmen mit einfachen, gleichbleibenden Abläufen. Fragen Sie sich: Wie viel Zeit verbringen Sie täglich mit der Suche nach Informationen? Wie oft passieren Fehler durch fehlende Übersicht? Wenn die Antwort 'zu viel' lautet, ist ein ERP-System die richtige Investition."
       },
       "q03": {
         "question": "Wann wird Excel für die Unternehmensführung unzureichend?",
-        "answerCapsule": "Excel stößt an Grenzen, sobald mehrere Personen gleichzeitig mit denselben Daten arbeiten müssen. Versionskonflikte, fehlende Echtzeit-Aktualisierung und manuelle Übertragungsfehler werden zum Alltag. Spätestens wenn ein Mitarbeiter fragt „Welche Excel-Datei ist die aktuelle?" ist der Zeitpunkt für ein strukturiertes System gekommen.",
+        "answerCapsule": "Excel stößt an Grenzen, sobald mehrere Personen gleichzeitig mit denselben Daten arbeiten müssen. Versionskonflikte, fehlende Echtzeit-Aktualisierung und manuelle Übertragungsfehler werden zum Alltag. Spätestens wenn ein Mitarbeiter fragt 'Welche Excel-Datei ist die aktuelle?' ist der Zeitpunkt für ein strukturiertes System gekommen.",
         "answerExtended": "Konkrete Warnsignale: Sie pflegen Kundendaten in einer Datei, Aufträge in einer anderen, Lagerbestände in einer dritten. Auswertungen erfordern Copy-Paste zwischen Dateien. Preisänderungen müssen an mehreren Stellen manuell nachgezogen werden. Ein Mitarbeiter ist im Urlaub — und niemand findet seine Dateien. Diese Probleme verschwinden nicht mit besseren Excel-Kenntnissen, sondern nur mit einem System, das für Mehrbenutzer-Betrieb und vernetzte Prozesse konzipiert ist."
       },
       "q04": {
@@ -334,7 +334,7 @@
       },
       "q07": {
         "question": "Standardsoftware oder individuelle Lösung — was ist sinnvoller?",
-        "answerCapsule": "Standardsoftware passt zu Unternehmen mit typischen, branchenüblichen Prozessen. Individuelle Lösungen sind sinnvoller, wenn Ihre Abläufe vom Standard abweichen oder ein Wettbewerbsvorteil aus optimierten Prozessen entstehen soll. Die Frage ist nicht „Standard oder Individual", sondern „Passen wir uns der Software an, oder passt sich die Software uns an?"",
+        "answerCapsule": "Standardsoftware passt zu Unternehmen mit typischen, branchenüblichen Prozessen. Individuelle Lösungen sind sinnvoller, wenn Ihre Abläufe vom Standard abweichen oder ein Wettbewerbsvorteil aus optimierten Prozessen entstehen soll. Die Frage ist nicht 'Standard oder Individual', sondern 'Passen wir uns der Software an, oder passt sich die Software uns an?'",
         "answerExtended": "Standardsoftware hat Vorteile: schneller Einstieg, bekannte Funktionen, große Nutzerbasis. Die Nachteile zeigen sich später: Workarounds für nicht abgedeckte Prozesse, Anpassungskosten, Abhängigkeit vom Anbieter. Individualsoftware erfordert mehr Vorabinvestition, aber Sie erhalten ein System, das exakt Ihre Prozesse abbildet — ohne Kompromisse, ohne ungenutzte Funktionen, ohne laufende Lizenzkosten. Für Lieferunternehmen mit spezifischen Anforderungen an Tourenplanung, Pfandverwaltung oder branchenspezifische Abrechnungsmodelle ist Individual oft die wirtschaftlichere Wahl."
       },
       "q08": {
@@ -380,7 +380,7 @@
       "q16": {
         "question": "Warum entwickelt Soluty ERP-Lösungen in Deutschland?",
         "answerCapsule": "Soluty entwickelt in Deutschland, weil deutsche Unternehmen spezifische Anforderungen haben: DSGVO, GoBD-konforme Buchführung, deutsche Steuervorschriften, Kommunikation auf Deutsch. Ein lokales Team versteht diese Anforderungen ohne Erklärung und kann bei Bedarf vor Ort sein.",
-        "answerExtended": "„Made in Germany" bedeutet für uns: Entwickler, die Ihre Sprache sprechen und Ihre Geschäftskultur kennen. Keine Zeitzonenprobleme bei dringenden Fragen. Verträge nach deutschem Recht. Datenhaltung in deutschen Rechenzentren. Persönliche Ansprechpartner statt anonymer Ticketsysteme. Für Lieferunternehmen im deutschen Mittelstand sind das keine Luxusanforderungen, sondern praktische Notwendigkeiten. Wenn Ihr Fahrer morgens ein Problem mit der App hat, brauchen Sie jemanden, der sofort helfen kann — nicht in 8 Stunden, wenn das Offshore-Team aufwacht."
+        "answerExtended": "'Made in Germany' bedeutet für uns: Entwickler, die Ihre Sprache sprechen und Ihre Geschäftskultur kennen. Keine Zeitzonenprobleme bei dringenden Fragen. Verträge nach deutschem Recht. Datenhaltung in deutschen Rechenzentren. Persönliche Ansprechpartner statt anonymer Ticketsysteme. Für Lieferunternehmen im deutschen Mittelstand sind das keine Luxusanforderungen, sondern praktische Notwendigkeiten. Wenn Ihr Fahrer morgens ein Problem mit der App hat, brauchen Sie jemanden, der sofort helfen kann — nicht in 8 Stunden, wenn das Offshore-Team aufwacht."
       }
     },
     "ctaBanner": {
