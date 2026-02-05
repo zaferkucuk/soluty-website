@@ -2,7 +2,6 @@
 
 import { forwardRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { CATEGORY_COLORS } from './erp-modules-data';
 import type { ERPStackingCardProps } from './types';
 
 // ==========================================================================
@@ -33,7 +32,6 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
   function ERPStackingCard({ module, index, isVisible }, ref) {
     const t = useTranslations();
     const Icon = module.icon;
-    const colors = CATEGORY_COLORS[module.categoryId];
 
     // Staggered entry delay: 50ms per card
     const entryDelay = index * 50;
@@ -45,7 +43,7 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
       <article
         ref={ref}
         role="listitem"
-        aria-label={`${t(module.titleKey)} — ${t(module.categoryKey)}`}
+        aria-label={t(module.titleKey)}
         data-module-id={module.id}
         className={
           'relative ' +
@@ -92,9 +90,9 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
             boxShadow: 'var(--shadow-sm)',
           }}
         >
-          {/* Row 1: Icon + Title + Category Badge */}
+          {/* Row 1: Icon + Title */}
           <div className="flex items-center gap-3">
-            {/* Icon — brand-primary, 30% smaller */}
+            {/* Icon — brand-primary */}
             <div className="flex-shrink-0 w-6 h-6 md:w-7 md:h-7">
               <Icon
                 className="w-full h-full"
@@ -105,31 +103,18 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
               />
             </div>
 
-            {/* Title */}
+            {/* Title — 16px */}
             <h3
-              className="heading-4 !text-[18px] !leading-tight flex-1 min-w-0"
+              className="flex-1 min-w-0 text-[16px] font-semibold leading-tight"
               style={{ color: 'var(--color-text-primary)' }}
             >
               {t(module.titleKey)}
             </h3>
-
-            {/* Category Badge — gray/black tones */}
-            <span
-              className="flex-shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[18px] font-medium"
-              style={{
-                fontFamily: 'var(--font-sans)',
-                letterSpacing: '0.02em',
-                backgroundColor: colors.bg,
-                color: colors.color,
-              }}
-            >
-              {t(module.categoryKey)}
-            </span>
           </div>
 
-          {/* Row 2: Description */}
+          {/* Row 2: Description — 16px */}
           <p
-            className="mt-3 text-[18px]"
+            className="mt-3 text-[16px]"
             style={{
               lineHeight: 1.6,
               color: 'var(--color-text-secondary)',
