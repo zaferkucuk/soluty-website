@@ -71,6 +71,7 @@
     "eyebrow": "ERP-MODULE",
     "headline": "Alle Werkzeuge für Ihr Liefergeschäft — in einer Lösung",
     "subheadline": "Von der Auftragserfassung bis zur Rechnungsstellung: 13 Module, die nahtlos zusammenarbeiten und sich an Ihren Workflow anpassen.",
+    "cta": "Beratung anfragen",
     "modules": {
       "orders": {
         "title": "Aufträge",
