@@ -259,15 +259,15 @@
     "items": {
       "erpNeeded": {
         "question": "Does my business really need an ERP system?",
-        "answer": "Answer coming soon."
+        "answer": "An ERP system becomes necessary when manual processes start limiting your growth. Typical signs: orders get lost, inventory counts are off, the same data is entered multiple times, or creating reports requires hours of gathering Excel files. From around 5-10 employees or 50+ orders per week, the switch pays off."
       },
       "digitalization": {
         "question": "What does digitalization bring to delivery businesses?",
-        "answer": "Answer coming soon."
+        "answer": "Digitalization enables delivery businesses to achieve faster response times, fewer errors, and better capacity utilization. Specifically: orders are captured digitally instead of noted down by phone, routes are automatically optimized, customers receive real-time status updates. Companies report 20-30% time savings in dispatch and significantly fewer complaints."
       },
       "standardVsCustom": {
         "question": "Standard software or custom solution — which makes more sense?",
-        "answer": "Answer coming soon."
+        "answer": "Standard software suits companies with typical, industry-standard processes. Custom solutions make more sense when your workflows differ from the norm or when competitive advantage comes from optimized processes. The question isn't 'standard or custom' but rather 'do we adapt to the software, or does the software adapt to us?'"
       }
     }
   },
@@ -304,83 +304,83 @@
     "questions": {
       "q01": {
         "question": "What is an ERP system and what is it used for?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "An ERP system (Enterprise Resource Planning) is software that consolidates all business processes into a single central platform. Orders, inventory, customer relationships, finances, and logistics are managed in one system — no data silos, no manual transfers between different tools.",
+        "answerExtended": "For delivery businesses, this means: an order is captured, automatically transferred to route planning, inventory updates in real-time, and after delivery, the invoice is generated — all in one continuous process. Instead of five different isolated solutions, there's a single source of truth for all company data. This reduces errors, saves time, and enables informed decisions based on current figures."
       },
       "q02": {
         "question": "Does my business really need an ERP system?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "An ERP system becomes necessary when manual processes start limiting your growth. Typical signs: orders get lost, inventory counts are off, the same data is entered multiple times, or creating reports requires hours of gathering Excel files. From around 5-10 employees or 50+ orders per week, the switch pays off.",
+        "answerExtended": "The decision depends not on company size but on process complexity. A small delivery company with 3 vehicles and daily changing routes often benefits more from an ERP than a larger company with simple, consistent workflows. Ask yourself: How much time do you spend daily searching for information? How often do errors occur due to lack of oversight? If the answer is 'too much,' an ERP system is the right investment."
       },
       "q03": {
         "question": "When does Excel become insufficient for business management?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "Excel reaches its limits as soon as multiple people need to work with the same data simultaneously. Version conflicts, lack of real-time updates, and manual transfer errors become daily occurrences. At the latest when an employee asks 'Which Excel file is the current one?' it's time for a structured system.",
+        "answerExtended": "Concrete warning signs: You maintain customer data in one file, orders in another, inventory in a third. Reports require copy-paste between files. Price changes must be manually updated in multiple places. An employee goes on vacation — and nobody can find their files. These problems don't disappear with better Excel skills, only with a system designed for multi-user operation and connected processes."
       },
       "q04": {
         "question": "What does digitalization bring to delivery businesses?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "Digitalization enables delivery businesses to achieve faster response times, fewer errors, and better capacity utilization. Specifically: orders are captured digitally instead of noted down by phone, routes are automatically optimized, customers receive real-time status updates. Companies report 20-30% time savings in dispatch and significantly fewer complaints.",
+        "answerExtended": "The biggest lever is eliminating media breaks. When an order goes from phone to paper, then to Excel, and finally to the driver via WhatsApp, errors occur. Digital processes eliminate these breaks: the customer orders, the dispatcher sees it immediately, the driver receives the route on their device, delivery is documented, the invoice is automatically generated. Every step is traceable, and data is available for analysis."
       },
       "q05": {
         "question": "How much does custom ERP development cost?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "The cost of a custom ERP solution depends on the scope of features. For small and medium delivery businesses, projects typically start at 25,000-50,000 euros for a basic system with 4-6 core modules. Unlike standard software, there are no ongoing per-user license fees.",
+        "answerExtended": "The investment is distributed across analysis, development, data migration, and training. A modular approach allows you to start with the most important functions and expand the system gradually. Long-term, custom software is often cheaper than standard solutions: no monthly fees per workstation, no costs for unused features, no expensive adaptations to rigid systems. With a team of 10 users and typical SaaS costs of 50-100 euros per user per month, license costs over 5 years add up to 30,000-60,000 euros — on top of often necessary customization."
       },
       "q06": {
         "question": "How long does ERP development take?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "A custom ERP system for delivery businesses is typically developed and deployed within 3-6 months. The exact duration depends on the number of modules, complexity of data migration, and availability of the customer team for feedback.",
+        "answerExtended": "The process breaks down into phases: requirements analysis (2-4 weeks), concept and design (2-4 weeks), core module development (6-12 weeks), testing with real data (2-4 weeks), training and go-live (2 weeks). A common approach is phased introduction: first order management and dispatch, then warehouse, finally finance and reporting. This way you can work productively faster and refine the system in live operation."
       },
       "q07": {
         "question": "Standard software or custom solution — which makes more sense?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "Standard software suits companies with typical, industry-standard processes. Custom solutions make more sense when your workflows differ from the norm or when competitive advantage comes from optimized processes. The question isn't 'standard or custom' but rather 'do we adapt to the software, or does the software adapt to us?'",
+        "answerExtended": "Standard software has advantages: quick start, familiar features, large user base. The disadvantages show up later: workarounds for uncovered processes, customization costs, vendor dependency. Custom software requires more upfront investment, but you get a system that exactly maps your processes — no compromises, no unused features, no ongoing license costs. For delivery businesses with specific requirements for route planning, deposit management, or industry-specific billing models, custom is often the more economical choice."
       },
       "q08": {
         "question": "What modules are part of an ERP system for delivery businesses?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "An ERP system for delivery businesses typically includes order management, route planning, warehouse management, customer management (CRM), invoicing, and reporting. Depending on the business model, modules for deposit management, POS system, expense tracking, and driver app may be added. Soluty offers 13 modules that can be flexibly combined.",
+        "answerExtended": "Core modules for delivery businesses are: Orders (capture, status, history), Planning (daily overview, resources), Route (optimization, navigation), Warehouse (stock levels, minimum quantities), CRM (customer data, communication), Waybill and Invoice (automatic generation), Payment Tracking (open items, reminders). Supplementary modules like Dashboard, Notifications, and E-Signature round out the system. The modular structure means: you only pay for what you actually use."
       },
       "q09": {
         "question": "Can existing systems be integrated into a new ERP?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "Yes, existing systems can be connected to a new ERP via interfaces (APIs). Typical integrations: accounting software like DATEV or Lexware, map services for route planning, payment providers, email systems. Integration is defined in the project scope and implemented as part of development.",
+        "answerExtended": "Integration effort depends on the interface quality of existing systems. Modern cloud software usually offers well-documented APIs; older on-premise solutions sometimes require workarounds. Important to clarify upfront: Which data should flow? In which direction? At what frequency? Clean integration avoids double data entry and ensures your tax advisor can continue using familiar tools while you internally use a modern ERP."
       },
       "q10": {
         "question": "Can a custom ERP system be GDPR compliant?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "Yes, a custom ERP system can be developed to be fully GDPR compliant. Unlike standard software, data protection can be built in from the ground up: data minimization, access controls, deletion concepts, and logging are implemented according to your requirements — not as an afterthought compromise.",
+        "answerExtended": "GDPR compliance requires technical and organizational measures: encryption, role-based access rights, automatic deletion periods, export function for information requests, logging of data access. With standard software, you're bound by the vendor's compliance decisions. With custom software, you decide which data is collected, how long it's stored, and who has access. Soluty develops in Germany and understands the requirements of German companies for data protection and legal certainty."
       },
       "q11": {
         "question": "Where is the data stored?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "Data is stored on servers in Germany or within the EU — according to customer preference. Soluty works with German data centers that are ISO 27001 certified. Data sovereignty lies entirely with the customer: you decide where your data resides and who has access.",
+        "answerExtended": "For many companies, storage location is a decisive criterion. German data centers are subject to German law; there's no access by foreign authorities as with US cloud providers (Cloud Act). Various technical options are available: hosting in a German cloud, dedicated servers, or on-premise installation in your own infrastructure. The choice depends on your security requirements, IT setup, and budget."
       },
       "q12": {
         "question": "How are user access rights managed?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "User access rights are managed through a role-based system. Each role (e.g., dispatcher, driver, accounting, management) receives exactly the permissions required for their tasks. A driver sees their routes but no financial data. A dispatcher processes orders but cannot change prices.",
+        "answerExtended": "The permission system can be configured with fine granularity: read and write permissions per module, access to specific customer segments, approval workflows for critical actions. All access is logged, so it's traceable who viewed or modified which data and when. When an employee leaves, the account is deactivated; historical data remains. This concept meets both GDPR requirements and internal compliance guidelines."
       },
       "q13": {
         "question": "How does an ERP project with Soluty begin?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "An ERP project begins with a free initial consultation where we understand your current processes and challenges. This is followed by a requirements analysis that results in a concept document with module overview, timeline, and cost estimate. Development only begins after your approval.",
+        "answerExtended": "Typical flow: In the initial consultation (30-60 minutes), we clarify whether collaboration makes sense. With a positive outcome, a deeper analysis follows on-site or remotely, capturing your workflows in detail. The result is a concept with concrete scope, module prioritization, and transparent cost breakdown. You get no surprises — the agreed scope and budget are maintained. Change requests during development are possible and fairly charged."
       },
       "q14": {
         "question": "How involved is the customer in the development process?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "The customer is an integral part of the development process. In regular check-ins (typically every 1-2 weeks), we present progress, gather feedback, and adjust priorities. This creates a system that actually fits your workflows — not one designed at a desk.",
+        "answerExtended": "We work agile: features are developed in short cycles and presented early. You don't see a finished system only after 6 months but can test first modules within weeks. Your feedback flows directly into the next iteration. For the check-ins, we need a dedicated contact on your side — typically 2-4 hours per week. This investment pays off: the finished system matches exactly your vision."
       },
       "q15": {
         "question": "Is there long-term support after go-live?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "Yes, after go-live Soluty offers long-term support and maintenance. This includes technical assistance with questions, bug fixes, security updates, and the option to continue developing the system. ERP systems are not one-time projects but grow with your company.",
+        "answerExtended": "Support options range from basic maintenance (security updates, hosting monitoring) to comprehensive service level agreements with guaranteed response times. Most customers choose a monthly contingent covering support and small adjustments. Larger extensions are planned as separate projects. Important: You're not locked into Soluty. The source code belongs to you, documentation is complete, switching to another provider is possible at any time."
       },
       "q16": {
         "question": "Why does Soluty develop ERP solutions in Germany?",
-        "answerCapsule": "Answer coming soon.",
-        "answerExtended": ""
+        "answerCapsule": "Soluty develops in Germany because German companies have specific requirements: GDPR, GoBD-compliant bookkeeping, German tax regulations, communication in German. A local team understands these requirements without explanation and can be on-site when needed.",
+        "answerExtended": "'Made in Germany' means for us: developers who speak your language and know your business culture. No timezone problems with urgent questions. Contracts under German law. Data storage in German data centers. Personal contacts instead of anonymous ticket systems. For delivery companies in the German Mittelstand, these aren't luxury requirements but practical necessities. When your driver has an app problem in the morning, you need someone who can help immediately — not in 8 hours when the offshore team wakes up."
       }
     },
     "ctaBanner": {
