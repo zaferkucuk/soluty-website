@@ -3,6 +3,7 @@ import { HeroEmailForm } from "./components/HeroEmailForm";
 import { HeroVideo } from "./components/HeroVideo";
 import { ServicesSection } from "./components/ServicesSection";
 import { ERPFeaturesSection } from "./components/ERPFeaturesSection";
+import { HomeFAQ } from "./components/HomeFAQ";
 import { FinalCTASection } from "./components/FinalCTA";
 
 // Design tokens
@@ -60,6 +61,9 @@ export default function HomePage() {
 
       {/* ERP Features Section */}
       <ERPFeaturesSection />
+
+      {/* Home FAQ Section */}
+      <HomeFAQ />
 
       {/* Final CTA Section */}
       <FinalCTASection />

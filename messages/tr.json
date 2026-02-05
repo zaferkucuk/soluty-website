@@ -227,5 +227,142 @@
   "metadata": {
     "title": "Soluty GmbH | İşletmeler için Özel Yazılım Çözümleri",
     "description": "İşinizi dijital olarak yönetin. Basit, etkili, size özel — Almanya'da geliştirilen özel yazılım çözümleri."
+  },
+  "homeFaq": {
+    "eyebrow": "Sıkça Sorulan Sorular",
+    "headline": "En önemli sorularınızın cevapları",
+    "linkToFaq": "Tüm soru ve cevapları görüntüle",
+    "items": {
+      "erpNeeded": {
+        "question": "İşletmemin gerçekten bir ERP sistemine ihtiyacı var mı?",
+        "answer": "Cevap yakında eklenecektir."
+      },
+      "digitalization": {
+        "question": "Dijitalleşme teslimat işletmelerine ne kazandırır?",
+        "answer": "Cevap yakında eklenecektir."
+      },
+      "standardVsCustom": {
+        "question": "Hazır yazılım mı, özel çözüm mü — hangisi daha mantıklı?",
+        "answer": "Cevap yakında eklenecektir."
+      }
+    }
+  },
+  "faqPage": {
+    "breadcrumb": {
+      "home": "Ana Sayfa",
+      "faq": "SSS"
+    },
+    "meta": {
+      "title": "Sıkça Sorulan Sorular — Soluty GmbH | Özel ERP Yazılımı",
+      "description": "Özel ERP geliştirme hakkında sıkça sorulan sorular: maliyet, süre, modüller ve KVKK uyumluluğu."
+    },
+    "headline": "Sıkça Sorulan Sorular",
+    "intro": "ERP sistemleri, özel yazılım geliştirme ve Soluty ile çalışma hakkındaki en önemli soruların cevaplarını burada bulabilirsiniz.",
+    "lastUpdated": "Son güncelleme",
+    "categories": {
+      "basics": {
+        "title": "Temel Bilgiler: ERP ve Dijitalleşme",
+        "navLabel": "Temel Bilgiler"
+      },
+      "costAndTech": {
+        "title": "Maliyet, Süre ve Teknik",
+        "navLabel": "Maliyet & Teknik"
+      },
+      "security": {
+        "title": "Güvenlik ve Yasal Gereklilikler",
+        "navLabel": "Güvenlik"
+      },
+      "collaboration": {
+        "title": "Soluty ile Çalışma",
+        "navLabel": "İş Birliği"
+      }
+    },
+    "questions": {
+      "q01": {
+        "question": "ERP sistemi nedir ve ne için kullanılır?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q02": {
+        "question": "İşletmemin gerçekten bir ERP sistemine ihtiyacı var mı?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q03": {
+        "question": "Excel, işletme yönetimi için ne zaman yetersiz kalır?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q04": {
+        "question": "Dijitalleşme teslimat işletmelerine ne kazandırır?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q05": {
+        "question": "Özel ERP geliştirme maliyeti ne kadar?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q06": {
+        "question": "ERP sistemi geliştirmek ne kadar sürer?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q07": {
+        "question": "Hazır yazılım mı, özel çözüm mü — hangisi daha mantıklı?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q08": {
+        "question": "Teslimat işletmeleri için bir ERP sisteminde hangi modüller bulunur?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q09": {
+        "question": "Mevcut sistemler yeni bir ERP'ye entegre edilebilir mi?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q10": {
+        "question": "Özel bir ERP sistemi KVKK uyumlu olabilir mi?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q11": {
+        "question": "Veriler nerede saklanır?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q12": {
+        "question": "Kullanıcı erişim hakları nasıl yönetilir?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q13": {
+        "question": "Soluty ile bir ERP projesi nasıl başlar?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q14": {
+        "question": "Müşteri geliştirme sürecine ne kadar dahil olur?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q15": {
+        "question": "Canlıya geçişten sonra uzun vadeli destek var mı?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      },
+      "q16": {
+        "question": "Soluty neden ERP çözümlerini Almanya'da geliştiriyor?",
+        "answerCapsule": "Cevap yakında eklenecektir.",
+        "answerExtended": ""
+      }
+    },
+    "ctaBanner": {
+      "headline": "Cevap bulamadınız mı?",
+      "subtext": "Ekibimizle doğrudan konuşun.",
+      "button": "Ücretsiz danışmanlık alın"
+    }
   }
 }

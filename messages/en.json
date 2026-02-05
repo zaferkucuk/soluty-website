@@ -251,5 +251,142 @@
   "metadata": {
     "title": "Soluty GmbH | Custom Software Solutions for Businesses",
     "description": "Manage your business digitally. Simple, efficient, made for you — custom software solutions developed in Germany."
+  },
+  "homeFaq": {
+    "eyebrow": "Frequently Asked Questions",
+    "headline": "Answers to your key questions",
+    "linkToFaq": "View all questions and answers",
+    "items": {
+      "erpNeeded": {
+        "question": "Does my business really need an ERP system?",
+        "answer": "Answer coming soon."
+      },
+      "digitalization": {
+        "question": "What does digitalization bring to delivery businesses?",
+        "answer": "Answer coming soon."
+      },
+      "standardVsCustom": {
+        "question": "Standard software or custom solution — which makes more sense?",
+        "answer": "Answer coming soon."
+      }
+    }
+  },
+  "faqPage": {
+    "breadcrumb": {
+      "home": "Home",
+      "faq": "FAQ"
+    },
+    "meta": {
+      "title": "FAQ — Soluty GmbH | Custom ERP Software",
+      "description": "Answers to common questions about custom ERP development: costs, timelines, modules, and GDPR compliance."
+    },
+    "headline": "Frequently Asked Questions",
+    "intro": "Find answers to the most important questions about ERP systems, custom software development, and working with Soluty.",
+    "lastUpdated": "Last updated",
+    "categories": {
+      "basics": {
+        "title": "Basics: ERP and Digitalization",
+        "navLabel": "Basics"
+      },
+      "costAndTech": {
+        "title": "Costs, Timeline and Technology",
+        "navLabel": "Costs & Tech"
+      },
+      "security": {
+        "title": "Security and Legal Requirements",
+        "navLabel": "Security"
+      },
+      "collaboration": {
+        "title": "Working with Soluty",
+        "navLabel": "Collaboration"
+      }
+    },
+    "questions": {
+      "q01": {
+        "question": "What is an ERP system and what is it used for?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q02": {
+        "question": "Does my business really need an ERP system?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q03": {
+        "question": "When does Excel become insufficient for business management?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q04": {
+        "question": "What does digitalization bring to delivery businesses?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q05": {
+        "question": "How much does custom ERP development cost?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q06": {
+        "question": "How long does ERP development take?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q07": {
+        "question": "Standard software or custom solution — which makes more sense?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q08": {
+        "question": "What modules are part of an ERP system for delivery businesses?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q09": {
+        "question": "Can existing systems be integrated into a new ERP?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q10": {
+        "question": "Can a custom ERP system be GDPR compliant?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q11": {
+        "question": "Where is the data stored?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q12": {
+        "question": "How are user access rights managed?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q13": {
+        "question": "How does an ERP project with Soluty begin?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q14": {
+        "question": "How involved is the customer in the development process?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q15": {
+        "question": "Is there long-term support after go-live?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      },
+      "q16": {
+        "question": "Why does Soluty develop ERP solutions in Germany?",
+        "answerCapsule": "Answer coming soon.",
+        "answerExtended": ""
+      }
+    },
+    "ctaBanner": {
+      "headline": "Didn't find an answer?",
+      "subtext": "Talk directly with our team.",
+      "button": "Get free consultation"
+    }
   }
 }

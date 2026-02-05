@@ -251,5 +251,142 @@
   "metadata": {
     "title": "Soluty GmbH | Individuelle ERP-Lösungen für Unternehmen",
     "description": "Führen Sie Ihr Unternehmen digital. Einfach, effizient, individuell — maßgeschneiderte Softwarelösungen entwickelt in Deutschland."
+  },
+  "homeFaq": {
+    "eyebrow": "Häufig gestellte Fragen",
+    "headline": "Antworten auf Ihre wichtigsten Fragen",
+    "linkToFaq": "Alle Fragen und Antworten",
+    "items": {
+      "erpNeeded": {
+        "question": "Braucht mein Unternehmen wirklich ein ERP-System?",
+        "answer": "Antwort wird in Kürze ergänzt."
+      },
+      "digitalization": {
+        "question": "Was bringt Digitalisierung Lieferunternehmen?",
+        "answer": "Antwort wird in Kürze ergänzt."
+      },
+      "standardVsCustom": {
+        "question": "Standardsoftware oder individuelle Lösung — was ist sinnvoller?",
+        "answer": "Antwort wird in Kürze ergänzt."
+      }
+    }
+  },
+  "faqPage": {
+    "breadcrumb": {
+      "home": "Startseite",
+      "faq": "FAQ"
+    },
+    "meta": {
+      "title": "Häufig gestellte Fragen — Soluty GmbH | Individuelle ERP-Software",
+      "description": "Antworten auf die häufigsten Fragen zu individueller ERP-Entwicklung: Kosten, Zeitrahmen, Module und DSGVO-Konformität."
+    },
+    "headline": "Häufig gestellte Fragen",
+    "intro": "Hier finden Sie Antworten auf die wichtigsten Fragen rund um ERP-Systeme, individuelle Softwareentwicklung und die Zusammenarbeit mit Soluty.",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "categories": {
+      "basics": {
+        "title": "Grundlagen: ERP und Digitalisierung",
+        "navLabel": "Grundlagen"
+      },
+      "costAndTech": {
+        "title": "Kosten, Zeitrahmen und Technik",
+        "navLabel": "Kosten & Technik"
+      },
+      "security": {
+        "title": "Sicherheit und rechtliche Anforderungen",
+        "navLabel": "Sicherheit"
+      },
+      "collaboration": {
+        "title": "Zusammenarbeit mit Soluty",
+        "navLabel": "Zusammenarbeit"
+      }
+    },
+    "questions": {
+      "q01": {
+        "question": "Was ist ein ERP-System und wofür wird es eingesetzt?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q02": {
+        "question": "Braucht mein Unternehmen wirklich ein ERP-System?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q03": {
+        "question": "Wann wird Excel für die Unternehmensführung unzureichend?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q04": {
+        "question": "Was bringt Digitalisierung Lieferunternehmen?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q05": {
+        "question": "Was kostet die Entwicklung einer individuellen ERP-Lösung?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q06": {
+        "question": "Wie lange dauert die Entwicklung eines ERP-Systems?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q07": {
+        "question": "Standardsoftware oder individuelle Lösung — was ist sinnvoller?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q08": {
+        "question": "Welche Module gehören zu einem ERP-System für Lieferunternehmen?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q09": {
+        "question": "Lassen sich bestehende Systeme in ein neues ERP integrieren?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q10": {
+        "question": "Kann ein individuelles ERP-System DSGVO-konform sein?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q11": {
+        "question": "Wo werden die Daten gespeichert?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q12": {
+        "question": "Wie werden Benutzerzugriffsrechte verwaltet?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q13": {
+        "question": "Wie beginnt ein ERP-Projekt mit Soluty?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q14": {
+        "question": "Wie stark ist der Kunde in den Entwicklungsprozess eingebunden?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q15": {
+        "question": "Gibt es nach dem Go-Live langfristigen Support?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      },
+      "q16": {
+        "question": "Warum entwickelt Soluty ERP-Lösungen in Deutschland?",
+        "answerCapsule": "Antwort wird in Kürze ergänzt.",
+        "answerExtended": ""
+      }
+    },
+    "ctaBanner": {
+      "headline": "Keine Antwort gefunden?",
+      "subtext": "Sprechen Sie direkt mit unserem Team.",
+      "button": "Kostenlos beraten lassen"
+    }
   }
 }
