@@ -259,15 +259,15 @@
     "items": {
       "erpNeeded": {
         "question": "Braucht mein Unternehmen wirklich ein ERP-System?",
-        "answer": "Antwort wird in Kürze ergänzt."
+        "answer": "Ein ERP-System wird notwendig, wenn manuelle Prozesse das Wachstum bremsen. Typische Anzeichen: Aufträge gehen verloren, Lagerbestände stimmen nicht, dieselben Daten werden mehrfach eingegeben, oder Auswertungen erfordern stundenlanges Zusammensuchen von Excel-Dateien. Ab etwa 5–10 Mitarbeitern oder 50+ Aufträgen pro Woche lohnt sich der Umstieg."
       },
       "digitalization": {
         "question": "Was bringt Digitalisierung Lieferunternehmen?",
-        "answer": "Antwort wird in Kürze ergänzt."
+        "answer": "Digitalisierung ermöglicht Lieferunternehmen kürzere Reaktionszeiten, weniger Fehler und bessere Auslastung. Konkret: Aufträge werden digital erfasst statt telefonisch notiert, Routen automatisch optimiert, Kunden erhalten Echtzeit-Statusupdates. Unternehmen berichten von 20–30% Zeitersparnis in der Disposition und deutlich weniger Reklamationen."
       },
       "standardVsCustom": {
         "question": "Standardsoftware oder individuelle Lösung — was ist sinnvoller?",
-        "answer": "Antwort wird in Kürze ergänzt."
+        "answer": "Standardsoftware passt zu Unternehmen mit typischen, branchenüblichen Prozessen. Individuelle Lösungen sind sinnvoller, wenn Ihre Abläufe vom Standard abweichen oder ein Wettbewerbsvorteil aus optimierten Prozessen entstehen soll. Die Frage ist nicht „Standard oder Individual", sondern „Passen wir uns der Software an, oder passt sich die Software uns an?""
       }
     }
   },
@@ -304,83 +304,83 @@
     "questions": {
       "q01": {
         "question": "Was ist ein ERP-System und wofür wird es eingesetzt?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Ein ERP-System (Enterprise Resource Planning) ist eine Software, die alle Geschäftsprozesse eines Unternehmens in einer zentralen Plattform zusammenführt. Aufträge, Lagerbestände, Kundenbeziehungen, Finanzen und Logistik werden in einem System verwaltet — ohne Datensilos, ohne manuelle Übertragung zwischen verschiedenen Tools.",
+        "answerExtended": "Für Lieferunternehmen bedeutet das konkret: Ein Auftrag wird erfasst, automatisch in die Tourenplanung übernommen, der Lagerbestand aktualisiert sich in Echtzeit, und nach der Auslieferung wird die Rechnung generiert — alles in einem durchgängigen Prozess. Statt fünf verschiedener Insellösungen gibt es eine einzige Wahrheitsquelle für alle Unternehmensdaten. Das reduziert Fehler, spart Zeit und ermöglicht fundierte Entscheidungen auf Basis aktueller Zahlen."
       },
       "q02": {
         "question": "Braucht mein Unternehmen wirklich ein ERP-System?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Ein ERP-System wird notwendig, wenn manuelle Prozesse das Wachstum bremsen. Typische Anzeichen: Aufträge gehen verloren, Lagerbestände stimmen nicht, dieselben Daten werden mehrfach eingegeben, oder Auswertungen erfordern stundenlanges Zusammensuchen von Excel-Dateien. Ab etwa 5–10 Mitarbeitern oder 50+ Aufträgen pro Woche lohnt sich der Umstieg.",
+        "answerExtended": "Die Entscheidung hängt nicht von der Unternehmensgröße ab, sondern von der Prozesskomplexität. Ein kleines Lieferunternehmen mit 3 Fahrzeugen und täglich wechselnden Routen profitiert oft mehr von einem ERP als ein größeres Unternehmen mit einfachen, gleichbleibenden Abläufen. Fragen Sie sich: Wie viel Zeit verbringen Sie täglich mit der Suche nach Informationen? Wie oft passieren Fehler durch fehlende Übersicht? Wenn die Antwort „zu viel" lautet, ist ein ERP-System die richtige Investition."
       },
       "q03": {
         "question": "Wann wird Excel für die Unternehmensführung unzureichend?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Excel stößt an Grenzen, sobald mehrere Personen gleichzeitig mit denselben Daten arbeiten müssen. Versionskonflikte, fehlende Echtzeit-Aktualisierung und manuelle Übertragungsfehler werden zum Alltag. Spätestens wenn ein Mitarbeiter fragt „Welche Excel-Datei ist die aktuelle?" ist der Zeitpunkt für ein strukturiertes System gekommen.",
+        "answerExtended": "Konkrete Warnsignale: Sie pflegen Kundendaten in einer Datei, Aufträge in einer anderen, Lagerbestände in einer dritten. Auswertungen erfordern Copy-Paste zwischen Dateien. Preisänderungen müssen an mehreren Stellen manuell nachgezogen werden. Ein Mitarbeiter ist im Urlaub — und niemand findet seine Dateien. Diese Probleme verschwinden nicht mit besseren Excel-Kenntnissen, sondern nur mit einem System, das für Mehrbenutzer-Betrieb und vernetzte Prozesse konzipiert ist."
       },
       "q04": {
         "question": "Was bringt Digitalisierung Lieferunternehmen?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Digitalisierung ermöglicht Lieferunternehmen kürzere Reaktionszeiten, weniger Fehler und bessere Auslastung. Konkret: Aufträge werden digital erfasst statt telefonisch notiert, Routen automatisch optimiert, Kunden erhalten Echtzeit-Statusupdates. Unternehmen berichten von 20–30% Zeitersparnis in der Disposition und deutlich weniger Reklamationen.",
+        "answerExtended": "Der größte Hebel liegt in der Vermeidung von Medienbrüchen. Wenn ein Auftrag vom Telefon auf Papier, dann in Excel und schließlich an den Fahrer per WhatsApp weitergegeben wird, entstehen Fehler. Digitale Prozesse eliminieren diese Brüche: Der Kunde bestellt, der Disponent sieht den Auftrag sofort, der Fahrer erhält die Route auf seinem Gerät, die Auslieferung wird dokumentiert, die Rechnung wird automatisch erstellt. Jeder Schritt ist nachvollziehbar, und die Daten stehen für Auswertungen zur Verfügung."
       },
       "q05": {
         "question": "Was kostet die Entwicklung einer individuellen ERP-Lösung?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Die Kosten für eine individuelle ERP-Lösung hängen vom Funktionsumfang ab. Für kleine und mittlere Lieferunternehmen beginnen Projekte typischerweise bei 25.000–50.000 Euro für ein Grundsystem mit 4–6 Kernmodulen. Im Gegensatz zu Standardsoftware fallen keine laufenden Lizenzkosten pro Nutzer an.",
+        "answerExtended": "Die Investition verteilt sich auf Analyse, Entwicklung, Datenmigration und Schulung. Ein modularer Ansatz ermöglicht es, mit den wichtigsten Funktionen zu starten und das System schrittweise zu erweitern. Langfristig ist Individualsoftware oft günstiger als Standardlösungen: Keine monatlichen Gebühren pro Arbeitsplatz, keine Kosten für ungenutzte Funktionen, keine teuren Anpassungen an starre Systeme. Bei einem Team von 10 Nutzern und typischen SaaS-Kosten von 50–100 Euro pro Nutzer und Monat summieren sich die Lizenzkosten über 5 Jahre auf 30.000–60.000 Euro — zusätzlich zur oft notwendigen Anpassung."
       },
       "q06": {
         "question": "Wie lange dauert die Entwicklung eines ERP-Systems?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Ein individuelles ERP-System für Lieferunternehmen wird typischerweise in 3–6 Monaten entwickelt und produktiv geschaltet. Die genaue Dauer hängt von der Anzahl der Module, der Komplexität der Datenmigration und der Verfügbarkeit des Kundenteams für Feedback ab.",
+        "answerExtended": "Der Prozess gliedert sich in Phasen: Anforderungsanalyse (2–4 Wochen), Konzeption und Design (2–4 Wochen), Entwicklung der Kernmodule (6–12 Wochen), Testphase mit echten Daten (2–4 Wochen), Schulung und Go-Live (2 Wochen). Ein häufiger Ansatz ist die Einführung in Wellen: Erst Auftragsmanagement und Disposition, dann Lagerverwaltung, schließlich Finanzen und Reporting. So können Sie schneller produktiv arbeiten und das System im laufenden Betrieb verfeinern."
       },
       "q07": {
         "question": "Standardsoftware oder individuelle Lösung — was ist sinnvoller?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Standardsoftware passt zu Unternehmen mit typischen, branchenüblichen Prozessen. Individuelle Lösungen sind sinnvoller, wenn Ihre Abläufe vom Standard abweichen oder ein Wettbewerbsvorteil aus optimierten Prozessen entstehen soll. Die Frage ist nicht „Standard oder Individual", sondern „Passen wir uns der Software an, oder passt sich die Software uns an?"",
+        "answerExtended": "Standardsoftware hat Vorteile: schneller Einstieg, bekannte Funktionen, große Nutzerbasis. Die Nachteile zeigen sich später: Workarounds für nicht abgedeckte Prozesse, Anpassungskosten, Abhängigkeit vom Anbieter. Individualsoftware erfordert mehr Vorabinvestition, aber Sie erhalten ein System, das exakt Ihre Prozesse abbildet — ohne Kompromisse, ohne ungenutzte Funktionen, ohne laufende Lizenzkosten. Für Lieferunternehmen mit spezifischen Anforderungen an Tourenplanung, Pfandverwaltung oder branchenspezifische Abrechnungsmodelle ist Individual oft die wirtschaftlichere Wahl."
       },
       "q08": {
         "question": "Welche Module gehören zu einem ERP-System für Lieferunternehmen?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Ein ERP-System für Lieferunternehmen umfasst typischerweise Auftragsverwaltung, Tourenplanung, Lagerverwaltung, Kundenverwaltung (CRM), Fakturierung und Reporting. Je nach Geschäftsmodell kommen Module für Pfandverwaltung, Kassensystem, Ausgabenerfassung und Fahrer-App hinzu. Soluty bietet 13 Module, die sich flexibel kombinieren lassen.",
+        "answerExtended": "Die Kernmodule für Lieferunternehmen sind: Aufträge (Erfassung, Status, Historie), Planung (Tagesübersicht, Ressourcen), Route (Optimierung, Navigation), Lager (Bestände, Mindestmengen), CRM (Kundendaten, Kommunikation), Lieferschein und Rechnung (automatische Erstellung), Zahlungsverfolgung (offene Posten, Mahnwesen). Ergänzende Module wie Dashboard, Benachrichtigungen und E-Signatur runden das System ab. Der modulare Aufbau bedeutet: Sie zahlen nur für das, was Sie tatsächlich nutzen."
       },
       "q09": {
         "question": "Lassen sich bestehende Systeme in ein neues ERP integrieren?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Ja, bestehende Systeme lassen sich über Schnittstellen (APIs) mit einem neuen ERP verbinden. Typische Integrationen: Buchhaltungssoftware wie DATEV oder Lexware, Kartendienste für Routenplanung, Zahlungsanbieter, E-Mail-Systeme. Die Integration wird im Projektumfang definiert und als Teil der Entwicklung umgesetzt.",
+        "answerExtended": "Der Integrationsaufwand hängt von der Schnittstellenqualität der bestehenden Systeme ab. Moderne Cloud-Software bietet meist gut dokumentierte APIs, ältere On-Premise-Lösungen erfordern manchmal Workarounds. Wichtig ist die Klärung im Vorfeld: Welche Daten sollen fließen? In welche Richtung? In welcher Frequenz? Eine saubere Integration vermeidet doppelte Datenpflege und stellt sicher, dass Ihr Steuerberater weiterhin mit gewohnten Tools arbeiten kann, während Sie intern ein modernes ERP nutzen."
       },
       "q10": {
         "question": "Kann ein individuelles ERP-System DSGVO-konform sein?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Ja, ein individuelles ERP-System kann vollständig DSGVO-konform entwickelt werden. Im Gegensatz zu Standardsoftware lässt sich Datenschutz von Grund auf einbauen: Datenminimierung, Zugriffskontrollen, Löschkonzepte und Protokollierung werden nach Ihren Anforderungen implementiert — nicht als nachträglicher Kompromiss.",
+        "answerExtended": "DSGVO-Konformität erfordert technische und organisatorische Maßnahmen: Verschlüsselung, rollenbasierte Zugriffsrechte, automatische Löschfristen, Exportfunktion für Auskunftsanfragen, Protokollierung von Datenzugriffen. Bei Standardsoftware sind Sie auf die Compliance-Entscheidungen des Anbieters angewiesen. Bei Individualsoftware bestimmen Sie selbst, welche Daten erhoben werden, wie lange sie gespeichert bleiben und wer Zugriff hat. Soluty entwickelt in Deutschland und kennt die Anforderungen deutscher Unternehmen an Datenschutz und Rechtssicherheit."
       },
       "q11": {
         "question": "Wo werden die Daten gespeichert?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Die Daten werden auf Servern in Deutschland oder innerhalb der EU gespeichert — je nach Kundenwunsch. Soluty arbeitet mit deutschen Rechenzentren, die ISO 27001 zertifiziert sind. Die Datenhoheit liegt vollständig beim Kunden: Sie entscheiden, wo Ihre Daten liegen und wer Zugriff hat.",
+        "answerExtended": "Für viele Unternehmen ist der Speicherort ein entscheidendes Kriterium. Deutsche Rechenzentren unterliegen deutschem Recht, es gibt keine Zugriffsmöglichkeiten durch ausländische Behörden wie bei US-Cloud-Anbietern (Cloud Act). Technisch stehen verschiedene Optionen zur Verfügung: Hosting in einer deutschen Cloud, dedizierte Server oder On-Premise-Installation in Ihrer eigenen Infrastruktur. Die Wahl hängt von Ihren Sicherheitsanforderungen, Ihrem IT-Setup und Ihrem Budget ab."
       },
       "q12": {
         "question": "Wie werden Benutzerzugriffsrechte verwaltet?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Benutzerzugriffsrechte werden über ein rollenbasiertes System verwaltet. Jede Rolle (z.B. Disponent, Fahrer, Buchhaltung, Geschäftsführung) erhält genau die Berechtigungen, die für ihre Aufgaben erforderlich sind. Ein Fahrer sieht seine Touren, aber keine Finanzdaten. Ein Disponent bearbeitet Aufträge, kann aber keine Preise ändern.",
+        "answerExtended": "Das Berechtigungssystem lässt sich feingranular konfigurieren: Lese- und Schreibrechte pro Modul, Zugriff auf bestimmte Kundensegmente, Freigabeworkflows für kritische Aktionen. Alle Zugriffe werden protokolliert, sodass nachvollziehbar ist, wer wann welche Daten eingesehen oder verändert hat. Bei Mitarbeiterwechsel wird das Konto deaktiviert, die historischen Daten bleiben erhalten. Dieses Konzept erfüllt sowohl DSGVO-Anforderungen als auch interne Compliance-Richtlinien."
       },
       "q13": {
         "question": "Wie beginnt ein ERP-Projekt mit Soluty?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Ein ERP-Projekt beginnt mit einem kostenlosen Erstgespräch, in dem wir Ihre aktuellen Prozesse und Herausforderungen verstehen. Danach folgt eine Anforderungsanalyse, die in einem Konzeptdokument mit Modulübersicht, Zeitplan und Kostenschätzung mündet. Erst nach Ihrer Freigabe beginnt die Entwicklung.",
+        "answerExtended": "Der typische Ablauf: Im Erstgespräch (30–60 Minuten) klären wir, ob eine Zusammenarbeit sinnvoll ist. Bei positivem Ergebnis folgt eine tiefere Analyse vor Ort oder remote, bei der wir Ihre Arbeitsabläufe im Detail erfassen. Das Ergebnis ist ein Konzept mit konkretem Funktionsumfang, Priorisierung der Module und transparenter Kostenaufstellung. Sie erhalten keine Überraschungen — der vereinbarte Umfang und das Budget werden eingehalten. Änderungswünsche während der Entwicklung sind möglich und werden fair abgerechnet."
       },
       "q14": {
         "question": "Wie stark ist der Kunde in den Entwicklungsprozess eingebunden?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Der Kunde ist integraler Bestandteil des Entwicklungsprozesses. In regelmäßigen Abstimmungen (typischerweise alle 1–2 Wochen) präsentieren wir Fortschritte, sammeln Feedback und passen Prioritäten an. So entsteht ein System, das tatsächlich zu Ihren Abläufen passt — nicht eines, das am Schreibtisch erdacht wurde.",
+        "answerExtended": "Wir arbeiten agil: Funktionen werden in kurzen Zyklen entwickelt und frühzeitig vorgestellt. Sie sehen nicht erst nach 6 Monaten ein fertiges System, sondern können bereits nach wenigen Wochen erste Module testen. Ihr Feedback fließt direkt in die nächste Iteration ein. Für die Abstimmungen benötigen wir einen festen Ansprechpartner auf Ihrer Seite — typischerweise 2–4 Stunden pro Woche. Diese Investition zahlt sich aus: Das fertige System entspricht genau Ihren Vorstellungen."
       },
       "q15": {
         "question": "Gibt es nach dem Go-Live langfristigen Support?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Ja, nach dem Go-Live bietet Soluty langfristigen Support und Wartung. Das umfasst technische Unterstützung bei Fragen, Fehlerbehebung, Sicherheitsupdates und die Möglichkeit, das System weiterzuentwickeln. ERP-Systeme sind keine einmaligen Projekte, sondern wachsen mit Ihrem Unternehmen.",
+        "answerExtended": "Support-Optionen reichen von Basis-Wartung (Sicherheitsupdates, Hosting-Überwachung) bis zu umfassenden Service-Level-Agreements mit garantierten Reaktionszeiten. Die meisten Kunden entscheiden sich für ein monatliches Kontingent, das Support und kleine Anpassungen abdeckt. Größere Erweiterungen werden als separate Projekte geplant. Wichtig: Sie sind nicht an Soluty gebunden. Der Quellcode gehört Ihnen, die Dokumentation ist vollständig, ein Wechsel zu einem anderen Dienstleister ist jederzeit möglich."
       },
       "q16": {
         "question": "Warum entwickelt Soluty ERP-Lösungen in Deutschland?",
-        "answerCapsule": "Antwort wird in Kürze ergänzt.",
-        "answerExtended": ""
+        "answerCapsule": "Soluty entwickelt in Deutschland, weil deutsche Unternehmen spezifische Anforderungen haben: DSGVO, GoBD-konforme Buchführung, deutsche Steuervorschriften, Kommunikation auf Deutsch. Ein lokales Team versteht diese Anforderungen ohne Erklärung und kann bei Bedarf vor Ort sein.",
+        "answerExtended": "„Made in Germany" bedeutet für uns: Entwickler, die Ihre Sprache sprechen und Ihre Geschäftskultur kennen. Keine Zeitzonenprobleme bei dringenden Fragen. Verträge nach deutschem Recht. Datenhaltung in deutschen Rechenzentren. Persönliche Ansprechpartner statt anonymer Ticketsysteme. Für Lieferunternehmen im deutschen Mittelstand sind das keine Luxusanforderungen, sondern praktische Notwendigkeiten. Wenn Ihr Fahrer morgens ein Problem mit der App hat, brauchen Sie jemanden, der sofort helfen kann — nicht in 8 Stunden, wenn das Offshore-Team aufwacht."
       }
     },
     "ctaBanner": {
