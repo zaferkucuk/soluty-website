@@ -10,11 +10,12 @@ import type { ERPStackingCardListProps } from './types';
 // ==========================================================================
 
 /**
- * Left column: CTA button + stacking card list.
+ * Left column: stacking card list.
  *
- * CTA button appears above the cards (after section header).
  * Cards use CSS `position: sticky` to stack on top of each other
  * as the user scrolls — no JavaScript state management.
+ *
+ * Only the first card has an angled background card behind it.
  *
  * Reference: erp-features-stacking-cards-v2 spec
  */
@@ -26,16 +27,6 @@ export function ERPStackingCardList({
 
   return (
     <div className="flex-1 min-w-0">
-      {/* CTA Button — above cards */}
-      <div className="mb-6 md:mb-8">
-        <a
-          href="#contact"
-          className="btn btn-brand"
-        >
-          {t('erpFeatures.cta')}
-        </a>
-      </div>
-
       {/* Stacking Card List */}
       <div
         role="list"

@@ -12,9 +12,12 @@ import type { ERPStackingCardProps } from './types';
 /**
  * Individual stacking card for the ERP Features section.
  *
- * Two-layer structure:
- * 1. `.card-bg` — absolute, rotated -1.75deg, creates angled shadow effect
+ * Two-layer structure (first card only):
+ * 1. `.card-bg` — absolute, rotated -1.75deg, with thin primary green border
  * 2. `.card-content` — relative, white background, holds actual content
+ *
+ * Only the first card (index === 0) shows the angled background card.
+ * All other cards render flat without the angled bg layer.
  *
  * Each card uses `position: sticky` to stack on top of previous cards
  * as the user scrolls. No JavaScript state management for stacking —
@@ -34,6 +37,9 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
 
     // Staggered entry delay: 50ms per card
     const entryDelay = index * 50;
+
+    // Only first card gets the angled background
+    const isFirstCard = index === 0;
 
     return (
       <article
@@ -58,17 +64,20 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         }}
         tabIndex={0}
       >
-        {/* Layer 1: card-bg — angled shadow effect */}
-        <div
-          className="absolute inset-0 rounded-xl"
-          style={{
-            zIndex: -1,
-            transform: 'rotate(-1.75deg)',
-            backgroundColor: 'var(--color-bg-tertiary, #EFEEED)',
-            boxShadow: 'var(--shadow-sm)',
-          }}
-          aria-hidden="true"
-        />
+        {/* Layer 1: card-bg — angled shadow effect (FIRST CARD ONLY) */}
+        {isFirstCard && (
+          <div
+            className="absolute inset-0 rounded-xl"
+            style={{
+              zIndex: -1,
+              transform: 'rotate(-1.75deg)',
+              backgroundColor: 'var(--color-bg-tertiary, #EFEEED)',
+              border: '1px solid var(--color-brand-primary)',
+              boxShadow: 'var(--shadow-sm)',
+            }}
+            aria-hidden="true"
+          />
+        )}
 
         {/* Layer 2: card-content — actual card content */}
         <div
@@ -85,8 +94,8 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         >
           {/* Row 1: Icon + Title + Category Badge */}
           <div className="flex items-center gap-3">
-            {/* Icon — always brand-primary */}
-            <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10">
+            {/* Icon — brand-primary, 30% smaller */}
+            <div className="flex-shrink-0 w-6 h-6 md:w-7 md:h-7">
               <Icon
                 className="w-full h-full"
                 strokeWidth={1.5}
@@ -104,7 +113,7 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
               {t(module.titleKey)}
             </h3>
 
-            {/* Category Badge — right-aligned */}
+            {/* Category Badge — gray/black tones */}
             <span
               className="flex-shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[18px] font-medium"
               style={{

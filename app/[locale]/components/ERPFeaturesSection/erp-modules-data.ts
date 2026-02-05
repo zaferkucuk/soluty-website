@@ -60,18 +60,18 @@ export interface ERPModule {
 // ==========================================================================
 // Category Colors
 //
-// Unified: all categories use #be95c2 (soft lavender)
+// Unified: all categories use neutral gray/black tones
 // ==========================================================================
 
-const LAVENDER = { color: '#be95c2', bg: 'rgba(190, 149, 194, 0.12)' };
+const NEUTRAL_GRAY = { color: '#4B5563', bg: 'rgba(107, 114, 128, 0.10)' };
 
 export const CATEGORY_COLORS: Record<CategoryId, { color: string; bg: string }> = {
-  order:     LAVENDER,
-  logistics: LAVENDER,
-  sales:     LAVENDER,
-  inventory: LAVENDER,
-  finance:   LAVENDER,
-  customer:  LAVENDER,
+  order:     NEUTRAL_GRAY,
+  logistics: NEUTRAL_GRAY,
+  sales:     NEUTRAL_GRAY,
+  inventory: NEUTRAL_GRAY,
+  finance:   NEUTRAL_GRAY,
+  customer:  NEUTRAL_GRAY,
 };
 
 // ==========================================================================
