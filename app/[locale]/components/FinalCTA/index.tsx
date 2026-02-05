@@ -2,11 +2,6 @@ import { useTranslations } from 'next-intl';
 import { ValueProposition } from './ValueProposition';
 import { ContactForm } from './ContactForm';
 
-// Design tokens
-const COLORS = {
-  bgSection: '#F7F6F5',
-};
-
 /**
  * Final CTA Section
  *
@@ -21,7 +16,7 @@ export function FinalCTASection() {
       id="contact"
       aria-labelledby="contact-heading"
       className="py-16 md:py-20 lg:py-24"
-      style={{ backgroundColor: COLORS.bgSection }}
+      style={{ backgroundColor: 'var(--color-bg-secondary)' }}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-16">
         {/* Desktop: Two-column grid */}

@@ -9,28 +9,16 @@ import { forwardRef, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
  * Inspired by Wealthsimple's button design system
  * 
  * Variants:
- * - primary: Dark petrol background (#0F2A39), white text — main CTAs
+ * - primary: Dark petrol background, white text — main CTAs
  * - secondary: White background, dark border — secondary actions
  * - ghost: Transparent, dark text — tertiary actions (nav links)
- * - brand: Brand color (#4DB6A0), white text — special emphasis
+ * - brand: Brand color, white text — special emphasis
  * 
  * Sizes:
  * - sm: Header buttons — h-11 (44px) matching HeroEmailForm submit button
  * - md: Default (most buttons)
  * - lg: Large (hero CTAs)
  */
-
-// Design tokens (matching globals.css)
-const COLORS = {
-  textPrimary: '#32302F',
-  textInverse: '#FFFFFF',
-  bgPrimary: '#FCFCFC',
-  bgDark: '#0F2A39',
-  bgDarkHover: '#0A1F2B',
-  brandPrimary: '#4DB6A0',
-  brandHover: '#3DA08C',
-  borderStrong: 'rgba(50, 48, 47, 0.25)',
-}
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'brand'
 export type ButtonSize = 'sm' | 'md' | 'lg'
@@ -58,45 +46,45 @@ type ButtonAsLink = ButtonBaseProps &
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink
 
-// Style configurations
+// Style configurations using CSS variables
 const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
   primary: {
-    backgroundColor: COLORS.bgDark,
-    color: COLORS.textInverse,
+    backgroundColor: 'var(--color-bg-dark)',
+    color: 'var(--color-text-inverse)',
     border: 'none',
   },
   secondary: {
-    backgroundColor: COLORS.bgPrimary,
-    color: COLORS.textPrimary,
-    border: `1px solid ${COLORS.borderStrong}`,
+    backgroundColor: 'var(--color-bg-primary)',
+    color: 'var(--color-text-primary)',
+    border: '1px solid var(--color-border-strong)',
   },
   ghost: {
     backgroundColor: 'transparent',
-    color: COLORS.textPrimary,
+    color: 'var(--color-text-primary)',
     border: 'none',
   },
   brand: {
-    backgroundColor: COLORS.brandPrimary,
-    color: COLORS.textInverse,
+    backgroundColor: 'var(--color-brand-primary)',
+    color: 'var(--color-text-inverse)',
     border: 'none',
   },
 }
 
 const variantHoverStyles: Record<ButtonVariant, React.CSSProperties> = {
   primary: {
-    backgroundColor: COLORS.bgDarkHover,
+    backgroundColor: 'var(--color-bg-dark-hover)',
     transform: 'translateY(-1px)',
     boxShadow: '0 4px 12px rgba(15, 42, 57, 0.3)',
   },
   secondary: {
-    backgroundColor: '#F7F6F5',
-    borderColor: COLORS.textPrimary,
+    backgroundColor: 'var(--color-bg-secondary)',
+    borderColor: 'var(--color-text-primary)',
   },
   ghost: {
-    color: COLORS.brandPrimary,
+    color: 'var(--color-brand-primary)',
   },
   brand: {
-    backgroundColor: COLORS.brandHover,
+    backgroundColor: 'var(--color-brand-hover)',
     transform: 'translateY(-1px)',
     boxShadow: '0 4px 12px rgba(77, 182, 160, 0.3)',
   },
@@ -104,9 +92,9 @@ const variantHoverStyles: Record<ButtonVariant, React.CSSProperties> = {
 
 // Size styles — sm uses fixed h-11 (44px) to match HeroEmailForm submit button
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'h-11 px-6 text-sm',           // 44px height, matches Absenden button
-  md: 'px-7 py-3.5 text-[18px]',     // ~48-52px height
-  lg: 'px-10 py-4 text-[19px]',      // ~52-56px height
+  sm: 'h-11 px-6 text-sm',
+  md: 'px-7 py-3.5 text-[18px]',
+  lg: 'px-10 py-4 text-[19px]',
 }
 
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(

@@ -1,20 +1,5 @@
 import { useTranslations } from 'next-intl';
 
-// Design tokens
-const COLORS = {
-  textPrimary: '#32302F',
-  textSecondary: '#5C5A58',
-  textMuted: '#8A8785',
-  bgDark: '#0F2A39',
-  brandPrimary: '#4DB6A0',
-  brandSubtle: 'rgba(77, 182, 160, 0.1)',
-};
-
-const FONTS = {
-  serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
-};
-
 // Benefit icons as inline SVG components
 function CheckCircleIcon() {
   return (
@@ -23,7 +8,7 @@ function CheckCircleIcon() {
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke={COLORS.brandPrimary}
+      stroke="var(--color-brand-primary)"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -43,7 +28,7 @@ function ClockIcon() {
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke={COLORS.brandPrimary}
+      stroke="var(--color-brand-primary)"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -63,7 +48,7 @@ function TargetIcon() {
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke={COLORS.brandPrimary}
+      stroke="var(--color-brand-primary)"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -92,8 +77,8 @@ export function ValueProposition() {
       <p
         className="text-xs md:text-sm font-semibold tracking-widest uppercase"
         style={{
-          color: COLORS.brandPrimary,
-          fontFamily: FONTS.sans,
+          color: 'var(--color-brand-primary)',
+          fontFamily: 'var(--font-sans)',
           letterSpacing: '0.1em',
         }}
       >
@@ -105,8 +90,8 @@ export function ValueProposition() {
         id="contact-heading"
         className="text-3xl md:text-4xl lg:text-[42px] leading-tight"
         style={{
-          fontFamily: FONTS.serif,
-          color: COLORS.textPrimary,
+          fontFamily: 'var(--font-serif)',
+          color: 'var(--color-text-primary)',
           fontWeight: 400,
         }}
       >
@@ -117,8 +102,8 @@ export function ValueProposition() {
       <p
         className="text-lg"
         style={{
-          fontFamily: FONTS.sans,
-          color: COLORS.textSecondary,
+          fontFamily: 'var(--font-sans)',
+          color: 'var(--color-text-secondary)',
           lineHeight: 1.65,
         }}
       >
@@ -131,15 +116,15 @@ export function ValueProposition() {
           <li key={key} className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-              style={{ backgroundColor: COLORS.brandSubtle }}
+              style={{ backgroundColor: 'var(--color-brand-subtle)' }}
             >
               <Icon />
             </div>
             <span
               className="text-base"
               style={{
-                fontFamily: FONTS.sans,
-                color: COLORS.textPrimary,
+                fontFamily: 'var(--font-sans)',
+                color: 'var(--color-text-primary)',
               }}
             >
               {t(`benefits.${key}`)}
@@ -152,8 +137,8 @@ export function ValueProposition() {
       <p
         className="text-sm mt-2"
         style={{
-          fontFamily: FONTS.sans,
-          color: COLORS.textMuted,
+          fontFamily: 'var(--font-sans)',
+          color: 'var(--color-text-muted)',
         }}
       >
         {t('responsePromise')}
@@ -162,13 +147,13 @@ export function ValueProposition() {
       {/* Alternative Contact */}
       <div
         className="pt-6 mt-4"
-        style={{ borderTop: `1px solid rgba(50, 48, 47, 0.12)` }}
+        style={{ borderTop: '1px solid var(--color-border)' }}
       >
         <p
           className="text-sm mb-3"
           style={{
-            fontFamily: FONTS.sans,
-            color: COLORS.textMuted,
+            fontFamily: 'var(--font-sans)',
+            color: 'var(--color-text-muted)',
           }}
         >
           {t('alternative.or')}
@@ -178,8 +163,8 @@ export function ValueProposition() {
             href={`mailto:${t('alternative.email')}`}
             className="inline-flex items-center gap-2 text-base hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
-              fontFamily: FONTS.sans,
-              color: COLORS.bgDark,
+              fontFamily: 'var(--font-sans)',
+              color: 'var(--color-bg-dark)',
             }}
           >
             <svg
@@ -202,8 +187,8 @@ export function ValueProposition() {
             href={`tel:${t('alternative.phone').replace(/\s/g, '')}`}
             className="inline-flex items-center gap-2 text-base hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
-              fontFamily: FONTS.sans,
-              color: COLORS.bgDark,
+              fontFamily: 'var(--font-sans)',
+              color: 'var(--color-bg-dark)',
             }}
           >
             <svg

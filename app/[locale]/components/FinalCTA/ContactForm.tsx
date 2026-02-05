@@ -5,25 +5,6 @@ import { useTranslations } from 'next-intl';
 import { FormField } from './FormField';
 import { SuccessMessage } from './SuccessMessage';
 
-// Design tokens
-const COLORS = {
-  textPrimary: '#32302F',
-  textSecondary: '#5C5A58',
-  textMuted: '#8A8785',
-  textInverse: '#FFFFFF',
-  brandPrimary: '#4DB6A0',
-  brandHover: '#3DA08C',
-  bgDark: '#0F2A39',
-  bgDarkHover: '#0A1F2B',
-  error: '#DC2626',
-  errorSubtle: 'rgba(220, 38, 38, 0.1)',
-  bgCard: '#FFFFFF',
-};
-
-const FONTS = {
-  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
-};
-
 // Validation utilities
 const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -161,7 +142,6 @@ export function ContactForm() {
 
     // Honeypot check (spam protection)
     if (honeypot) {
-      // Silently fail for bots
       setStatus('success');
       return;
     }
@@ -169,7 +149,6 @@ export function ContactForm() {
     // Time-based validation (< 3 seconds = likely bot)
     const timeSinceLoad = Date.now() - loadTimeRef.current;
     if (timeSinceLoad < 3000) {
-      // Silently fail for bots
       setStatus('success');
       return;
     }
@@ -241,7 +220,7 @@ export function ContactForm() {
     <div
       className="p-6 md:p-8 rounded-xl shadow-md"
       style={{
-        backgroundColor: COLORS.bgCard,
+        backgroundColor: 'var(--color-bg-card)',
       }}
     >
       <form onSubmit={handleSubmit} noValidate>
@@ -351,15 +330,15 @@ export function ContactForm() {
               role="alert"
               className="p-4 rounded-lg"
               style={{
-                backgroundColor: COLORS.errorSubtle,
-                border: `1px solid ${COLORS.error}`,
+                backgroundColor: 'var(--color-error-subtle)',
+                border: '1px solid var(--color-error)',
               }}
             >
               <p
                 className="text-sm font-medium mb-2"
                 style={{
-                  fontFamily: FONTS.sans,
-                  color: COLORS.error,
+                  fontFamily: 'var(--font-sans)',
+                  color: 'var(--color-error)',
                 }}
               >
                 {t('error.heading')}
@@ -367,8 +346,8 @@ export function ContactForm() {
               <p
                 className="text-sm"
                 style={{
-                  fontFamily: FONTS.sans,
-                  color: COLORS.textSecondary,
+                  fontFamily: 'var(--font-sans)',
+                  color: 'var(--color-text-secondary)',
                 }}
               >
                 {submitError}
@@ -378,7 +357,7 @@ export function ContactForm() {
                 onClick={handleRetry}
                 className="mt-3 text-sm font-medium underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                 style={{
-                  color: COLORS.bgDark,
+                  color: 'var(--color-bg-dark)',
                 }}
               >
                 {t('error.retry')}
@@ -392,17 +371,17 @@ export function ContactForm() {
             disabled={isSubmitting}
             className="w-full h-12 rounded-lg font-medium text-base transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
             style={{
-              fontFamily: FONTS.sans,
-              backgroundColor: COLORS.bgDark,
-              color: COLORS.textInverse,
+              fontFamily: 'var(--font-sans)',
+              backgroundColor: 'var(--color-bg-dark)',
+              color: 'var(--color-text-inverse)',
             }}
             onMouseEnter={(e) => {
               if (!isSubmitting) {
-                e.currentTarget.style.backgroundColor = COLORS.bgDarkHover;
+                e.currentTarget.style.backgroundColor = 'var(--color-bg-dark-hover)';
               }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = COLORS.bgDark;
+              e.currentTarget.style.backgroundColor = 'var(--color-bg-dark)';
             }}
           >
             {isSubmitting ? (
@@ -439,8 +418,8 @@ export function ContactForm() {
           <p
             className="text-center text-sm"
             style={{
-              fontFamily: FONTS.sans,
-              color: COLORS.textMuted,
+              fontFamily: 'var(--font-sans)',
+              color: 'var(--color-text-muted)',
             }}
           >
             {t.rich('form.privacy', {
@@ -448,7 +427,7 @@ export function ContactForm() {
                 <a
                   href="/de/datenschutz"
                   className="underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                  style={{ color: COLORS.bgDark }}
+                  style={{ color: 'var(--color-bg-dark)' }}
                 >
                   {chunks}
                 </a>

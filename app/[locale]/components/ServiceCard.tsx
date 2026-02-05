@@ -3,21 +3,6 @@
 import { motion } from 'framer-motion';
 import { LucideIcon, ArrowRight } from 'lucide-react';
 
-// Design tokens
-const COLORS = {
-  textPrimary: '#32302F',
-  textSecondary: '#5C5A58',
-  brandPrimary: '#4DB6A0',
-  border: 'rgba(50, 48, 47, 0.12)',
-  borderStrong: 'rgba(50, 48, 47, 0.25)',
-  bgWhite: '#FFFFFF',
-};
-
-const FONTS = {
-  serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-  sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
-};
-
 export interface ServiceCardProps {
   /** Lucide icon component */
   icon: LucideIcon;
@@ -70,17 +55,16 @@ export function ServiceCard({
         }
       `}
       style={{
-        borderColor: isHighlighted ? COLORS.brandPrimary : COLORS.border,
+        borderColor: isHighlighted ? 'var(--color-brand-primary)' : 'var(--color-border)',
       }}
-      // Ensure hover border color change for non-highlighted cards
       onMouseEnter={(e) => {
         if (!isHighlighted) {
-          e.currentTarget.style.borderColor = COLORS.borderStrong;
+          e.currentTarget.style.borderColor = 'var(--color-border-strong)';
         }
       }}
       onMouseLeave={(e) => {
         if (!isHighlighted) {
-          e.currentTarget.style.borderColor = COLORS.border;
+          e.currentTarget.style.borderColor = 'var(--color-border)';
         }
       }}
     >
@@ -89,9 +73,9 @@ export function ServiceCard({
         <span
           className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full"
           style={{
-            backgroundColor: `${COLORS.brandPrimary}15`,
-            color: COLORS.brandPrimary,
-            fontFamily: FONTS.sans,
+            backgroundColor: 'var(--color-brand-subtle)',
+            color: 'var(--color-brand-primary)',
+            fontFamily: 'var(--font-sans)',
           }}
         >
           {badge}
@@ -102,12 +86,12 @@ export function ServiceCard({
       <div
         className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-xl mb-5 md:mb-6"
         style={{
-          backgroundColor: `${COLORS.brandPrimary}10`,
+          backgroundColor: 'var(--color-brand-subtle)',
         }}
       >
         <Icon
           className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
-          style={{ color: COLORS.brandPrimary }}
+          style={{ color: 'var(--color-brand-primary)' }}
           strokeWidth={1.5}
           aria-hidden="true"
         />
@@ -117,9 +101,9 @@ export function ServiceCard({
       <h3
         className="text-xl md:text-2xl mb-3 md:mb-4"
         style={{
-          fontFamily: FONTS.serif,
+          fontFamily: 'var(--font-serif)',
           fontWeight: 500,
-          color: COLORS.textPrimary,
+          color: 'var(--color-text-primary)',
           lineHeight: 1.3,
         }}
       >
@@ -130,8 +114,8 @@ export function ServiceCard({
       <p
         className="flex-grow text-base mb-5 md:mb-6"
         style={{
-          fontFamily: FONTS.sans,
-          color: COLORS.textSecondary,
+          fontFamily: 'var(--font-sans)',
+          color: 'var(--color-text-secondary)',
           lineHeight: 1.6,
         }}
       >
@@ -143,8 +127,8 @@ export function ServiceCard({
         href={ctaHref}
         className="group inline-flex items-center gap-1.5 text-sm md:text-base font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
         style={{
-          color: COLORS.brandPrimary,
-          fontFamily: FONTS.sans,
+          color: 'var(--color-brand-primary)',
+          fontFamily: 'var(--font-sans)',
         }}
       >
         {ctaText}
