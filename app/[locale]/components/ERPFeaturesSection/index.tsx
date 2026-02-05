@@ -1,9 +1,9 @@
 'use client';
 
 import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
 import { ModuleGrid } from '../ModuleGrid';
-import { ModuleFeatureCard } from './ModuleFeatureCard';
+import { ERPFeaturesHeader } from './ERPFeaturesHeader';
+import { ERPStackingCardList } from './ERPStackingCardList';
 import { useScrollLinkedHighlight } from './useScrollLinkedHighlight';
 import { erpModules } from './erp-modules-data';
 
@@ -59,20 +59,18 @@ function useInViewOnce(ref: React.RefObject<HTMLElement | null>): boolean {
 // ==========================================================================
 
 /**
- * ERP Features Section — Sticky two-column layout with scroll-linked
- * ModuleGrid highlighting.
+ * ERP Features Section — Stacking cards v2.0
  *
- * Desktop (≥1024px): Left scrollable card list + right sticky ModuleGrid
- * Tablet (768-1023px): Stacked — ModuleGrid above, 2-column card grid
- * Mobile (<768px): Stacked — ModuleGrid above, compact card stack
+ * Left column: Sticky stacking cards (CSS position: sticky)
+ * Right column: Sticky ModuleGrid with scroll-linked highlighting
  *
- * Reference: docs/sections/erp-features-section-spec.md
+ * Desktop (>=1024px): Two columns, left stacking cards + right sticky ModuleGrid
+ * Tablet (768-1023px): Single column, ModuleGrid above, stacking cards below
+ * Mobile (<768px): Single column, ModuleGrid above, stacking cards below
  *
- * TODO: Add highlightMode and highlightTargets props to ModuleGrid
- *       to enable scroll-linked highlighting from ERPFeaturesSection.
+ * Reference: erp-features-stacking-cards-v2 spec
  */
 export function ERPFeaturesSection() {
-  const t = useTranslations();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
 
   // Refs for section entry animation
@@ -80,11 +78,10 @@ export function ERPFeaturesSection() {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const gridContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const isSectionVisible = useInViewOnce(sectionRef);
   const isHeaderVisible = useInViewOnce(headerRef);
   const isGridVisible = useInViewOnce(gridContainerRef);
 
-  // Card refs for IntersectionObserver
+  // Card refs for IntersectionObserver (scroll-linked grid highlight)
   const cardRefsArray = useRef<(HTMLElement | null)[]>([]);
   const setCardRef = useCallback(
     (index: number) => (el: HTMLElement | null) => {
@@ -96,17 +93,15 @@ export function ERPFeaturesSection() {
   // Module IDs for scroll hook
   const moduleIds = useMemo(() => erpModules.map((m) => m.id), []);
 
-  // Scroll-linked highlight (desktop only)
-  // TODO: Pass activeModuleId and highlightTargets to ModuleGrid
-  //       when ModuleGrid prop support is implemented.
-  const { activeModuleId, isScrollLinked } = useScrollLinkedHighlight(
+  // Scroll-linked highlight (desktop only) — for ModuleGrid
+  const { activeModuleId } = useScrollLinkedHighlight(
     cardRefsArray,
     moduleIds,
     isDesktop
   );
 
   // Compute highlight targets for ModuleGrid (prepared for future use)
-  const highlightTargets = useMemo(() => {
+  const _highlightTargets = useMemo(() => {
     if (!activeModuleId) return [];
     const activeModule = erpModules.find((m) => m.id === activeModuleId);
     return activeModule ? activeModule.gridHighlightTargets : [];
@@ -145,45 +140,8 @@ export function ERPFeaturesSection() {
       <div className="mx-auto max-w-7xl px-5 md:px-8 lg:px-16">
 
         {/* ---- Section Header ---- */}
-        <div
-          ref={headerRef}
-          className={
-            'text-center mx-auto mb-8 md:mb-12 lg:mb-16 ' +
-            'transition-all duration-600 ease-out ' +
-            (isHeaderVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-6')
-          }
-          style={{ maxWidth: 720 }}
-        >
-          {/* Eyebrow */}
-          <p
-            className="caption mb-4"
-            style={{
-              fontWeight: 600,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: 'var(--color-brand-primary)',
-            }}
-          >
-            {t('erpFeatures.eyebrow')}
-          </p>
-
-          {/* Headline */}
-          <h2
-            id="erp-features-heading"
-            className="heading-2"
-          >
-            {t('erpFeatures.headline')}
-          </h2>
-
-          {/* Subheadline */}
-          <p
-            className="body-lg mt-4 mx-auto"
-            style={{ maxWidth: 640 }}
-          >
-            {t('erpFeatures.subheadline')}
-          </p>
+        <div ref={headerRef}>
+          <ERPFeaturesHeader isVisible={isHeaderVisible} />
         </div>
 
         {/* ---- Two-Column Container ---- */}
@@ -197,7 +155,7 @@ export function ERPFeaturesSection() {
               'order-first lg:order-last ' +
               /* Desktop: sticky right column */
               'w-full lg:w-[520px] lg:flex-shrink-0 ' +
-              'lg:sticky lg:top-24 lg:self-start ' +
+              'lg:sticky lg:top-[96px] lg:self-start ' +
               /* Centering for tablet/mobile */
               'flex justify-center ' +
               'mb-8 md:mb-12 lg:mb-0 ' +
@@ -214,44 +172,18 @@ export function ERPFeaturesSection() {
                 'lg:scale-100 lg:origin-top'
               }
             >
-              {/* TODO: Add highlightMode={isScrollLinked ? 'scroll-linked' : 'auto-cycle'}
-                        and highlightTargets={highlightTargets} props when ModuleGrid
-                        prop support is implemented */}
+              {/* TODO: Add highlightMode and highlightTargets props
+                        when ModuleGrid prop support is implemented */}
               <ModuleGrid />
             </div>
           </div>
 
-          {/* ---- Module Cards (left column) ---- */}
-          <div
-            ref={cardsContainerRef}
-            role="list"
-            aria-label={t('erpFeatures.eyebrow')}
-            className={
-              'flex-1 min-w-0 ' +
-              /* Mobile: single column stack */
-              'flex flex-col gap-3 ' +
-              /* Tablet: 2-column grid */
-              'md:grid md:grid-cols-2 md:gap-4 ' +
-              /* Desktop: single column list */
-              'lg:flex lg:flex-col lg:gap-4'
-            }
-          >
-            {erpModules.map((module, index) => (
-              <ModuleFeatureCard
-                key={module.id}
-                ref={setCardRef(index)}
-                module={module}
-                isActive={isDesktop && activeModuleId === module.id}
-                isInactive={
-                  isDesktop &&
-                  isScrollLinked &&
-                  activeModuleId !== null &&
-                  activeModuleId !== module.id
-                }
-                index={index}
-                isVisible={cardsVisible}
-              />
-            ))}
+          {/* ---- Stacking Cards (left column) ---- */}
+          <div ref={cardsContainerRef} className="flex-1 min-w-0">
+            <ERPStackingCardList
+              setCardRef={setCardRef}
+              cardsVisible={cardsVisible}
+            />
           </div>
         </div>
       </div>
