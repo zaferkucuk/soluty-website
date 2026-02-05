@@ -56,11 +56,11 @@ export function HeroEmailForm() {
           transition-all duration-200
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4DB6A0]
         "
-        style={{ 
-          backgroundColor: isHovered ? COLORS.bgDarkHover : COLORS.bgDark,
+        style={{
+          backgroundColor: isHovered ? '#3DA08C' : COLORS.brandPrimary,
           color: COLORS.textInverse,
           transform: `translateY(-50%)${isHovered ? ' translateY(-1px)' : ''}`,
-          boxShadow: isHovered ? '0 4px 12px rgba(15, 42, 57, 0.3)' : 'none',
+          boxShadow: isHovered ? '0 4px 12px rgba(77, 182, 160, 0.3)' : 'none',
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

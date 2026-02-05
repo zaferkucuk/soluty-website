@@ -42,7 +42,7 @@ export function HeaderButtons() {
       <Button
         as="link"
         href={`/${locale}#contact`}
-        variant="primary"
+        variant="brand"
         size="sm"
         icon={<ArrowIcon />}
       >

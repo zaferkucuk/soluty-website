@@ -393,16 +393,16 @@ export function ContactForm() {
             className="w-full h-12 rounded-lg font-medium text-base transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
             style={{
               fontFamily: FONTS.sans,
-              backgroundColor: COLORS.bgDark,
+              backgroundColor: COLORS.brandPrimary,
               color: COLORS.textInverse,
             }}
             onMouseEnter={(e) => {
               if (!isSubmitting) {
-                e.currentTarget.style.backgroundColor = COLORS.bgDarkHover;
+                e.currentTarget.style.backgroundColor = COLORS.brandHover;
               }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = COLORS.bgDark;
+              e.currentTarget.style.backgroundColor = COLORS.brandPrimary;
             }}
           >
             {isSubmitting ? (
