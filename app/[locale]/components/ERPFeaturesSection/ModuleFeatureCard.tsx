@@ -100,7 +100,7 @@ export const ModuleFeatureCard = forwardRef<HTMLElement, ModuleFeatureCardProps>
 
           {/* Title */}
           <h3
-            className="heading-4 !text-lg md:!text-[22px] !leading-tight flex-1 min-w-0"
+            className="heading-4 !text-[18px] !leading-tight flex-1 min-w-0"
             style={{ color: 'var(--color-text-primary)' }}
           >
             {t(module.titleKey)}
@@ -108,7 +108,7 @@ export const ModuleFeatureCard = forwardRef<HTMLElement, ModuleFeatureCardProps>
 
           {/* Category Badge — right-aligned */}
           <span
-            className="flex-shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium transition-colors duration-250 ease-out"
+            className="flex-shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[18px] font-medium transition-colors duration-250 ease-out"
             style={{
               fontFamily: 'var(--font-sans)',
               letterSpacing: '0.02em',
@@ -122,7 +122,7 @@ export const ModuleFeatureCard = forwardRef<HTMLElement, ModuleFeatureCardProps>
 
         {/* Row 2: Description */}
         <p
-          className="body-sm mt-3 md:mt-3"
+          className="mt-3 md:mt-3 text-[18px]"
           style={{
             lineHeight: 1.6,
             color: 'var(--color-text-secondary)',
