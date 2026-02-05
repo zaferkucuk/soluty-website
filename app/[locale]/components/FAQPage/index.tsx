@@ -187,5 +187,4 @@ export { FAQSideNav } from './FAQSideNav';
 export { FAQMobileTabs } from './FAQMobileTabs';
 export { FAQCategory } from './FAQCategory';
 export { FAQItem } from './FAQItem';
-export { FAQItemMobile } from './FAQItemMobile';
 export { FAQCtaBanner } from './FAQCtaBanner';

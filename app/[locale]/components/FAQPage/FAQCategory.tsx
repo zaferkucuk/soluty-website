@@ -1,5 +1,7 @@
+'use client';
+
+import { useRef, useEffect } from 'react';
 import { FAQItem } from './FAQItem';
-import { FAQItemMobile } from './FAQItemMobile';
 
 // Design tokens
 const COLORS = {
@@ -24,12 +26,40 @@ interface FAQCategoryProps {
 }
 
 /**
- * FAQCategory — Category wrapper
+ * FAQCategory — Category wrapper with exclusive accordion
  *
- * Desktop: Shows all answers expanded
- * Mobile: Shows accordion items
+ * All breakpoints use accordion behavior.
+ * Only one question open at a time within a category.
+ * All questions closed on initial load.
  */
 export function FAQCategory({ id, title, questions }: FAQCategoryProps) {
+  const detailsRefs = useRef<(HTMLDetailsElement | null)[]>([]);
+
+  useEffect(() => {
+    const handlers: Array<() => void> = [];
+
+    detailsRefs.current.forEach((details, index) => {
+      if (!details) return;
+
+      const handler = () => {
+        if (details.open) {
+          detailsRefs.current.forEach((other, i) => {
+            if (other && i !== index && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      };
+
+      details.addEventListener('toggle', handler);
+      handlers.push(() => details.removeEventListener('toggle', handler));
+    });
+
+    return () => {
+      handlers.forEach((cleanup) => cleanup());
+    };
+  }, [questions]);
+
   return (
     <section id={id} aria-labelledby={`${id}-heading`} className="mt-16 first:mt-0">
       <h2
@@ -44,23 +74,11 @@ export function FAQCategory({ id, title, questions }: FAQCategoryProps) {
         {title}
       </h2>
 
-      {/* Desktop: All answers visible */}
-      <div className="hidden lg:block mt-8">
-        {questions.map((q) => (
+      <div className="mt-6">
+        {questions.map((q, index) => (
           <FAQItem
             key={q.id}
-            question={q.question}
-            answerCapsule={q.answerCapsule}
-            answerExtended={q.answerExtended}
-          />
-        ))}
-      </div>
-
-      {/* Mobile: Accordion */}
-      <div className="lg:hidden mt-6">
-        {questions.map((q, index) => (
-          <FAQItemMobile
-            key={q.id}
+            ref={(el) => { detailsRefs.current[index] = el; }}
             question={q.question}
             answerCapsule={q.answerCapsule}
             answerExtended={q.answerExtended}
