@@ -19,7 +19,6 @@ const VIDEO_CONFIG = {
 const COLORS = {
   textInverse: '#FFFFFF',
   textInverseSecondary: 'rgba(255, 255, 255, 0.75)',
-  brandPrimary: '#4DB6A0',
   bgSection: '#0F2A39',
   bgInnerCard: 'rgba(255, 255, 255, 0.1)',
   borderInnerCard: 'rgba(255, 255, 255, 0.3)',
@@ -116,7 +115,7 @@ export function ServicesSection() {
         <p
           className="text-xs md:text-sm font-semibold tracking-widest uppercase mb-6 md:mb-8 text-center"
           style={{
-            color: COLORS.brandPrimary,
+            color: COLORS.textInverseSecondary,
             fontFamily: FONTS.sans,
             letterSpacing: '0.1em',
           }}

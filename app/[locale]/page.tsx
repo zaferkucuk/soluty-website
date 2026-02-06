@@ -11,7 +11,6 @@ const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
   bgPrimary: '#FCFCFC',
-  brandPrimary: '#4DB6A0',
 }
 
 // Font constants for inline styles (Tailwind v4 CSS variable workaround)
@@ -128,7 +127,7 @@ function HeroTextContent({
         <svg
           className="w-4 h-4"
           fill="none"
-          stroke={colors.brandPrimary}
+          stroke={colors.textSecondary}
           viewBox="0 0 24 24"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -137,7 +136,7 @@ function HeroTextContent({
           className="text-sm font-medium"
           style={{
             fontFamily: fonts.sans,
-            color: colors.brandPrimary,
+            color: colors.textSecondary,
           }}
         >
           {t("trust.gdprCompliant")}

@@ -35,7 +35,7 @@ export function ERPFeaturesHeader({ isVisible }: ERPFeaturesHeaderProps) {
           fontWeight: 600,
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: 'var(--color-brand-primary)',
+          color: 'var(--color-text-secondary)',
         }}
       >
         {t('erpFeatures.eyebrow')}

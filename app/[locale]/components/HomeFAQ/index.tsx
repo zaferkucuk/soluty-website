@@ -9,7 +9,6 @@ const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
   bgPrimary: '#FCFCFC',
-  brandPrimary: '#4DB6A0',
   divider: '#E5E5E3',
 };
 
@@ -70,7 +69,7 @@ export function HomeFAQ() {
         <p
           className="text-center text-xs font-semibold tracking-widest uppercase mb-4"
           style={{
-            color: COLORS.brandPrimary,
+            color: COLORS.textSecondary,
             fontFamily: FONTS.sans,
             letterSpacing: '0.1em',
           }}
@@ -106,7 +105,7 @@ export function HomeFAQ() {
                 style={{ fontFamily: FONTS.sans }}
               >
                 <span
-                  className="text-lg lg:text-[18px] font-medium pr-4 group-hover:text-[#4DB6A0] transition-colors duration-150"
+                  className="text-lg lg:text-[18px] font-medium pr-4 transition-colors duration-150"
                   style={{
                     color: COLORS.textPrimary,
                     fontSize: '16px',
@@ -158,7 +157,7 @@ export function HomeFAQ() {
             style={{
               fontFamily: FONTS.sans,
               fontSize: '16px',
-              color: COLORS.brandPrimary,
+              color: COLORS.textSecondary,
             }}
           >
             {t('linkToFaq')}
