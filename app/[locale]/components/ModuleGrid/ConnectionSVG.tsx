@@ -39,14 +39,15 @@ interface FlowParticleProps {
   path: string;
   duration: number;
   delay: number;
+  filterId: string;
 }
 
-function FlowParticle({ path, duration, delay }: FlowParticleProps) {
+function FlowParticle({ path, duration, delay, filterId }: FlowParticleProps) {
   return (
     <motion.circle
       r={LINE_STYLES.particleRadius}
       fill={LINE_STYLES.particleColor}
-      filter="url(#particleGlow)"
+      filter={`url(#${filterId})`}
       style={{
         offsetPath: `path('${path}')`,
         offsetRotate: '0deg',
@@ -105,27 +106,29 @@ export function ConnectionSVG({
     pathLength / ANIMATION_CONSTANTS.particleSpeedFactor
   );
   
-  // Unique gradient ID for this connection
+  // Unique IDs for this connection (avoid cross-SVG ID collisions)
   const gradientId = `gradient-${id}`;
-  
+  const filterId = `particleGlow-${id}`;
+
   // Don't render anything if not active
   if (!isActive) {
     return null;
   }
-  
+
   return (
     <motion.svg
       className="absolute pointer-events-none"
       style={{
         left: x,
         top: y,
-        overflow: 'visible',
+        overflow: 'hidden',
       }}
       width={width}
       height={height}
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
     >
       <defs>
         {/* Rotating gradient */}
@@ -140,9 +143,9 @@ export function ConnectionSVG({
           <stop offset="0" stopColor={colors.start} />
           <stop offset="1" stopColor={colors.end} />
         </linearGradient>
-        
-        {/* Particle glow filter */}
-        <filter id="particleGlow" x="-100%" y="-100%" width="300%" height="300%">
+
+        {/* Particle glow filter — unique per connection */}
+        <filter id={filterId} x="-100%" y="-100%" width="300%" height="300%">
           <feGaussianBlur stdDeviation="2.5" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
@@ -206,8 +209,8 @@ export function ConnectionSVG({
       />
       
       {/* Layer 4: Flow particles */}
-      <FlowParticle path={path} duration={particleDuration} delay={0} />
-      <FlowParticle path={path} duration={particleDuration} delay={particleDuration * 0.5} />
+      <FlowParticle path={path} duration={particleDuration} delay={0} filterId={filterId} />
+      <FlowParticle path={path} duration={particleDuration} delay={particleDuration * 0.5} filterId={filterId} />
     </motion.svg>
   );
 }
