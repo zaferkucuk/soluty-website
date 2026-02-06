@@ -6,6 +6,8 @@ import type { Module } from './modules-data';
 interface ModuleCardProps {
   module: Module;
   isActive: boolean;
+  /** Whether connection lines are currently drawn on the grid */
+  hasActiveConnections: boolean;
   moduleName: string;
   cardSize: number;
   onMouseEnter: () => void;
@@ -23,6 +25,8 @@ const CARD_STYLES = {
 
   // Opacity values
   inactiveOpacity: 0.35,
+  /** Extra-faded: inactive cards when connection lines are visible (50% of inactive) */
+  dimmedOpacity: 0.18,
   activeOpacity: 1,
 
   // Background colors
@@ -51,6 +55,7 @@ const CARD_STYLES = {
 export function ModuleCard({
   module,
   isActive,
+  hasActiveConnections,
   moduleName,
   cardSize,
   onMouseEnter,
@@ -59,6 +64,16 @@ export function ModuleCard({
   const Icon = module.icon;
 
   const borderRadius = Math.round(cardSize * 0.10);
+
+  // Determine opacity:
+  //   active card  → always full opacity
+  //   inactive + lines visible → extra dimmed (so lines stand out)
+  //   inactive + no lines      → normal faded
+  const opacity = isActive
+    ? CARD_STYLES.activeOpacity
+    : hasActiveConnections
+      ? CARD_STYLES.dimmedOpacity
+      : CARD_STYLES.inactiveOpacity;
 
   return (
     <div
@@ -70,7 +85,7 @@ export function ModuleCard({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {/* Card always visible — faded when inactive, prominent when active */}
+      {/* Card always visible — faded when inactive, extra-dimmed when lines are active */}
       <motion.div
         className="absolute flex flex-col items-center justify-center"
         style={{
@@ -84,7 +99,7 @@ export function ModuleCard({
         }}
         animate={{
           scale: isActive ? CARD_STYLES.activeScale : CARD_STYLES.inactiveScale,
-          opacity: isActive ? CARD_STYLES.activeOpacity : CARD_STYLES.inactiveOpacity,
+          opacity,
           boxShadow: isActive ? CARD_STYLES.activeShadow : CARD_STYLES.noShadow,
           border: isActive ? CARD_STYLES.activeBorder : CARD_STYLES.inactiveBorder,
           backgroundColor: isActive ? CARD_STYLES.activeBg : CARD_STYLES.inactiveBg,

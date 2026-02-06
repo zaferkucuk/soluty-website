@@ -107,7 +107,10 @@ export function ModuleGrid() {
   
   // Check if module is currently visible (active)
   const isModuleActive = (moduleId: string) => visibleModuleIds.includes(moduleId);
-  
+
+  // Connection lines are visible when at least 2 modules in a group are active
+  const hasActiveConnections = visibleModuleIds.length >= 2;
+
   return (
     <div
       className="relative"
@@ -162,6 +165,7 @@ export function ModuleGrid() {
               <ModuleCard
                 module={module}
                 isActive={isActive}
+                hasActiveConnections={hasActiveConnections}
                 moduleName={t(module.key)}
                 cardSize={cardSize}
                 onMouseEnter={() => setHoveredModuleId(module.id)}
