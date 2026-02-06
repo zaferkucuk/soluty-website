@@ -6,7 +6,7 @@ const COLORS = {
   textSecondary: '#5C5A58',
   textInverse: '#FFFFFF',
   bgBanner: '#F5F5F3',
-  brandPrimary: '#4DB6A0',
+  brandPrimary: '#1f1f1f',
 };
 
 const FONTS = {

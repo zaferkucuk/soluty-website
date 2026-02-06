@@ -88,18 +88,6 @@ export function ValueProposition() {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Eyebrow */}
-      <p
-        className="text-xs md:text-sm font-semibold tracking-widest uppercase"
-        style={{
-          color: COLORS.brandPrimary,
-          fontFamily: FONTS.sans,
-          letterSpacing: '0.1em',
-        }}
-      >
-        {t('eyebrow')}
-      </p>
-
       {/* Heading */}
       <h2
         id="contact-heading"
@@ -179,7 +167,7 @@ export function ValueProposition() {
             className="inline-flex items-center gap-2 text-base hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               fontFamily: FONTS.sans,
-              color: COLORS.bgDark,
+              color: COLORS.textSecondary,
             }}
           >
             <svg
@@ -203,7 +191,7 @@ export function ValueProposition() {
             className="inline-flex items-center gap-2 text-base hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               fontFamily: FONTS.sans,
-              color: COLORS.bgDark,
+              color: COLORS.textSecondary,
             }}
           >
             <svg
