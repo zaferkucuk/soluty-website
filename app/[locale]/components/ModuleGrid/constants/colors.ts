@@ -80,12 +80,12 @@ export const SOLUTY_COLOR_PAIRS: Record<string, ColorPair> = {
  * Ordering maximises visual contrast between adjacent active groups.
  */
 export const GROUP_COLOR_MAP: Record<number, ColorPair> = {
-  1: SOLUTY_COLOR_PAIRS.tealPlum,          // Order Management
-  2: SOLUTY_COLOR_PAIRS.plumLavender,      // Logistics
-  3: SOLUTY_COLOR_PAIRS.charcoalTeal,      // Sales & Billing
-  4: SOLUTY_COLOR_PAIRS.lavenderTeal,      // Inventory
+  1: SOLUTY_COLOR_PAIRS.tealLavender,      // Order Management
+  2: SOLUTY_COLOR_PAIRS.tealLavender,      // Logistics
+  3: SOLUTY_COLOR_PAIRS.tealLavender,      // Sales & Billing
+  4: SOLUTY_COLOR_PAIRS.tealLavender,      // Inventory
   5: SOLUTY_COLOR_PAIRS.tealLavender,      // Finance
-  6: SOLUTY_COLOR_PAIRS.lavenderCharcoal,  // Customer
+  6: SOLUTY_COLOR_PAIRS.tealLavender,      // Customer
 };
 
 // ==========================================================================
