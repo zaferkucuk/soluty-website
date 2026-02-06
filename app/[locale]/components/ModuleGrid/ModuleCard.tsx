@@ -100,11 +100,12 @@ export function ModuleCard({
               style={{ color: CARD_STYLES.iconColor }}
             />
 
-            {/* Label — matches ERP stacking card description style */}
+            {/* Label — visually matches ERP stacking card description (16px)
+                Compensate for parent scale(1.1): 16 / 1.1 ≈ 14.5px */}
             <span
               className="text-center px-1"
               style={{
-                fontSize: 16,
+                fontSize: 14.5,
                 lineHeight: 1.6,
                 color: 'var(--color-text-secondary)',
                 whiteSpace: 'nowrap',
