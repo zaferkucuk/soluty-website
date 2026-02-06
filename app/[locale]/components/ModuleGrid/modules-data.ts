@@ -116,12 +116,12 @@ export const GROUP_GRADIENTS: Record<number, {
   end: string;
   glow: string;
 }> = {
-  1: { start: '#4DB6A0', end: '#332436', glow: 'rgba(77, 182, 160, 0.3)' },   // Order – Teal → Plum
-  2: { start: '#332436', end: '#be95c2', glow: 'rgba(190, 149, 194, 0.3)' },  // Logistics – Plum → Lavender
-  3: { start: '#363439', end: '#4DB6A0', glow: 'rgba(77, 182, 160, 0.25)' },  // Sales – Charcoal → Teal
-  4: { start: '#be95c2', end: '#4DB6A0', glow: 'rgba(133, 166, 177, 0.3)' },  // Inventory – Lavender → Teal
+  1: { start: '#4DB6A0', end: '#be95c2', glow: 'rgba(133, 166, 177, 0.3)' },  // Order – Teal → Lavender
+  2: { start: '#4DB6A0', end: '#be95c2', glow: 'rgba(133, 166, 177, 0.3)' },  // Logistics – Teal → Lavender
+  3: { start: '#4DB6A0', end: '#be95c2', glow: 'rgba(133, 166, 177, 0.3)' },  // Sales – Teal → Lavender
+  4: { start: '#4DB6A0', end: '#be95c2', glow: 'rgba(133, 166, 177, 0.3)' },  // Inventory – Teal → Lavender
   5: { start: '#4DB6A0', end: '#be95c2', glow: 'rgba(133, 166, 177, 0.3)' },  // Finance – Teal → Lavender
-  6: { start: '#be95c2', end: '#363439', glow: 'rgba(190, 149, 194, 0.25)' }, // Customer – Lavender → Charcoal
+  6: { start: '#4DB6A0', end: '#be95c2', glow: 'rgba(133, 166, 177, 0.3)' },  // Customer – Teal → Lavender
 };
 
 // ==========================================================================
