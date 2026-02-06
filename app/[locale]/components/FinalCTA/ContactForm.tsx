@@ -11,8 +11,8 @@ const COLORS = {
   textSecondary: '#5C5A58',
   textMuted: '#8A8785',
   textInverse: '#FFFFFF',
-  brandPrimary: '#4DB6A0',
-  brandHover: '#3DA08C',
+  brandPrimary: '#1f1f1f',
+  brandHover: '#333333',
   bgDark: '#0F2A39',
   bgDarkHover: '#0A1F2B',
   error: '#DC2626',
@@ -440,7 +440,7 @@ export function ContactForm() {
             className="text-center text-sm"
             style={{
               fontFamily: FONTS.sans,
-              color: COLORS.textMuted,
+              color: COLORS.textPrimary,
             }}
           >
             {t.rich('form.privacy', {
@@ -448,7 +448,7 @@ export function ContactForm() {
                 <a
                   href="/de/datenschutz"
                   className="underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                  style={{ color: COLORS.bgDark }}
+                  style={{ color: COLORS.textPrimary }}
                 >
                   {chunks}
                 </a>

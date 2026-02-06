@@ -27,8 +27,8 @@ const COLORS = {
   bgPrimary: '#FCFCFC',
   bgDark: '#0F2A39',
   bgDarkHover: '#0A1F2B',
-  brandPrimary: '#4DB6A0',
-  brandHover: '#3DA08C',
+  brandPrimary: '#1f1f1f',
+  brandHover: '#333333',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
 }
 
@@ -98,7 +98,7 @@ const variantHoverStyles: Record<ButtonVariant, React.CSSProperties> = {
   brand: {
     backgroundColor: COLORS.brandHover,
     transform: 'translateY(-1px)',
-    boxShadow: '0 4px 12px rgba(77, 182, 160, 0.3)',
+    boxShadow: '0 4px 12px rgba(31, 31, 31, 0.3)',
   },
 }
 
