@@ -24,10 +24,10 @@ const CARD_STYLES = {
   activeScale: 1.1,
 
   // Opacity values
-  inactiveOpacity: 0.35,
-  /** Extra-faded: inactive cards when connection lines are visible (50% of inactive) */
-  dimmedOpacity: 0.18,
-  activeOpacity: 1,
+  inactiveOpacity: 0.10,
+  /** Extra-faded: inactive cards when connection lines are visible */
+  dimmedOpacity: 0.08,
+  activeOpacity: 0.9,
 
   // Background colors
   activeBg: '#ffffff',
@@ -66,9 +66,9 @@ export function ModuleCard({
   const borderRadius = Math.round(cardSize * 0.10);
 
   // Determine opacity:
-  //   active card  → always full opacity
+  //   active card  → 0.9 (slightly transparent even at peak)
   //   inactive + lines visible → extra dimmed (so lines stand out)
-  //   inactive + no lines      → normal faded
+  //   inactive + no lines      → very faded
   const opacity = isActive
     ? CARD_STYLES.activeOpacity
     : hasActiveConnections
