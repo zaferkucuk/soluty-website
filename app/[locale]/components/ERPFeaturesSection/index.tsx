@@ -134,8 +134,8 @@ export function ERPFeaturesSection() {
             ref={gridContainerRef}
             className={
               'order-first lg:order-last ' +
-              'w-full lg:w-[520px] lg:flex-shrink-0 ' +
-              'lg:sticky lg:top-[30vh] lg:self-start ' +
+              'w-full lg:w-[470px] lg:flex-shrink-0 ' +
+              'lg:sticky lg:top-[24vh] lg:self-start ' +
               'flex justify-center ' +
               'mb-8 md:mb-12 lg:mb-0 ' +
               'transition-opacity duration-800 ease-out ' +
@@ -153,8 +153,11 @@ export function ERPFeaturesSection() {
             </div>
           </div>
 
-          {/* ---- Stacking Cards (left column) ---- */}
-          <div ref={cardsContainerRef} className="flex-1 min-w-0">
+          {/* ---- Stacking Cards (left column) ----
+               lg:pb-[200px] adds extra scroll runway so the sticky
+               ModuleGrid remains in view long enough for all bottom
+               cards (row e-f) to be visible before the section ends. */}
+          <div ref={cardsContainerRef} className="flex-1 min-w-0 lg:pb-[200px]">
             <ERPStackingCardList
               setCardRef={setCardRef}
               cardsVisible={cardsVisible}
