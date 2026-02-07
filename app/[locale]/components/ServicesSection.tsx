@@ -36,6 +36,8 @@ const FONTS = {
  *
  * Note: Highlighted card uses scale(1.05) for visual prominence.
  * This intentionally scales text ~5% larger — accepted tradeoff for hierarchy.
+ *
+ * Grid uses items-stretch so left and right cards have equal height.
  */
 export function ServicesSection() {
   const t = useTranslations('services');
@@ -161,8 +163,8 @@ export function ServicesSection() {
             </p>
           </header>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 md:items-center">
+          {/* Cards Grid — items-stretch ensures equal height for left and right cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 md:items-stretch">
             {sortedServices.map((service) => (
               <div
                 key={service.id}
