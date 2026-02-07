@@ -25,25 +25,33 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
-      {/* Hero Section */}
+      {/* Hero Section — full viewport height (above the fold) */}
       <section style={{ overflowX: 'clip' }}>
-        {/* Mobile: stacked layout */}
-        <div className="lg:hidden px-6 pt-4 pb-12">
+        {/* Mobile: stacked layout, full viewport */}
+        <div
+          className="lg:hidden px-6 pt-4 pb-12 flex flex-col justify-center"
+          style={{ minHeight: 'calc(100vh - 80px)' }}
+        >
           <div className="max-w-md mx-auto mb-8">
             <HeroVideo videoSrc="/videos/hero.webm" />
           </div>
           <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
         </div>
 
-        {/* Desktop: text left + absolute video right
-            Responsive container: 1200px default, 1400px on 2xl (1536px+) screens */}
-        <div className="hidden lg:block relative" style={{ minHeight: '540px' }}>
-          {/* Text — aligned with header container */}
-          <div className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10 py-10">
-            <div style={{ minHeight: '480px', display: 'flex', alignItems: 'center' }}>
-              <div className="max-w-[520px]">
-                <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
-              </div>
+        {/* Desktop: text left + absolute video right — full viewport height
+            Header height: 88px (lg:h-[88px])
+            Hero fills remaining viewport: calc(100vh - 88px) */}
+        <div
+          className="hidden lg:block relative"
+          style={{ minHeight: 'calc(100vh - 88px)' }}
+        >
+          {/* Text — aligned with header container, vertically centered */}
+          <div
+            className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10"
+            style={{ minHeight: 'calc(100vh - 88px)', display: 'flex', alignItems: 'center' }}
+          >
+            <div className="max-w-[520px]">
+              <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
             </div>
           </div>
 
