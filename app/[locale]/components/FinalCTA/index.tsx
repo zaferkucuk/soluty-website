@@ -4,7 +4,7 @@ import { ContactForm } from './ContactForm';
 
 // Design tokens
 const COLORS = {
-  bgSection: '#F7F6F5',
+  bgSection: '#FCFCFC',
 };
 
 /**
