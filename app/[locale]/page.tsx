@@ -120,10 +120,9 @@ function HeroTextContent({
         style={{
           fontFamily: fonts.sans,
           color: colors.textSecondary,
-          fontSize: 'clamp(1.125rem, 0.56vw + 1.02rem, 1.5rem)',
+          fontSize: '18px',
           fontWeight: 400,
-          lineHeight: 1.24,
-          letterSpacing: '-0.005em',
+          lineHeight: 1.65,
         }}
       >
         {t("subheadline")}
@@ -134,10 +133,9 @@ function HeroTextContent({
         style={{
           fontFamily: fonts.sans,
           color: colors.textSecondary,
-          fontSize: 'clamp(1.125rem, 0.56vw + 1.02rem, 1.5rem)',
+          fontSize: '18px',
           fontWeight: 400,
-          lineHeight: 1.24,
-          letterSpacing: '-0.005em',
+          lineHeight: 1.65,
         }}
       >
         {t("tagline")}
