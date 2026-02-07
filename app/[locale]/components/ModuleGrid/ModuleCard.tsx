@@ -41,11 +41,11 @@ const CARD_STYLES = {
   activeBorder: '1px solid rgba(0, 0, 0, 0.06)',
   inactiveBorder: '1px solid rgba(0, 0, 0, 0.04)',
 
-  // Icon — uses circular bg container (matches ServiceCard + ValueProposition)
+  // Icon — 40px circle + 20px icon (matches Contact/ValueProposition exactly)
   iconColor: '#5C5A58',
   iconBg: 'rgba(92, 90, 88, 0.08)',
-  iconContainerSize: 36,
-  iconSize: 18,
+  iconContainerSize: 40,
+  iconSize: 20,
 } as const;
 
 // ==========================================================================
@@ -106,7 +106,7 @@ export function ModuleCard({
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >
-        {/* Icon with circular background (consistent with ServiceCard + ValueProposition) */}
+        {/* Icon — 40px circle + 20px icon (identical to Contact/ValueProposition) */}
         <div
           className="flex items-center justify-center rounded-full"
           style={{
@@ -117,7 +117,7 @@ export function ModuleCard({
         >
           <Icon
             size={CARD_STYLES.iconSize}
-            strokeWidth={1.5}
+            strokeWidth={2}
             style={{ color: CARD_STYLES.iconColor }}
           />
         </div>
