@@ -10,6 +10,7 @@ const COLORS = {
   border: 'rgba(50, 48, 47, 0.12)',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
   bgWhite: '#FFFFFF',
+  iconBg: 'rgba(92, 90, 88, 0.08)',
 };
 
 const FONTS = {
@@ -45,7 +46,9 @@ export interface ServiceCardProps {
  * - Description: section-body (18px/400/DM Sans/#5C5A58)
  * - CTA: link-inline (inherit size/500/DM Sans/#5C5A58 + underline)
  *
- * Highlighted card: scale(1.05) applied via parent wrapper in ServicesSection.
+ * Icon style: circular background (matches ValueProposition pattern)
+ * - Container: rounded-full + rgba(92,90,88,0.08) bg
+ * - Icon: #5C5A58 stroke, strokeWidth 1.5
  */
 export function ServiceCard({
   icon: Icon,
@@ -98,7 +101,7 @@ export function ServiceCard({
         <span
           className="absolute top-4 right-4 px-2.5 py-1 rounded-full"
           style={{
-            backgroundColor: 'rgba(92, 90, 88, 0.08)',
+            backgroundColor: COLORS.iconBg,
             color: COLORS.textSecondary,
             fontFamily: FONTS.sans,
             fontSize: '14px',
@@ -109,15 +112,15 @@ export function ServiceCard({
         </span>
       )}
 
-      {/* Icon */}
+      {/* Icon — circular background (consistent with Contact/ValueProposition) */}
       <div
-        className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-xl mb-5 md:mb-6"
+        className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full mb-5 md:mb-6"
         style={{
-          backgroundColor: 'rgba(92, 90, 88, 0.06)',
+          backgroundColor: COLORS.iconBg,
         }}
       >
         <Icon
-          className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+          className="w-5 h-5 md:w-6 md:h-6"
           style={{ color: COLORS.textSecondary }}
           strokeWidth={1.5}
           aria-hidden="true"
