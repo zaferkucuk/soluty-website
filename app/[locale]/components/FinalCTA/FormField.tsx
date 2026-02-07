@@ -6,13 +6,11 @@ import { useId } from 'react';
 const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
-  textMuted: '#8A8785',
-  brandPrimary: '#4DB6A0',
-  brandSubtle: 'rgba(77, 182, 160, 0.1)',
   error: '#DC2626',
   errorSubtle: 'rgba(220, 38, 38, 0.1)',
   border: 'rgba(50, 48, 47, 0.12)',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
+  focusRing: 'rgba(50, 48, 47, 0.08)',
   bgCard: '#FFFFFF',
 };
 
@@ -59,13 +57,13 @@ export function FormField({
 
   const getBorderColor = () => {
     if (hasError) return COLORS.error;
-    if (isFocused) return COLORS.brandPrimary;
+    if (isFocused) return COLORS.borderStrong;
     return COLORS.border;
   };
 
   const getBoxShadow = () => {
     if (hasError) return `0 0 0 3px ${COLORS.errorSubtle}`;
-    if (isFocused) return `0 0 0 3px ${COLORS.brandSubtle}`;
+    if (isFocused) return `0 0 0 3px ${COLORS.focusRing}`;
     return 'none';
   };
 
@@ -104,7 +102,7 @@ export function FormField({
             style={{
               fontSize: '13px',
               fontWeight: 400,
-              color: COLORS.textMuted,
+              color: COLORS.textSecondary,
             }}
           >
             {optionalText}
