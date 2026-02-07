@@ -1,7 +1,7 @@
 # Typography System — Canonical Specification
 
 **Status:** ✅ Active — Single Source of Truth  
-**Version:** 2.0  
+**Version:** 2.1  
 **Last Updated:** 2026-02-07  
 **Supersedes:** `docs/design/typography-colors.md` (typography sections only)
 
@@ -379,6 +379,17 @@ These exist in `globals.css` but are NOT part of the 10-style system. They are u
 
 ---
 
+## Accepted Exceptions
+
+These are intentional deviations from pixel-perfect typography, approved by the project owner:
+
+| Component | Exception | Reason |
+|-----------|-----------|--------|
+| **Services Section — Highlighted Card** | `transform: scale(1.05)` on parent wrapper causes text to render ~5% larger (24px → 25.2px) | Visual hierarchy — the "Core Expertise" (ERP) card must appear prominently larger than sibling cards. Alternative approaches (shadow-only, extra padding) were tested and rejected. |
+| **FAQ Question text** | Uses `16px/500/#32302F` instead of card-body `16px/400/#5C5A58` | Interactive `<summary>` elements — needs primary color and medium weight to signal clickability. |
+
+---
+
 ## Color Reference
 
 Only two text colors are used in the typography system:
@@ -416,7 +427,7 @@ Only two text colors are used in the typography system:
 | Eyebrow "OUR SERVICES" | eyebrow (#8) — inverse |
 | Section headline | section-title (#1) — inverse |
 | Section subheadline | section-body (#2) — inverse |
-| Card headline | card-title (#3) |
+| Card headline | card-title (#3) ⚠️ highlighted card renders ~5% larger via scale |
 | Card description | section-body (#2) — white bg context |
 | Card CTA link | link-inline (#6) |
 | Card badge "Core Expertise" | caption (#7) |
@@ -436,7 +447,7 @@ Only two text colors are used in the typography system:
 |---------|-------|
 | Eyebrow "FREQUENTLY ASKED QUESTIONS" | eyebrow (#8) |
 | Section headline | section-title (#1) |
-| Question text (summary) | 16px/500/#32302F (interactive — NOT card-title) |
+| Question text (summary) | 16px/500/#32302F ⚠️ interactive exception |
 | Answer text | card-body (#4) |
 | "View all questions →" link | link-inline (#6) |
 
@@ -513,6 +524,7 @@ When auditing typography compliance, check every text element for:
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.1 | 2026-02-07 | Added "Accepted Exceptions" section (scale(1.05) on highlighted card, FAQ question style). Added ⚠️ markers in section mapping. |
 | 2.0 | 2026-02-07 | Complete rewrite. Defined 10 canonical styles. Section-by-section mapping. Audit rules. Replaces typography section in typography-colors.md. |
 | 1.1 | 2026-02 | Button color updates (typography-colors.md) |
 | 1.0 | 2025-01 | Initial typography system (typography-colors.md) |
