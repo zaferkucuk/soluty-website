@@ -37,7 +37,7 @@ export default function HomePage() {
         {/* Desktop: relative positioning — video is absolute, text drives height */}
         <div className="hidden lg:block relative" style={{ minHeight: '540px' }}>
           {/* Text — normal flow, determines section height */}
-          <div className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+          <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 py-10">
             <div className="max-w-[500px]">
               <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
             </div>

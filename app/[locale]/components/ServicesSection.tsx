@@ -5,11 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Code2, Database, Brain } from 'lucide-react';
 import { ServiceCard } from './ServiceCard';
 
-// ─── Video Config ────────────────────────────────────────
-// Adjust playbackRate to change video speed:
-//   1.0 = normal | 0.8 = 80% (slower) | 0.6 = 60% | 0.5 = half speed
-// Adjust opacity to change video visibility:
-//   1.0 = full | 0.65 = default | 0.5 = subtle | 0.3 = very faint
+// ─── Video Config ────────────────────────────────────────────────
 const VIDEO_CONFIG = {
   playbackRate: 1.0,
   opacity: 0.5,
@@ -29,19 +25,10 @@ const FONTS = {
   sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
 };
 
-/**
- * Services Section
- * 
- * Layout: Dark section → inner card (slightly lighter) → service cards
- * Inspired by Epicor's layered card approach.
- * 
- * TEST implementation — video will be replaced with a custom solution.
- */
 export function ServicesSection() {
   const t = useTranslations('services');
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Apply playback speed
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = VIDEO_CONFIG.playbackRate;
@@ -96,7 +83,7 @@ export function ServicesSection() {
         </video>
       </div>
 
-      {/* ── Gradient Overlay (Epicor-style: transparent → bgSection at 70%) ── */}
+      {/* ── Gradient Overlay ── */}
       <div
         className="absolute inset-0 z-[1]"
         aria-hidden="true"
@@ -110,8 +97,8 @@ export function ServicesSection() {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-[2] max-w-7xl mx-auto px-5 md:px-8 lg:px-16">
-        {/* Eyebrow — outside the inner card */}
+      <div className="relative z-[2] max-w-[1200px] mx-auto px-6 md:px-10">
+        {/* Eyebrow */}
         <p
           className="text-xs md:text-sm font-semibold tracking-widest uppercase mb-6 md:mb-8 text-center"
           style={{
@@ -123,7 +110,7 @@ export function ServicesSection() {
           {t('eyebrow')}
         </p>
 
-        {/* ── Inner Card (Epicor-style raised container) ── */}
+        {/* ── Inner Card ── */}
         <div
           className="p-6 md:p-10 lg:p-14"
           style={{
@@ -134,7 +121,7 @@ export function ServicesSection() {
             WebkitBackdropFilter: 'blur(8px)',
           }}
         >
-          {/* Section Header — inside the card */}
+          {/* Section Header */}
           <header className="text-center mb-8 md:mb-10 lg:mb-12">
             <h2
               id="services-heading"
