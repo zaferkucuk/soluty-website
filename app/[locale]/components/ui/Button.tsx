@@ -9,10 +9,10 @@ import { forwardRef, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
  * Inspired by Wealthsimple's button design system
  * 
  * Variants:
- * - primary: Dark petrol background (#0F2A39), white text — main CTAs
+ * - primary: Dark background (#32302F), white text — main CTAs
  * - secondary: White background, dark border — secondary actions
  * - ghost: Transparent, dark text — tertiary actions (nav links)
- * - brand: Brand color (#4DB6A0), white text — special emphasis
+ * - brand: Same dark (#32302F), white text — primary emphasis
  * 
  * Sizes:
  * - sm: Header buttons — h-11 (44px) matching HeroEmailForm submit button
@@ -25,10 +25,8 @@ const COLORS = {
   textPrimary: '#32302F',
   textInverse: '#FFFFFF',
   bgPrimary: '#FCFCFC',
-  bgDark: '#0F2A39',
-  bgDarkHover: '#0A1F2B',
-  brandPrimary: '#1f1f1f',
-  brandHover: '#333333',
+  bgInverse: '#32302F',
+  bgInverseHover: '#4A4745',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
 }
 
@@ -61,7 +59,7 @@ export type ButtonProps = ButtonAsButton | ButtonAsLink
 // Style configurations
 const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
   primary: {
-    backgroundColor: COLORS.bgDark,
+    backgroundColor: COLORS.bgInverse,
     color: COLORS.textInverse,
     border: 'none',
   },
@@ -76,7 +74,7 @@ const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
     border: 'none',
   },
   brand: {
-    backgroundColor: COLORS.brandPrimary,
+    backgroundColor: COLORS.bgInverse,
     color: COLORS.textInverse,
     border: 'none',
   },
@@ -84,21 +82,21 @@ const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
 
 const variantHoverStyles: Record<ButtonVariant, React.CSSProperties> = {
   primary: {
-    backgroundColor: COLORS.bgDarkHover,
+    backgroundColor: COLORS.bgInverseHover,
     transform: 'translateY(-1px)',
-    boxShadow: '0 4px 12px rgba(15, 42, 57, 0.3)',
+    boxShadow: '0 4px 12px rgba(50, 48, 47, 0.25)',
   },
   secondary: {
     backgroundColor: '#F7F6F5',
     borderColor: COLORS.textPrimary,
   },
   ghost: {
-    color: COLORS.brandPrimary,
+    color: '#4DB6A0',
   },
   brand: {
-    backgroundColor: COLORS.brandHover,
+    backgroundColor: COLORS.bgInverseHover,
     transform: 'translateY(-1px)',
-    boxShadow: '0 4px 12px rgba(31, 31, 31, 0.3)',
+    boxShadow: '0 4px 12px rgba(50, 48, 47, 0.25)',
   },
 }
 

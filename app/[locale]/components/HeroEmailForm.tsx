@@ -3,14 +3,13 @@
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-// Design tokens (matching Button component)
+// Design tokens (matching globals.css)
 const COLORS = {
   textPrimary: '#32302F',
   textInverse: '#FFFFFF',
   textMuted: '#8A8785',
-  bgDark: '#0F2A39',
-  bgDarkHover: '#0A1F2B',
-  brandPrimary: '#1f1f1f',
+  bgInverse: '#32302F',
+  bgInverseHover: '#4A4745',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
 }
 
@@ -39,7 +38,7 @@ export function HeroEmailForm() {
         "
         style={{
           color: COLORS.textPrimary,
-          border: `1px solid ${isFocused ? COLORS.brandPrimary : COLORS.borderStrong}`,
+          border: `1px solid ${isFocused ? COLORS.bgInverse : COLORS.borderStrong}`,
         }}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -54,13 +53,13 @@ export function HeroEmailForm() {
           rounded-full px-6
           font-medium text-sm
           transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1f1f1f]
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32302F]
         "
         style={{
-          backgroundColor: isHovered ? '#333333' : COLORS.brandPrimary,
+          backgroundColor: isHovered ? COLORS.bgInverseHover : COLORS.bgInverse,
           color: COLORS.textInverse,
           transform: `translateY(-50%)${isHovered ? ' translateY(-1px)' : ''}`,
-          boxShadow: isHovered ? '0 4px 12px rgba(31, 31, 31, 0.3)' : 'none',
+          boxShadow: isHovered ? '0 4px 12px rgba(50, 48, 47, 0.25)' : 'none',
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

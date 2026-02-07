@@ -5,16 +5,14 @@ import { useTranslations } from 'next-intl';
 import { FormField } from './FormField';
 import { SuccessMessage } from './SuccessMessage';
 
-// Design tokens
+// Design tokens (matching globals.css)
 const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
   textMuted: '#8A8785',
   textInverse: '#FFFFFF',
-  brandPrimary: '#1f1f1f',
-  brandHover: '#333333',
-  bgDark: '#0F2A39',
-  bgDarkHover: '#0A1F2B',
+  bgInverse: '#32302F',
+  bgInverseHover: '#4A4745',
   error: '#DC2626',
   errorSubtle: 'rgba(220, 38, 38, 0.1)',
   bgCard: '#FFFFFF',
@@ -378,7 +376,7 @@ export function ContactForm() {
                 onClick={handleRetry}
                 className="mt-3 text-sm font-medium underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                 style={{
-                  color: COLORS.bgDark,
+                  color: COLORS.bgInverse,
                 }}
               >
                 {t('error.retry')}
@@ -393,16 +391,16 @@ export function ContactForm() {
             className="w-full h-12 rounded-lg font-medium text-base transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
             style={{
               fontFamily: FONTS.sans,
-              backgroundColor: COLORS.brandPrimary,
+              backgroundColor: COLORS.bgInverse,
               color: COLORS.textInverse,
             }}
             onMouseEnter={(e) => {
               if (!isSubmitting) {
-                e.currentTarget.style.backgroundColor = COLORS.brandHover;
+                e.currentTarget.style.backgroundColor = COLORS.bgInverseHover;
               }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = COLORS.brandPrimary;
+              e.currentTarget.style.backgroundColor = COLORS.bgInverse;
             }}
           >
             {isSubmitting ? (
