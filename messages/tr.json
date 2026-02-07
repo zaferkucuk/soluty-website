@@ -138,6 +138,29 @@
       }
     }
   },
+  "services": {
+    "eyebrow": "HİZMETLERİMİZ",
+    "headline": "İşletmeniz İçin Dijital Çözümler",
+    "subheadline": "Özel ERP sistemlerinden yapay zeka entegrasyonuna – süreçlerinizi basitleştiren yazılımlar geliştiriyoruz.",
+    "cards": {
+      "customProjects": {
+        "headline": "Özel Yazılım",
+        "description": "Karmaşık iş süreçleri için özel yazılım çözümleri. İhtiyacınız olanı geliştiriyoruz – ne fazla, ne eksik.",
+        "cta": "Sürecimizi İnceleyin"
+      },
+      "customERP": {
+        "badge": "Ana Uzmanlık",
+        "headline": "KOBİ'ler için ERP",
+        "description": "Katı hazır yazılımları unutun. ERP çözümlerimiz işletmenize uyum sağlar – bugün ve yarın.",
+        "cta": "ERP Çözümlerini Keşfedin"
+      },
+      "aiSolutions": {
+        "headline": "Yapay Zeka Entegrasyonu",
+        "description": "Kendi altyapınızda çalışan yapay zeka çözümleri. Yerel, güvenli ve Avrupa işletmeleri için özel olarak tasarlandı.",
+        "cta": "AI Hizmetlerini Keşfedin"
+      }
+    }
+  },
   "footer": {
     "companyDescription": "Küçük ve orta ölçekli işletmeler için özel yazılım çözümleri. Almanya'da geliştirilen, kalite ve veri güvenliğine odaklanan çözümler.",
     "servicesTitle": "Hizmetler",
