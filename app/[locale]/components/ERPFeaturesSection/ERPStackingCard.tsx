@@ -9,6 +9,15 @@ const FONTS = {
   serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
 };
 
+const ICON_STYLES = {
+  /** Matches Contact/ValueProposition + ServiceCard exactly */
+  containerSize: 40,
+  iconSize: 20,
+  bg: 'rgba(92, 90, 88, 0.08)',
+  color: '#5C5A58',
+  strokeWidth: 2,
+};
+
 /**
  * Individual stacking card for the ERP Features section.
  *
@@ -20,8 +29,10 @@ const FONTS = {
  *
  * Each card uses `position: sticky` to stack on top of previous cards.
  *
+ * Icon style: 40px circle + 20px icon (consistent with ServiceCard + ValueProposition)
+ *
  * Layout:
- *   Row 1: [Icon] [Title] ............... [Category Badge]
+ *   Row 1: [Icon] [Title]
  *   Row 2: [Description]
  */
 export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
@@ -81,14 +92,20 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         >
           {/* Row 1: Icon + Title */}
           <div className="flex items-center gap-3">
-            {/* Icon */}
-            <div className="flex-shrink-0 w-6 h-6 md:w-7 md:h-7">
+            {/* Icon — 40px circle + 20px icon (matches Contact/ServiceCard) */}
+            <div
+              className="flex-shrink-0 flex items-center justify-center rounded-full"
+              style={{
+                width: ICON_STYLES.containerSize,
+                height: ICON_STYLES.containerSize,
+                backgroundColor: ICON_STYLES.bg,
+              }}
+            >
               <Icon
-                className="w-full h-full"
-                strokeWidth={1.5}
-                style={{
-                  color: 'var(--color-text-secondary)',
-                }}
+                size={ICON_STYLES.iconSize}
+                strokeWidth={ICON_STYLES.strokeWidth}
+                style={{ color: ICON_STYLES.color }}
+                aria-hidden="true"
               />
             </div>
 
