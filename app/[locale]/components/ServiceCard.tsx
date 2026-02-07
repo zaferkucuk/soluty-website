@@ -43,10 +43,12 @@ export interface ServiceCardProps {
  * Typography system mapping:
  * - Badge: caption (14px/400/DM Sans/#5C5A58)
  * - Headline: card-title (24px/500/Crimson Pro/#32302F)
- * - Description: section-body (18px/400/DM Sans/#5C5A58)
+ * - Description: section-body (16px/400/DM Sans/#5C5A58)
  * - CTA: link-inline (inherit size/500/DM Sans/#5C5A58 + underline)
  *
  * Icon style: 40px circle + 20px icon, light teal bg (matches ERP Features)
+ *
+ * Padding optimized for viewport fit (p-5/6/7 instead of p-6/7/8).
  */
 export function ServiceCard({
   icon: Icon,
@@ -71,7 +73,7 @@ export function ServiceCard({
       className={`
         relative flex flex-col h-full
         bg-white rounded-xl
-        p-6 md:p-7 lg:p-8
+        p-5 md:p-6 lg:p-7
         transition-all duration-250 ease-out
         hover:-translate-y-1
         focus-within:outline-2 focus-within:outline-offset-2
@@ -112,7 +114,7 @@ export function ServiceCard({
 
       {/* Icon — 40px circle + 20px icon (identical to ERP Features) */}
       <div
-        className="w-10 h-10 flex items-center justify-center rounded-full mb-5 md:mb-6"
+        className="w-10 h-10 flex items-center justify-center rounded-full mb-4 md:mb-5"
         style={{
           backgroundColor: COLORS.iconBg,
         }}
@@ -127,7 +129,7 @@ export function ServiceCard({
 
       {/* card-title: 24px/500/Crimson Pro/#32302F */}
       <h3
-        className="mb-3 md:mb-4"
+        className="mb-2 md:mb-3"
         style={{
           fontFamily: FONTS.serif,
           fontWeight: 500,
@@ -139,14 +141,14 @@ export function ServiceCard({
         {headline}
       </h3>
 
-      {/* section-body: 18px/400/DM Sans/#5C5A58 */}
+      {/* card-body: 16px/400/DM Sans/#5C5A58 */}
       <p
-        className="flex-grow mb-5 md:mb-6"
+        className="flex-grow mb-4 md:mb-5"
         style={{
           fontFamily: FONTS.sans,
           color: COLORS.textSecondary,
-          lineHeight: 1.65,
-          fontSize: '18px',
+          lineHeight: 1.6,
+          fontSize: '16px',
           fontWeight: 400,
         }}
       >
