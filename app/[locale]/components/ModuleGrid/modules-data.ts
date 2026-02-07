@@ -47,23 +47,24 @@ export interface ModuleGroup {
 
 // ==========================================================================
 // Design Tokens (from v4 spec)
+// Sizes reduced ~10% to ensure full grid visibility within scroll area
 // ==========================================================================
 
 export const DESIGN_TOKENS = {
-  // Card dimensions
+  // Card dimensions (~10% smaller)
   card: {
-    desktop: { width: 80, height: 80, radius: 16, iconSize: 32, fontSize: 11, gap: 24 },
-    tablet: { width: 72, height: 72, radius: 14, iconSize: 28, fontSize: 10, gap: 20 },
-    mobile: { width: 64, height: 64, radius: 12, iconSize: 24, fontSize: 10, gap: 16 },
+    desktop: { width: 72, height: 72, radius: 14, iconSize: 28, fontSize: 10, gap: 22 },
+    tablet: { width: 65, height: 65, radius: 13, iconSize: 26, fontSize: 9, gap: 18 },
+    mobile: { width: 58, height: 58, radius: 11, iconSize: 22, fontSize: 9, gap: 14 },
   },
-  
+
   // Animation
   animation: {
     groupDuration: 3500, // ms
     transitionDuration: 400, // ms
     flowParticleDuration: 2000, // ms
   },
-  
+
   // Colors
   colors: {
     inactiveIcon: '#9CA3AF',
@@ -72,7 +73,7 @@ export const DESIGN_TOKENS = {
     activeLabel: '#1F2937',
     inactiveLabel: '#9CA3AF',
   },
-  
+
   // Connection lines
   lines: {
     widthInactive: 2.5,
@@ -143,26 +144,26 @@ export const modules: Module[] = [
   // Group 1: Order Management
   { id: 'orders', key: 'orders', icon: ClipboardList, gridPosition: { col: 1, row: 'b' }, groupId: 1 },
   { id: 'deals', key: 'deals', icon: Handshake, gridPosition: { col: 4, row: 'b' }, groupId: 1 },
-  
+
   // Group 2: Logistics
   { id: 'planning', key: 'planning', icon: CalendarDays, gridPosition: { col: 1, row: 'd' }, groupId: 2 },
   { id: 'route', key: 'route', icon: Route, gridPosition: { col: 3, row: 'e' }, groupId: 2 },
-  
+
   // Group 3: Sales & Billing
   { id: 'sales', key: 'sales', icon: BadgeDollarSign, gridPosition: { col: 5, row: 'b' }, groupId: 3 },
   { id: 'invoice', key: 'invoice', icon: FileText, gridPosition: { col: 5, row: 'e' }, groupId: 3 },
   { id: 'esignature', key: 'esignature', icon: PenTool, gridPosition: { col: 6, row: 'c' }, groupId: 3 },
-  
+
   // Group 4: Inventory
   { id: 'warehouse', key: 'warehouse', icon: Warehouse, gridPosition: { col: 3, row: 'a' }, groupId: 4 },
   { id: 'products', key: 'products', icon: Package, gridPosition: { col: 3, row: 'c' }, groupId: 4 },
   { id: 'deposits', key: 'deposits', icon: Landmark, gridPosition: { col: 4, row: 'd' }, groupId: 4 },
-  
+
   // Group 5: Finance
   { id: 'payments', key: 'payments', icon: CreditCard, gridPosition: { col: 2, row: 'f' }, groupId: 5 },
   { id: 'cashbox', key: 'cashbox', icon: Banknote, gridPosition: { col: 4, row: 'e' }, groupId: 5 },
   { id: 'expenses', key: 'expenses', icon: TrendingDown, gridPosition: { col: 6, row: 'f' }, groupId: 5 },
-  
+
   // Group 6: Customer
   { id: 'crm', key: 'crm', icon: Users, gridPosition: { col: 4, row: 'c' }, groupId: 6 },
   { id: 'dashboard', key: 'dashboard', icon: LayoutDashboard, gridPosition: { col: 6, row: 'b' }, groupId: 6 },
@@ -252,7 +253,7 @@ export function gridToPixel(
 ): { x: number; y: number } {
   const colIndex = position.col - 1;
   const rowIndex = rowToIndex(position.row);
-  
+
   return {
     x: colIndex * (cardSize + gap),
     y: rowIndex * (cardSize + gap),
