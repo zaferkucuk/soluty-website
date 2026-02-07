@@ -46,9 +46,7 @@ export interface ServiceCardProps {
  * - Description: section-body (18px/400/DM Sans/#5C5A58)
  * - CTA: link-inline (inherit size/500/DM Sans/#5C5A58 + underline)
  *
- * Icon style: circular background (matches ValueProposition pattern)
- * - Container: rounded-full + rgba(92,90,88,0.08) bg
- * - Icon: #5C5A58 stroke, strokeWidth 1.5
+ * Icon style: 40px circle + 20px icon (matches ValueProposition exactly)
  */
 export function ServiceCard({
   icon: Icon,
@@ -112,17 +110,17 @@ export function ServiceCard({
         </span>
       )}
 
-      {/* Icon — circular background (consistent with Contact/ValueProposition) */}
+      {/* Icon — 40px circle + 20px icon (identical to ValueProposition) */}
       <div
-        className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full mb-5 md:mb-6"
+        className="w-10 h-10 flex items-center justify-center rounded-full mb-5 md:mb-6"
         style={{
           backgroundColor: COLORS.iconBg,
         }}
       >
         <Icon
-          className="w-5 h-5 md:w-6 md:h-6"
+          size={20}
           style={{ color: COLORS.textSecondary }}
-          strokeWidth={1.5}
+          strokeWidth={2}
           aria-hidden="true"
         />
       </div>
