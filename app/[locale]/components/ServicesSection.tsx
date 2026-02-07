@@ -34,8 +34,8 @@ const FONTS = {
  * - Subheadline: section-body (18px/400/DM Sans) via .body-lg — inverse color
  * - Cards use ServiceCard component with own typography
  *
- * Note: Highlighted card uses border/shadow differentiation only.
- * scale() was removed because it distorts typography (24px → 25.2px).
+ * Note: Highlighted card uses scale(1.05) for visual prominence.
+ * This intentionally scales text ~5% larger — accepted tradeoff for hierarchy.
  */
 export function ServicesSection() {
   const t = useTranslations('services');
@@ -161,7 +161,7 @@ export function ServicesSection() {
             </p>
           </header>
 
-          {/* Cards Grid — no scale() on highlighted card to preserve typography consistency */}
+          {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 md:items-center">
             {sortedServices.map((service) => (
               <div
@@ -172,6 +172,11 @@ export function ServicesSection() {
                   ${service.desktopOrder === 1 ? 'md:order-1' : ''}
                   ${service.desktopOrder === 3 ? 'md:order-3' : ''}
                 `}
+                style={service.isHighlighted ? {
+                  transform: 'scale(1.05)',
+                  zIndex: 2,
+                  position: 'relative' as const,
+                } : undefined}
               >
                 <ServiceCard
                   icon={service.icon}
