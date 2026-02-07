@@ -3,16 +3,9 @@
 import { useTranslations } from 'next-intl';
 import type { ERPFeaturesHeaderProps } from './types';
 
-// ==========================================================================
-// ERPFeaturesHeader Component
-// ==========================================================================
-
 /**
  * Section header for ERP Features: eyebrow + headline + subheadline.
- *
  * Entry animation: fade-in + slide-up when visible.
- *
- * Reference: erp-features-stacking-cards-v2 spec
  */
 export function ERPFeaturesHeader({ isVisible }: ERPFeaturesHeaderProps) {
   const t = useTranslations();
@@ -28,10 +21,12 @@ export function ERPFeaturesHeader({ isVisible }: ERPFeaturesHeaderProps) {
       }
       style={{ maxWidth: 720 }}
     >
-      {/* Eyebrow */}
+      {/* Eyebrow — 14px to match Services */}
       <p
-        className="caption mb-4"
+        className="mb-4"
         style={{
+          fontFamily: "var(--font-sans)",
+          fontSize: '14px',
           fontWeight: 600,
           letterSpacing: '0.1em',
           textTransform: 'uppercase',

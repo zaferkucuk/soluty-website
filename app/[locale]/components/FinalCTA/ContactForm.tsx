@@ -9,7 +9,6 @@ import { SuccessMessage } from './SuccessMessage';
 const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
-  textMuted: '#8A8785',
   textInverse: '#FFFFFF',
   bgInverse: '#32302F',
   bgInverseHover: '#4A4745',
@@ -29,7 +28,7 @@ const isValidEmail = (email: string): boolean => {
 };
 
 const isValidPhone = (phone: string): boolean => {
-  if (!phone) return true; // Optional field
+  if (!phone) return true;
   const phoneRegex = /^[+]?[\d\s\-()]{7,20}$/;
   return phoneRegex.test(phone);
 };
@@ -55,7 +54,6 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 export function ContactForm() {
   const t = useTranslations('finalCta');
 
-  // Form state
   const [formData, setFormData] = useState<FormData>({
     name: '',
     company: '',
@@ -68,18 +66,13 @@ export function ContactForm() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  // Honeypot for spam protection
   const [honeypot, setHoneypot] = useState('');
-
-  // Time-based validation (record load time)
   const loadTimeRef = useRef<number>(Date.now());
 
-  // Reset load time when form is reset
   useEffect(() => {
     loadTimeRef.current = Date.now();
   }, [status]);
 
-  // Validation function for individual fields
   const validateField = useCallback((field: keyof FormData, value: string): string | undefined => {
     switch (field) {
       case 'name':
@@ -105,38 +98,28 @@ export function ContactForm() {
     }
   }, [t]);
 
-  // Validate all fields
   const validateForm = useCallback((): FormErrors => {
     const newErrors: FormErrors = {};
-
     const nameError = validateField('name', formData.name);
     if (nameError) newErrors.name = nameError;
-
     const companyError = validateField('company', formData.company);
     if (companyError) newErrors.company = companyError;
-
     const emailError = validateField('email', formData.email);
     if (emailError) newErrors.email = emailError;
-
     const phoneError = validateField('phone', formData.phone);
     if (phoneError) newErrors.phone = phoneError;
-
     const messageError = validateField('message', formData.message);
     if (messageError) newErrors.message = messageError;
-
     return newErrors;
   }, [formData, validateField]);
 
-  // Handle field change
   const handleChange = (field: keyof FormData) => (value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
-  // Handle field blur (validate on blur)
   const handleBlur = (field: keyof FormData) => () => {
     setFocusedField(null);
     const error = validateField(field, formData[field]);
@@ -145,49 +128,37 @@ export function ContactForm() {
     }
   };
 
-  // Handle focus
   const handleFocus = (field: string) => () => {
     setFocusedField(field);
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Clear previous submit error
     setSubmitError(null);
 
-    // Honeypot check (spam protection)
     if (honeypot) {
-      // Silently fail for bots
       setStatus('success');
       return;
     }
 
-    // Time-based validation (< 3 seconds = likely bot)
     const timeSinceLoad = Date.now() - loadTimeRef.current;
     if (timeSinceLoad < 3000) {
-      // Silently fail for bots
       setStatus('success');
       return;
     }
 
-    // Validate all fields
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
     }
 
-    // Submit form
     setStatus('submitting');
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
           _honeypot: honeypot,
@@ -195,10 +166,7 @@ export function ContactForm() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Submission failed');
-      }
-
+      if (!response.ok) throw new Error('Submission failed');
       setStatus('success');
     } catch {
       setStatus('error');
@@ -206,29 +174,20 @@ export function ContactForm() {
     }
   };
 
-  // Handle retry after error
   const handleRetry = () => {
     setStatus('idle');
     setSubmitError(null);
     loadTimeRef.current = Date.now();
   };
 
-  // Handle sending another request after success
   const handleSendAnother = () => {
-    setFormData({
-      name: '',
-      company: '',
-      email: '',
-      phone: '',
-      message: '',
-    });
+    setFormData({ name: '', company: '', email: '', phone: '', message: '' });
     setErrors({});
     setStatus('idle');
     setSubmitError(null);
     loadTimeRef.current = Date.now();
   };
 
-  // Render success state
   if (status === 'success') {
     return <SuccessMessage onSendAnother={handleSendAnother} />;
   }
@@ -238,9 +197,7 @@ export function ContactForm() {
   return (
     <div
       className="p-6 md:p-8 rounded-xl shadow-md"
-      style={{
-        backgroundColor: COLORS.bgCard,
-      }}
+      style={{ backgroundColor: COLORS.bgCard }}
     >
       <form onSubmit={handleSubmit} noValidate>
         {/* Honeypot field - visually hidden */}
@@ -267,7 +224,6 @@ export function ContactForm() {
         </div>
 
         <div className="flex flex-col gap-5">
-          {/* Name Field */}
           <FormField
             label={t('form.name.label')}
             name="name"
@@ -282,7 +238,6 @@ export function ContactForm() {
             isFocused={focusedField === 'name'}
           />
 
-          {/* Company Field */}
           <FormField
             label={t('form.company.label')}
             name="company"
@@ -297,7 +252,6 @@ export function ContactForm() {
             isFocused={focusedField === 'company'}
           />
 
-          {/* Email Field */}
           <FormField
             label={t('form.email.label')}
             name="email"
@@ -312,7 +266,6 @@ export function ContactForm() {
             isFocused={focusedField === 'email'}
           />
 
-          {/* Phone Field */}
           <FormField
             label={t('form.phone.label')}
             name="phone"
@@ -327,7 +280,6 @@ export function ContactForm() {
             isFocused={focusedField === 'phone'}
           />
 
-          {/* Message Field */}
           <FormField
             label={t('form.message.label')}
             name="message"
@@ -355,19 +307,13 @@ export function ContactForm() {
             >
               <p
                 className="text-sm font-medium mb-2"
-                style={{
-                  fontFamily: FONTS.sans,
-                  color: COLORS.error,
-                }}
+                style={{ fontFamily: FONTS.sans, color: COLORS.error }}
               >
                 {t('error.heading')}
               </p>
               <p
                 className="text-sm"
-                style={{
-                  fontFamily: FONTS.sans,
-                  color: COLORS.textSecondary,
-                }}
+                style={{ fontFamily: FONTS.sans, color: COLORS.textSecondary }}
               >
                 {submitError}
               </p>
@@ -375,9 +321,7 @@ export function ContactForm() {
                 type="button"
                 onClick={handleRetry}
                 className="mt-3 text-sm font-medium underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                style={{
-                  color: COLORS.bgInverse,
-                }}
+                style={{ color: COLORS.bgInverse }}
               >
                 {t('error.retry')}
               </button>
@@ -395,9 +339,7 @@ export function ContactForm() {
               color: COLORS.textInverse,
             }}
             onMouseEnter={(e) => {
-              if (!isSubmitting) {
-                e.currentTarget.style.backgroundColor = COLORS.bgInverseHover;
-              }
+              if (!isSubmitting) e.currentTarget.style.backgroundColor = COLORS.bgInverseHover;
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = COLORS.bgInverse;
@@ -412,19 +354,8 @@ export function ContactForm() {
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  />
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
                 {t('form.submitting')}
               </span>
@@ -436,10 +367,7 @@ export function ContactForm() {
           {/* Privacy Policy Link */}
           <p
             className="text-center text-sm"
-            style={{
-              fontFamily: FONTS.sans,
-              color: COLORS.textPrimary,
-            }}
+            style={{ fontFamily: FONTS.sans, color: COLORS.textPrimary }}
           >
             {t.rich('form.privacy', {
               privacyLink: (chunks) => (

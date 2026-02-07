@@ -4,9 +4,10 @@ import { forwardRef } from 'react';
 import { useTranslations } from 'next-intl';
 import type { ERPStackingCardProps } from './types';
 
-// ==========================================================================
-// ERPStackingCard Component
-// ==========================================================================
+// Design tokens
+const FONTS = {
+  serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
+};
 
 /**
  * Individual stacking card for the ERP Features section.
@@ -16,27 +17,19 @@ import type { ERPStackingCardProps } from './types';
  * 2. `.card-content` — relative, white background, holds actual content
  *
  * Only the first card (index === 0) shows the angled background card.
- * All other cards render flat without the angled bg layer.
  *
- * Each card uses `position: sticky` to stack on top of previous cards
- * as the user scrolls. No JavaScript state management for stacking —
- * purely CSS driven.
+ * Each card uses `position: sticky` to stack on top of previous cards.
  *
  * Layout:
  *   Row 1: [Icon] [Title] ............... [Category Badge]
  *   Row 2: [Description]
- *
- * Reference: erp-features-stacking-cards-v2 spec
  */
 export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
   function ERPStackingCard({ module, index, isVisible }, ref) {
     const t = useTranslations();
     const Icon = module.icon;
 
-    // Staggered entry delay: 50ms per card
     const entryDelay = index * 50;
-
-    // Only first card gets the angled background
     const isFirstCard = index === 0;
 
     return (
@@ -47,9 +40,7 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         data-module-id={module.id}
         className={
           'relative ' +
-          /* Sticky stacking: each card sticks and overlaps previous */
           'sticky top-[30vh] md:top-[30vh] lg:top-[30vh] ' +
-          /* Entry animation */
           'transition-all duration-500 ease-out ' +
           (isVisible
             ? 'opacity-100 translate-y-0'
@@ -57,7 +48,6 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         }
         style={{
           transitionDelay: isVisible ? `${entryDelay}ms` : '0ms',
-          /* Ensure later cards stack on top of earlier cards */
           zIndex: index + 1,
         }}
         tabIndex={0}
@@ -70,19 +60,18 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
               zIndex: -1,
               transform: 'rotate(-1.75deg)',
               backgroundColor: 'var(--color-bg-tertiary, #EFEEED)',
-              border: '1px solid var(--color-brand-primary)',
+              border: '1px solid var(--color-border-strong)',
               boxShadow: 'var(--shadow-sm)',
             }}
             aria-hidden="true"
           />
         )}
 
-        {/* Layer 2: card-content — actual card content */}
+        {/* Layer 2: card-content */}
         <div
           className={
             'relative rounded-xl border border-[var(--color-border)] ' +
             'bg-white p-6 md:p-5 ' +
-            /* Hover: shadow increase */
             'transition-shadow duration-250 ease-out ' +
             'hover:shadow-[var(--shadow-md)]'
           }
@@ -92,32 +81,39 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         >
           {/* Row 1: Icon + Title */}
           <div className="flex items-center gap-3">
-            {/* Icon — brand-primary */}
+            {/* Icon */}
             <div className="flex-shrink-0 w-6 h-6 md:w-7 md:h-7">
               <Icon
                 className="w-full h-full"
                 strokeWidth={1.5}
                 style={{
-                  color: 'var(--color-brand-primary)',
+                  color: 'var(--color-text-secondary)',
                 }}
               />
             </div>
 
-            {/* Title — 16px */}
+            {/* Title — 24px Crimson Pro weight 500 */}
             <h3
-              className="flex-1 min-w-0 text-[16px] font-semibold leading-tight"
-              style={{ color: 'var(--color-text-primary)' }}
+              className="flex-1 min-w-0 leading-tight"
+              style={{
+                color: 'var(--color-text-primary)',
+                fontFamily: FONTS.serif,
+                fontWeight: 500,
+                fontSize: '24px',
+                lineHeight: 1.3,
+              }}
             >
               {t(module.titleKey)}
             </h3>
           </div>
 
-          {/* Row 2: Description — 16px */}
+          {/* Row 2: Description — 18px body-lg */}
           <p
-            className="mt-3 text-[16px]"
+            className="mt-3"
             style={{
-              lineHeight: 1.6,
+              lineHeight: 1.65,
               color: 'var(--color-text-secondary)',
+              fontSize: '18px',
             }}
           >
             {t(module.descriptionKey)}

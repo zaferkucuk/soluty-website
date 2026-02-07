@@ -4,10 +4,8 @@ import { useTranslations } from 'next-intl';
 const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
-  textMuted: '#8A8785',
-  bgDark: '#0F2A39',
-  brandPrimary: '#4DB6A0',
-  brandSubtle: 'rgba(77, 182, 160, 0.1)',
+  iconStroke: '#5C5A58',
+  iconBg: 'rgba(92, 90, 88, 0.08)',
 };
 
 const FONTS = {
@@ -23,7 +21,7 @@ function CheckCircleIcon() {
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke={COLORS.brandPrimary}
+      stroke={COLORS.iconStroke}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -43,7 +41,7 @@ function ClockIcon() {
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke={COLORS.brandPrimary}
+      stroke={COLORS.iconStroke}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -63,7 +61,7 @@ function TargetIcon() {
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke={COLORS.brandPrimary}
+      stroke={COLORS.iconStroke}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -88,27 +86,17 @@ export function ValueProposition() {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Heading */}
+      {/* Heading — uses heading-2 class for consistent 52px */}
       <h2
         id="contact-heading"
-        className="text-3xl md:text-4xl lg:text-[42px] leading-tight"
-        style={{
-          fontFamily: FONTS.serif,
-          color: COLORS.textPrimary,
-          fontWeight: 400,
-        }}
+        className="heading-2"
       >
         {t('heading')}
       </h2>
 
       {/* Subtext */}
       <p
-        className="text-lg"
-        style={{
-          fontFamily: FONTS.sans,
-          color: COLORS.textSecondary,
-          lineHeight: 1.65,
-        }}
+        className="body-lg"
       >
         {t('subtext')}
       </p>
@@ -119,7 +107,7 @@ export function ValueProposition() {
           <li key={key} className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-              style={{ backgroundColor: COLORS.brandSubtle }}
+              style={{ backgroundColor: COLORS.iconBg }}
             >
               <Icon />
             </div>
@@ -141,7 +129,7 @@ export function ValueProposition() {
         className="text-sm mt-2"
         style={{
           fontFamily: FONTS.sans,
-          color: COLORS.textMuted,
+          color: COLORS.textSecondary,
         }}
       >
         {t('responsePromise')}
@@ -156,7 +144,7 @@ export function ValueProposition() {
           className="text-sm mb-3"
           style={{
             fontFamily: FONTS.sans,
-            color: COLORS.textMuted,
+            color: COLORS.textSecondary,
           }}
         >
           {t('alternative.or')}

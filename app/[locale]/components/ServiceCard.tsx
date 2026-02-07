@@ -7,7 +7,6 @@ import { LucideIcon, ArrowRight } from 'lucide-react';
 const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
-  brandPrimary: '#4DB6A0',
   border: 'rgba(50, 48, 47, 0.12)',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
   bgWhite: '#FFFFFF',
@@ -70,9 +69,8 @@ export function ServiceCard({
         }
       `}
       style={{
-        borderColor: isHighlighted ? COLORS.brandPrimary : COLORS.border,
+        borderColor: isHighlighted ? COLORS.borderStrong : COLORS.border,
       }}
-      // Ensure hover border color change for non-highlighted cards
       onMouseEnter={(e) => {
         if (!isHighlighted) {
           e.currentTarget.style.borderColor = COLORS.borderStrong;
@@ -89,8 +87,8 @@ export function ServiceCard({
         <span
           className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full"
           style={{
-            backgroundColor: `${COLORS.brandPrimary}15`,
-            color: COLORS.brandPrimary,
+            backgroundColor: 'rgba(92, 90, 88, 0.08)',
+            color: COLORS.textSecondary,
             fontFamily: FONTS.sans,
           }}
         >
@@ -102,18 +100,18 @@ export function ServiceCard({
       <div
         className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-xl mb-5 md:mb-6"
         style={{
-          backgroundColor: `${COLORS.brandPrimary}10`,
+          backgroundColor: 'rgba(92, 90, 88, 0.06)',
         }}
       >
         <Icon
           className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
-          style={{ color: COLORS.brandPrimary }}
+          style={{ color: COLORS.textSecondary }}
           strokeWidth={1.5}
           aria-hidden="true"
         />
       </div>
 
-      {/* Headline */}
+      {/* Headline — 24px Crimson Pro weight 500 */}
       <h3
         className="text-xl md:text-2xl mb-3 md:mb-4"
         style={{
@@ -121,29 +119,31 @@ export function ServiceCard({
           fontWeight: 500,
           color: COLORS.textPrimary,
           lineHeight: 1.3,
+          fontSize: '24px',
         }}
       >
         {headline}
       </h3>
 
-      {/* Description */}
+      {/* Description — 18px body-lg */}
       <p
-        className="flex-grow text-base mb-5 md:mb-6"
+        className="flex-grow mb-5 md:mb-6"
         style={{
           fontFamily: FONTS.sans,
           color: COLORS.textSecondary,
-          lineHeight: 1.6,
+          lineHeight: 1.65,
+          fontSize: '18px',
         }}
       >
         {description}
       </p>
 
-      {/* CTA Link */}
+      {/* CTA Link — textSecondary instead of green */}
       <a
         href={ctaHref}
         className="group inline-flex items-center gap-1.5 text-sm md:text-base font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
         style={{
-          color: COLORS.brandPrimary,
+          color: COLORS.textPrimary,
           fontFamily: FONTS.sans,
         }}
       >
