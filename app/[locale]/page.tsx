@@ -113,8 +113,6 @@ function HeroTextContent({
       >
         <span className="block">{t("headline.line1")}</span>
         <span className="block">{t("headline.line2")}</span>
-        <span className="block">{t("headline.line3")}</span>
-        <span className="block">{t("headline.line4")}</span>
       </h1>
 
       <p
