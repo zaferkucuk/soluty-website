@@ -17,6 +17,21 @@ const FONTS = {
   sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
 };
 
+/**
+ * Shadow system for card prominence:
+ * - Normal card:      subtle resting shadow → medium on hover
+ * - Highlighted card:  prominent resting shadow → strong on hover
+ *
+ * This creates visual depth hierarchy without scale transforms
+ * that would distort typography sizes.
+ */
+const SHADOWS = {
+  normal: '0 1px 3px rgba(0, 0, 0, 0.06)',
+  normalHover: '0 8px 24px rgba(0, 0, 0, 0.10)',
+  highlighted: '0 12px 32px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06)',
+  highlightedHover: '0 20px 48px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.08)',
+};
+
 export interface ServiceCardProps {
   /** Lucide icon component */
   icon: LucideIcon;
@@ -44,6 +59,8 @@ export interface ServiceCardProps {
  * - Headline: card-title (24px/500/Crimson Pro/#32302F)
  * - Description: section-body (18px/400/DM Sans/#5C5A58)
  * - CTA: link-inline (inherit size/500/DM Sans/#5C5A58 + underline)
+ *
+ * Highlighted card differentiation: stronger shadow + border-2 (no scale)
  */
 export function ServiceCard({
   icon: Icon,
@@ -72,20 +89,24 @@ export function ServiceCard({
         transition-all duration-250 ease-out
         hover:-translate-y-1
         focus-within:outline-2 focus-within:outline-offset-2
-        ${isHighlighted 
-          ? 'border-2 shadow-md hover:shadow-xl' 
-          : 'border shadow-sm hover:shadow-lg'
-        }
+        ${isHighlighted ? 'border-2' : 'border'}
       `}
       style={{
         borderColor: isHighlighted ? COLORS.borderStrong : COLORS.border,
+        boxShadow: isHighlighted ? SHADOWS.highlighted : SHADOWS.normal,
       }}
       onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = isHighlighted
+          ? SHADOWS.highlightedHover
+          : SHADOWS.normalHover;
         if (!isHighlighted) {
           e.currentTarget.style.borderColor = COLORS.borderStrong;
         }
       }}
       onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = isHighlighted
+          ? SHADOWS.highlighted
+          : SHADOWS.normal;
         if (!isHighlighted) {
           e.currentTarget.style.borderColor = COLORS.border;
         }
