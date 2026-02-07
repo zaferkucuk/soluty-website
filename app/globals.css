@@ -15,7 +15,7 @@
    - Text: #32302F (warm charcoal)
    - Background: #FCFCFC (warm white)
    - Brand: #4DB6A0 (Soluty teal)
-   - Buttons: #3D3B39 (Graphite — softer than text, 11.8:1 contrast)
+   - Buttons: #32302F (same as text-primary, 12.6:1 contrast)
    ========================================================================== */
 
 /* ==========================================================================
@@ -38,8 +38,8 @@
   --color-bg-primary: #FCFCFC;
   --color-bg-secondary: #F7F6F5;
   --color-bg-tertiary: #EFEEED;
-  --color-bg-inverse: #3D3B39;
-  --color-bg-inverse-hover: #555250;
+  --color-bg-inverse: #32302F;
+  --color-bg-inverse-hover: #4A4745;
   
   /* ---- Colors: Brand ---- */
   --color-brand-primary: #4DB6A0;
@@ -317,7 +317,7 @@ body {
 .btn-primary:hover {
   background-color: var(--color-bg-inverse-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(61, 59, 57, 0.25);
+  box-shadow: 0 4px 12px rgba(50, 48, 47, 0.25);
 }
 
 .btn-primary:active {
