@@ -36,6 +36,15 @@ export interface ServiceCardProps {
   animationDelay?: number;
 }
 
+/**
+ * ServiceCard Component
+ *
+ * Typography system mapping:
+ * - Badge: caption (14px/400/DM Sans/#5C5A58)
+ * - Headline: card-title (24px/500/Crimson Pro/#32302F)
+ * - Description: section-body (18px/400/DM Sans/#5C5A58)
+ * - CTA: link-inline (inherit size/500/DM Sans/#5C5A58 + underline)
+ */
 export function ServiceCard({
   icon: Icon,
   headline,
@@ -82,14 +91,16 @@ export function ServiceCard({
         }
       }}
     >
-      {/* Badge (optional) */}
+      {/* Badge — caption style */}
       {badge && (
         <span
-          className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full"
+          className="absolute top-4 right-4 px-2.5 py-1 rounded-full"
           style={{
             backgroundColor: 'rgba(92, 90, 88, 0.08)',
             color: COLORS.textSecondary,
             fontFamily: FONTS.sans,
+            fontSize: '12px',
+            fontWeight: 600,
           }}
         >
           {badge}
@@ -111,9 +122,9 @@ export function ServiceCard({
         />
       </div>
 
-      {/* Headline — 24px Crimson Pro weight 500 */}
+      {/* card-title: 24px/500/Crimson Pro/#32302F */}
       <h3
-        className="text-xl md:text-2xl mb-3 md:mb-4"
+        className="mb-3 md:mb-4"
         style={{
           fontFamily: FONTS.serif,
           fontWeight: 500,
@@ -125,7 +136,7 @@ export function ServiceCard({
         {headline}
       </h3>
 
-      {/* Description — 18px body-lg */}
+      {/* section-body: 18px/400/DM Sans/#5C5A58 */}
       <p
         className="flex-grow mb-5 md:mb-6"
         style={{
@@ -133,18 +144,21 @@ export function ServiceCard({
           color: COLORS.textSecondary,
           lineHeight: 1.65,
           fontSize: '18px',
+          fontWeight: 400,
         }}
       >
         {description}
       </p>
 
-      {/* CTA Link — textSecondary instead of green */}
+      {/* link-inline: 500 + underline + #5C5A58 */}
       <a
         href={ctaHref}
-        className="group inline-flex items-center gap-1.5 text-sm md:text-base font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+        className="group inline-flex items-center gap-1.5 underline hover:no-underline transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
         style={{
-          color: COLORS.textPrimary,
+          color: COLORS.textSecondary,
           fontFamily: FONTS.sans,
+          fontSize: '16px',
+          fontWeight: 500,
         }}
       >
         {ctaText}

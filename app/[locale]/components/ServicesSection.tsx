@@ -25,6 +25,15 @@ const FONTS = {
   sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
 };
 
+/**
+ * ServicesSection
+ *
+ * Typography system mapping:
+ * - Eyebrow: eyebrow (14px/600/DM Sans + uppercase + tracking) — inverse color
+ * - Headline: section-title (52px/400/Crimson Pro) via .heading-2 — inverse color
+ * - Subheadline: section-body (18px/400/DM Sans) via .body-lg — inverse color
+ * - Cards use ServiceCard component with own typography
+ */
 export function ServicesSection() {
   const t = useTranslations('services');
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -98,12 +107,14 @@ export function ServicesSection() {
 
       {/* ── Content ── */}
       <div className="relative z-[2] max-w-[1200px] mx-auto px-6 md:px-10">
-        {/* Eyebrow */}
+        {/* eyebrow: 14px/600 + uppercase + tracking — inverse */}
         <p
-          className="text-xs md:text-sm font-semibold tracking-widest uppercase mb-6 md:mb-8 text-center"
+          className="font-semibold tracking-widest uppercase mb-6 md:mb-8 text-center"
           style={{
             color: COLORS.textInverseSecondary,
             fontFamily: FONTS.sans,
+            fontSize: '14px',
+            fontWeight: 600,
             letterSpacing: '0.1em',
           }}
         >
@@ -123,6 +134,7 @@ export function ServicesSection() {
         >
           {/* Section Header */}
           <header className="text-center mb-8 md:mb-10 lg:mb-12">
+            {/* section-title — inverse */}
             <h2
               id="services-heading"
               className="heading-2 mb-4 md:mb-5"
@@ -134,6 +146,7 @@ export function ServicesSection() {
               {t('headline')}
             </h2>
 
+            {/* section-body — inverse */}
             <p
               className="body-lg max-w-2xl mx-auto"
               style={{

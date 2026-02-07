@@ -26,6 +26,13 @@ const FAQ_ITEMS = ['erpNeeded', 'digitalization', 'standardVsCustom'] as const;
  * Mini-FAQ on the homepage with 3 questions.
  * Accordion behavior: only one question open at a time.
  * Uses native details/summary for accessibility.
+ *
+ * Typography system mapping:
+ * - Eyebrow: eyebrow (14px/600/DM Sans/#5C5A58 + uppercase + tracking)
+ * - Headline: section-title (52px/400/Crimson Pro/#32302F) via .heading-2
+ * - Question: 16px/500/DM Sans/#32302F (interactive summary, not card-title)
+ * - Answer: card-body (16px/400/DM Sans/#5C5A58)
+ * - CTA link: link-inline (500 + underline + #5C5A58)
  */
 export function HomeFAQ() {
   const t = useTranslations('homeFaq');
@@ -65,19 +72,21 @@ export function HomeFAQ() {
       aria-labelledby="home-faq-heading"
     >
       <div className="max-w-3xl mx-auto px-6">
-        {/* Eyebrow */}
+        {/* eyebrow: 14px/600/DM Sans/#5C5A58 + uppercase + tracking */}
         <p
-          className="text-center text-xs font-semibold tracking-widest uppercase mb-4"
+          className="text-center font-semibold tracking-widest uppercase mb-4"
           style={{
             color: COLORS.textSecondary,
             fontFamily: FONTS.sans,
+            fontSize: '14px',
+            fontWeight: 600,
             letterSpacing: '0.1em',
           }}
         >
           {t('eyebrow')}
         </p>
 
-        {/* Headline */}
+        {/* section-title via .heading-2 */}
         <h2
           id="home-faq-heading"
           className="heading-2 text-center"
@@ -104,11 +113,13 @@ export function HomeFAQ() {
                 className="flex items-center justify-between w-full py-5 cursor-pointer list-none transition-colors duration-150"
                 style={{ fontFamily: FONTS.sans }}
               >
+                {/* Question text: 16px/500/#32302F (interactive summary) */}
                 <span
-                  className="text-lg lg:text-[18px] font-medium pr-4 transition-colors duration-150"
+                  className="pr-4 transition-colors duration-150"
                   style={{
                     color: COLORS.textPrimary,
                     fontSize: '16px',
+                    fontWeight: 500,
                   }}
                 >
                   {t(`items.${itemKey}.question`)}
@@ -134,11 +145,13 @@ export function HomeFAQ() {
                   </svg>
                 </span>
               </summary>
+              {/* Answer: card-body (16px/400/DM Sans/#5C5A58) */}
               <div
                 className="pb-5"
                 style={{
                   fontFamily: FONTS.sans,
-                  fontSize: '15px',
+                  fontSize: '16px',
+                  fontWeight: 400,
                   lineHeight: 1.65,
                   color: COLORS.textSecondary,
                 }}
@@ -149,14 +162,15 @@ export function HomeFAQ() {
           ))}
         </div>
 
-        {/* Link to full FAQ page */}
+        {/* link-inline: 500 + underline + #5C5A58 */}
         <div className="mt-8 text-center">
           <Link
             href={`/${locale}/faq`}
-            className="inline-flex items-center gap-2 font-medium transition-colors duration-150 hover:underline"
+            className="inline-flex items-center gap-2 underline hover:no-underline transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               fontFamily: FONTS.sans,
               fontSize: '16px',
+              fontWeight: 500,
               color: COLORS.textSecondary,
             }}
           >
