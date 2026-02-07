@@ -22,7 +22,7 @@ const ICON_STYLES = {
  * Individual stacking card for the ERP Features section.
  *
  * Two-layer structure (first card only):
- * 1. `.card-bg` — absolute, rotated -1.75deg, with thin primary green border
+ * 1. `.card-bg` — absolute, rotated -1.75deg, with primary green border (#4DB6A0)
  * 2. `.card-content` — relative, white background, holds actual content
  *
  * Only the first card (index === 0) shows the angled background card.
@@ -63,7 +63,7 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         }}
         tabIndex={0}
       >
-        {/* Layer 1: card-bg — angled shadow effect (FIRST CARD ONLY) */}
+        {/* Layer 1: card-bg — angled shadow with primary green border (FIRST CARD ONLY) */}
         {isFirstCard && (
           <div
             className="absolute inset-0 rounded-xl"
@@ -71,7 +71,7 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
               zIndex: -1,
               transform: 'rotate(-1.75deg)',
               backgroundColor: 'var(--color-bg-tertiary, #EFEEED)',
-              border: '1px solid var(--color-border-strong)',
+              border: '1px solid #4DB6A0',
               boxShadow: 'var(--shadow-sm)',
             }}
             aria-hidden="true"
