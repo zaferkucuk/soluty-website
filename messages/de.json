@@ -144,18 +144,18 @@
     "subheadline": "Von maßgeschneiderten ERP-Systemen bis zur KI-Integration – wir entwickeln Software, die Ihre Prozesse vereinfacht.",
     "cards": {
       "customProjects": {
-        "headline": "Software, die zu Ihnen passt",
+        "headline": "Individuelle Software",
         "description": "Maßgeschneiderte Softwarelösungen für komplexe Geschäftsprozesse. Wir entwickeln was Sie brauchen – nicht mehr, nicht weniger.",
         "cta": "Projektablauf ansehen"
       },
       "customERP": {
         "badge": "Kernkompetenz",
-        "headline": "ERP-Systeme, die mit Ihnen wachsen",
+        "headline": "ERP für KMU",
         "description": "Vergessen Sie starre Standardsoftware. Unsere ERP-Lösungen passen sich Ihrem Unternehmen an – heute und morgen.",
         "cta": "ERP-Lösungen entdecken"
       },
       "aiSolutions": {
-        "headline": "Intelligenz für Ihre Daten",
+        "headline": "KI-Integration",
         "description": "KI-Lösungen, die in Ihrer Infrastruktur laufen. Lokal, sicher und speziell für deutsche Unternehmen entwickelt.",
         "cta": "AI-Services erkunden"
       }
