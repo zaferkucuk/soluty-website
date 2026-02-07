@@ -47,12 +47,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Video — absolute positioned, right-aligned, free from container */}
+          {/* Video — absolute positioned, right-aligned, ~40% enlarged */}
           <div
             className="absolute top-0 right-0 h-full flex items-center"
-            style={{ width: '58%' }}
+            style={{ width: '62%' }}
           >
-            <div style={{ width: '120%', marginRight: '-10%' }}>
+            <div style={{ width: '140%', marginRight: '-20%' }}>
               <HeroVideo videoSrc="/videos/hero.webm" />
             </div>
           </div>
