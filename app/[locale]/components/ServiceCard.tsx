@@ -45,10 +45,7 @@ export interface ServiceCardProps {
  * - Description: section-body (18px/400/DM Sans/#5C5A58)
  * - CTA: link-inline (inherit size/500/DM Sans/#5C5A58 + underline)
  *
- * Highlighted card differentiation:
- * - Extra padding (physically larger card without scaling text)
- * - Stronger border (border-2 + borderStrong)
- * - Negative margin to extend beyond grid alignment
+ * Highlighted card: scale(1.05) applied via parent wrapper in ServicesSection.
  */
 export function ServiceCard({
   icon: Icon,
@@ -73,32 +70,24 @@ export function ServiceCard({
       className={`
         relative flex flex-col h-full
         bg-white rounded-xl
+        p-6 md:p-7 lg:p-8
         transition-all duration-250 ease-out
         hover:-translate-y-1
         focus-within:outline-2 focus-within:outline-offset-2
-        ${isHighlighted
-          ? 'border-2 p-7 md:p-8 lg:p-10 md:-my-4'
-          : 'border p-6 md:p-7 lg:p-8'
+        ${isHighlighted 
+          ? 'border-2 shadow-md hover:shadow-xl' 
+          : 'border shadow-sm hover:shadow-lg'
         }
       `}
       style={{
         borderColor: isHighlighted ? COLORS.borderStrong : COLORS.border,
-        boxShadow: isHighlighted
-          ? '0 8px 24px rgba(0, 0, 0, 0.10)'
-          : '0 1px 3px rgba(0, 0, 0, 0.06)',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = isHighlighted
-          ? '0 16px 40px rgba(0, 0, 0, 0.14)'
-          : '0 8px 24px rgba(0, 0, 0, 0.10)';
         if (!isHighlighted) {
           e.currentTarget.style.borderColor = COLORS.borderStrong;
         }
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = isHighlighted
-          ? '0 8px 24px rgba(0, 0, 0, 0.10)'
-          : '0 1px 3px rgba(0, 0, 0, 0.06)';
         if (!isHighlighted) {
           e.currentTarget.style.borderColor = COLORS.border;
         }
