@@ -35,21 +35,26 @@ export default function HomePage() {
           <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
         </div>
 
-        {/* Desktop: relative positioning — video is absolute, text drives height */}
+        {/* Desktop: grid layout — text left, video right */}
         <div className="hidden lg:block relative" style={{ minHeight: '540px' }}>
-          {/* Text — normal flow, determines section height */}
+          {/* Text — normal flow inside container, determines section height */}
           <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 py-10">
-            <div className="max-w-[500px]">
-              <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
+            <div className="grid grid-cols-2 items-center" style={{ minHeight: '480px' }}>
+              {/* Left: text content */}
+              <div className="max-w-[500px]">
+                <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
+              </div>
+              {/* Right: empty space (video is absolute) */}
+              <div />
             </div>
           </div>
 
           {/* Video — absolute positioned, free from layout constraints */}
           <div
             className="absolute top-0 right-0 h-full flex items-center"
-            style={{ width: '58%' }}
+            style={{ width: '55%' }}
           >
-            <div style={{ width: '130%', marginRight: '-15%' }}>
+            <div style={{ width: '120%', marginRight: '-10%' }}>
               <HeroVideo videoSrc="/videos/hero.webm" />
             </div>
           </div>
