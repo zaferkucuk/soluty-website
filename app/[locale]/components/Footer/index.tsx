@@ -65,7 +65,7 @@ export function Footer() {
       }}
       role="contentinfo"
     >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+      <div className="max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10">
         {/* Main Footer Content */}
         <div className="py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Column 1: Company */}

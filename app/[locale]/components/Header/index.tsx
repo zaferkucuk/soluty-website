@@ -61,7 +61,7 @@ export function Header() {
           ${isScrolled ? 'shadow-[var(--shadow-md)]' : ''}
         `}
       >
-        <div className="relative max-w-[1400px] mx-auto px-6 md:px-10">
+        <div className="relative max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="flex items-center justify-between h-20 lg:h-[88px]">
             {/* Left: Mobile Menu Toggle + Logo + Navigation (aligned left) */}
             <div className="flex items-center gap-2 lg:gap-10">

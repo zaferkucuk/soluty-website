@@ -36,10 +36,10 @@ export default function HomePage() {
         </div>
 
         {/* Desktop: text left + absolute video right
-            Container matches Header: max-w-[1400px] mx-auto px-6 md:px-10 */}
+            Responsive container: 1200px default, 1400px on 2xl (1536px+) screens */}
         <div className="hidden lg:block relative" style={{ minHeight: '540px' }}>
           {/* Text — aligned with header container */}
-          <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 py-10">
+          <div className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10 py-10">
             <div style={{ minHeight: '480px', display: 'flex', alignItems: 'center' }}>
               <div className="max-w-[520px]">
                 <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
