@@ -61,7 +61,7 @@ export function Header() {
           ${isScrolled ? 'shadow-[var(--shadow-md)]' : ''}
         `}
       >
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10 border-b border-slate-200">
+        <div className="relative max-w-[1200px] mx-auto px-6 md:px-10">
           <div className="flex items-center justify-between h-20 lg:h-[88px]">
             {/* Left: Mobile Menu Toggle + Logo + Navigation (aligned left) */}
             <div className="flex items-center gap-2 lg:gap-10">
@@ -82,6 +82,15 @@ export function Header() {
               <HeaderButtons />
             </div>
           </div>
+
+          {/* Bottom border — fades out at edges */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-px"
+            style={{
+              background: 'linear-gradient(to right, transparent, #E2E8F0 15%, #E2E8F0 85%, transparent)',
+            }}
+            aria-hidden="true"
+          />
         </div>
 
         {/* Mobile Menu */}
