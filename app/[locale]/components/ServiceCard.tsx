@@ -91,7 +91,7 @@ export function ServiceCard({
         }
       }}
     >
-      {/* Badge — caption style */}
+      {/* Badge — caption style: 14px/400/#5C5A58 */}
       {badge && (
         <span
           className="absolute top-4 right-4 px-2.5 py-1 rounded-full"
@@ -99,8 +99,8 @@ export function ServiceCard({
             backgroundColor: 'rgba(92, 90, 88, 0.08)',
             color: COLORS.textSecondary,
             fontFamily: FONTS.sans,
-            fontSize: '12px',
-            fontWeight: 600,
+            fontSize: '14px',
+            fontWeight: 400,
           }}
         >
           {badge}
