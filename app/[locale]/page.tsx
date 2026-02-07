@@ -115,24 +115,20 @@ function HeroTextContent({
       </h1>
 
       <p
-        className="body-lg mt-6 max-w-md"
+        className="hero-body mt-6 max-w-md"
         style={{
           fontFamily: fonts.sans,
           color: colors.textSecondary,
-          fontSize: '18px',
-          lineHeight: 1.6,
         }}
       >
         {t("subheadline")}
       </p>
 
       <p
-        className="body-lg mt-2 max-w-md"
+        className="hero-body mt-2 max-w-md"
         style={{
           fontFamily: fonts.sans,
           color: colors.textSecondary,
-          fontSize: '18px',
-          lineHeight: 1.6,
         }}
       >
         {t("tagline")}
