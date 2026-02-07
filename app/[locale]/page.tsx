@@ -35,21 +35,20 @@ export default function HomePage() {
           <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
         </div>
 
-        {/* Desktop: grid layout — text left, video right */}
+        {/* Desktop: text left + absolute video right
+            Hero uses wider container (1440px) than rest of site (1200px)
+            so text doesn't feel pushed too far left on large monitors */}
         <div className="hidden lg:block relative" style={{ minHeight: '540px' }}>
-          {/* Text — normal flow inside container, determines section height */}
-          <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 py-10">
-            <div className="grid grid-cols-2 items-center" style={{ minHeight: '480px' }}>
-              {/* Left: text content */}
-              <div className="max-w-[500px]">
+          {/* Text — normal flow, determines section height */}
+          <div className="relative z-10 max-w-[1440px] mx-auto px-10 xl:px-16 py-10">
+            <div style={{ minHeight: '480px', display: 'flex', alignItems: 'center' }}>
+              <div className="max-w-[520px]">
                 <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
               </div>
-              {/* Right: empty space (video is absolute) */}
-              <div />
             </div>
           </div>
 
-          {/* Video — absolute positioned, free from layout constraints */}
+          {/* Video — absolute positioned, right-aligned, free from container */}
           <div
             className="absolute top-0 right-0 h-full flex items-center"
             style={{ width: '55%' }}
