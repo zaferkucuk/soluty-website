@@ -137,12 +137,17 @@ body {
    Typography Utilities
    ==========================================================================
    
-   Crimson Pro characteristics:
-   - Elegant, high-contrast serif (Typewolf's official Tiempos Headline alternative)
-   - 9 weights available (200-900) for maximum flexibility
-   - Use weight 400-500 for large headlines
-   - Use weight 500-600 for smaller headings
-   - Large font sizes for hero (71-92px)
+   Typography System (10 styles):
+   1. section-title  → .heading-2  (52px/400/Crimson Pro/#32302F)
+   2. section-body   → .body-lg    (18px/400/DM Sans/#5C5A58)
+   3. card-title     → .heading-4  (24px/500/Crimson Pro/#32302F)
+   4. card-body      →             (16px/400/DM Sans/#5C5A58)
+   5. form-label     → .label      (14px/500/DM Sans/#32302F)
+   6. link-inline    →             (inherit/500/underline)
+   7. caption        → .caption    (14px/400/DM Sans/#5C5A58)
+   8. eyebrow        →             (14px/600/DM Sans/#5C5A58 + uppercase + tracking)
+   9. button-text    →             (14-16px/500/DM Sans/#FFFFFF)
+   10. placeholder   →             (16px/400/DM Sans/light gray)
    ========================================================================== */
 
 /* ---- Headings (Serif - Crimson Pro) ---- */
@@ -251,10 +256,11 @@ body {
   color: var(--color-text-secondary);
 }
 
+/* caption: 14px/400/DM Sans/#5C5A58 */
 .caption {
   font-family: var(--font-sans);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0.3px;
   color: var(--color-text-secondary);
