@@ -111,7 +111,7 @@ export function ServicesSection() {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-[2] max-w-[1200px] mx-auto px-6 md:px-10">
+      <div className="relative z-[2] max-w-[1400px] mx-auto px-6 md:px-10">
         {/* eyebrow: 14px/600 + uppercase + tracking — inverse */}
         <p
           className="font-semibold tracking-widest uppercase mb-6 md:mb-8 text-center"

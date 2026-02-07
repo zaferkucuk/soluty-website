@@ -119,7 +119,7 @@ export function ERPFeaturesSection() {
       className="py-12 md:py-16 lg:py-24"
       style={{ backgroundColor: 'var(--color-bg-primary)' }}
     >
-      <div className="mx-auto max-w-[1200px] px-6 md:px-10">
+      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
 
         {/* ---- Section Header ---- */}
         <div ref={headerRef}>

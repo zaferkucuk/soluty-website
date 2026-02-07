@@ -35,28 +35,24 @@ export default function HomePage() {
           <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
         </div>
 
-        {/* Desktop: 40/60 split — text left, video right
-            Text container matches Header (max-w-[1200px]) for alignment.
-            Video overflows right edge for cinematic effect. */}
+        {/* Desktop: text left + absolute video right
+            Container matches Header: max-w-[1400px] mx-auto px-6 md:px-10 */}
         <div className="hidden lg:block relative" style={{ minHeight: '540px' }}>
-          {/* Text — 40% left zone inside 1200px container */}
-          <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 py-10">
-            <div
-              className="flex items-center"
-              style={{ minHeight: '480px', maxWidth: '40%' }}
-            >
-              <div>
+          {/* Text — aligned with header container */}
+          <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 py-10">
+            <div style={{ minHeight: '480px', display: 'flex', alignItems: 'center' }}>
+              <div className="max-w-[520px]">
                 <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
               </div>
             </div>
           </div>
 
-          {/* Video — 60% right, absolute positioned, overflows viewport edge */}
+          {/* Video — absolute positioned, right-aligned, free from container */}
           <div
             className="absolute top-0 right-0 h-full flex items-center"
-            style={{ width: '60%' }}
+            style={{ width: '58%' }}
           >
-            <div style={{ width: '115%', marginRight: '-8%' }}>
+            <div style={{ width: '120%', marginRight: '-10%' }}>
               <HeroVideo videoSrc="/videos/hero.webm" />
             </div>
           </div>
