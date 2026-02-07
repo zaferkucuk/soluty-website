@@ -43,7 +43,7 @@ export interface ServiceCardProps {
  * Typography system mapping:
  * - Badge: caption (14px/400/DM Sans/#5C5A58)
  * - Headline: card-title (24px/500/Crimson Pro/#32302F)
- * - Description: section-body (16px/400/DM Sans/#5C5A58)
+ * - Description: 18px/400/DM Sans/#5C5A58/1.65 — matches ERPStackingCard body
  * - CTA: link-inline (inherit size/500/DM Sans/#5C5A58 + underline)
  *
  * Icon style: 40px circle + 20px icon, light teal bg (matches ERP Features)
@@ -141,14 +141,14 @@ export function ServiceCard({
         {headline}
       </h3>
 
-      {/* card-body: 16px/400/DM Sans/#5C5A58 */}
+      {/* card-body: 18px/400/DM Sans/#5C5A58/1.65 — matches ERPStackingCard */}
       <p
         className="flex-grow mb-4 md:mb-5"
         style={{
           fontFamily: FONTS.sans,
           color: COLORS.textSecondary,
-          lineHeight: 1.6,
-          fontSize: '16px',
+          lineHeight: 1.65,
+          fontSize: '18px',
           fontWeight: 400,
         }}
       >
