@@ -5,6 +5,7 @@ import { ServicesSection } from "./components/ServicesSection";
 import { ERPFeaturesSection } from "./components/ERPFeaturesSection";
 import { HomeFAQ } from "./components/HomeFAQ";
 import { FinalCTASection } from "./components/FinalCTA";
+import { SectionDivider } from "./components/ui/SectionDivider";
 
 // Design tokens
 const COLORS = {
@@ -55,17 +56,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Divider: Hero → Services */}
+      <SectionDivider />
+
       {/* Services Section */}
       <ServicesSection />
+
+      {/* Divider: Services → ERP Features */}
+      <SectionDivider />
 
       {/* ERP Features Section */}
       <ERPFeaturesSection />
 
+      {/* Divider: ERP Features → FAQ */}
+      <SectionDivider />
+
       {/* Home FAQ Section */}
       <HomeFAQ />
 
+      {/* Divider: FAQ → Final CTA */}
+      <SectionDivider />
+
       {/* Final CTA Section */}
       <FinalCTASection />
+
+      {/* Divider: Final CTA → Footer */}
+      <SectionDivider />
     </div>
   );
 }
