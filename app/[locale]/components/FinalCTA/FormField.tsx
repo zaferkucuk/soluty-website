@@ -85,7 +85,7 @@ export function FormField({
 
   return (
     <div className="flex flex-col gap-1.5">
-      {/* Label */}
+      {/* form-label */}
       <label
         htmlFor={inputId}
         className="flex items-baseline gap-1"
@@ -100,7 +100,7 @@ export function FormField({
         {!isRequired && optionalText && (
           <span
             style={{
-              fontSize: '13px',
+              fontSize: '14px',
               fontWeight: 400,
               color: COLORS.textSecondary,
             }}
@@ -160,7 +160,8 @@ export function FormField({
           role="alert"
           style={{
             fontFamily: FONTS.sans,
-            fontSize: '13px',
+            fontSize: '14px',
+            fontWeight: 400,
             color: COLORS.error,
             marginTop: '2px',
           }}

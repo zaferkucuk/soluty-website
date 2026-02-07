@@ -9,7 +9,6 @@ const COLORS = {
 };
 
 const FONTS = {
-  serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
   sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
 };
 
@@ -86,7 +85,7 @@ export function ValueProposition() {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Heading — uses heading-2 class for consistent 52px */}
+      {/* section-title */}
       <h2
         id="contact-heading"
         className="heading-2"
@@ -94,14 +93,12 @@ export function ValueProposition() {
         {t('heading')}
       </h2>
 
-      {/* Subtext */}
-      <p
-        className="body-lg"
-      >
+      {/* section-body */}
+      <p className="body-lg">
         {t('subtext')}
       </p>
 
-      {/* Benefits List */}
+      {/* card-body items */}
       <ul className="flex flex-col gap-4 mt-2" role="list">
         {benefits.map(({ key, icon: Icon }) => (
           <li key={key} className="flex items-center gap-3">
@@ -112,10 +109,12 @@ export function ValueProposition() {
               <Icon />
             </div>
             <span
-              className="text-base"
               style={{
                 fontFamily: FONTS.sans,
-                color: COLORS.textPrimary,
+                fontSize: '16px',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: COLORS.textSecondary,
               }}
             >
               {t(`benefits.${key}`)}
@@ -124,11 +123,13 @@ export function ValueProposition() {
         ))}
       </ul>
 
-      {/* Response Promise */}
+      {/* caption */}
       <p
-        className="text-sm mt-2"
+        className="mt-2"
         style={{
           fontFamily: FONTS.sans,
+          fontSize: '14px',
+          fontWeight: 400,
           color: COLORS.textSecondary,
         }}
       >
@@ -140,27 +141,33 @@ export function ValueProposition() {
         className="pt-6 mt-4"
         style={{ borderTop: `1px solid rgba(50, 48, 47, 0.12)` }}
       >
+        {/* caption */}
         <p
-          className="text-sm mb-3"
+          className="mb-3"
           style={{
             fontFamily: FONTS.sans,
+            fontSize: '14px',
+            fontWeight: 400,
             color: COLORS.textSecondary,
           }}
         >
           {t('alternative.or')}
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
+          {/* link-inline: 500 + underline */}
           <a
             href={`mailto:${t('alternative.email')}`}
-            className="inline-flex items-center gap-2 text-base hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               fontFamily: FONTS.sans,
+              fontSize: '14px',
+              fontWeight: 500,
               color: COLORS.textSecondary,
             }}
           >
             <svg
-              width="18"
-              height="18"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -176,15 +183,17 @@ export function ValueProposition() {
           </a>
           <a
             href={`tel:${t('alternative.phone').replace(/\s/g, '')}`}
-            className="inline-flex items-center gap-2 text-base hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               fontFamily: FONTS.sans,
+              fontSize: '14px',
+              fontWeight: 500,
               color: COLORS.textSecondary,
             }}
           >
             <svg
-              width="18"
-              height="18"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

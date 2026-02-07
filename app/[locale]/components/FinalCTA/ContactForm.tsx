@@ -306,35 +306,50 @@ export function ContactForm() {
               }}
             >
               <p
-                className="text-sm font-medium mb-2"
-                style={{ fontFamily: FONTS.sans, color: COLORS.error }}
+                className="font-medium mb-2"
+                style={{
+                  fontFamily: FONTS.sans,
+                  fontSize: '14px',
+                  color: COLORS.error,
+                }}
               >
                 {t('error.heading')}
               </p>
               <p
-                className="text-sm"
-                style={{ fontFamily: FONTS.sans, color: COLORS.textSecondary }}
+                style={{
+                  fontFamily: FONTS.sans,
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: COLORS.textSecondary,
+                }}
               >
                 {submitError}
               </p>
               <button
                 type="button"
                 onClick={handleRetry}
-                className="mt-3 text-sm font-medium underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                style={{ color: COLORS.bgInverse }}
+                className="mt-3 underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                style={{
+                  fontFamily: FONTS.sans,
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: COLORS.textSecondary,
+                }}
               >
                 {t('error.retry')}
               </button>
             </div>
           )}
 
-          {/* Submit Button */}
+          {/* Submit Button — button-text */}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-12 rounded-lg font-medium text-base transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full h-12 rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
             style={{
               fontFamily: FONTS.sans,
+              fontSize: '16px',
+              fontWeight: 500,
               backgroundColor: COLORS.bgInverse,
               color: COLORS.textInverse,
             }}
@@ -364,17 +379,25 @@ export function ContactForm() {
             )}
           </button>
 
-          {/* Privacy Policy Link */}
+          {/* caption + link-inline */}
           <p
-            className="text-center text-sm"
-            style={{ fontFamily: FONTS.sans, color: COLORS.textPrimary }}
+            className="text-center"
+            style={{
+              fontFamily: FONTS.sans,
+              fontSize: '14px',
+              fontWeight: 400,
+              color: COLORS.textSecondary,
+            }}
           >
             {t.rich('form.privacy', {
               privacyLink: (chunks) => (
                 <a
                   href="/de/datenschutz"
                   className="underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                  style={{ color: COLORS.textPrimary }}
+                  style={{
+                    fontWeight: 500,
+                    color: COLORS.textSecondary,
+                  }}
                 >
                   {chunks}
                 </a>
