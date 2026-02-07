@@ -18,7 +18,7 @@ const ICON_STYLES = {
   strokeWidth: 2,
 };
 
-const CARD_BG = '#cdc9c5';
+const CARD_BG = '#fcfcfc';
 
 /**
  * Individual stacking card for the ERP Features section.
