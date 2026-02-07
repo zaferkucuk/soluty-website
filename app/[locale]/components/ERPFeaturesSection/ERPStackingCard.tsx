@@ -10,10 +10,10 @@ const FONTS = {
 };
 
 const ICON_STYLES = {
-  /** Matches Contact/ValueProposition + ServiceCard exactly */
+  /** Matches Contact/ValueProposition + ServiceCard layout */
   containerSize: 40,
   iconSize: 20,
-  bg: 'rgba(92, 90, 88, 0.08)',
+  bg: 'rgba(77, 182, 160, 0.12)',
   color: '#5C5A58',
   strokeWidth: 2,
 };
@@ -29,11 +29,11 @@ const ICON_STYLES = {
  *
  * Each card uses `position: sticky` to stack on top of previous cards.
  *
- * Icon style: 40px circle + 20px icon (consistent with ServiceCard + ValueProposition)
+ * Icon style: 40px circle + 20px icon, light teal background
  *
  * Layout:
  *   Row 1: [Icon] [Title]
- *   Row 2: [Description]
+ *   Row 2: [Description] — min-height ensures consistent card size (3 lines)
  */
 export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
   function ERPStackingCard({ module, index, isVisible }, ref) {
@@ -92,7 +92,7 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         >
           {/* Row 1: Icon + Title */}
           <div className="flex items-center gap-3">
-            {/* Icon — 40px circle + 20px icon (matches Contact/ServiceCard) */}
+            {/* Icon — 40px circle + 20px icon, light teal background */}
             <div
               className="flex-shrink-0 flex items-center justify-center rounded-full"
               style={{
@@ -124,13 +124,15 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
             </h3>
           </div>
 
-          {/* Row 2: Description — 18px body-lg */}
+          {/* Row 2: Description — min-height ensures 3-line consistent card height
+              Calculation: 18px font × 1.65 line-height × 3 lines ≈ 89px */}
           <p
             className="mt-3"
             style={{
               lineHeight: 1.65,
               color: 'var(--color-text-secondary)',
               fontSize: '18px',
+              minHeight: '89px',
             }}
           >
             {t(module.descriptionKey)}
