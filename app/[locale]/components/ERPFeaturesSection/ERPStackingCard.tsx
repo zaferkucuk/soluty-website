@@ -18,12 +18,14 @@ const ICON_STYLES = {
   strokeWidth: 2,
 };
 
+const CARD_BG = '#cdc9c5';
+
 /**
  * Individual stacking card for the ERP Features section.
  *
  * Two-layer structure (first card only):
  * 1. `.card-bg` — absolute, rotated -1.75deg, with primary green border (#4DB6A0)
- * 2. `.card-content` — relative, white background, holds actual content
+ * 2. `.card-content` — relative, card background, holds actual content
  *
  * Only the first card (index === 0) shows the angled background card.
  *
@@ -82,11 +84,12 @@ export const ERPStackingCard = forwardRef<HTMLElement, ERPStackingCardProps>(
         <div
           className={
             'relative rounded-xl border border-[var(--color-border)] ' +
-            'bg-white p-6 md:p-5 ' +
+            'p-6 md:p-5 ' +
             'transition-shadow duration-250 ease-out ' +
             'hover:shadow-[var(--shadow-md)]'
           }
           style={{
+            backgroundColor: CARD_BG,
             boxShadow: 'var(--shadow-sm)',
           }}
         >
