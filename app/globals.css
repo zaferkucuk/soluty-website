@@ -31,7 +31,7 @@
   /* ---- Colors: Text ---- */
   --color-text-primary: #32302F;
   --color-text-secondary: #5C5A58;
-  --color-text-muted: #8A8785;
+  --color-text-muted: #5C5A58;
   --color-text-inverse: #FFFFFF;
   
   /* ---- Colors: Background ---- */
@@ -253,11 +253,11 @@ body {
 
 .caption {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.3px;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 /* ---- Labels & UI Text ---- */
