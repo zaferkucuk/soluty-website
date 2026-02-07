@@ -102,10 +102,13 @@ function HeroTextContent({
   return (
     <>
       <h1
-        className="heading-1"
         style={{
           fontFamily: fonts.serif,
           color: colors.textPrimary,
+          fontSize: 'clamp(2.5rem, 2.26vw + 2.06rem, 4rem)',
+          fontWeight: 400,
+          lineHeight: 1.16,
+          letterSpacing: '0.01em',
         }}
       >
         <span className="block">{t("headline.line1")}</span>
@@ -115,20 +118,28 @@ function HeroTextContent({
       </h1>
 
       <p
-        className="hero-body mt-6 max-w-md"
+        className="mt-6 max-w-md"
         style={{
           fontFamily: fonts.sans,
           color: colors.textSecondary,
+          fontSize: 'clamp(1.125rem, 0.56vw + 1.02rem, 1.5rem)',
+          fontWeight: 400,
+          lineHeight: 1.24,
+          letterSpacing: '-0.005em',
         }}
       >
         {t("subheadline")}
       </p>
 
       <p
-        className="hero-body mt-2 max-w-md"
+        className="mt-2 max-w-md"
         style={{
           fontFamily: fonts.sans,
           color: colors.textSecondary,
+          fontSize: 'clamp(1.125rem, 0.56vw + 1.02rem, 1.5rem)',
+          fontWeight: 400,
+          lineHeight: 1.24,
+          letterSpacing: '-0.005em',
         }}
       >
         {t("tagline")}
