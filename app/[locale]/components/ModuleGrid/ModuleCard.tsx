@@ -41,11 +41,11 @@ const CARD_STYLES = {
   activeBorder: '1px solid rgba(0, 0, 0, 0.06)',
   inactiveBorder: '1px solid rgba(0, 0, 0, 0.04)',
 
-  // Icon — 40px circle + 20px icon (matches Contact/ValueProposition exactly)
-  iconColor: '#5C5A58',
-  iconBg: 'rgba(92, 90, 88, 0.08)',
-  iconContainerSize: 40,
-  iconSize: 20,
+  // Icon color — solid Brand Teal (unified across all groups)
+  iconColor: '#4DB6A0',
+
+  // Icon size — matching ERP stacking card icons (24px default, 28px md)
+  iconSize: 24,
 } as const;
 
 // ==========================================================================
@@ -106,21 +106,12 @@ export function ModuleCard({
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >
-        {/* Icon — 40px circle + 20px icon (identical to Contact/ValueProposition) */}
-        <div
-          className="flex items-center justify-center rounded-full"
-          style={{
-            width: CARD_STYLES.iconContainerSize,
-            height: CARD_STYLES.iconContainerSize,
-            backgroundColor: CARD_STYLES.iconBg,
-          }}
-        >
-          <Icon
-            size={CARD_STYLES.iconSize}
-            strokeWidth={2}
-            style={{ color: CARD_STYLES.iconColor }}
-          />
-        </div>
+        {/* Solid Brand Teal Icon — unified color across all groups */}
+        <Icon
+          size={CARD_STYLES.iconSize}
+          strokeWidth={1.5}
+          style={{ color: CARD_STYLES.iconColor }}
+        />
 
         {/* Label — 11.6px base (×1.1 scale when active ≈ 12.8px visual) */}
         <span
