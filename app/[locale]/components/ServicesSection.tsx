@@ -38,6 +38,8 @@ const FONTS = {
  * This intentionally scales text ~5% larger — accepted tradeoff for hierarchy.
  *
  * Grid uses items-stretch so left and right cards have equal height.
+ *
+ * Padding optimized so header + section fits viewport on most screens.
  */
 export function ServicesSection() {
   const t = useTranslations('services');
@@ -78,7 +80,7 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden py-12 md:py-16 lg:py-24"
+      className="relative overflow-hidden py-8 md:py-10 lg:py-14"
       style={{ backgroundColor: COLORS.bgSection }}
       aria-labelledby="services-heading"
     >
@@ -114,7 +116,7 @@ export function ServicesSection() {
       <div className="relative z-[2] max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10">
         {/* eyebrow: 14px/600 + uppercase + tracking — inverse */}
         <p
-          className="font-semibold tracking-widest uppercase mb-6 md:mb-8 text-center"
+          className="font-semibold tracking-widest uppercase mb-4 md:mb-5 text-center"
           style={{
             color: COLORS.textInverseSecondary,
             fontFamily: FONTS.sans,
@@ -128,7 +130,7 @@ export function ServicesSection() {
 
         {/* ── Inner Card ── */}
         <div
-          className="p-6 md:p-10 lg:p-14"
+          className="p-5 md:p-8 lg:p-10"
           style={{
             backgroundColor: COLORS.bgInnerCard,
             borderTop: `1px solid ${COLORS.borderInnerCard}`,
@@ -138,11 +140,11 @@ export function ServicesSection() {
           }}
         >
           {/* Section Header */}
-          <header className="text-center mb-8 md:mb-10 lg:mb-12">
+          <header className="text-center mb-6 md:mb-8 lg:mb-10">
             {/* section-title — inverse */}
             <h2
               id="services-heading"
-              className="heading-2 mb-4 md:mb-5"
+              className="heading-2 mb-3 md:mb-4"
               style={{
                 fontFamily: FONTS.serif,
                 color: COLORS.textInverse,
@@ -164,7 +166,7 @@ export function ServicesSection() {
           </header>
 
           {/* Cards Grid — items-stretch ensures equal height for left and right cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 md:items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 lg:gap-6 md:items-stretch">
             {sortedServices.map((service) => (
               <div
                 key={service.id}
