@@ -5,7 +5,7 @@ const COLORS = {
   textPrimary: '#32302F',
   textSecondary: '#5C5A58',
   iconStroke: '#5C5A58',
-  iconBg: 'rgba(92, 90, 88, 0.08)',
+  iconBg: 'rgba(77, 182, 160, 0.12)',
 };
 
 const FONTS = {

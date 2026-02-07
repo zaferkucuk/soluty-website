@@ -10,7 +10,7 @@ const COLORS = {
   border: 'rgba(50, 48, 47, 0.12)',
   borderStrong: 'rgba(50, 48, 47, 0.25)',
   bgWhite: '#FFFFFF',
-  iconBg: 'rgba(92, 90, 88, 0.08)',
+  iconBg: 'rgba(77, 182, 160, 0.12)',
 };
 
 const FONTS = {
@@ -46,7 +46,7 @@ export interface ServiceCardProps {
  * - Description: section-body (18px/400/DM Sans/#5C5A58)
  * - CTA: link-inline (inherit size/500/DM Sans/#5C5A58 + underline)
  *
- * Icon style: 40px circle + 20px icon (matches ValueProposition exactly)
+ * Icon style: 40px circle + 20px icon, light teal bg (matches ERP Features)
  */
 export function ServiceCard({
   icon: Icon,
@@ -75,8 +75,8 @@ export function ServiceCard({
         transition-all duration-250 ease-out
         hover:-translate-y-1
         focus-within:outline-2 focus-within:outline-offset-2
-        ${isHighlighted 
-          ? 'border-2 shadow-md hover:shadow-xl' 
+        ${isHighlighted
+          ? 'border-2 shadow-md hover:shadow-xl'
           : 'border shadow-sm hover:shadow-lg'
         }
       `}
@@ -110,7 +110,7 @@ export function ServiceCard({
         </span>
       )}
 
-      {/* Icon — 40px circle + 20px icon (identical to ValueProposition) */}
+      {/* Icon — 40px circle + 20px icon (identical to ERP Features) */}
       <div
         className="w-10 h-10 flex items-center justify-center rounded-full mb-5 md:mb-6"
         style={{
