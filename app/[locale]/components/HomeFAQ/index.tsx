@@ -30,7 +30,7 @@ const FAQ_ITEMS = ['erpNeeded', 'digitalization', 'standardVsCustom'] as const;
  * Typography system mapping:
  * - Eyebrow: eyebrow (14px/600/DM Sans/#5C5A58 + uppercase + tracking)
  * - Headline: section-title (52px/400/Crimson Pro/#32302F) via .heading-2
- * - Question: 16px/500/DM Sans/#32302F (interactive summary, not card-title)
+ * - Question: 18px/400/DM Sans/#32302F (matches section-body size)
  * - Answer: card-body (16px/400/DM Sans/#5C5A58)
  * - CTA link: link-inline (500 + underline + #5C5A58)
  */
@@ -113,13 +113,13 @@ export function HomeFAQ() {
                 className="flex items-center justify-between w-full py-5 cursor-pointer list-none transition-colors duration-150"
                 style={{ fontFamily: FONTS.sans }}
               >
-                {/* Question text: 16px/500/#32302F (interactive summary) */}
+                {/* Question text: 18px/400/#32302F */}
                 <span
                   className="pr-4 transition-colors duration-150"
                   style={{
                     color: COLORS.textPrimary,
-                    fontSize: '16px',
-                    fontWeight: 500,
+                    fontSize: '18px',
+                    fontWeight: 400,
                   }}
                 >
                   {t(`items.${itemKey}.question`)}
