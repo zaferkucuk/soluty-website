@@ -28,68 +28,87 @@ export default function HomePage() {
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       {/* Hero Section — exact viewport height (above the fold)
           Header: 88px on desktop, 80px on mobile
-          Hero fills remaining: calc(100vh - header) */}
+          Hero fills remaining: calc(100vh - header)
+          
+          Layout: flexbox column with justify-between
+          - Top area: flex-1 with centered hero content
+          - Bottom: UNSERE LEISTUNGEN eyebrow (visible without scroll) */}
       <section style={{ overflowX: 'clip' }}>
         {/* Mobile: stacked layout, full viewport */}
         <div
-          className="lg:hidden px-6 pt-4 pb-12 flex flex-col justify-center"
+          className="lg:hidden px-6 pt-4 flex flex-col"
           style={{ minHeight: 'calc(100vh - 80px)' }}
         >
-          <div className="max-w-md mx-auto mb-8">
-            <HeroVideo videoSrc="/videos/hero.webm" />
+          <div className="flex-1 flex flex-col justify-center">
+            <div className="max-w-md mx-auto mb-8">
+              <HeroVideo videoSrc="/videos/hero.webm" />
+            </div>
+            <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
           </div>
-          <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
+
+          {/* Eyebrow at bottom of viewport — visible without scroll */}
+          <div className="py-3 shrink-0">
+            <p
+              className="font-semibold tracking-widest uppercase text-center"
+              style={{
+                fontFamily: FONTS.sans,
+                fontSize: '13px',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                color: COLORS.textPrimary,
+              }}
+            >
+              {tServices('eyebrow')}
+            </p>
+          </div>
         </div>
 
         {/* Desktop: text left + absolute video right — exact viewport height */}
         <div
-          className="hidden lg:block relative"
+          className="hidden lg:flex lg:flex-col relative"
           style={{ minHeight: 'calc(100vh - 88px)' }}
         >
-          {/* Text — vertically centered */}
-          <div
-            className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10"
-            style={{
-              minHeight: 'calc(100vh - 88px)',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <div className="max-w-[520px]">
-              <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
+          {/* Main hero area — flex-1 centers content vertically */}
+          <div className="flex-1 relative">
+            {/* Text — vertically centered */}
+            <div
+              className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10 h-full flex items-center"
+            >
+              <div className="max-w-[520px]">
+                <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
+              </div>
+            </div>
+
+            {/* Video — absolute positioned, right-aligned, ~20% larger than before */}
+            <div
+              className="absolute top-0 right-0 h-full flex items-center"
+              style={{ width: '62%' }}
+            >
+              <div style={{ width: '168%', marginRight: '-24%' }}>
+                <HeroVideo videoSrc="/videos/hero.webm" />
+              </div>
             </div>
           </div>
 
-          {/* Video — absolute positioned, right-aligned, ~40% enlarged */}
-          <div
-            className="absolute top-0 right-0 h-full flex items-center"
-            style={{ width: '62%' }}
-          >
-            <div style={{ width: '140%', marginRight: '-20%' }}>
-              <HeroVideo videoSrc="/videos/hero.webm" />
-            </div>
+          {/* Eyebrow at bottom of viewport — visible without scroll */}
+          <div className="py-4 shrink-0 relative z-10">
+            <p
+              className="font-semibold tracking-widest uppercase text-center"
+              style={{
+                fontFamily: FONTS.sans,
+                fontSize: '14px',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                color: COLORS.textPrimary,
+              }}
+            >
+              {tServices('eyebrow')}
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Services Eyebrow — between hero and services, on light background
-          Tight bottom padding to sit flush above dark services section */}
-      <div className="py-4 md:py-5">
-        <p
-          className="font-semibold tracking-widest uppercase text-center"
-          style={{
-            fontFamily: FONTS.sans,
-            fontSize: '14px',
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            color: COLORS.textPrimary,
-          }}
-        >
-          {tServices('eyebrow')}
-        </p>
-      </div>
-
-      {/* Services Section */}
+      {/* Services Section — no divider, eyebrow above acts as transition */}
       <ServicesSection />
 
       {/* Divider: Services → ERP Features */}
