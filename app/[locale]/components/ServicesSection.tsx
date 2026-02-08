@@ -29,10 +29,11 @@ const FONTS = {
  * ServicesSection
  *
  * Typography system mapping:
- * - Eyebrow: eyebrow (14px/600/DM Sans + uppercase + tracking) — inverse color
  * - Headline: section-title (52px/400/Crimson Pro) via .heading-2 — inverse color
  * - Subheadline: section-body (18px/400/DM Sans) via .body-lg — inverse color
  * - Cards use ServiceCard component with own typography
+ *
+ * Note: Eyebrow label is rendered in page.tsx above this section.
  *
  * Note: Highlighted card uses scale(1.05) for visual prominence.
  * This intentionally scales text ~5% larger — accepted tradeoff for hierarchy.
@@ -114,20 +115,6 @@ export function ServicesSection() {
 
       {/* ── Content ── */}
       <div className="relative z-[2] max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* eyebrow: 14px/600 + uppercase + tracking — inverse */}
-        <p
-          className="font-semibold tracking-widest uppercase mb-4 md:mb-5 text-center"
-          style={{
-            color: COLORS.textInverseSecondary,
-            fontFamily: FONTS.sans,
-            fontSize: '14px',
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-          }}
-        >
-          {t('eyebrow')}
-        </p>
-
         {/* ── Inner Card ── */}
         <div
           className="p-5 md:p-8 lg:p-10"
