@@ -10,7 +10,7 @@ const COLORS = {
   borderStrong: 'rgba(50, 48, 47, 0.15)',
 }
 
-const locales = ['de', 'en'] as const
+const locales = ['de', 'en', 'tr'] as const
 type Locale = typeof locales[number]
 
 // Circular flag SVG components
@@ -42,9 +42,27 @@ function UKFlag({ size = 24 }: { size?: number }) {
   )
 }
 
+function TurkeyFlag({ size = 24 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
+      <clipPath id="trCircle"><circle cx="16" cy="16" r="16" /></clipPath>
+      <g clipPath="url(#trCircle)">
+        <rect width="32" height="32" fill="#E30A17" />
+        <circle cx="13.5" cy="16" r="6" fill="#FFFFFF" />
+        <circle cx="15" cy="16" r="4.8" fill="#E30A17" />
+        <polygon
+          fill="#FFFFFF"
+          points="19.5,16 17.2,17.1 17.6,14.6 15.8,12.9 18.3,12.5 19.5,10.3 20.7,12.5 23.2,12.9 21.4,14.6 21.8,17.1"
+        />
+      </g>
+    </svg>
+  )
+}
+
 const flagComponents: Record<Locale, React.FC<{ size?: number }>> = {
   de: GermanyFlag,
   en: UKFlag,
+  tr: TurkeyFlag,
 }
 
 function LocaleButton({ 
