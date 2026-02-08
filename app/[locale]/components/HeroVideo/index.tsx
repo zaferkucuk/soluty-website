@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface HeroVideoProps {
   videoSrc: string;
@@ -14,11 +14,10 @@ interface HeroVideoProps {
  * Plays video once on page load/refresh and stops on last frame.
  * Uses <source> tags for webm/mp4 fallback.
  *
- * Resilient loading strategy:
+ * Loading strategy:
  * - preload="auto" ensures browser fetches video early
- * - Listens for 'canplay' event before attempting play()
- * - Retries play on 'loadeddata' if initial attempt fails
- * - Key on videoSrc forces remount on locale change
+ * - Waits for 'canplay' event if video isn't ready yet
+ * - Falls back to poster image if autoplay is blocked
  */
 export function HeroVideo({
   videoSrc,
@@ -27,44 +26,34 @@ export function HeroVideo({
 }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasError, setHasError] = useState(false);
-
-  const attemptPlay = useCallback(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.currentTime = 0;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay blocked — video stays on first/poster frame
-      });
-    }
-  }, []);
+  const hasPlayed = useRef(false);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || hasPlayed.current) return;
 
-    // If video is already ready (cached), play immediately
+    const tryPlay = () => {
+      if (hasPlayed.current) return;
+      hasPlayed.current = true;
+
+      video.play().catch(() => {
+        // Autoplay blocked — video stays on poster frame
+      });
+    };
+
+    // If video data is already available (e.g. cached), play immediately
     if (video.readyState >= 3) {
-      attemptPlay();
+      tryPlay();
       return;
     }
 
-    // Otherwise wait for canplay event
-    const handleCanPlay = () => {
-      attemptPlay();
-    };
-
-    video.addEventListener('canplay', handleCanPlay);
-
-    // Also try to kick-start loading
-    video.load();
+    // Otherwise wait until enough data is buffered
+    video.addEventListener('canplay', tryPlay, { once: true });
 
     return () => {
-      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('canplay', tryPlay);
     };
-  }, [videoSrc, attemptPlay]);
+  }, []);
 
   if (hasError) {
     return null;
@@ -73,7 +62,6 @@ export function HeroVideo({
   return (
     <div className={`relative w-full ${className}`}>
       <video
-        key={videoSrc}
         ref={videoRef}
         className="w-full h-auto"
         muted
