@@ -22,6 +22,7 @@ const FONTS = {
 
 export default function HomePage() {
   const t = useTranslations("hero");
+  const tServices = useTranslations("services");
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
@@ -40,15 +41,24 @@ export default function HomePage() {
 
         {/* Desktop: text left + absolute video right — full viewport height
             Header height: 88px (lg:h-[88px])
-            Hero fills remaining viewport: calc(100vh - 88px) */}
+            Hero fills remaining viewport: calc(100vh - 88px)
+            
+            Text uses padding-based centering instead of flexbox center
+            to shift content slightly upward — reducing top whitespace */}
         <div
           className="hidden lg:block relative"
           style={{ minHeight: 'calc(100vh - 88px)' }}
         >
-          {/* Text — aligned with header container, vertically centered */}
+          {/* Text — aligned with header container, vertically positioned via padding */}
           <div
             className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10"
-            style={{ minHeight: 'calc(100vh - 88px)', display: 'flex', alignItems: 'center' }}
+            style={{
+              minHeight: 'calc(100vh - 88px)',
+              display: 'flex',
+              alignItems: 'center',
+              paddingTop: '0px',
+              paddingBottom: '48px',
+            }}
           >
             <div className="max-w-[520px]">
               <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
@@ -69,6 +79,24 @@ export default function HomePage() {
 
       {/* Divider: Hero → Services */}
       <SectionDivider />
+
+      {/* Services Eyebrow — outside section, tightly coupled above */}
+      <div
+        className="max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10 pt-10 md:pt-12 lg:pt-14 pb-3 md:pb-4"
+      >
+        <p
+          className="font-semibold tracking-widest uppercase text-center"
+          style={{
+            fontFamily: FONTS.sans,
+            fontSize: '14px',
+            fontWeight: 600,
+            letterSpacing: '0.1em',
+            color: COLORS.textPrimary,
+          }}
+        >
+          {tServices('eyebrow')}
+        </p>
+      </div>
 
       {/* Services Section */}
       <ServicesSection />
@@ -149,7 +177,8 @@ function HeroTextContent({
         {t("tagline")}
       </p>
 
-      <div className="mt-8">
+      {/* mt-10 instead of mt-8: adds ~8px more space between body text and email form */}
+      <div className="mt-10">
         <HeroEmailForm />
       </div>
 
