@@ -75,30 +75,25 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* Services Eyebrow — at bottom of hero, flush above services section */}
+        <div className="pb-4 md:pb-5 pt-6 md:pt-8">
+          <p
+            className="font-semibold tracking-widest uppercase text-center"
+            style={{
+              fontFamily: FONTS.sans,
+              fontSize: '14px',
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              color: COLORS.textPrimary,
+            }}
+          >
+            {tServices('eyebrow')}
+          </p>
+        </div>
       </section>
 
-      {/* Divider: Hero → Services */}
-      <SectionDivider />
-
-      {/* Services Eyebrow — outside section, tightly coupled above */}
-      <div
-        className="max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10 pt-10 md:pt-12 lg:pt-14 pb-3 md:pb-4"
-      >
-        <p
-          className="font-semibold tracking-widest uppercase text-center"
-          style={{
-            fontFamily: FONTS.sans,
-            fontSize: '14px',
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            color: COLORS.textPrimary,
-          }}
-        >
-          {tServices('eyebrow')}
-        </p>
-      </div>
-
-      {/* Services Section */}
+      {/* Services Section — no divider, eyebrow above acts as transition */}
       <ServicesSection />
 
       {/* Divider: Services → ERP Features */}
