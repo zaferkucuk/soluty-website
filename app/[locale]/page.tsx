@@ -30,9 +30,9 @@ export default function HomePage() {
           Header: 88px on desktop, 80px on mobile
           Hero fills remaining: calc(100vh - header)
           
-          Layout: flexbox column with justify-between
-          - Top area: flex-1 with centered hero content
-          - Bottom: UNSERE LEISTUNGEN eyebrow (visible without scroll) */}
+          Layout: flex-col
+          - flex-1: hero content area (text centered + video)
+          - shrink-0: UNSERE LEISTUNGEN eyebrow at viewport bottom */}
       <section style={{ overflowX: 'clip' }}>
         {/* Mobile: stacked layout, full viewport */}
         <div
@@ -68,18 +68,23 @@ export default function HomePage() {
           className="hidden lg:flex lg:flex-col relative"
           style={{ minHeight: 'calc(100vh - 88px)' }}
         >
-          {/* Main hero area — flex-1 centers content vertically */}
+          {/* Main hero area — flex-1, uses inner flex to vertically center text */}
           <div className="flex-1 relative">
-            {/* Text — vertically centered */}
+            {/* Text — vertically centered within the flex-1 area */}
             <div
-              className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10 h-full flex items-center"
+              className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10"
+              style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+              }}
             >
               <div className="max-w-[520px]">
                 <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
               </div>
             </div>
 
-            {/* Video — absolute positioned, right-aligned, ~20% larger than before */}
+            {/* Video — absolute positioned, right-aligned, ~20% larger */}
             <div
               className="absolute top-0 right-0 h-full flex items-center"
               style={{ width: '62%' }}
