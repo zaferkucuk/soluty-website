@@ -27,14 +27,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
       {/* Hero Section — exact viewport height (above the fold)
-          Header: 88px on desktop, 80px on mobile
-          Hero fills remaining: calc(100vh - header)
-          
-          Layout: flex-col
-          - flex-1: hero content area (text centered + video)
-          - shrink-0: UNSERE LEISTUNGEN eyebrow at viewport bottom */}
+          Layout: flex-col with minHeight = viewport - header
+          - flex-1 area: vertically centers hero content
+          - shrink-0 bottom: UNSERE LEISTUNGEN eyebrow visible without scroll */}
       <section style={{ overflowX: 'clip' }}>
-        {/* Mobile: stacked layout, full viewport */}
+        {/* Mobile */}
         <div
           className="lg:hidden px-6 pt-4 flex flex-col"
           style={{ minHeight: 'calc(100vh - 80px)' }}
@@ -45,8 +42,6 @@ export default function HomePage() {
             </div>
             <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
           </div>
-
-          {/* Eyebrow at bottom of viewport — visible without scroll */}
           <div className="py-3 shrink-0">
             <p
               className="font-semibold tracking-widest uppercase text-center"
@@ -63,28 +58,20 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Desktop: text left + absolute video right — exact viewport height */}
+        {/* Desktop */}
         <div
           className="hidden lg:flex lg:flex-col relative"
           style={{ minHeight: 'calc(100vh - 88px)' }}
         >
-          {/* Main hero area — flex-1, uses inner flex to vertically center text */}
-          <div className="flex-1 relative">
-            {/* Text — vertically centered within the flex-1 area */}
-            <div
-              className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10"
-              style={{
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
+          {/* Hero content area — flex-1 + flex + items-center = vertical centering */}
+          <div className="flex-1 flex items-center relative">
+            <div className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10 w-full">
               <div className="max-w-[520px]">
                 <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
               </div>
             </div>
 
-            {/* Video — absolute positioned, right-aligned, ~20% larger */}
+            {/* Video — absolute, right-aligned */}
             <div
               className="absolute top-0 right-0 h-full flex items-center"
               style={{ width: '62%' }}
@@ -95,7 +82,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Eyebrow at bottom of viewport — visible without scroll */}
+          {/* Eyebrow at viewport bottom */}
           <div className="py-4 shrink-0 relative z-10">
             <p
               className="font-semibold tracking-widest uppercase text-center"
@@ -113,7 +100,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Section — no divider, eyebrow above acts as transition */}
+      {/* Services Section */}
       <ServicesSection />
 
       {/* Divider: Services → ERP Features */}
