@@ -26,7 +26,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
-      {/* Hero Section — full viewport height (above the fold) */}
+      {/* Hero Section — exact viewport height (above the fold)
+          Header: 88px on desktop, 80px on mobile
+          Hero fills remaining: calc(100vh - header) */}
       <section style={{ overflowX: 'clip' }}>
         {/* Mobile: stacked layout, full viewport */}
         <div
@@ -39,25 +41,18 @@ export default function HomePage() {
           <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
         </div>
 
-        {/* Desktop: text left + absolute video right — full viewport height
-            Header height: 88px (lg:h-[88px])
-            Hero fills remaining viewport: calc(100vh - 88px)
-            
-            Text uses padding-based centering instead of flexbox center
-            to shift content slightly upward — reducing top whitespace */}
+        {/* Desktop: text left + absolute video right — exact viewport height */}
         <div
           className="hidden lg:block relative"
           style={{ minHeight: 'calc(100vh - 88px)' }}
         >
-          {/* Text — aligned with header container, vertically positioned via padding */}
+          {/* Text — vertically centered */}
           <div
             className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10"
             style={{
               minHeight: 'calc(100vh - 88px)',
               display: 'flex',
               alignItems: 'center',
-              paddingTop: '0px',
-              paddingBottom: '48px',
             }}
           >
             <div className="max-w-[520px]">
@@ -75,25 +70,26 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Services Eyebrow — at bottom of hero, flush above services section */}
-        <div className="pb-4 md:pb-5 pt-6 md:pt-8">
-          <p
-            className="font-semibold tracking-widest uppercase text-center"
-            style={{
-              fontFamily: FONTS.sans,
-              fontSize: '14px',
-              fontWeight: 600,
-              letterSpacing: '0.1em',
-              color: COLORS.textPrimary,
-            }}
-          >
-            {tServices('eyebrow')}
-          </p>
-        </div>
       </section>
 
-      {/* Services Section — no divider, eyebrow above acts as transition */}
+      {/* Services Eyebrow — between hero and services, on light background
+          Tight bottom padding to sit flush above dark services section */}
+      <div className="py-4 md:py-5">
+        <p
+          className="font-semibold tracking-widest uppercase text-center"
+          style={{
+            fontFamily: FONTS.sans,
+            fontSize: '14px',
+            fontWeight: 600,
+            letterSpacing: '0.1em',
+            color: COLORS.textPrimary,
+          }}
+        >
+          {tServices('eyebrow')}
+        </p>
+      </div>
+
+      {/* Services Section */}
       <ServicesSection />
 
       {/* Divider: Services → ERP Features */}
@@ -172,8 +168,7 @@ function HeroTextContent({
         {t("tagline")}
       </p>
 
-      {/* mt-10 instead of mt-8: adds ~8px more space between body text and email form */}
-      <div className="mt-10">
+      <div className="mt-8">
         <HeroEmailForm />
       </div>
 
