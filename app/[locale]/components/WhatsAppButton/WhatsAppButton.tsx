@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PHONE_NUMBER = '491718023675';
@@ -13,17 +13,21 @@ const PRE_FILLED_MESSAGES: Record<string, string> = {
   tr: 'Merhaba, web sitenizi ziyaret ettim ve hizmetleriniz hakkında daha fazla bilgi almak istiyorum.',
 };
 
+const ARIA_LABELS: Record<string, string> = {
+  de: 'Kontakt über WhatsApp',
+  en: 'Contact via WhatsApp',
+  tr: 'WhatsApp ile iletişime geçin',
+};
+
 export function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false);
   const locale = useLocale();
-  const t = useTranslations('whatsapp');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsVisible(window.scrollY > SCROLL_THRESHOLD);
     };
 
-    // Check initial scroll position
     handleScroll();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -31,6 +35,7 @@ export function WhatsAppButton() {
   }, []);
 
   const message = PRE_FILLED_MESSAGES[locale] || PRE_FILLED_MESSAGES.de;
+  const ariaLabel = ARIA_LABELS[locale] || ARIA_LABELS.de;
   const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 
   return (
@@ -40,7 +45,7 @@ export function WhatsAppButton() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={t('ariaLabel')}
+          aria-label={ariaLabel}
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
