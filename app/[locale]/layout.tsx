@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 import { fontVariables } from "../fonts";
 import "../globals.css";
 
@@ -40,6 +41,7 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer />
+          <WhatsAppButton />
         </NextIntlClientProvider>
       </body>
     </html>
