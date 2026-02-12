@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
 // Validation utilities
 const isValidEmail = (email: string): boolean => {
@@ -64,6 +65,70 @@ function validateFormData(data: ContactFormData): ValidationError[] {
   return errors;
 }
 
+// Create reusable transporter
+function createTransporter() {
+  return nodemailer.createTransport({
+    host: process.env.SMTP_HOST || 'smtp.zoho.eu',
+    port: Number(process.env.SMTP_PORT) || 465,
+    secure: true, // SSL on port 465
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+}
+
+function buildEmailHtml(data: ContactFormData): string {
+  const phone = data.phone || '–';
+  const message = data.message || '–';
+
+  return `
+    <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background-color: #32302F; padding: 24px 32px; border-radius: 8px 8px 0 0;">
+        <h1 style="color: #FFFFFF; font-size: 20px; margin: 0;">Neue Kontaktanfrage</h1>
+      </div>
+      <div style="background-color: #FFFFFF; padding: 32px; border: 1px solid #E5E5E5; border-top: none; border-radius: 0 0 8px 8px;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; color: #8A8785; font-size: 14px; width: 120px;">Name</td>
+            <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; color: #32302F; font-size: 14px;">${escapeHtml(data.name)}</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; color: #8A8785; font-size: 14px;">Unternehmen</td>
+            <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; color: #32302F; font-size: 14px;">${escapeHtml(data.company)}</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; color: #8A8785; font-size: 14px;">E-Mail</td>
+            <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; color: #32302F; font-size: 14px;"><a href="mailto:${escapeHtml(data.email)}" style="color: #32302F;">${escapeHtml(data.email)}</a></td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; color: #8A8785; font-size: 14px;">Telefon</td>
+            <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; color: #32302F; font-size: 14px;">${escapeHtml(phone)}</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: #8A8785; font-size: 14px; vertical-align: top;">Nachricht</td>
+            <td style="padding: 12px 0; color: #32302F; font-size: 14px; white-space: pre-wrap;">${escapeHtml(message)}</td>
+          </tr>
+        </table>
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #F0F0F0;">
+          <p style="color: #8A8785; font-size: 12px; margin: 0;">Gesendet über das Kontaktformular auf soluty.io</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
+}
+
 export async function POST(request: NextRequest) {
   try {
     const data: ContactFormData = await request.json();
@@ -92,24 +157,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Implement actual email sending here
-    // Options:
-    // - nodemailer with SMTP
-    // - Resend API
-    // - SendGrid
-    // - AWS SES
-    //
-    // For now, log the submission (remove in production)
-    console.log('Contact form submission:', {
+    // Check SMTP configuration
+    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.error('SMTP credentials not configured');
+      return NextResponse.json(
+        { success: false, message: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
+    const contactEmail = process.env.CONTACT_EMAIL || process.env.SMTP_USER;
+    const transporter = createTransporter();
+
+    // Send email
+    await transporter.sendMail({
+      from: `"Soluty Kontaktformular" <${process.env.SMTP_USER}>`,
+      to: contactEmail,
+      replyTo: data.email,
+      subject: `Kontaktanfrage von ${data.name} – ${data.company}`,
+      html: buildEmailHtml(data),
+    });
+
+    console.log('Contact form email sent:', {
+      from: data.email,
       name: data.name,
       company: data.company,
-      email: data.email,
-      phone: data.phone || '(not provided)',
-      message: data.message || '(not provided)',
       timestamp: new Date().toISOString(),
     });
 
-    // Return success
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Contact form error:', error);
