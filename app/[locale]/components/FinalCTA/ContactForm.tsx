@@ -73,6 +73,22 @@ export function ContactForm() {
     loadTimeRef.current = Date.now();
   }, [status]);
 
+  // Listen for hero email form submission — prefill email field
+  useEffect(() => {
+    const handleHeroEmail = (e: Event) => {
+      const customEvent = e as CustomEvent<{ email: string }>;
+      const heroEmail = customEvent.detail?.email;
+      if (heroEmail) {
+        setFormData((prev) => ({ ...prev, email: heroEmail }));
+        // Clear any existing email error
+        setErrors((prev) => ({ ...prev, email: undefined }));
+      }
+    };
+
+    window.addEventListener('hero-email-submit', handleHeroEmail);
+    return () => window.removeEventListener('hero-email-submit', handleHeroEmail);
+  }, []);
+
   const validateField = useCallback((field: keyof FormData, value: string): string | undefined => {
     switch (field) {
       case 'name':
