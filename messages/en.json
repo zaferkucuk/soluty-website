@@ -270,6 +270,115 @@
       }
     }
   },
+  "impressum": {
+    "meta": {
+      "title": "Imprint"
+    },
+    "headline": "Imprint",
+    "companyName": "Soluty GmbH",
+    "sections": {
+      "angaben": {
+        "title": "Information pursuant to § 5 TMG",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin",
+        "country": "Germany"
+      },
+      "vertretung": {
+        "title": "Authorized Managing Directors",
+        "persons": "Zafer Kücük, Aykan Yusuf Kütük"
+      },
+      "registereintrag": {
+        "title": "Commercial Register",
+        "court": "Amtsgericht Charlottenburg",
+        "number": "HRB 273165 B"
+      },
+      "umsatzsteuer": {
+        "title": "VAT Identification Number",
+        "label": "VAT ID",
+        "number": "DE454964398"
+      },
+      "kontakt": {
+        "title": "Contact",
+        "emailLabel": "Email",
+        "email": "info@soluty.de",
+        "phoneLabel": "Phone",
+        "phone": "+49 171 8023675",
+        "websiteLabel": "Web",
+        "website": "https://soluty.io"
+      },
+      "verantwortlich": {
+        "title": "Responsible for content pursuant to § 18 (2) MStV",
+        "person": "Zafer Kücük",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin"
+      },
+      "streitbeilegung": {
+        "title": "EU Dispute Resolution",
+        "text": "The European Commission provides a platform for online dispute resolution (OS). We are neither obligated nor willing to participate in dispute resolution proceedings before a consumer arbitration board."
+      }
+    }
+  },
+  "datenschutz": {
+    "meta": {
+      "title": "Privacy Policy"
+    },
+    "headline": "Privacy Policy",
+    "lastUpdated": "Last updated: February 2026",
+    "sections": {
+      "verantwortlicher": {
+        "title": "1. Data Controller",
+        "text": "The party responsible for data processing on this website is:",
+        "company": "Soluty GmbH",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin",
+        "emailLabel": "Email",
+        "email": "info@soluty.de",
+        "phoneLabel": "Phone",
+        "phone": "+49 171 8023675"
+      },
+      "erhobene_daten": {
+        "title": "2. Data Collected",
+        "text": "When visiting this website, the following data is collected:",
+        "items": {
+          "server": "Server log files (IP address, timestamp, requested page, referrer, user agent) — technically necessary for website operation",
+          "contact": "Contact form: name, company, email address, optionally phone number and message — only when actively using the form"
+        }
+      },
+      "rechtsgrundlage": {
+        "title": "3. Legal Basis",
+        "text": "Processing is based on Art. 6(1)(f) GDPR (legitimate interest in operating the website) and Art. 6(1)(b) GDPR (pre-contractual measures for contact inquiries)."
+      },
+      "drittanbieter": {
+        "title": "4. Third-Party Services",
+        "text": "This website does not use any external analytics tools, tracking services, or advertising networks. No data is shared with third parties. Fonts are hosted locally (no Google Fonts CDN)."
+      },
+      "speicherdauer": {
+        "title": "5. Data Retention",
+        "text": "Server log files are automatically deleted after 30 days. Contact inquiries are stored for the duration of the business relationship and beyond according to statutory retention periods."
+      },
+      "cookies": {
+        "title": "6. Cookies",
+        "text": "This website does not use cookies. No tracking, analytics, or marketing cookies are employed. A cookie banner is therefore not required."
+      },
+      "betroffenenrechte": {
+        "title": "7. Your Rights",
+        "text": "Under the GDPR, you have the following rights:",
+        "items": {
+          "auskunft": "Right of access (Art. 15 GDPR)",
+          "berichtigung": "Right to rectification (Art. 16 GDPR)",
+          "loeschung": "Right to erasure (Art. 17 GDPR)",
+          "einschraenkung": "Right to restriction of processing (Art. 18 GDPR)",
+          "datenportabilitaet": "Right to data portability (Art. 20 GDPR)",
+          "widerspruch": "Right to object (Art. 21 GDPR)"
+        },
+        "contact": "To exercise your rights, please contact info@soluty.de."
+      },
+      "beschwerderecht": {
+        "title": "8. Right to Complain",
+        "text": "You have the right to lodge a complaint with a data protection supervisory authority. The responsible authority is the Berlin Commissioner for Data Protection and Freedom of Information."
+      }
+    }
+  },
   "faqPage": {
     "breadcrumb": {
       "home": "Home",

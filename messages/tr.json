@@ -269,6 +269,115 @@
       }
     }
   },
+  "impressum": {
+    "meta": {
+      "title": "Künye"
+    },
+    "headline": "Künye",
+    "companyName": "Soluty GmbH",
+    "sections": {
+      "angaben": {
+        "title": "§ 5 TMG uyarınca bilgiler",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin",
+        "country": "Almanya"
+      },
+      "vertretung": {
+        "title": "Yetkili Müdürler",
+        "persons": "Zafer Kücük, Aykan Yusuf Kütük"
+      },
+      "registereintrag": {
+        "title": "Ticaret Sicili",
+        "court": "Amtsgericht Charlottenburg",
+        "number": "HRB 273165 B"
+      },
+      "umsatzsteuer": {
+        "title": "KDV Kimlik Numarası",
+        "label": "USt-IdNr.",
+        "number": "DE454964398"
+      },
+      "kontakt": {
+        "title": "İletişim",
+        "emailLabel": "E-posta",
+        "email": "info@soluty.de",
+        "phoneLabel": "Telefon",
+        "phone": "+49 171 8023675",
+        "websiteLabel": "Web",
+        "website": "https://soluty.io"
+      },
+      "verantwortlich": {
+        "title": "§ 18 (2) MStV uyarınca içerikten sorumlu",
+        "person": "Zafer Kücük",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin"
+      },
+      "streitbeilegung": {
+        "title": "AB Uyuşmazlık Çözümü",
+        "text": "Avrupa Komisyonu, çevrimiçi uyuşmazlık çözümü (OS) için bir platform sağlamaktadır. Bir tüketici tahkim kurulu önünde uyuşmazlık çözüm sürecine katılma yükümlülüğümüz ve isteğimiz bulunmamaktadır."
+      }
+    }
+  },
+  "datenschutz": {
+    "meta": {
+      "title": "Gizlilik Politikası"
+    },
+    "headline": "Gizlilik Politikası",
+    "lastUpdated": "Son güncelleme: Şubat 2026",
+    "sections": {
+      "verantwortlicher": {
+        "title": "1. Veri Sorumlusu",
+        "text": "Bu web sitesindeki veri işlemeden sorumlu taraf:",
+        "company": "Soluty GmbH",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin",
+        "emailLabel": "E-posta",
+        "email": "info@soluty.de",
+        "phoneLabel": "Telefon",
+        "phone": "+49 171 8023675"
+      },
+      "erhobene_daten": {
+        "title": "2. Toplanan Veriler",
+        "text": "Bu web sitesini ziyaret ettiğinizde aşağıdaki veriler toplanır:",
+        "items": {
+          "server": "Sunucu günlük dosyaları (IP adresi, zaman damgası, istenen sayfa, yönlendiren, kullanıcı aracısı) — web sitesinin işletimi için teknik olarak gereklidir",
+          "contact": "İletişim formu: ad, şirket, e-posta adresi, isteğe bağlı telefon numarası ve mesaj — yalnızca formun aktif kullanımında"
+        }
+      },
+      "rechtsgrundlage": {
+        "title": "3. Hukuki Dayanak",
+        "text": "İşleme, GDPR Madde 6(1)(f) (web sitesinin işletilmesindeki meşru menfaat) ve GDPR Madde 6(1)(b) (iletişim talepleri için sözleşme öncesi tedbirler) temelinde gerçekleştirilmektedir."
+      },
+      "drittanbieter": {
+        "title": "4. Üçüncü Taraf Hizmetler",
+        "text": "Bu web sitesi herhangi bir harici analiz aracı, izleme hizmeti veya reklam ağı kullanmamaktadır. Hiçbir veri üçüncü taraflarla paylaşılmaz. Yazı tipleri yerel olarak barındırılmaktadır (Google Fonts CDN kullanılmaz)."
+      },
+      "speicherdauer": {
+        "title": "5. Veri Saklama Süresi",
+        "text": "Sunucu günlük dosyaları 30 gün sonra otomatik olarak silinir. İletişim talepleri, iş ilişkisinin süresi boyunca ve yasal saklama sürelerine uygun olarak saklanır."
+      },
+      "cookies": {
+        "title": "6. Çerezler",
+        "text": "Bu web sitesi çerez kullanmamaktadır. Herhangi bir izleme, analiz veya pazarlama çerezi kullanılmamaktadır. Bu nedenle bir çerez bildirimi gerekli değildir."
+      },
+      "betroffenenrechte": {
+        "title": "7. Haklarınız",
+        "text": "GDPR kapsamında aşağıdaki haklara sahipsiniz:",
+        "items": {
+          "auskunft": "Bilgi edinme hakkı (GDPR Madde 15)",
+          "berichtigung": "Düzeltme hakkı (GDPR Madde 16)",
+          "loeschung": "Silme hakkı (GDPR Madde 17)",
+          "einschraenkung": "İşlemenin kısıtlanması hakkı (GDPR Madde 18)",
+          "datenportabilitaet": "Veri taşınabilirliği hakkı (GDPR Madde 20)",
+          "widerspruch": "İtiraz hakkı (GDPR Madde 21)"
+        },
+        "contact": "Haklarınızı kullanmak için lütfen info@soluty.de adresine başvurun."
+      },
+      "beschwerderecht": {
+        "title": "8. Şikayet Hakkı",
+        "text": "Bir veri koruma denetim makamına şikayette bulunma hakkınız vardır. Yetkili makam, Berlin Veri Koruma ve Bilgi Özgürlüğü Komisyoneri'dir."
+      }
+    }
+  },
   "faqPage": {
     "breadcrumb": {
       "home": "Ana Sayfa",

@@ -270,6 +270,115 @@
       }
     }
   },
+  "impressum": {
+    "meta": {
+      "title": "Impressum"
+    },
+    "headline": "Impressum",
+    "companyName": "Soluty GmbH",
+    "sections": {
+      "angaben": {
+        "title": "Angaben gemäß § 5 TMG",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin",
+        "country": "Deutschland"
+      },
+      "vertretung": {
+        "title": "Vertretungsberechtigte Geschäftsführer",
+        "persons": "Zafer Kücük, Aykan Yusuf Kütük"
+      },
+      "registereintrag": {
+        "title": "Handelsregister",
+        "court": "Amtsgericht Charlottenburg",
+        "number": "HRB 273165 B"
+      },
+      "umsatzsteuer": {
+        "title": "Umsatzsteuer-Identifikationsnummer",
+        "label": "USt-IdNr.",
+        "number": "DE454964398"
+      },
+      "kontakt": {
+        "title": "Kontakt",
+        "emailLabel": "E-Mail",
+        "email": "info@soluty.de",
+        "phoneLabel": "Telefon",
+        "phone": "+49 171 8023675",
+        "websiteLabel": "Web",
+        "website": "https://soluty.io"
+      },
+      "verantwortlich": {
+        "title": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+        "person": "Zafer Kücük",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin"
+      },
+      "streitbeilegung": {
+        "title": "EU-Streitbeilegung",
+        "text": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit. Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+      }
+    }
+  },
+  "datenschutz": {
+    "meta": {
+      "title": "Datenschutzerklärung"
+    },
+    "headline": "Datenschutzerklärung",
+    "lastUpdated": "Stand: Februar 2026",
+    "sections": {
+      "verantwortlicher": {
+        "title": "1. Verantwortlicher",
+        "text": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:",
+        "company": "Soluty GmbH",
+        "street": "Chausseestraße 93",
+        "city": "10115 Berlin",
+        "emailLabel": "E-Mail",
+        "email": "info@soluty.de",
+        "phoneLabel": "Telefon",
+        "phone": "+49 171 8023675"
+      },
+      "erhobene_daten": {
+        "title": "2. Erhobene Daten",
+        "text": "Beim Besuch dieser Website werden folgende Daten erhoben:",
+        "items": {
+          "server": "Server-Logfiles (IP-Adresse, Zeitstempel, angefragte Seite, Referrer, User-Agent) — technisch notwendig für den Betrieb der Website",
+          "contact": "Kontaktformular: Name, Unternehmen, E-Mail-Adresse, optional Telefonnummer und Nachricht — nur bei aktiver Nutzung des Formulars"
+        }
+      },
+      "rechtsgrundlage": {
+        "title": "3. Rechtsgrundlage",
+        "text": "Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am Betrieb der Website) und Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen bei Kontaktanfragen)."
+      },
+      "drittanbieter": {
+        "title": "4. Drittanbieter",
+        "text": "Diese Website verwendet keine externen Analyse-Tools, Tracking-Dienste oder Werbenetzwerke. Es werden keine Daten an Dritte weitergegeben. Schriftarten werden lokal gehostet (kein Google Fonts CDN)."
+      },
+      "speicherdauer": {
+        "title": "5. Speicherdauer",
+        "text": "Server-Logfiles werden nach 30 Tagen automatisch gelöscht. Kontaktanfragen werden für die Dauer der Geschäftsbeziehung und darüber hinaus gemäß gesetzlicher Aufbewahrungsfristen gespeichert."
+      },
+      "cookies": {
+        "title": "6. Cookies",
+        "text": "Diese Website verwendet keine Cookies. Es werden keine Tracking-, Analyse- oder Marketing-Cookies eingesetzt. Ein Cookie-Banner ist daher nicht erforderlich."
+      },
+      "betroffenenrechte": {
+        "title": "7. Ihre Rechte",
+        "text": "Sie haben gemäß DSGVO folgende Rechte:",
+        "items": {
+          "auskunft": "Recht auf Auskunft (Art. 15 DSGVO)",
+          "berichtigung": "Recht auf Berichtigung (Art. 16 DSGVO)",
+          "loeschung": "Recht auf Löschung (Art. 17 DSGVO)",
+          "einschraenkung": "Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)",
+          "datenportabilitaet": "Recht auf Datenübertragbarkeit (Art. 20 DSGVO)",
+          "widerspruch": "Recht auf Widerspruch (Art. 21 DSGVO)"
+        },
+        "contact": "Zur Ausübung Ihrer Rechte wenden Sie sich bitte an info@soluty.de."
+      },
+      "beschwerderecht": {
+        "title": "8. Beschwerderecht",
+        "text": "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig ist die Berliner Beauftragte für Datenschutz und Informationsfreiheit."
+      }
+    }
+  },
   "faqPage": {
     "breadcrumb": {
       "home": "Startseite",
