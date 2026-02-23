@@ -9,26 +9,41 @@ interface FAQPageProps {
   params: Promise<{ locale: string }>;
 }
 
+const BASE_URL = 'https://soluty.io';
+
 // Generate metadata for SEO
 export async function generateMetadata({ params }: FAQPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'faqPage' });
 
   const canonicalUrls: Record<string, string> = {
-    de: 'https://soluty.de/de/faq',
-    en: 'https://soluty.de/en/faq',
-    tr: 'https://soluty.de/tr/faq',
+    de: `${BASE_URL}/de/faq`,
+    en: `${BASE_URL}/en/faq`,
+    tr: `${BASE_URL}/tr/faq`,
   };
 
   return {
     title: t('meta.title'),
     description: t('meta.description'),
+    openGraph: {
+      images: [
+        {
+          url: '/og/faq.jpg',
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
     alternates: {
       canonical: canonicalUrls[locale],
       languages: {
         de: canonicalUrls.de,
         en: canonicalUrls.en,
         tr: canonicalUrls.tr,
+        'x-default': canonicalUrls.de,
       },
     },
   };
