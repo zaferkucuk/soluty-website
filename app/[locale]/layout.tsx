@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
       locale: localeToOgLocale[locale] ?? 'de_DE',
       images: [
         {
-          url: '/og/homepage.jpg',
+          url: '/og/homepage',
           width: 1200,
           height: 630,
         },

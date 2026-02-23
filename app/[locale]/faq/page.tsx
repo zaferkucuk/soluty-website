@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: FAQPageProps): Promise<Metada
     openGraph: {
       images: [
         {
-          url: '/og/faq.jpg',
+          url: '/og/faq',
           width: 1200,
           height: 630,
         },
