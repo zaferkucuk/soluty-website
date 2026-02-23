@@ -9,6 +9,7 @@ import { fontVariables } from "../fonts";
 import "../globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://soluty.io'),
   title: "Soluty GmbH - Custom ERP Solutions",
   description: "Custom ERP solutions for delivery businesses",
 };
