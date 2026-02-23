@@ -169,7 +169,7 @@ export default async function FAQPage({ params }: FAQPageProps) {
     },
   };
 
-  // Build FAQ JSON-LD schema
+  // Build FAQ JSON-LD schema (use answerCapsule only — plain text)
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -178,7 +178,7 @@ export default async function FAQPage({ params }: FAQPageProps) {
       name: q.question,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: q.answerExtended ? `${q.answerCapsule} ${q.answerExtended}` : q.answerCapsule,
+        text: q.answerCapsule,
       },
     })),
   };
@@ -192,13 +192,13 @@ export default async function FAQPage({ params }: FAQPageProps) {
         '@type': 'ListItem',
         position: 1,
         name: translations.breadcrumb.home,
-        item: `https://soluty.de/${locale}`,
+        item: `${BASE_URL}/${locale}`,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: translations.breadcrumb.faq,
-        item: `https://soluty.de/${locale}/faq`,
+        item: `${BASE_URL}/${locale}/faq`,
       },
     ],
   };
@@ -208,11 +208,15 @@ export default async function FAQPage({ params }: FAQPageProps) {
       {/* JSON-LD Schema Markup */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c'),
+        }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema).replace(/</g, '\\u003c'),
+        }}
       />
 
       <FAQPageContent

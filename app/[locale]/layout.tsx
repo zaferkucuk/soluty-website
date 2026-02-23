@@ -72,9 +72,65 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  // Organization JSON-LD (global)
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${BASE_URL}/#organization`,
+    name: 'Soluty GmbH',
+    url: BASE_URL,
+    logo: `${BASE_URL}/logo.png`,
+    description: 'Individuelle ERP-Software für Lieferunternehmen in Deutschland. Maßgeschneiderte Lösungen für Tourenplanung, Lagerverwaltung und Fahrerabrechnung.',
+    foundingDate: '2022',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Chausseestraße 93',
+      addressLocality: 'Berlin',
+      postalCode: '10115',
+      addressCountry: 'DE',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+49-171-8023675',
+      contactType: 'sales',
+      availableLanguage: ['German', 'Turkish', 'English'],
+    },
+    areaServed: 'DE',
+    knowsAbout: [
+      'ERP-Software',
+      'Lieferunternehmen',
+      'Tourenplanung',
+      'Lagerverwaltung',
+      'Fahrerabrechnung',
+    ],
+  };
+
+  // WebSite JSON-LD (global)
+  const webSiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${BASE_URL}/#website`,
+    url: BASE_URL,
+    name: 'Soluty GmbH',
+    publisher: { '@id': `${BASE_URL}/#organization` },
+    inLanguage: ['de', 'en', 'tr'],
+  };
+
   return (
     <html lang={locale}>
       <body className={`${fontVariables} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema).replace(/</g, '\\u003c'),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(webSiteSchema).replace(/</g, '\\u003c'),
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main id="main-content">

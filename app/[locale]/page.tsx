@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { HeroEmailForm } from "./components/HeroEmailForm";
 import { HeroVideo } from "./components/HeroVideo";
 import { ServicesSection } from "./components/ServicesSection";
@@ -6,6 +6,8 @@ import { ERPFeaturesSection } from "./components/ERPFeaturesSection";
 import { HomeFAQ } from "./components/HomeFAQ";
 import { FinalCTASection } from "./components/FinalCTA";
 import { SectionDivider } from "./components/ui/SectionDivider";
+
+const BASE_URL = 'https://soluty.io';
 
 // Design tokens
 const COLORS = {
@@ -22,10 +24,28 @@ const FONTS = {
 
 export default function HomePage() {
   const t = useTranslations("hero");
+  const tMeta = useTranslations("metadata");
   const tServices = useTranslations("services");
+  const locale = useLocale();
+
+  // WebPage JSON-LD
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: tMeta('title'),
+    description: tMeta('description'),
+    url: `${BASE_URL}/${locale}`,
+    isPartOf: { '@id': `${BASE_URL}/#website` },
+  };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: COLORS.bgPrimary }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webPageSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       {/* Hero Section — exact viewport height (above the fold)
           Layout: flex-col with minHeight = viewport - header
           - flex-1 area: vertically centers hero content
