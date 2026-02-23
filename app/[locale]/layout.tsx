@@ -33,6 +33,13 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
       template: '%s | Soluty GmbH',
     },
     description: t('description'),
+    icons: {
+      icon: [
+        { url: '/soluty-icon.svg', type: 'image/svg+xml' },
+      ],
+      shortcut: '/soluty-icon.svg',
+      apple: '/soluty-icon.svg',
+    },
     openGraph: {
       type: 'website',
       siteName: 'Soluty GmbH',
