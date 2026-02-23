@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { FormField } from './FormField';
 import { SuccessMessage } from './SuccessMessage';
 
@@ -53,6 +53,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export function ContactForm() {
   const t = useTranslations('finalCta');
+  const locale = useLocale();
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -408,7 +409,7 @@ export function ContactForm() {
             {t.rich('form.privacy', {
               privacyLink: (chunks) => (
                 <a
-                  href="/de/datenschutz"
+                  href={`/${locale}/datenschutz`}
                   className="underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                   style={{
                     fontWeight: 500,
