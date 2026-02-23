@@ -209,7 +209,7 @@
       },
       "phone": {
         "label": "Telefon",
-        "placeholder": "+49 176 1234567",
+        "placeholder": "+49 171 8023675",
         "optional": "(optional)"
       },
       "message": {
@@ -244,7 +244,7 @@
     "alternative": {
       "or": "oder kontaktieren Sie uns direkt:",
       "email": "info@soluty.de",
-      "phone": "+49 176 4775 7322"
+      "phone": "+49 171 8023675"
     }
   },
   "metadata": {
