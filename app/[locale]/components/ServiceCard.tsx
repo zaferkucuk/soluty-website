@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { LucideIcon, ArrowRight } from 'lucide-react';
 
 // Design tokens
@@ -60,12 +60,14 @@ export function ServiceCard({
   isHighlighted = false,
   animationDelay = 0,
 }: ServiceCardProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{
+      transition={shouldReduceMotion ? { duration: 0 } : {
         duration: 0.5,
         delay: animationDelay,
         ease: 'easeOut',
