@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Code2, Database, Brain } from 'lucide-react';
 import { ServiceCard } from './ServiceCard';
@@ -41,16 +41,36 @@ const FONTS = {
  * Grid uses items-stretch so left and right cards have equal height.
  *
  * Padding optimized so header + section fits viewport on most screens.
+ *
+ * Performance: video is not rendered on mobile (skipped entirely, not just hidden)
+ * to prevent unnecessary network requests on small screens.
  */
+
+/** Returns true on mobile (< 768px). Runs only on client. */
+function useIsMobile(): boolean {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  return isMobile;
+}
+
 export function ServicesSection() {
   const t = useTranslations('services');
   const videoRef = useRef<HTMLVideoElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = VIDEO_CONFIG.playbackRate;
     }
-  }, []);
+  }, [isMobile]);
 
   const services = [
     {
@@ -85,20 +105,22 @@ export function ServicesSection() {
       style={{ backgroundColor: COLORS.bgSection }}
       aria-labelledby="services-heading"
     >
-      {/* ── Video Background Layer ── */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="hidden md:block w-full h-full object-cover"
-          style={{ opacity: VIDEO_CONFIG.opacity }}
-        >
-          <source src="/videos/epicor-bg-video.mp4" type="video/mp4" />
-        </video>
-      </div>
+      {/* ── Video Background Layer — skipped entirely on mobile ── */}
+      {!isMobile && (
+        <div className="absolute inset-0 z-0" aria-hidden="true">
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            style={{ opacity: VIDEO_CONFIG.opacity }}
+          >
+            <source src="/videos/srv-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
+      )}
 
       {/* ── Gradient Overlay ── */}
       <div
