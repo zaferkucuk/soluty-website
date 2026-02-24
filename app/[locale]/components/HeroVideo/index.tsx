@@ -18,6 +18,11 @@ interface HeroVideoProps {
  * - preload="auto" ensures browser fetches video early
  * - Waits for 'canplay' event if video isn't ready yet
  * - Falls back to poster image if autoplay is blocked
+ *
+ * Performance:
+ * - Only one instance is active at a time (mobile vs desktop)
+ * - The inactive layout is hidden via CSS but this component itself
+ *   should only be rendered once — see page.tsx for rendering logic.
  */
 export function HeroVideo({
   videoSrc,
