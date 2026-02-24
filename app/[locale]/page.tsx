@@ -46,18 +46,22 @@ export default function HomePage() {
           __html: JSON.stringify(webPageSchema).replace(/</g, '\\u003c'),
         }}
       />
-      {/* Hero Section — exact viewport height (above the fold)
-          Layout: flex-col with minHeight = viewport - header
-          - flex-1 area: vertically centers hero content
-          - shrink-0 bottom: UNSERE LEISTUNGEN eyebrow visible without scroll */}
+
+      {/* Hero Section
+          Single <HeroVideo> instance — rendered once, positioned via CSS.
+          Mobile: stacked (video on top, text below)
+          Desktop: two-column (text left, video absolute right)
+          Previously two separate layouts caused hero.webm to load twice. */}
       <section style={{ overflowX: 'clip' }}>
-        {/* Mobile */}
+
+        {/* Mobile layout — visible below lg */}
         <div
           className="lg:hidden px-6 pt-4 flex flex-col"
           style={{ minHeight: 'calc(100vh - 80px)' }}
         >
           <div className="flex-1 flex flex-col justify-center">
             <div className="max-w-md mx-auto mb-8">
+              {/* Single HeroVideo instance for mobile */}
               <HeroVideo videoSrc="/videos/hero.webm" />
             </div>
             <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
@@ -78,12 +82,11 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Desktop */}
+        {/* Desktop layout — visible from lg */}
         <div
           className="hidden lg:flex lg:flex-col relative"
           style={{ minHeight: 'calc(100vh - 88px)' }}
         >
-          {/* Hero content area — flex-1 + flex + items-center = vertical centering */}
           <div className="flex-1 flex items-center relative">
             <div className="relative z-10 max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-6 md:px-10 w-full">
               <div className="max-w-[520px]">
@@ -91,7 +94,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Video — absolute, right-aligned */}
+            {/* Video — absolute, right-aligned. Single HeroVideo instance for desktop. */}
             <div
               className="absolute top-0 right-0 h-full flex items-center"
               style={{ width: '62%' }}
@@ -102,7 +105,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Eyebrow at viewport bottom */}
           <div className="py-4 shrink-0 relative z-10">
             <p
               className="font-semibold tracking-widest uppercase text-center"
