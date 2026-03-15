@@ -27,17 +27,6 @@ export function HeaderButtons() {
 
   return (
     <div className="flex items-center gap-2 lg:gap-3">
-      {/* Login Button - Secondary style */}
-      <Button
-        as="link"
-        href={`/${locale}/login`}
-        variant="secondary"
-        size="sm"
-        className="hidden sm:inline-flex"
-      >
-        {t('login')}
-      </Button>
-
       {/* Contact Button - Primary style, hidden on mobile */}
       <Button
         as="link"
