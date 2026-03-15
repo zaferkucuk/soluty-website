@@ -27,11 +27,11 @@ export function HeaderButtons() {
 
   return (
     <div className="flex items-center gap-2 lg:gap-3">
-      {/* Contact Button - Primary style, hidden on mobile */}
+      {/* Contact Button - Secondary style (transparent/bordered), hidden on mobile */}
       <Button
         as="link"
         href={`/${locale}#contact`}
-        variant="brand"
+        variant="secondary"
         size="sm"
         icon={<ArrowIcon />}
         className="hidden sm:inline-flex"
