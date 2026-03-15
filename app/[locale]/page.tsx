@@ -49,24 +49,27 @@ export default function HomePage() {
 
       {/* Hero Section
           Single <HeroVideo> instance — rendered once, positioned via CSS.
-          Mobile: stacked (video on top, text below)
+          Mobile: stacked (video edge-to-edge on top, text below with padding)
           Desktop: two-column (text left, video absolute right)
           Previously two separate layouts caused hero.webm to load twice. */}
       <section style={{ overflowX: 'clip' }}>
 
         {/* Mobile layout — visible below lg */}
         <div
-          className="lg:hidden px-6 pt-4 flex flex-col"
+          className="lg:hidden flex flex-col"
           style={{ minHeight: 'calc(100vh - 80px)' }}
         >
           <div className="flex-1 flex flex-col justify-center">
-            {/* Video — full width on mobile, no max-w constraint */}
-            <div className="w-full mb-6 -mx-2">
+            {/* Video — edge-to-edge, no horizontal padding */}
+            <div className="w-full mb-4 pt-2">
               <HeroVideo videoSrc="/videos/hero.webm" />
             </div>
-            <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
+            {/* Text content — with horizontal padding */}
+            <div className="px-6">
+              <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
+            </div>
           </div>
-          <div className="py-3 shrink-0">
+          <div className="py-3 shrink-0 px-6">
             <p
               className="font-semibold tracking-widest uppercase text-center"
               style={{
