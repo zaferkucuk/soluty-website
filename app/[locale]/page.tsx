@@ -60,8 +60,8 @@ export default function HomePage() {
           style={{ minHeight: 'calc(100vh - 80px)' }}
         >
           <div className="flex-1 flex flex-col justify-center">
-            <div className="max-w-md mx-auto mb-8">
-              {/* Single HeroVideo instance for mobile */}
+            {/* Video — full width on mobile, no max-w constraint */}
+            <div className="w-full mb-6 -mx-2">
               <HeroVideo videoSrc="/videos/hero.webm" />
             </div>
             <HeroTextContent t={t} colors={COLORS} fonts={FONTS} />
