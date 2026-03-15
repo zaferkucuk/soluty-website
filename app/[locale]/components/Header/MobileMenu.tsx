@@ -24,7 +24,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { key: 'services', href: '#services' },
-  { key: 'references', href: '#references' },
+  { key: 'erp', href: '#erp-features' },
   { key: 'contact', href: '#contact' },
 ]
 
