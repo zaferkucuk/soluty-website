@@ -35,8 +35,9 @@ const FONTS = {
  *
  * Note: Eyebrow label is rendered in page.tsx above this section.
  *
- * Note: Highlighted card uses scale(1.05) for visual prominence.
- * This intentionally scales text ~5% larger — accepted tradeoff for hierarchy.
+ * Note: Highlighted card uses scale(1.05) on desktop only for visual prominence.
+ * On mobile all cards are equal size — scale is removed to prevent overflow.
+ * This intentionally scales text ~5% larger on desktop — accepted tradeoff.
  *
  * Grid uses items-stretch so left and right cards have equal height.
  *
@@ -163,15 +164,10 @@ export function ServicesSection() {
                 key={service.id}
                 className={`
                   ${service.mobileOrder === 1 ? 'order-first' : ''}
-                  ${service.isHighlighted ? 'md:order-2' : ''}
+                  ${service.isHighlighted ? 'md:order-2 md:scale-105 md:z-[2] md:relative' : ''}
                   ${service.desktopOrder === 1 ? 'md:order-1' : ''}
                   ${service.desktopOrder === 3 ? 'md:order-3' : ''}
                 `}
-                style={service.isHighlighted ? {
-                  transform: 'scale(1.05)',
-                  zIndex: 2,
-                  position: 'relative' as const,
-                } : undefined}
               >
                 <ServiceCard
                   icon={service.icon}
