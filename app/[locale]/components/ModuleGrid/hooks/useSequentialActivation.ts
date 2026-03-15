@@ -22,13 +22,13 @@ export interface SequentialActivationConfig {
 /**
  * Default timing configuration
  * - Cards appear one by one with 200ms delay
- * - Group stays fully visible for 2 seconds
- * - 1 second pause before next group starts
+ * - Group stays fully visible for 1 second
+ * - 0.5 second pause before next group starts
  */
 export const DEFAULT_SEQUENTIAL_CONFIG: SequentialActivationConfig = {
   cardActivationDelay: 200,      // 200ms between each card appearing
-  groupDisplayDuration: 2000,    // 2s all cards visible
-  groupTransitionDelay: 1000,    // 1s pause between groups
+  groupDisplayDuration: 1000,    // 1s all cards visible
+  groupTransitionDelay: 500,     // 0.5s pause between groups
   cardDeactivationDelay: 150,    // 150ms between each card disappearing
 };
 
