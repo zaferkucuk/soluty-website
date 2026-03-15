@@ -8,10 +8,13 @@ import { useTransition, useState } from 'react'
 const COLORS = {
   brandPrimary: '#4DB6A0',
   borderStrong: 'rgba(50, 48, 47, 0.15)',
+  borderStrongInverse: 'rgba(255, 255, 255, 0.4)',
 }
 
 const locales = ['de', 'en', 'tr'] as const
 type Locale = typeof locales[number]
+
+export type LanguageSwitcherVariant = 'header' | 'footer'
 
 // Circular flag SVG components
 function GermanyFlag({ size = 24 }: { size?: number }) {
@@ -71,15 +74,21 @@ function LocaleButton({
   isPending,
   onClick,
   label,
+  variant,
 }: { 
   locale: Locale
   isActive: boolean
   isPending: boolean
   onClick: () => void
   label: string
+  variant: LanguageSwitcherVariant
 }) {
   const [isHovered, setIsHovered] = useState(false)
   const FlagIcon = flagComponents[locale]
+
+  const activeBorder = variant === 'footer'
+    ? COLORS.borderStrongInverse
+    : COLORS.borderStrong
 
   return (
     <button
@@ -95,7 +104,7 @@ function LocaleButton({
         opacity: isActive ? 1 : isHovered ? 0.8 : 0.4,
         cursor: isPending ? 'wait' : 'pointer',
         transform: isHovered && !isActive ? 'scale(1.08)' : 'scale(1)',
-        boxShadow: isActive ? `0 0 0 2px ${COLORS.borderStrong}` : 'none',
+        boxShadow: isActive ? `0 0 0 2px ${activeBorder}` : 'none',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -107,7 +116,7 @@ function LocaleButton({
   )
 }
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ variant = 'header' }: { variant?: LanguageSwitcherVariant }) {
   const t = useTranslations('header.languageSwitcher')
   const currentLocale = useLocale() as Locale
   const pathname = usePathname()
@@ -140,6 +149,7 @@ export function LanguageSwitcher() {
           isPending={isPending}
           onClick={() => handleLocaleChange(locale)}
           label={`Switch to ${locale.toUpperCase()}`}
+          variant={variant}
         />
       ))}
     </div>

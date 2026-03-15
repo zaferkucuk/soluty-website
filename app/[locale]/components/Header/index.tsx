@@ -76,9 +76,11 @@ export function Header() {
               </div>
             </div>
 
-            {/* Right: Language Switcher + Buttons */}
+            {/* Right: Language Switcher (desktop only) + Buttons */}
             <div className="flex items-center gap-3 lg:gap-6">
-              <LanguageSwitcher />
+              <div className="hidden lg:flex">
+                <LanguageSwitcher />
+              </div>
               <HeaderButtons />
             </div>
           </div>

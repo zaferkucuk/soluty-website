@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslations, useLocale } from 'next-intl'
+import { LanguageSwitcher } from '../Header/LanguageSwitcher'
 
 const FONTS = {
   sans: "'DM Sans', system-ui, 'Helvetica Neue', Arial, sans-serif",
@@ -233,12 +234,18 @@ export function Footer() {
           >
             © {currentYear} Soluty GmbH. {t('copyright')}
           </p>
-          <div
-            className="text-xs flex items-center gap-2"
-            style={{ color: COLORS.textMuted }}
-          >
-            <EUFlag size={20} />
-            <span>{t('madeInEU')}</span>
+
+          <div className="flex items-center gap-6">
+            {/* Language Switcher */}
+            <LanguageSwitcher variant="footer" />
+
+            <div
+              className="text-xs flex items-center gap-2"
+              style={{ color: COLORS.textMuted }}
+            >
+              <EUFlag size={20} />
+              <span>{t('madeInEU')}</span>
+            </div>
           </div>
         </div>
       </div>
