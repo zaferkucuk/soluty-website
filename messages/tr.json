@@ -170,7 +170,8 @@
       "aiSolutions": "Yapay Zeka Çözümleri"
     },
     "contactTitle": "İletişim",
-    "address": "Duisburg, Almanya",
+    "addressStreet": "Chausseestraße 93",
+    "addressCity": "10115 Berlin",
     "legalTitle": "Yasal",
     "legal": {
       "imprint": "Künye",
@@ -181,7 +182,7 @@
       "github": "GitHub'da Soluty"
     },
     "copyright": "Tüm hakları saklıdır.",
-    "madeInGermany": "Almanya'da geliştirildi"
+    "madeInEU": "AB'de üretildi"
   },
   "finalCta": {
     "eyebrow": "İLETİŞİM",
