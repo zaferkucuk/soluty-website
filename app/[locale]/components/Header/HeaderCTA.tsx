@@ -27,7 +27,7 @@ export function HeaderButtons() {
 
   return (
     <div className="flex items-center gap-2 lg:gap-3">
-      {/* Login Button - Secondary style (Wealthsimple "Log in") */}
+      {/* Login Button - Secondary style */}
       <Button
         as="link"
         href={`/${locale}/login`}
@@ -38,13 +38,14 @@ export function HeaderButtons() {
         {t('login')}
       </Button>
 
-      {/* Contact Button - Primary style (Wealthsimple "Get started") */}
+      {/* Contact Button - Primary style, hidden on mobile */}
       <Button
         as="link"
         href={`/${locale}#contact`}
         variant="brand"
         size="sm"
         icon={<ArrowIcon />}
+        className="hidden sm:inline-flex"
       >
         {t('contact')}
       </Button>
